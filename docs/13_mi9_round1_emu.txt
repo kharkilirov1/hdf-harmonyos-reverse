@@ -1,0 +1,64 @@
+=== 13. Раунд 1 доведения до запуска: эмуляция OHOS-механизмов в ядре ===
+
+Дата: 2026-10-26. Продолжение 12_mi9_foundation_attempt.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+1) Binder FEATURE_SET теперь рапортует поддерживаемые OHOS-фичи
+   (ACCESS_TOKENID|SENDER_INFO = 5). Дизассемблер libipc_common показал:
+   libipc_single вызывает BINDER_GET_SENDER_INFO (ioctl 32) — реализован:
+   берём sender_pid из thread->transaction_stack->from->pid и token из
+   pid-таблицы заглушки; BINDER_GET_ACCESS_TOKEN (31) — тоже реализован.
+   Подтверждение: в логе 28 вызовов ioctl32.
+
+2) /dev/access_token_id: init вызывает _IOW('A',2,u64) для каждого сервиса
+   (токены 671300522, 672068863, ...), заглушка хранит по pid.
+
+3) Foundation стартовал ("start-mode": "boot"), /data-дерево предсоздано.
+
+4) Добавлен init-job (services:foundation), который через begetctl ставит
+   bootevent.*=true:
+     exec /system/bin/begetctl param set bootevent.appfwk.ready true
+     ... launcher.ready, wms.ready, lockscreen.ready, bms.main.bundles.ready,
+         boot.completed
+   Все команды выполнились (по ~1 c каждая); пропали предупреждения
+   "bootevent ... not set" для этих событий.
+
+5) Пропатчен libselinux.z.so (selinux_check_access -> mov w0,#0; ret)
+   в образе — на samgr-проверки не повлияло (см. ниже).
+
+═══════════════════════════════════════════════════════════════════════
+ТЕКУЩИЙ БАРЬЕР (точный)
+═══════════════════════════════════════════════════════════════════════
+
+[374.6] SAMGR: AddSystemAbilityInner selinux permission denied! SA:5100,callSid:
+
+callSid пуст. Причина: OHOS IPCSkeleton::GetCallingSid() берёт SELinux-метку
+вызывающего из binder-транзакции (BR_TRANSACTION_SEC_CTX / secctx), а в
+mainline 4.14 binder поддержки secctx НЕТ (появилась в 4.19/4.20:
+binder_transaction_data_secctx). Наши эмуляции token/sender info дают pid,
+но не sid. Патч libselinux не помог, потому что проверка доходит до
+selinux_check_access с пустым sid и падает раньше (либо samgr использует
+свою копию libselinux из namespace).
+
+Следствие: samgr отклоняет AddSystemAbility для ряда SA (SA:5002, 8001, 5100),
+часть сервисов не регистрируется, foundation не получает полный набор,
+launcher не запрашивается. appspawn при этом стартовал (и один раз
+перезапускался), но приложений не запускает.
+
+═══════════════════════════════════════════════════════════════════════
+ПЛАН НА СЛЕДУЮЩИЙ РАУНД (по приоритету)
+═══════════════════════════════════════════════════════════════════════
+
+1. Бэкпорт secctx в binder 4.14 (binder_transaction_data_secctx +
+   BR_TRANSACTION_SEC_CTX + передача метки в transaction) — самый
+   правильный путь: тогда GetCallingSid вернёт реальную метку вызывающего
+   (в permissive-режиме проверка пройдёт).
+2. Либо патч IPCSkeleton::GetCallingSid в libipc_single.z.so: вклеить строку
+   "u:r:system_server:s0" в .rodata и переписать функцию на её возврат
+   (сложнее: возвращает std::string по значению — нужен код построения).
+3. Проверить, доходят ли bootevent.* до param-сервиса: добавить exec-job с
+   begetctl param get и посмотреть вывод.
+4. Разобрать перезапуск appspawn (353 c) — почему первый упал.

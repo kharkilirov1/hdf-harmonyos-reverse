@@ -31,3 +31,6 @@ seed.img
 !docs/11_*.config
 
 !docs/12_*.log
+
+!docs/13_*.log
+!docs/13_*.config
