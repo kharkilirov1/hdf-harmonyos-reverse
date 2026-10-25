@@ -1,0 +1,109 @@
+=== 09. Mi 9 kernel rebuild (4.14) + HarmonyOS userspace — результат ===
+
+Дата: 2026-10-25. Шаг 3 из плана.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО СОБИРАЛОСЬ
+═══════════════════════════════════════════════════════════════════════
+
+Исходники: официальные linux-4.14.180 (kernel.org, tar.xz 97 МБ), НЕ Xiaomi-дерево —
+причина: git clone MiCode/Xiaomi_Kernel_OpenSource (cepheus-q-oss) шёл ~200 КБ/с,
+ждать 1.5–2 часа нецелесообразно; для ответа «достаточно ли 4.14» версия важнее
+вендорских патчей. Ветки cepheus в MiCode: cepheus-p-oss, cepheus-q-oss (обе 4.14).
+
+Конфиг: arch/arm64 defconfig (НЕ Mi9-конфиг — тот подвешивал ядро на -cpu max)
+        + scripts/config:
+          VIRTIO, VIRTIO_PCI, VIRTIO_MMIO, VIRTIO_BLK, VIRTIO_NET,
+          SERIAL_AMBA_PL011(_CONSOLE), ARM_AMBA, PCI, PCI_HOST_GENERIC,
+          ANDROID_BINDER_IPC, ASHMEM, SECURITY_SELINUX, BLK_DEV_INITRD,
+          DEVTMPFS, DEVTMPFS_MOUNT
+Инструменты: gcc 13.3.0 (aarch64-linux-gnu), KBUILD_CFLAGS="-Wno-error"
+Сборка: make O=build2 -j20 Image -> BUILD_RC=0, 8 мин, Image 16 МБ.
+
+Ошибки по пути:
+  - Mi9-конфиг (6224 строки от stock-ядра) + vanilla 4.14 собирается, но ядро
+    подвисает до консоли (нет вывода даже с earlycon) — отброшен.
+  - -cpu max с ядром 4.14 => нет вывода и нет исключений (ядро 4.14 не понимает
+    часть фич cpu=max). Рабочая комбинация: -cpu cortex-a72 (или cortex-a57).
+  - out-of-tree сборка упала на "src is not clean" => make mrproper.
+
+═══════════════════════════════════════════════════════════════════════
+ЗАПУСК
+═══════════════════════════════════════════════════════════════════════
+
+qemu-system-aarch64 -M virt -cpu cortex-a72 -m 4096 -smp 4 \
+  -kernel build2/arch/arm64/boot/Image \
+  -append "console=ttyAMA0 root=/dev/vda rw init=/system/bin/init selinux=0" \
+  -drive file=hsroot.img,format=raw,if=virtio -nographic -no-reboot
+
+(hsroot.img — ext4-образ HarmonyOS system 6.0.0.108 из эксперимента 08)
+
+═══════════════════════════════════════════════════════════════════════
+РЕЗУЛЬТАТ (полный лог: 09_mi9_414_rebuilt.log)
+═══════════════════════════════════════════════════════════════════════
+
+Ядро:      Linux 4.14.180 (gcc 13.3.0), boot на virt, earlycon PL011 работает
+[ 2.911]   [pid=1][Init] Start init first stage.
+[ 3.15 ]   ueventd: создание /dev/* (console, tty — "File exists", норма)
+[ 4.613]   [pid=1][Init][init.c:307] boot stage: init finish.
+[ 53.2 ]   [pid=1][Init][init.c:339] boot stage: parse config file finish. cfg count 247
+[ 82.5 ]   ServiceStart starting: samgr (pid 1508, uid 5555)
+[ 82.6 ]   samgr: "failed to set access token" (-2)
+[ 82.6 ]   samgr: "failed to set secon u:r:samgr:s0" (нет SELinux policy — нет /vendor)
+[ 82.97]   samgr exit with code 21 -> init: "ServiceReap error critical service crashed samgr 1"
+[ 83.0 ]   bootfail: ServiceCrash name: samgr -> ProcessCriticalProcessFault
+[ 83.72]   init пишет в /proc/sysrq-trigger 'c'
+[ 83.72]   Internal error: Oops ... pc : sysrq_handle_crash+0x20/0x30
+[ 83.73]   Kernel panic - not syncing: Fatal exception
+
+Стартовавшие сервисы (21 вызов ServiceStart, 10 уникальных):
+  ueventd, param_watcher, hilogd, faultloggerd, samgr, storage_manager,
+  storage_daemon, watchdog_service, el5_filekey_manager, key_enable, dsmm_init
+
+═══════════════════════════════════════════════════════════════════════
+ИНТЕРПРЕТАЦИЯ
+═══════════════════════════════════════════════════════════════════════
+
+1. Паник ядра — НЕ следствие несовместимости 4.14. Это штатное поведение
+   HarmonyOS: при падении критического сервиса init намеренно пишет в
+   /proc/sysrq-trigger (sysrq_handle_crash в call trace), чтобы снять дамп.
+   Доказательство: call trace sysrq_handle_crash -> __handle_sysrq ->
+   write_sysrq_trigger -> proc_reg_write -> SyS_write -> el0_svc_naked.
+
+2. Причина падения samgr — сервисная, а не kernel-version:
+   нет SELinux policy (/vendor/etc/selinux/*), нет access-token сервиса,
+   нет /sys/kbox, нет Huawei-специфичных устройств (bootfail ioctl -> -1).
+
+3. Сисколлов 5.x в логе НЕ потребовалось: ни одного ENOSYS/«Function not
+   implemented» за весь прогон (grep = 0). На достигнутых стадиях 4.14
+   достаточно.
+
+СРАВНЕНИЕ С 6.8 (эксперимент 08, Ubuntu 6.8 arm64 + тот же hsroot.img):
+
+| метрика                        | 4.14 (rebuild) | 6.8 (Ubuntu) |
+|---|---|---|
+| init first stage               | да (2.9 c)     | да (88.7 c)  |
+| boot stage: init finish        | да (4.6 c)     | да (97.9 c)  |
+| parse config (cfg count 247)   | да             | нет в логе   |
+| ServiceStart (кол-во)          | 21             | 0            |
+| samgr запущен                  | да, pid 1508   | нет          |
+| завершение                     | sysrq-panic (штатно) | остановлен таймаутом, висел на SELinux policy |
+
+4.14 (даже vanilla defconfig с QEMU-опциями) дошёл ДАЛЬШЕ, чем 6.8:
+на 6.8 процесс не пошёл дальше загрузки policy, на 4.14 — стартовал
+service framework и дошёл до запуска samgr.
+
+═══════════════════════════════════════════════════════════════════════
+ВЕРДИКТ
+═══════════════════════════════════════════════════════════════════════
+
+(A) — «4.14 достаточно» на достигнутом уровне:
+    init + service framework (10 сервисов) + samgr запускаются на 4.14;
+    сисколлы 5.10+ не потребовались ни разу (0 ENOSYS).
+    Остановка — из-за отсутствия /vendor-политик и сервисов (access token,
+    selinux policy, kbox), то есть userspace-инфраструктуры, а не ядра.
+
+Ограничение вывода: проверено на vanilla 4.14.180 + QEMU-опции, не на
+Xiaomi-дереве; Mi9-конфиг отдельно подвешивал ядро в QEMU (не в userspace).
+Следующий шаг для полной картины — добавить /vendor и /sys_prod
+(vendor.img, sys_prod.img из 6.0.0.108) в QEMU и повторить.

@@ -1,0 +1,87 @@
+=== 09. Mi 9 (cepheus, SM8150) — пригодность ядра для HarmonyOS-юзерспейса ===
+
+Дата: 2026-10-25. Источник прошивки: MIUI V12.5.1.0.RFAMIXM (cepheus_global_images,
+3 206 117 745 B, xiaomi CDN), boot.img 128 MiB.
+
+═══════════════════════════════════════════════════════════════════════
+ШАГ 1 — СТАТИКА
+═══════════════════════════════════════════════════════════════════════
+
+boot.img: header v1, page_size 4096, kernel 43 981 273 B, ramdisk 0 B (system-as-root).
+Kernel payload: контейнер Xiaomi "UNCOMPRESSED_IMG" (20-байтный заголовок) + ARM64 Image.
+  Image: text_offset 0x80000, image_size (заявлено) 0x2e53000 = 48 586 752 B,
+         файл 43 981 253 B (заявленный размер больше файла на ~4.6 МБ — правка поля
+         не изменила поведение при загрузке).
+
+Версия ядра (из Image):
+  Linux version 4.14.180-perf-g4b73fd3 (builder@c5-miui-ota-bd258.bj)
+  clang 10.0.6 for Android NDK, GNU ld 2.27; #2 SMP PREEMPT Thu Jun 10 22:54:13 CST 2021
+
+Config: извлечён (IKCONFIG=y, IKCONFIG_PROC=y; gzip сразу после IKCFG_ST),
+        6224 строки.
+
+| опция | значение | значение для HarmonyOS |
+|---|---|---|
+| CONFIG_ARM64 | y | архитектура совпадает (arm64) |
+| CONFIG_ARM64_4K_PAGES / VA_BITS 39 | y | ок |
+| CONFIG_ANDROID_BINDER_IPC | y | binder есть |
+| CONFIG_ANDROID_BINDERFS | y | binderfs есть (лучше, чем в 6.8-образе) |
+| CONFIG_ANDROID_BINDER_DEVICES | "binder,hwbinder,vndbinder" | как на телефоне |
+| CONFIG_ASHMEM | y | ashmem есть (mainline вышел из ashmen в 5.x) |
+| CONFIG_SECURITY_SELINUX | y | SELinux есть |
+| CONFIG_EXT4_FS | y | rootfs ext4 (наш конвертированный образ) |
+| CONFIG_F2FS_FS | y | f2fs есть |
+| CONFIG_EROFS_FS | НЕТ | образы HarmonyOS в EROFS требуют конвертации в ext4 (уже делали) |
+| CONFIG_UNIX | y | unix-сокеты (paramservice) есть |
+| CONFIG_CGROUPS | y | cgroups есть |
+| CONFIG_EPOLL/EVENTFD/SIGNALFD/TIMERFD | y/y/y/y | базовые примитивы есть |
+| CONFIG_NET_NS | y | сетевые namespace есть |
+| CONFIG_USER_NS / PID_NS | нет в конфиге | не проверено, нужно ли HarmonyOS |
+| CONFIG_VIRTIO* (BLK/NET/PCI/MMIO) | ВСЕ НЕТ | QEMU-диск (virtio) не подключить |
+| CONFIG_SERIAL_AMBA_PL011(_CONSOLE) | НЕТ | консоль QEMU virt отсутствует |
+| CONFIG_SERIAL_MSM_GENI | y | консоль Qualcomm GENI (на QEMU нет устройства) |
+| CONFIG_SERIAL_8250(_CONSOLE) | нет в конфиге | альтернативной консоли нет |
+| CONFIG_IKCONFIG(_PROC) | y/y | конфиг извлекается |
+| CONFIG_KALLSYMS / KALLSYMS_ALL | y/y | символы есть (сжатые токенами) |
+
+Не проверено статикой: наличие syscalls 5.x (clone3/openat2/faccessat2) — в 4.14
+ожидаемо отсутствуют, но kallsyms сжат, поэтому строковый поиск не доказателен;
+проверять надо запуском тестового бинарника на загруженном ядре.
+
+═══════════════════════════════════════════════════════════════════════
+ШАГ 2 — ПОПЫТКА QEMU-BOOT (failure mode)
+═══════════════════════════════════════════════════════════════════════
+
+Запуск: qemu-system-aarch64 -M virt -m 2048 -kernel Image.arm64 -append "console=ttyAMA0"
+        -display none -serial none -no-reboot
+
+(а) -cpu cortex-a72 (и cortex-a53):
+    EXIT=0, консоли нет, зафиксирован exception trace:
+      Taking exception 11 [Hypervisor Call] x6   (PSCI: ядро дошло до cpu_operations)
+      Taking exception 1 [Undefined Instruction]
+        ESR 0x0/0x2000000, ELR 0xffffff8eea175fd0 -> PC 0xffffff8ee9c82200 PSTATE 0x3c5
+    => ядро стартовало и упало на инструкции, которой нет у cortex-a72 (ядро собрано
+       под Kryo/ARMv8.1+; LSE-атомики и пр.).
+
+(б) -cpu max (LSE/ARMv8.1 поддерживаются):
+    EXIT=124 (timeout) — процесс не завершился сам, исключений в логе НЕТ.
+    => ядро 4.14 загружается и продолжает исполняться на QEMU virt.
+    Наблюдать юзерспейс невозможно: в ядре нет ни PL011 (ttyAMA0), ни 8250,
+       ни virtio-blk — консоли и корневого диска нет.
+
+Итог failure mode: не «ядро не грузится», а «грузится, но слепое и без дисков».
+
+═══════════════════════════════════════════════════════════════════════
+ВЕРДИКТ
+═══════════════════════════════════════════════════════════════════════
+
+(B) — Srebuild. Stock-ядро Mi 9 (4.14, Qualcomm BSP) в QEMU непригодно как есть:
+    нет virtio-*, нет PL011/8250-консоли, нет EROFS. При этом оно arm64,
+    с binder/binderfs/ashmem/SELinux/ext4/unix — то есть все HarmonyOS-критичные
+    подсистемы присутствуют.
+    Для получения ответа «доходит ли init до init finish» нужна пересборка из
+    исходников с добавлением: VIRTIO_BLK/VIRTIO_PCI, SERIAL_AMBA_PL011_CONSOLE,
+    (опционально) EROFS. Исходники: github.com/MiCode/Xiaomi_Kernel_OpenSource
+    (cepheus) или sm8150-mainline/linux.
+    Риск (C) — отсутствие syscalls 5.x — не проверен; проверяется только загрузкой
+    с консолью после пересборки.

@@ -1,0 +1,35 @@
+=== 09. Карта сисколлов: нужны ли HarmonyOS-юзерспейсу сисколлы 5.10+ ===
+
+Дата: 2026-10-25.
+
+МЕТОД: загрузка HarmonyOS 6.0.0.108 (init=/system/bin/init) на rebuilt ядре
+Linux 4.14.180 (QEMU virt, virtio-blk, PL011), полный консольный лог,
+поиск ENOSYS / "Function not implemented" / падений на системных вызовах.
+
+РЕЗУЛЬТАТ:
+  - grep -iE "Function not implemented|ENOSYS" по логу = 0 совпадений.
+  - init прошёл: first stage -> /dev -> param service -> parse 247 cfg
+    -> "boot stage: init finish".
+  - стартовали 10 сервисов (ueventd, param_watcher, hilogd, faultloggerd,
+    samgr, storage_manager, storage_daemon, watchdog_service,
+    el5_filekey_manager, key_enable, dsmm_init).
+  - остановка не из-за сисколла: samgr упал (exit 21) из-за отсутствия
+    SELinux policy (/vendor) и access-token сервиса; init штатно сделал
+    sysrq-crash (HarmonyOS bootfail), отчего ядро запаниковало.
+
+ВЫВОД: на достигнутых стадиях сисколлы 5.10+ (clone3, openat2, faccessat2,
+pidfd_*, io_uring) не потребовались. Утверждение «4.14 не хватает по
+сисколлам» НЕ подтверждено; утверждение «4.14 хватает до запуска samgr»
+подтверждено эмпирически.
+
+ЧЕГО НЕ ПРОВЕРЕНО:
+  - стадии после samgr (ability framework, ArkTS-рантайм, графические сервисы)
+    не достигнуты, т.к. нет /vendor и /sys_prod;
+  - точный набор сисколлов не трассировался (strace в госте недоступен:
+    нет strace для musl в образе; статический aarch64-бинарник не собирался).
+  - определение наличия clone3/openat2 в 4.14 статикой невозможно:
+    kallsyms сжат токенами, строки не показывают имена.
+
+Следующий шаг для закрытия: смонтировать /vendor и /sys_prod (vendor.img,
+sys_prod.img 6.0.0.108) и повторить; при необходимости — собрать статический
+aarch64-tracer для перехвата syscall-номеров.
