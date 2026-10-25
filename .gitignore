@@ -26,3 +26,6 @@ seed.img
 
 !docs/10_*.log
 !docs/10_*.config
+
+!docs/11_*.log
+!docs/11_*.config

@@ -1,0 +1,89 @@
+=== 11. Доведение до запуска: что исправлено и где остановились (2026-10-25) ===
+
+Цель: довести HarmonyOS 6.0.0.108 userland (arm64) в QEMU с ядром Linux 4.14 до
+"запущено" (boot completed / launcher). Устройство Mi 9 (cepheus) подключено по adb,
+bootloader разблокирован (ro.boot.flash.locked=0), Android 15, root нет — как цель
+для запуска HarmonyOS не годится (нужен SM8150-mainline + HDF-драйверы, отдельный
+проект), использовалось только для проверки связи.
+
+═══════════════════════════════════════════════════════════════════════
+I. КАКИЕ БАРЬЕРЫ СНЯТЫ В ЭТОМ ПРОГОНЕ (4 правки)
+═══════════════════════════════════════════════════════════════════════
+
+1) /dev/access_token_id — вендорский драйвер CONFIG_ACCESS_TOKENID, которого нет
+   в mainline. Написан минимальный драйвер-заглушка (drivers/misc/access_token_id_stub.c),
+   реализует ioctl, найденные дизассемблером libipc_common.z.so:
+     0x80084101  _IOR('A',1,u64)  GetSelfTokenID
+     0x80084103  _IOR('A',3,u64)  GetSelfFirstCallerTokenID
+     0x40084102  _IOW('A',2,u64)  (set)
+   Эффект: "load_access_token_id" 24 637 ms -> 831 ms; узел создаётся.
+
+2) BINDER_FEATURE_SET (OHOS ioctl _IOWR('b',30,8)) — mainline 4.14 его не знает,
+   libipc_single получал EINVAL. Добавлен обработчик, возвращающий "фич нет"
+   (корректный fallback). Эффект: ioctl c008621e исчез из лога (было 34 отказа).
+
+3) BINDER_SET_CONTEXT_MGR_EXT (_IOW('b',13,struct flat_binder_object)) — 4.14 знает
+   только старый SET_CONTEXT_MGR(7); userland делал EXT и получал EINVAL, из-за чего
+   samgr не становился контекстным менеджером. Добавлен EXT-обработчик
+   (0x4018620d). Эффект: EINVAL-и по контексту исчезли.
+
+4) Param DAC для bootevent.samgr.ready. samgr делает SetParameter("bootevent.samgr.ready","true"),
+   правило в /system/etc/param/samgr.para.dac было "samgr:samgr:0775:bool" — запись
+   отклонялась (param DAC), samgr писал "set samgr ready ret : failed".
+   Правило заменено на "root:root:0777:bool".
+   Эффект: строка "set samgr ready ret : failed" исчезла — ready выставлен.
+
+Проверка DAC-логики по исходникам OpenHarmony startup_init:
+DacCheckParamPermission (services/param/base/param_base.c) — при несовпадении uid/gid
+возвращает FORBIDED, и падение DAC в musl-сборке не прощается (в отличие от glibc-ветки).
+
+═══════════════════════════════════════════════════════════════════════
+II. ЧТО ДОСТИГНУТО (лог 11_mi9_launch_attempt.log, 9 128 строк)
+═══════════════════════════════════════════════════════════════════════
+
+- ServiceExec: 156 вызовов, 60 уникальных сервисов.
+- sa_main (system ability) процессов: 304 упоминания; samgr после ready начал
+  массово поднимать SA по профилям (healthsport, multimodalinput, memmgrservice,
+  wallpaper_service, telephony_sa, huks_service, accessibility, aud io_server, ...).
+- samgr: ready выставлен, идёт CanRequest по десяткам tokenId.
+- init: post-init finish, fs, persist params, usb, kickdog — всё пройдено.
+
+═══════════════════════════════════════════════════════════════════════
+III. ГДЕ ОСТАНОВИЛИСЬ (точный барьер)
+═══════════════════════════════════════════════════════════════════════
+
+[  467.615580] [bootfail]ProcessCriticalProcessFault serviceName is storage_manager, pid:2199
+[  476.382501] sysrq: Trigger a crash
+[  476.4]      Kernel panic - not syncing: Fatal exception
+
+То есть падение не из-за таймаута bootevent и не из-за ядра: упал критический
+сервис storage_manager, и init по штатной логике bootfail намеренно уронил ядро
+(sysrq-crash) для снятия дампа. Ранее в логе: "StorageDaemon: storage daemon service
+system ability error", "InitGlobalUserKeys: service check failed".
+
+Следствие: foundation (appfwk/bms) не успевает стать ready, launcher не стартует.
+
+Вероятная причина падения storage_manager: не инициализированы ключи пользователя
+и/или отсутствуют каталоги/узлы, которые storage_manager ожидает на first boot
+(/data/service/el1/..., /storage, /mnt/user, /dev/block/by-name/*), часть — из
+HDF/вендорских драйверов (CONFIG_ACCESS_TOKENID уже есть, но storage использует
+huks/el5/filekey_manager — часть уже стартует).
+
+═══════════════════════════════════════════════════════════════════════
+IV. СЛЕДУЮЩИЕ ШАГИ (в порядке ценности)
+═══════════════════════════════════════════════════════════════════════
+
+1. Заняться storage_manager: он критический. Варианты:
+   - поднять boot_detector-таймауты/убрать critical-флаг storage_manager (правка .cfg)
+     и посмотреть, дойдёт ли до foundation/launcher;
+   - создать ожидаемые каталоги и dev-узлы (by-name symlinks на virtio-диски);
+   - отключить шифрование/ключи (el5_filekey_manager уже стартует — проверить, что ему
+     нужно: /data/service/el0/..., huks);
+2. foundation: после стабилизации storage ждать appfwk.ready/bms.main.bundles.ready;
+   launcher запускается foundation'ом через appspawn.
+3. GPU/display: render_service стартует, но composer_host упирается в отсутствие
+   /sys/class/backlight и GPU (virtio-gpu не подключён к нашим ядрам; для картинки
+   нужен virtio-gpu + HDF display или программный composer).
+
+Артефакты: 11_mi9_launch_attempt.log, access_token_id_stub.c, run_binder.sh,
+build_414_binder.sh (ядро собирается с заглушкой и binder-патчами).
