@@ -1,0 +1,84 @@
+=== 09. Mi 9 kernel 4.14 + SELinux + vendor/sys_prod — финальный прогон ===
+
+Дата: 2026-10-25 (продолжение Шага 3).
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО ИЗМЕНИЛОСЬ ОТ ПРЕДЫДУЩЕГО ПРОГОНА
+═══════════════════════════════════════════════════════════════════════
+
+1) Rootfs: вместо только /system сделан объединённый образ hsroot2.img (ext4, 12 ГБ):
+     /system  <- system.img (6.0.0.108, EROFS -> ext4)
+     /vendor  <- vendor.img (6.0.0.108)
+     /sys_prod<- sys_prod.img (6.0.0.108)
+   Итог дерева: 9.2 ГБ, mke2fs -d 2 мин.
+
+2) Ядро: 4.14.180 пересобрано с SELinux. Первая попытка (scripts/config
+   --enable SECURITY_SELINUX) молча не сработала: SELinux зависит от
+   SECURITY_NETWORK && AUDIT && NET && INET, и olddefconfig выбрасывал опцию.
+   Добавлены зависимости: SECURITY_NETWORK, SECURITY_SELINUX,
+   SECURITY_SELINUX_BOOTPARAM, SECURITY_SELINUX_DEVELOP,
+   DEFAULT_SECURITY_SELINUX, NETWORK_SECMARK.
+   Результат сборки: CONFIG_SECURITY_SELINUX=y, Image 17 МБ.
+
+3) cmdline: security=selinux selinux=1 enforcing=0 (пермиссив).
+
+═══════════════════════════════════════════════════════════════════════
+РЕЗУЛЬТАТ (полный лог: 09_mi9_414_selinux_boot.log)
+═══════════════════════════════════════════════════════════════════════
+
+[  0.020] SELinux:  Initializing.
+[  9.7  ] [pid=1][PLUGIN] Install selinuxadp; Selinux adapter plug-in init now
+[ 10.2  ] [pid=1][PARAM] Max selinux label 192 169
+[ 10.2  ] [pid=1][PLUGIN] LoadSelinuxPolicy
+[ 10.97 ] audit: type=1403: policy loaded
+[ 11.1  ] audit: type=1400 avc denied ... permissive=1  (157 записей за прогон)
+
+Сервисы (24 уникальных, все дошли до ServiceExec):
+  ueventd, watchdog_service, hilogd, hilogcat, faultloggerd, param_watcher,
+  storage_manager, storage_daemon, samgr, appspawn, nwebspawn, hiview,
+  cadaemon, teecd, usb_port, usb_port_mode, oeminfo_nvme_server,
+  el5_filekey_manager, key_enable, dsmm_init, bms_auth, hdf_devmgr,
+  stopkmsglogcat, hilog
+
+[118.4] ServiceExec samgr (pid 1751)          <- samgr живёт
+[124.0] ServiceExec appspawn (pid 1756)
+[164.0] boot job post-init finish
+[178.9] bootchart disabled; INIT_POST_PERSIST_PARAM_LOAD
+Kernel panic: 0
+"critical service crashed samgr": 0
+Уникальных pid: 31
+
+СРАВНЕНИЕ ТРЁХ ПРОГОНОВ (один и тот же rootfs-образ, разное ядро/окружение):
+
+| прогон | ядро | /vendor | SELinux | сервисов | samgr | финал |
+|---|---|---|---|---|---|---|
+| 1 | 6.8 Ubuntu | нет | нет | 0 | нет | таймаут на policy |
+| 2 | 4.14 + virtio/PL011 | нет | нет | 10 | упал (exit 21) | sysrq-panic (штатно) |
+| 3 | 4.14 + virtio/PL011 | нет | да | 12 | упал (exit 21) | sysrq-panic (штатно) |
+| 4 | 4.14 + virtio/PL011 | да | да | **24** | **жив** | идёт дальше post-init |
+
+═══════════════════════════════════════════════════════════════════════
+ВЕРДИКТ
+═══════════════════════════════════════════════════════════════════════
+
+(A) подтверждён окончательно: ядра 4.14.180 ДОСТАТОЧНО для запуска
+    HarmonyOS-юзерспейса 6.0.0.108 до уровня service framework + samgr.
+    Ни одного ENOSYS/отсутствующего сисколла за все прогоны.
+    Причина прошлых падений — не ядро, а отсутствие SELinux policy (/vendor,
+    /sys_prod) и access-token сервиса; с ними samgr стартует и живёт.
+
+ОГРАНИЧЕНИЯ ЭТОГО ПРОГОНА:
+  - SELinux в пермиссиве (enforcing=0): 157 avc-отказов, потому что образ
+    собран mke2fs -d без SELinux-xattr (метки "unlabeled"). Для enforcing
+    нужен образ с xattr (или restorecon после сборки).
+  - EROFS в 4.14 нет (mainline 4.19+); мы конвертировали разделы в ext4,
+    поэтому не влияет. Сообщения "Failed to change mode /sys/kernel/debug/
+    tracing/events/erofs/*" — следствие отсутствия EROFS, безвредны.
+  - Huawei-специфичные узлы (/proc/dsmm, /sys/kbox, bootfail) отсутствуют —
+    init пишет об этом ошибки, но не падает.
+  - До графики/ability framework (launcher) не дошли: прогон остановлен
+    по таймауту 180 c на стадии post-init.
+
+СЛЕДУЮЩИЙ ШАГ (не выполнен): увеличить таймаут до 10-15 мин и/или
+пересобрать образ с SELinux-xattr и enforcing=1, чтобы увидеть appspawn ->
+запуск приложения.
