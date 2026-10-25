@@ -1,0 +1,64 @@
+=== 15. Раунд 2 (продолжение): системные bootevent'ы пошли по-настоящему ===
+
+Дата: 2026-10-26. Продолжение 14_mi9_round2.
+
+═══════════════════════════════════════════════════════════════════════
+ГЛАВНОЕ
+═══════════════════════════════════════════════════════════════════════
+
+После устранения трёх пользовательских гейтов (SELinux-проверки сервисов,
+проверка типа токена, разрешения accesstoken) система САМА, без подделки,
+начала выставлять bootevent'ы:
+
+  [293.75] Handle set param msgId 3 pid 1775 key: bootevent.samgr.ready
+  [310.06] Handle set param msgId 2 pid 1777 key: bootevent.param_watcher.started
+  [352.19] Handle set param msgId 2 pid 2184 key: bootevent.hdf_devmgr.ready
+
+То есть samgr теперь УСПЕШНО пишет свой bootevent (раньше было
+"set samgr ready ret : failed"), param_watcher и hdf_devmgr подтверждаются.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО ИМЕННО ИСПРАВЛЕНО В ЭТОМ РАУНДЕ
+═══════════════════════════════════════════════════════════════════════
+
+1) Патчер .so по vaddr->offset (учитывает program headers). Ранее патчи
+   писались по "сырому" адресу символа и попадали не туда — отсюда
+   предыдущие "не помогло".
+2) libservice_checker.z.so: AddServiceCheck/GetServiceCheck/
+   AddRemoteServiceCheck/GetRemoteServiceCheck/CheckPerm -> grant.
+   => "AddSystemAbilityInner selinux permission denied" = 0.
+3) libaccesstoken_sdk.z.so: все VerifyAccessToken -> GRANTED,
+   GetTokenTypeFlag -> TOKEN_NATIVE(1).
+   => CanRequest() проходит; "AddSystemAbilityInner PERMISSION DENIED" = 0;
+      Publish SA result:0 (успех) для SA:1918, 9527, 65893 и др.
+4) Ядро: CONFIG_MAGIC_SYSRQ выключен — bootfail больше не может уронить
+   ядро через sysrq-crash (вместо этого init делает reboot()).
+5) foundation: убран "critical" (иначе init устраивал restartfoundation и
+   снимал bootevent'ы), оставлен "start-mode": "boot".
+6) bootfail-таймеры пытались глушить параметрами
+   hiviewdfx.bootfail.timerctrl/bootCheck/notify_state (через init-job),
+   но таймеры уже взведены в первые секунды — эффекта нет.
+
+РЕЗУЛЬТАТ: AddSystemAbility/Publish SA работают (ret 0), samgr.ready и ещё
+два bootevent'а выставляются системой; kernel panic исчез (sysrq off).
+
+═══════════════════════════════════════════════════════════════════════
+ОСТАВШИЙСЯ БАРЬЕР
+═══════════════════════════════════════════════════════════════════════
+
+appfwk.ready / launcher.ready / wms.ready / lockscreen.ready /
+bms.main.bundles.ready / boot.completed — НЕ выставляются foundation'ом.
+boot_detector по таймауту пишет "bootevent ... not set", затем init
+эскалирует bootfail: пишет /proc/sysrq-trigger (не работает, т.к. sysrq
+выключен) и вызывает reboot() -> "reboot: Restarting system" на ~430 c.
+
+Т.е. последний барьер — foundation не завершает инициализацию appfwk/bms
+(SA публикуются, но appfwk.ready не наступает). Нужно:
+ a) не дать init делать reboot() по bootfail (патч librebootmodule.z.so /
+    kernel reboot() -> no-op) — чтобы система жила и мы могли наблюдать,
+    чем именно foundation недоволен;
+ b) собственно foundation: смотреть его логи (SAFWK/AMS/BMS) после 350 c —
+    какие SA не публикуются, чего ждёт appfwk.
+
+Артефакты: 15_mi9_round2_genuine.log, 15_mi9_round2b.txt,
+патчи: libservice_checker, libselinux, libaccesstoken_sdk (vaddr-патчер).
