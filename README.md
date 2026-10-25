@@ -118,3 +118,27 @@ sudo insmod module_hdfstub.ko
 Код в `harness/`, `stand/`, `vm/` — MIT. Отчёты в `docs/` — CC BY 4.0.
 Исходники OpenHarmony, на которые ссылаются отчёты, распространяются под их
 собственными лицензиями (HDF — GPL/BSD dual).
+
+## Эксперимент «подменить ядро» (2026-10-25)
+
+Проверено два направления, отчёты в docs/08_kernel_swap_experiment.txt,
+сырые логи в docs/arm-kernel-swap/.
+
+**(1) Ядро эмулятора DevEco вместо ядра телефона — невозможно.**
+Ядро эмулятора x86_64, юзерспейс телефона aarch64; amdisk.img телефона не
+распаковывается (invalid magic); ядро эмулятора паникует на голом QEMU в
+xpress_gpu_init; oot.img телефона зашифрован (secimg/HVB).
+
+**(2) Правильное направление работает: mainline arm64 Linux + прошивка телефона.**
+Ubuntu 6.8.0-147 arm64 + system.img (6.0.0.108, конвертирован в ext4) + init=/system/bin/init:
+
+`
+[pid=1][Init][INFO][init_firststage.c:215]Start init first stage.
+[pid=1][PARAM][INFO][param_service.c:422]InitParamService pipe: /dev/unix/socket/paramservice.
+[pid=1][Init][INFO][init_group_manager.c:102]Parse group config /system/etc/device.boot.group.cfg
+[pid=1][Init][INFO][init.c:307]boot stage: init finish.
+`
+
+HarmonyOS init (arm64, musl) стартует на обычном Linux-ядре и доходит до
+«boot stage: init finish». Останова на SELinux policy и Huawei bootfail-драйвере —
+сервисные барьеры, не архитектурные.

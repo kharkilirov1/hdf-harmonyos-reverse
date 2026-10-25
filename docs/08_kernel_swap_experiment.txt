@@ -1,0 +1,85 @@
+=== 08. Эксперимент «подменить ядро» (2026-10-25) ===
+
+ЦЕЛЬ (как сформулировано): взять прошивку Huawei, подменить ей ядро на ядро от
+эмулятора DevEco Studio и запустить через эмулятор.
+
+═══════════════════════════════════════════════════════════════════════
+ЭКСПЕРИМЕНТ 1 (буквальный): x86_64-ядро эмулятора + прошивка телефона
+═══════════════════════════════════════════════════════════════════════
+
+Исходные данные:
+  ядро эмулятора 6.1.1: bzImage, Linux 5.10.210, machine = x86_64
+  прошивка телефона 6.0.0.108: init = ELF 64-bit ARM aarch64
+                              ramdisk.img = 4 194 304 B, "data" (не cpio/gzip)
+                              boot.img = secimg (DER-сертификаты, HVB, payload зашифрован)
+
+Запуск: qemu-system-x86_64 -kernel bzImage(эмулятор) -initrd ramdisk.img(телефон)
+
+Результат (полный лог — docs/arm-kernel-swap/x86kernel_phone_ramdisk.log):
+  [2.634736] Unpacking initramfs...
+  [2.635401] Initramfs unpacking failed: invalid magic at start of compressed archive
+  [3.723887] express_gpu create express chardev
+  [3.724432] express_gpu cdev_add ret 0 0 major 247 0
+  [3.728009] RIP: kmem_cache_alloc+0xd7  (call trace: express_gpu_init+0x176)
+  [3.7]     Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000009
+
+Выводы (доказано):
+  1. Ядро эмулятора — x86_64, юзерспейс телефона — aarch64: запуск невозможен по архитектуре.
+  2. ramdisk телефона не распаковывается штатным ядром (invalid magic) — это не cpio.
+  3. Ядро эмулятора паникует на голом QEMU в initcall express_gpu: драйверу нужна
+     GPU-модель QEMU из DevEco, т.е. ядро не переносится даже между QEMU-сборками.
+  4. boot.img телефона зашифрован (secimg/HVB): извлечь из него ядро нельзя.
+
+═══════════════════════════════════════════════════════════════════════
+ЭКСПЕРИМЕНТ 2 (в правильном направлении): mainline arm64 Linux + прошивка телефона
+═══════════════════════════════════════════════════════════════════════
+
+Взято:
+  ядро: Ubuntu noble arm64, Linux 6.8.0-147-generic (cloud vmlinuz + initrd)
+  rootfs: ~/hp6/system.img (первый раздел system прошивки 6.0.0.108, EROFS) ->
+          распакован fsck.erofs -> собран ext4-образ 6 GiB (mke2fs -d, 46 c)
+
+Запуск:
+  qemu-system-aarch64 -M virt -cpu cortex-a72 -m 3072 -smp 4 \
+    -kernel vmlinuz-arm64 -initrd initrd-arm64 \
+    -append "console=ttyAMA0 root=/dev/vda rw init=/system/bin/init selinux=0" \
+    -drive file=hsroot.img,format=raw,if=virtio
+
+Результат (полный лог — docs/arm-kernel-swap/arm64kernel_phone_system.log):
+  [0.000000] Linux version 6.8.0-147-generic (aarch64) ...
+  [7.909803] Freeing unused kernel memory
+  [8.101499] Run /init as init process
+  [77.579099] EXT4-fs (vda): mounted filesystem ... r/w
+  [88.748021] [pid=1][Init][INFO][init_firststage.c:215]Start init first stage.
+  [88.749282] [pid=1][Init][INFO][device.c:38]dev already mounted
+  [88.762805] [pid=1][Init][ERROR][device.c:71]Mount sysfs failed. Resource busy
+  [88.765958] [pid=1][Init][ERROR][device.c:74]Mount selinuxfs failed. No such file or directory
+  [88.785106] [pid=1][Init][ERROR][boot_detector_init.c:185]bootfail SetBootStage failed ret = -1
+  [92.299895] [pid=1][ueventd][ERROR][ueventd.c:166]Create device node /dev/console failed. File exists
+  [96.880688] [pid=1][PLUGIN][INFO][selinux_adp.c:178]Selinux adapter plug-in init now ...
+  [97.714327] [pid=1][PARAM][INFO][param_service.c:422]InitParamService pipe: /dev/unix/socket/paramservice.
+  [97.923072] [pid=1][Init][INFO][init_group_manager.c:102]Parse group config /system/etc/device.boot.group.cfg
+  [97.932261] [pid=1][Init][INFO][init.c:307]boot stage: init finish.
+  [97.940671] [pid=1][SELINUX][ERROR] No developer cil file found, fallback to normal mode
+  [97.944743] [pid=1][SELINUX][ERROR] Access file /vendor/etc/selinux/prebuild_sepolicy.system.cil.sha256 failed
+  [97.952112] [pid=1][SELINUX][ERROR] Get vendor policy version failed
+  (процесс продолжал работать, остановлен по таймауту 150 c)
+
+Что это доказывает (эмпирически):
+  - HarmonyOS init (arm64, musl) ЗАПУСКАЕТСЯ на обычном Linux-ядре 6.8:
+    прошёл first stage, поднял ueventd, смонтировал /dev, инициализировал param-сервис
+    (/dev/unix/socket/paramservice), распарсил group config и дошёл до "boot stage: init finish".
+  - Барьеры дальше — сервисные, не архитектурные:
+    1) /vendor отсутствует (SELinux policy лежит в vendor/sys_prod) -> policy не загружена;
+    2) bootfail-ioctl (Huawei-специфичный драйвер) отсутствует -> ret=-1 (не фатально);
+    3) selinuxfs отсутствует (в QEMU-ядре SELinux есть, но /sys/fs/selinux не смонтирован
+       на момент first stage).
+
+Практический вывод:
+  направление «mainline Linux-ядро + юзерспейс HarmonyOS» РАБОТАЕТ и проверено до
+  "init finish"; направление «ядро эмулятора вместо ядра телефона» невозможно
+  (архитектура + шифрование boot + GPU-зависимость ядра эмулятора).
+
+Следующий шаг (не выполнен): добавить в QEMU диски vendor.img и sys_prod.img
+(монтировать в /vendor и /sys_prod), дать параметры ohos.boot.* в cmdline и повторить —
+ожидаемо дойдём до загрузки SELinux policy и попытки старта samgr.
