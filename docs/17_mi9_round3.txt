@@ -1,0 +1,73 @@
+=== 17. Раунд 3: 40-минутный прогон, 6 настоящих bootevent'ов, BMS встаёт ===
+
+Дата: 2026-10-26. Продолжение 16_mi9_round2_final.
+
+═══════════════════════════════════════════════════════════════════════
+ГЛАВНЫЕ ФАКТЫ РАУНДА
+═══════════════════════════════════════════════════════════════════════
+
+1) Добавлено: доступ к пользовательским логам гостя. /data/log/hilog/*.gz
+   внутри образа, читаются офлайн через `debugfs -c -R "dump ..."`, затем
+   gunzip + strings. Это дало внутренние логи foundation/BMS, которых нет
+   в консольном логе (они идут через hilogd).
+
+2) CPU: cortex-a72 вызывал SIGILL в foundation (signal 4). Заменено на
+   -cpu cortex-a76 (ARMv8.2, LSE/CRC) — SIGILL исчез, foundation больше
+   не падает по нелегальной инструкции.
+
+3) Длинный прогон: timeout 900 -> 2400 c. 40 минут система живёт:
+   panic = 0, reboot = 0 (sysrq off + замоканный reboot()).
+
+4) Настоящие bootevent'ы, выставленные самой системой за прогон:
+     [ 368.8] bootevent.samgr.ready
+     [ 384.9] bootevent.hdf_devmgr.ready
+     [ 427.7] bootevent.powermgr.ready
+     [ 427.8] bootevent.param_watcher.started
+     [ 430.5] bootevent.renderservice.ready
+     [ 840.5] bootevent.avsessionservice.ready
+   (6 событий; "not set" предупреждений 24)
+
+═══════════════════════════════════════════════════════════════════════
+ГДЕ ИМЕННО ВСТАЁТ BMS (из hilog)
+═══════════════════════════════════════════════════════════════════════
+
+BMS идёт по цепочке и доходит до сканирования/установки:
+  CreateBmsServiceDir -> InitBundleDataMgr -> InitHidumpHelper ->
+  InitFreeInstall -> ProcessCheckSystemOptimizeDir -> LoadInstallInfosFromDb ->
+  ScanAndAnalyzeUserDatas -> ParsePreBundleProFile -> OnBundleBootStart ->
+  ProcessSystemHspInstall (обход /sys_prod/.../module_update/..., 
+  appServiceFwk/com.huawei.hmsapp.readerkit ...)
+
+БД создаётся: /data/service/el1/public/bms/bundle_manager_service/bmsdb.db
+(86 КБ, SQLite; на момент первого анализа — 1 бандл).
+
+Последняя запись BMS в hilog:
+  foundation/BMS ... bms_param
+после чего BMS замолкает и bootevent.bms.main.bundles.ready не выставляется.
+"installs" (SA 511, /system/bin/sa_main + installs.json, ondemand) стартует
+успешно в 374 c — значит проблема не в отсутствии installd.
+
+═══════════════════════════════════════════════════════════════════════
+СЛЕДУЮЩИЕ ШАГИ
+═══════════════════════════════════════════════════════════════════════
+
+1. Дизассемблировать bms_param.cpp-функции в libbms.z.so и понять, какой
+   параметр читается последним (кандидаты: ohos.bms.param.*,
+   persist.moduleupdate.bms.scan, const.bms.*) и чего не хватает.
+2. Проверить, не ждёт ли BMS ответа от installs/installd: добавить в
+   параметры/конфиг то, что отключает установку обновлений
+   (persist.moduleupdate.bms.scan=false, ohos.bms.param.on.demand.install).
+3. Возможная замена: уменьшить число предустановленных HAP (оставить
+   SuperLauncher + минимум), чтобы скан завершился быстро.
+4. После bms.main.bundles.ready ожидаем appfwk.ready -> launcher.ready ->
+   appspawn -> com.ohos.launcher.
+
+═══════════════════════════════════════════════════════════════════════
+АРТЕФАКТЫ
+═══════════════════════════════════════════════════════════════════════
+
+17_mi9_round3_long.log      консольный лог 40-мин прогона (~190k строк)
+17_mi9_round3_hilog.txt     выжимка из hilog (BMS-цепочка, точка остановки)
+17_mi9_round3.txt           этот отчёт
+Изменения конфигурации: -cpu cortex-a76, -smp 4, timeout 2400,
+foundation без critical, sysrq off, kernel reboot() замокан.

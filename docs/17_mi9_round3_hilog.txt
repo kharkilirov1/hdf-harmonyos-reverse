@@ -1,0 +1,332 @@
+=== BMS chain (hilog 005 tail) ===
+GStrToLL@
+samgr/SAMGR
+j l>9^
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+client_cloud_cache_service/SA_CLIENT
+client_cloud_cache_service/Ces
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_service
+samgr/SAMGR
+display_engine_service/hdi_servmgr_client
+3.L^display_engine_wrapper_service
+display_engine_service/display_engine_wrapper_proxy
+display_engine_service/DE N HWC
+QHardwareComponent
+[Unknown RealComponentID(37)*
+security_guard/SG_Service
+GStrToLL@
+samgr/SAMGR
+security_guard/SG_Service
+GStrToLL@C
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+security_guard/SG_Service
+GStrToLL@?
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_service*
+security_guard/SG_Service
+GStrToLL@C
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+security_guard/SG_Service
+GStrToLL@*
+security_guard/SG_Service
+GStrToLL@?
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_service*
+security_guard/SG_Service
+GStrToLL@C
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+cadaemon/SA_CLIENT
+samgr/SAMGR
+foundation/BMS
+Gsandbox?
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_servicee
+[param_base.c:483]Param 'faultloggerd.priv.mixstack.enabled' label gid:7030 uid:7030 mode 0100
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+[param_base.c:484]Cfg label 16480 gid:2000 uid:1202 mode 01f8 
+render_service/display_composer_proxy
+(;%CGet*
+security_guard/SG_Service
+GStrToLL@Y
+[param_manager.c:704]deny access faultloggerd.priv.mixstack.enabled label 16480 61
+samgr/SAMGR
+foundation/BMS
+Mshortcut_info(
+foundation/BMS
+Pshortcut_visible?
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_service"
+foundation/BMS
+Jrouter_map
+samgr/SAMGR
+samgr/SAMGR
+[param_manager.c:755]SystemReadParam failed! name is:faultloggerd.priv.mixstack.enabled, err:1001!
+msdp/DHDM
+PdevicemanagerkitDInit&
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet-
+foundation/BMS
+Uuninstall_bundle_info*
+security_guard/SG_Service
+GStrToLL@&
+foundation/DfxThreadContext
+foundation/BMS
+Yfirst_install_bundle_info#
+foundation/BMS
+Kapp_controlF
+foundation/DfxThreadContext
+a!Name:	OS_FFRT_Delay
+Umask:	0002
+State:	S (sleeping)
+Tgid:	2622
+Ngid:	0
+Pid:	2843
+PPid:	1
+TracerPid:	0
+Uid:	5523	5523	5523	5523
+Gid:	1000	1000	1000	1000
+FDSize:	256
+Groups:	1065 2002 6005 6666 
+NStgid:	2622
+NSpid:	2843
+NSpgid:	0
+NSsid:	0
+VmPeak:	 2439380 kB
+VmSize:	 2433492 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	  148832 kB
+VmRSS:	  148744 kB
+RssAnon:	   35624 kB
+RssFile:	  112768 kB
+RssShmem:	     352 kB
+VmData:	   65840 kB
+VmStk:	     132 kB
+VmExe:	      24 kB
+VmLib:	  132692 kB
+VmPTE:	     680 kB
+VmPMD:	      24 kB
+VmSwap:	       0 kB
+HugetlbPages:	       0 kB
+Threads:	21
+SigQ:	0/15733
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000400000000
+SigIgn:	0000000200001000
+SigCgt:	00000e3c400084fa
+CapInh:	0000000000080020
+CapPrm:	0000000000080020
+CapEff:	0000000000080020
+CapBnd:	0000003fffffffff
+CapAmb:	0000000000080020
+NoNewPrivs:	0
+Seccomp:	2
+Speculation_Store_Bypass:	thread vulnerable
+Cpus_allowed:	f
+Cpus_allowed_list:	0-3
+Mems_allowed:	1
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	14
+nonvoluntary_ctxt_switches:	8
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGetE
+resource_schedule_service/ffrt
+QReportTaskTimeout<"f
+Queue task: tskname[sq_CgroupEventHandlerQueue_16_PostTask_15], qname=[sq_CgroupEventHandlerQueue_16], with delay of[0]us, qos[5], current status[EXECUTING], start at[2026-10-26 04:56:17.057], last status[EXECUTING], type=[0], timeout for[30]s, reported count: 1%
+foundation/DfxFaultLogger
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet*
+foundation/DfxThreadContext
+foundation/DfxFaultLogger
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet(
+foundation/BMS
+Pinstalled_bundle/
+display_engine_service/DE N XP2
+DOpen,
+foundation/BMS
+Spreinstalled_bundle?
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet?
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceS
+render_service/IPCObjectProxy
+VPrintErrorDetailedInfo&
+F*.V1_00
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+samgr/SAMGR
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+thp_extra/SA_CLIENT
+thp_extra/Ces
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+foundation/SA_CLIENT
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+code_protect/Rdb
+	YGetDistributedDataManager*
+security_guard/SG_Service
+GStrToLL@'
+code_protect/Rdb
+	MGetRdbService1
+code_protect/Rdb
+IAfterOpen.
+hIcod***.db*
+security_guard/SG_Service
+GStrToLL@?
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+security_guard/SG_Service
+GStrToLL@?
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_service*
+security_guard/SG_Service
+GStrToLL@
+samgr/SAMGR
+*Q(w6)F
+multimodalinput/TouchDrawingManager
+@TCreateBubbleObserver6
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_service.
+msdp/DHDM
+PdevicemanagerkitJClientInit-
+msdp/DHDM
+PdevicemanagerkitDInit&
+file_monitor_service/RSS
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+j0[m1`
+render_service/display_composer_proxy
+(;%CGet!
+foundation/BMS
+Ibms_param?
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet*
+security_guard/SG_Service
+GStrToLL@
+samgr/SAMGR
+*Q(w8)?
+j@=]7`
+hdf_devmgr/devsvc_manager_stub
+Xdisplay_composer_serviceC
+render_service/hdi_servmgr_client
+3.LXdisplay_composer_service
+render_service/display_composer_proxy
+(;%CGet
+samgr/SAMGR
