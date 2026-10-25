@@ -1,0 +1,201 @@
+=== SIGCHAIN signal 4 (выжимка из hilog) ===
+[service_watcher.c:83]WatchParameter failed! the errNum is 111
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffb5722610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffffb44d8460 for signal: 4
+bms_auth/bms_genl
+2/CKBmsGenlInitJPOWER_GENL4
+--
+^CheckSystemAbilityManagerReadyHcadaemon
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffaf53f610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffffada58460 for signal: 4
+[param_base.c:483]Param 'faultloggerd.priv.mixstack.enabled' label gid:1101 uid:1101 mode 0100
+[param_base.c:484]Cfg label 16480 gid:2000 uid:1202 mode 01f8 
+--
+NGetProxyObject>
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff9851f610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff96f58460 for signal: 4
+storage_daemon/IPCProcessSkeleton
+NGetProxyObject>
+--
+[param_request.c:217]SystemSetParameter failed! name is :hiviewdfx.bootfail.timerctrl, the errNum is:105
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffb5193610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=1781 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=1781 thread_list_lock_after_lock=1781 thread_list_lock_pre_unlock=1781 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff2a518460 for signal: 4
+samgr/ffrt
+XRecordSymbolAndBacktrace0
+--
+YNo such file or directory
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff93dbd610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=1800 thread_list_lock_pre_unlock=1800 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff10118460 for signal: 4
+cadaemon/SAFWK
+JAddAbility"
+--
+Process:/system/bin/samgr,Tid:1827,Qos:2,CWorker:5,EWorker:1,SWorker:4,TaskType:3,timeout:5s
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff8ce3b610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff8bad8460 for signal: 4
+[param_request.c:103]ReadMessage failed! errno 4
+cadaemon/IPCObjectProxy
+--
+FSocket/
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffb4022610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffffb2a58460 for signal: 4
+samgr/SAMGR
+check_module_update_init/ffrt
+--
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffbf0d2610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffffbde18460 for signal: 4
+samgr/SAMGR
+powerct/POWERCT
+--
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff958ac610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=1860 thread_list_lock_pre_unlock=1860 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff0c918460 for signal: 4
+samgr/SAMGR
+[param_request.c:103]ReadMessage failed! errno 11
+--
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffbe580610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=1908 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=1908 thread_list_lock_after_lock=1908 thread_list_lock_pre_unlock=1908 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+samgr/SAMGR
+samgr/SAMGR
+--
+XBusCenterServerProxyInitS
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffffbd558460 for signal: 4
+powerct/libteec_vendor
+cadaemon/LnnInit
+--
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff82c9b610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=1863 thread_list_lock_pre_unlock=1863 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: fffefea58460 for signal: 4
+powerct/libteec_vendor
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff8642a610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=1923 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=1923 thread_list_lock_after_lock=1923 thread_list_lock_pre_unlock=1923 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff85358460 for signal: 4
+samgr/SAMGR
+samgr/SAMGR
+--
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff93edf610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=1945 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=1945 thread_list_lock_after_lock=1945 thread_list_lock_pre_unlock=1945 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff92f58460 for signal: 4
+usb_port/usb_port
+4-UNUsbPortMonitor,
+--
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff92790610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=1903 thread_list_lock_pre_unlock=1903 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff0ca58460 for signal: 4
+samgr/SAMGR
+hilogd/DfxThreadContext
+--
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff85e27610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=1891 thread_list_lock_pre_unlock=1891 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: fffefc218460 for signal: 4
+samgr/SAMGR
+samgr/SAMGR
+--
+RConnection refused
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffa7810610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=1949 thread_list_lock_pre_unlock=1949 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff1b758460 for signal: 4
+samgr/HISYSEVENT_TRANSPORT
+/dev/unix/socket/hisysevent write failed>
+--
+NSetIOQosSwitch
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffa15e4610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=1905 thread_list_lock_pre_unlock=1905 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff17e58460 for signal: 4
+samgr/SAMGR
+resource_schedule_executor/RSS
+--
+^sq_process_relation_manager_23
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff9eb5b610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=1995 thread_list_lock_pre_unlock=1995 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff1a998460 for signal: 4
+accesstoken_service/SAFWK
+JAddAbility>
+--
+RConnection refused
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffac88c610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=2026 thread_list_lock_pre_unlock=2026 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff28298460 for signal: 4
+samgr/SAMGR
+hiaiserver/HISYSEVENT_TRANSPORT
+--
+RConnection refused
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff8748a610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff86358460 for signal: 4
+samgr/SAMGR
+resource_schedule_service/HISYSEVENT_TRANSPORT
+--
+Iffrt_init8
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff8145a610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff7f518460 for signal: 4
+samgr/SAMGR
+samgr/SAMGR
+--
+audio_server/SA_CLIENT
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffbe05d610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffffbc118460 for signal: 4
+samgr/SAMGR
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff9f0d2610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=-1 thread_list_lock_pre_unlock=-1 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff9d198460 for signal: 4
+samgr/SAMGR
+samgr/SAMGR
+--
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffffb16a6610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=2087 thread_list_lock_pre_unlock=2087 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff2c0d8460 for signal: 4
+resource_schedule_service/HISYSEVENT_TRANSPORT
+/dev/unix/socket/hisysevent write failed>
+--
+file_monitor_service/SAFWK
+MUSL-SIGCHAIN
+signal_chain_handler call 2 rd sigchain action for signal: 4 sca_sigaction=ffff8eb24610 noreturn=0 FREEZE_signo_4 thread_list_lock_status:-1 tl_lock_count=0 tl_lock_waiters=0 tl_lock_tid_fail=-1 tl_lock_count_tid=-1 tl_lock_count_fail=-10000 tl_lock_count_tid_sub=-1 thread_list_lock_after_lock=2059 thread_list_lock_pre_unlock=2059 thread_list_lock_pthread_exit=-1 thread_list_lock_tid_overlimit=-1 tl_lock_unlock_count=0 __pthread_gettid_np_tl_lock=0 __pthread_exit_tl_lock=0 __pthread_create_tl_lock=0 __pthread_key_delete_tl_lock=0 __synccall_tl_lock=0 __membarrier_tl_lock=0 install_new_tls_tl_lock=0 set_syscall_hooks_tl_lock=0 set_syscall_hooks_linux_tl_lock=0 fork_tl_lock=0 register_count=0 __custom_hook_flag=0g_dlcloseLockStatus=0g_dlcloseLockLastExitTid=0
+samgr/SAMGR
+samgr/SAMGR
+samgr/SAMGR
+MUSL-SIGCHAIN
+signal_chain_handler call usr sa_handler: ffff09598460 for signal: 4

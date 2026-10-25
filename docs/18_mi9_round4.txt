@@ -1,0 +1,56 @@
+=== 18. Раунд 4 (итог): SIGILL-след в hilog, попытки обхода BMS ===
+
+Дата: 2026-10-26. Продолжение 17_mi9_round3.
+
+═══════════════════════════════════════════════════════════════════════
+СДЕЛАНО И ПОЛУЧЕНО
+═══════════════════════════════════════════════════════════════════════
+
+1) Научились читать ВНУТРЕННИЕ логи гостя офлайн:
+   /data/log/hilog/hilog.NNN.*.gz -> debugfs dump -> gunzip -> strings.
+   Видны foundation/BMS, installs/BMSInstalld, SAFWK, а также
+   MUSL-SIGCHAIN.
+
+2) Найден след падения BMS (предыдущий прогон, chunk 005):
+     bundle_mgr_service_event_handler.cpp ProcessSystemHspInstall
+     /module_update/ReaderKit/app/appServiceFwk/com.huawei.hmsapp.readerkit
+   сразу после:
+     MUSL-SIGCHAIN signal_chain_handler ... for signal: 4   (SIGILL)
+   То есть BMS спотыкается на этапе ProcessSystemHspInstall.
+
+3) В прогоне с cortex-a76: init больше не репортит "exit with signal : 4",
+   но в hilog за 9 минут 112 записей signal_chain_handler для signal 4
+   (samgr, resource_schedule_service, wallpaper_service и др.) — SIGILL
+   обрабатывается внутри процессов (musl sigchain), а не валит процесс
+   с точки зрения init. Значит проблемные инструкции всё ещё исполняются.
+
+4) Попытка получить plain-text hilog своим persist task:
+   `hilog -w start -m none -f dbg` выполняется, но файлов dbg.*.log нет
+   (hilogd-персистер перекрывает). Отрицательный результат.
+
+5) Попытка обойти шаг установки модулей: обнулили
+     /system/etc/app/module_update/install_list.json
+     /system/etc/app/module_update/app_service_fwk_install_list.json
+   (оба указывали на несуществующие /module_update/... каталоги).
+   Прогон 1200 c: снова 6 настоящих bootevent'ов (samgr, hdf_devmgr,
+   param_watcher, powermgr, renderservice, avsessionservice),
+   panic=0, reboot=0, но bms.main.bundles.ready так и не появился.
+   Примечание: в этом прогоне hilog-чанк с ранними логами BMS уже
+   ротировался (запись 000 удалена), поэтому BMS-логи не попали в анализ.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО ДЕЛАТЬ ДАЛЬШЕ
+═══════════════════════════════════════════════════════════════════════
+
+1. Поймать ранний hilog-чанк во время прогона (debugfs dump чанка 000
+   через ~5-8 минут после старта), чтобы увидеть BMS с самого начала.
+2. Определить инструкцию SIGILL: включить запись cppcrash в
+   /data/log/faultlog/temp (faultloggerd уже работает), взять pc из
+   дампа и сопоставить с .so.
+3. Проверить гипотезу, что SIGILL — не в BMS, а в ffrt/musl-коде
+   (в логах сигнал 4 встречается в разных процессах); если так, искать
+   неподдерживаемую QEMU-инструкцию (например, из libffrt) и либо
+   включить её в -cpu, либо подменить библиотеку.
+
+Артефакты: 18_mi9_round4.log, 18_mi9_round4_hilog.txt,
+18_mi9_round4b.log (прогон с обнулёнными module_update-списками).

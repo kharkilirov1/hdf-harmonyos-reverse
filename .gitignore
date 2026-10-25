@@ -41,3 +41,5 @@ seed.img
 !docs/16_*.config
 
 !docs/17_*.log
+
+!docs/18_*.log
