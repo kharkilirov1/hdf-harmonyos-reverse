@@ -1,0 +1,67 @@
+=== 12. Запуск: foundation сдвинулся, samgr ready и context manager — следующие барьеры ===
+
+Дата: 2026-10-26. Продолжение 11_mi9_launch_attempt.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО СДЕЛАНО В ЭТОМ РАУНДЕ
+═══════════════════════════════════════════════════════════════════════
+
+1) storage_manager/storage_daemon переведены из critical в обычные
+   (из их .cfg удалена строка "critical": [...]). Причина: storage_manager
+   штатно выходил с кодом 0, init считал это падением критического сервиса
+   (после 4 рестартов) и по bootfail ронял ядро через sysrq-crash.
+   Эффект: паники больше нет, загрузка идёт дальше.
+
+2) foundation раньше вообще не стартовал. Найдено в исходниках OpenHarmony
+   startup_init: если у сервиса нет "start-mode", по умолчанию
+   START_MODE_NORMAL (init_service_manager.c:658), а NORMAL-фаза в нашем
+   урезанном boot не наступала. Правка: в foundation.cfg добавлено
+   "start-mode": "boot".
+   Эффект (лог 12_mi9_boot_foundation.log):
+     [93.84] ServiceStart starting:foundation
+     [94.65] ServiceStart started info foundation(pid 1783 uid 5523)
+     [98.89] SAFWK: operator() Set process name to foundation
+   Фонд (SAFWK) поднялся.
+
+3) Предсоздано дерево /data (service/el0..el2/public, storage/el1..el2,
+   local/tmp, log/*, app) — иначе init-команды "mkdir /data/service/el1/... "
+   падали с err=2, потому что mkdir без -p и родителя не было.
+
+═══════════════════════════════════════════════════════════════════════
+ТЕКУЩИЕ БАРЬЕРЫ (по логу)
+═══════════════════════════════════════════════════════════════════════
+
+A) samgr: "set samgr ready ret : failed" (в этом прогоне снова, 145 c).
+   Правка DAC-правила bootevent.samgr.ready на root:root:0777 в образе
+   присутствует (проверено в дереве), но запись всё равно отклоняется —
+   значит причина не в DAC-битах; копать: persist-workspace параметров,
+   либо проверка по SELinux-метке/токену вызывающего.
+
+B) Binder: context manager не установлен.
+   В логе 716 сообщений:
+     binder: 1776:1776 transaction failed 29189/-22, size 0-0 line 2822
+   29189 = 0x7205 = BR_FAILED_REPLY, -22 = EINVAL, line 2822 в нашем
+   binder.c — это ветка `if (!target_node)` для транзакции на handle 0,
+   т.е. context->binder_context_mgr_node == NULL.
+   Значит samgr не смог стать контекстным менеджером (наш EXT-обработчик
+   вызывает binder_ioctl_set_ctx_mgr, но, судя по всему, она возвращает
+   ошибку/не вызывается). Без этого foundation не может получать SA от samgr
+   => appfwk.ready/launcher.ready не выставляются => лаунчер не стартует.
+
+═══════════════════════════════════════════════════════════════════════
+СЛЕДУЮЩИЕ ШАГИ
+═══════════════════════════════════════════════════════════════════════
+
+1. Логировать результат binder_ioctl_set_ctx_mgr (pr_info с ret/uid) и понять,
+   почему context mgr не ставится: проверить, что libipc_single делает
+   SET_CONTEXT_MGR_EXT(13) ДО первых транзакций и что security_binder_set_context_mgr
+   не режет (SELinux permissive).
+2. Если uid-проверка мешает — ослабить (разрешить uid 5555/samgr).
+3. Разобраться с SetParameter из samgr: включить подробный лог param_server
+   (уровень V) или добавить в ядро трейс; проверить persist-workspace /data/parameters.
+4. После samgr ready + context mgr ожидаем: foundation получает SA, поднимает
+   ams/bms, ставит appfwk.ready, затем launcher через appspawn.
+
+Артефакты: 12_mi9_boot_foundation.log, 12_mi9_foundation_attempt.txt,
+правки в образе: foundation.cfg (start-mode boot), storage_*.cfg (без critical),
+предсозданное /data, samgr.para.dac (root:root:0777).
