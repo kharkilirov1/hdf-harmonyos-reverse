@@ -1,0 +1,459 @@
+[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x410fd083]
+[    0.000000] Linux version 6.8.0-147-generic (buildd@bos03-arm64-084) (aarch64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #147-Ubuntu SMP PREEMPT_DYNAMIC Thu Sep 24 11:39:52 UTC 2026 (Ubuntu 6.8.0-147.147-generic 6.8.12)
+[    0.000000] KASLR enabled
+[    0.000000] random: crng init done
+[    0.000000] Machine model: linux,dummy-virt
+[    0.000000] efi: UEFI not found.
+[    0.000000] NUMA: No NUMA configuration found
+[    0.000000] NUMA: Faking a node at [mem 0x0000000040000000-0x00000000ffffffff]
+[    0.000000] NUMA: NODE_DATA [mem 0xff9ef5c0-0xff9f4fff]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000040000000-0x00000000ffffffff]
+[    0.000000]   DMA32    empty
+[    0.000000]   Normal   empty
+[    0.000000]   Device   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000040000000-0x00000000ffffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x00000000ffffffff]
+[    0.000000] cma: Reserved 32 MiB at 0x00000000fa800000 on node -1
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.0
+[    0.000000] percpu: Embedded 54 pages/cpu s95528 r8192 d117464 u221184
+[    0.000000] Detected PIPT I-cache on CPU0
+[    0.000000] CPU features: detected: Spectre-v2
+[    0.000000] CPU features: detected: Spectre-v3a
+[    0.000000] CPU features: detected: Spectre-v4
+[    0.000000] CPU features: detected: Spectre-BHB
+[    0.000000] CPU features: kernel page table isolation forced ON by KASLR
+[    0.000000] CPU features: detected: Kernel page table isolation (KPTI)
+[    0.000000] CPU features: detected: ARM erratum 1742098
+[    0.000000] CPU features: detected: ARM errata 1165522, 1319367, or 1530923
+[    0.000000] alternatives: applying boot alternatives
+[    0.000000] Kernel command line: console=ttyAMA0 root=/dev/vda rw init=/system/bin/init panic=-1 selinux=0
+[    0.000000] Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.000000] Fallback order for Node 0: 0 
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 774144
+[    0.000000] Policy zone: DMA
+[    0.000000] mem auto-init: stack:all(zero), heap alloc:on, heap free:off
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size adjusted to 3MB
+[    0.000000] software IO TLB: area num 4.
+[    0.000000] software IO TLB: SWIOTLB bounce buffer size roundup to 4MB
+[    0.000000] software IO TLB: mapped [mem 0x00000000f9e00000-0x00000000fa200000] (4MB)
+[    0.000000] Memory: 2957796K/3145728K available (23552K kernel code, 5212K rwdata, 16464K rodata, 12288K init, 1234K bss, 155164K reserved, 32768K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] ftrace: allocating 62812 entries in 246 pages
+[    0.000000] ftrace: allocated 246 pages with 6 groups
+[    0.000000] Dynamic Preempt: voluntary
+[    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=512 to nr_cpu_ids=4.
+[    0.000000] 	Trampoline variant of Tasks RCU enabled.
+[    0.000000] 	Rude variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 100 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] RCU Tasks: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.000000] RCU Tasks Rude: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.000000] RCU Tasks Trace: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] Root IRQ handler: gic_handle_irq
+[    0.000000] GICv2m: range[mem 0x08020000-0x08020fff], SPI[80:143]
+[    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000000] arch_timer: cp15 timer(s) running at 62.50MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0x1ffffffffffffff max_cycles: 0x1cd42e208c, max_idle_ns: 881590405314 ns
+[    0.000159] sched_clock: 57 bits at 63MHz, resolution 16ns, wraps every 4398046511096ns
+[    0.027005] Console: colour dummy device 80x25
+[    0.034304] Calibrating delay loop (skipped), value calculated using timer frequency.. 125.00 BogoMIPS (lpj=62500)
+[    0.034763] pid_max: default: 32768 minimum: 301
+[    0.040098] LSM: initializing lsm=lockdown,capability,landlock,yama,apparmor,integrity
+[    0.041807] landlock: Up and running.
+[    0.041937] Yama: becoming mindful.
+[    0.048496] AppArmor: AppArmor initialized
+[    0.056055] Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.056222] Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+[    0.143800] cacheinfo: Unable to detect cache hierarchy for CPU 0
+[    0.182765] rcu: Hierarchical SRCU implementation.
+[    0.182897] rcu: 	Max phase no-delay instances is 400.
+[    0.206078] EFI services will not be available.
+[    0.216551] smp: Bringing up secondary CPUs ...
+[    0.231806] Detected PIPT I-cache on CPU1
+[    0.234245] CPU1: Booted secondary processor 0x0000000001 [0x410fd083]
+[    0.253553] Detected PIPT I-cache on CPU2
+[    0.256211] CPU2: Booted secondary processor 0x0000000002 [0x410fd083]
+[    0.263529] Detected PIPT I-cache on CPU3
+[    0.264176] CPU3: Booted secondary processor 0x0000000003 [0x410fd083]
+[    0.268093] smp: Brought up 1 node, 4 CPUs
+[    0.268185] SMP: Total of 4 processors activated.
+[    0.268429] CPU: All CPU(s) started at EL1
+[    0.269462] CPU features: detected: 32-bit EL0 Support
+[    0.269643] CPU features: detected: 32-bit EL1 Support
+[    0.269896] CPU features: detected: CRC32 instructions
+[    0.305990] alternatives: applying system-wide alternatives
+[    0.323337] CPU features: emulated: Privileged Access Never (PAN) using TTBR0_EL1 switching
+[    0.452443] devtmpfs: initialized
+[    0.535309] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+[    0.540554] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.559232] pinctrl core: initialized pinctrl subsystem
+[    0.591242] DMI not present or invalid.
+[    0.624855] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.664323] DMA: preallocated 512 KiB GFP_KERNEL pool for atomic allocations
+[    0.670716] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.673630] DMA: preallocated 512 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.674390] audit: initializing netlink subsys (disabled)
+[    0.681060] audit: type=2000 audit(0.463:1): state=initialized audit_enabled=0 res=1
+[    0.708289] thermal_sys: Registered thermal governor 'fair_share'
+[    0.708442] thermal_sys: Registered thermal governor 'bang_bang'
+[    0.708513] thermal_sys: Registered thermal governor 'step_wise'
+[    0.708537] thermal_sys: Registered thermal governor 'user_space'
+[    0.708554] thermal_sys: Registered thermal governor 'power_allocator'
+[    0.709770] cpuidle: using governor ladder
+[    0.710449] cpuidle: using governor menu
+[    0.715271] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.719250] ASID allocator initialised with 32768 entries
+[    0.735812] Serial: AMBA PL011 UART driver
+[    0.855422] 9000000.pl011: ttyAMA0 at MMIO 0x9000000 (irq = 13, base_baud = 0) is a PL011 rev1
+[    0.859693] printk: legacy console [ttyAMA0] enabled
+[    0.949149] Modules: 2G module region forced by RANDOMIZE_MODULE_REGION_FULL
+[    0.949623] Modules: 0 pages in range for non-PLT usage
+[    0.949686] Modules: 509536 pages in range for PLT usage
+[    0.975968] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.977452] HugeTLB: 0 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.978308] HugeTLB: registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.978601] HugeTLB: 0 KiB vmemmap can be freed for a 32.0 MiB page
+[    0.978858] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.979796] HugeTLB: 0 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.980082] HugeTLB: registered 64.0 KiB page size, pre-allocated 0 pages
+[    0.980344] HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+[    1.026407] ACPI: Interpreter disabled.
+[    1.039634] iommu: Default domain type: Translated
+[    1.040088] iommu: DMA domain TLB invalidation policy: strict mode
+[    1.063471] SCSI subsystem initialized
+[    1.073436] usbcore: registered new interface driver usbfs
+[    1.074648] usbcore: registered new interface driver hub
+[    1.075547] usbcore: registered new device driver usb
+[    1.078941] pps_core: LinuxPPS API ver. 1 registered
+[    1.079230] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    1.080605] PTP clock support registered
+[    1.087722] EDAC MC: Ver: 3.0.0
+[    1.097404] scmi_core: SCMI protocol bus registered
+[    1.145257] NetLabel: Initializing
+[    1.145595] NetLabel:  domain hash size = 128
+[    1.146020] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    1.149096] NetLabel:  unlabeled traffic allowed by default
+[    1.153581] mctp: management component transport protocol core
+[    1.154607] NET: Registered PF_MCTP protocol family
+[    1.160228] vgaarb: loaded
+[    1.176075] clocksource: Switched to clocksource arch_sys_counter
+[    1.200273] VFS: Disk quotas dquot_6.6.0
+[    1.201616] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    1.223908] AppArmor: AppArmor Filesystem Enabled
+[    1.225917] pnp: PnP ACPI: disabled
+[    1.382161] NET: Registered PF_INET protocol family
+[    1.389815] IP idents hash table entries: 65536 (order: 7, 524288 bytes, linear)
+[    1.641532] tcp_listen_portaddr_hash hash table entries: 2048 (order: 3, 32768 bytes, linear)
+[    1.642755] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    1.643795] TCP established hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    1.646524] TCP bind hash table entries: 32768 (order: 8, 1048576 bytes, linear)
+[    1.648023] TCP: Hash tables configured (established 32768 bind 32768)
+[    1.654632] MPTCP token hash table entries: 4096 (order: 5, 98304 bytes, linear)
+[    1.656229] UDP hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[    1.657751] UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes, linear)
+[    1.663598] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    1.665357] NET: Registered PF_XDP protocol family
+[    1.666286] PCI: CLS 0 bytes, default 64
+[    1.678186] kvm [1]: HYP mode not available
+[    1.687939] Trying to unpack rootfs image as initramfs...
+[    1.699382] Initialise system trusted keyrings
+[    1.709892] Key type blacklist registered
+[    1.717158] workingset: timestamp_bits=40 max_order=20 bucket_order=0
+[    1.720207] zbud: loaded
+[    1.735006] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    1.743132] fuse: init (API version 7.39)
+[    1.762134] integrity: Platform Keyring initialized
+[    1.764331] integrity: Machine keyring initialized
+[    1.995160] Key type asymmetric registered
+[    1.996151] Asymmetric key parser 'x509' registered
+[    1.999670] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 242)
+[    2.007723] io scheduler mq-deadline registered
+[    2.082124] pl061_gpio 9030000.pl061: PL061 GPIO chip registered
+[    2.090277] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[    2.105214] pci-host-generic 4010000000.pcie: host bridge /pcie@10000000 ranges:
+[    2.108152] pci-host-generic 4010000000.pcie:       IO 0x003eff0000..0x003effffff -> 0x0000000000
+[    2.110679] pci-host-generic 4010000000.pcie:      MEM 0x0010000000..0x003efeffff -> 0x0010000000
+[    2.112594] pci-host-generic 4010000000.pcie:      MEM 0x8000000000..0xffffffffff -> 0x8000000000
+[    2.114731] pci-host-generic 4010000000.pcie: Memory resource size exceeds max for 32 bits
+[    2.117218] pci-host-generic 4010000000.pcie: ECAM at [mem 0x4010000000-0x401fffffff] for [bus 00-ff]
+[    2.127727] pci-host-generic 4010000000.pcie: PCI host bridge to bus 0000:00
+[    2.128942] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    2.130811] pci_bus 0000:00: root bus resource [io  0x0000-0xffff]
+[    2.131176] pci_bus 0000:00: root bus resource [mem 0x10000000-0x3efeffff]
+[    2.132206] pci_bus 0000:00: root bus resource [mem 0x8000000000-0xffffffffff]
+[    2.138172] pci 0000:00:00.0: [1b36:0008] type 00 class 0x060000 conventional PCI endpoint
+[    2.153904] pci 0000:00:01.0: [1af4:1000] type 00 class 0x020000 conventional PCI endpoint
+[    2.155788] pci 0000:00:01.0: BAR 0 [io  0x0000-0x001f]
+[    2.156187] pci 0000:00:01.0: BAR 1 [mem 0x00000000-0x00000fff]
+[    2.156903] pci 0000:00:01.0: BAR 4 [mem 0x00000000-0x00003fff 64bit pref]
+[    2.157654] pci 0000:00:01.0: ROM [mem 0x00000000-0x0007ffff pref]
+[    2.159977] pci 0000:00:02.0: [1af4:1001] type 00 class 0x010000 conventional PCI endpoint
+[    2.161257] pci 0000:00:02.0: BAR 0 [io  0x0000-0x007f]
+[    2.162107] pci 0000:00:02.0: BAR 1 [mem 0x00000000-0x00000fff]
+[    2.163372] pci 0000:00:02.0: BAR 4 [mem 0x00000000-0x00003fff 64bit pref]
+[    2.173757] pci 0000:00:01.0: ROM [mem 0x10000000-0x1007ffff pref]: assigned
+[    2.175895] pci 0000:00:01.0: BAR 4 [mem 0x8000000000-0x8000003fff 64bit pref]: assigned
+[    2.176952] pci 0000:00:02.0: BAR 4 [mem 0x8000004000-0x8000007fff 64bit pref]: assigned
+[    2.177347] pci 0000:00:01.0: BAR 1 [mem 0x10080000-0x10080fff]: assigned
+[    2.179048] pci 0000:00:02.0: BAR 1 [mem 0x10081000-0x10081fff]: assigned
+[    2.180746] pci 0000:00:02.0: BAR 0 [io  0x1000-0x107f]: assigned
+[    2.181197] pci 0000:00:01.0: BAR 0 [io  0x1080-0x109f]: assigned
+[    2.381328] virtio-pci 0000:00:01.0: enabling device (0000 -> 0003)
+[    2.398240] virtio-pci 0000:00:02.0: enabling device (0000 -> 0003)
+[    2.421804] Serial: 8250/16550 driver, 32 ports, IRQ sharing enabled
+[    2.589114] msm_serial: driver initialized
+[    2.590888] SuperH (H)SCI(F) driver initialized
+[    2.721314] loop: module loaded
+[    2.727126] virtio_blk virtio1: 4/0/0 default/read/poll queues
+[    2.771258] virtio_blk virtio1: [vda] 12582912 512-byte logical blocks (6.44 GB/6.00 GiB)
+[    2.868113] tun: Universal TUN/TAP device driver, 1.6
+[    2.906734] PPP generic driver version 2.4.2
+[    2.924454] mousedev: PS/2 mouse device common for all mice
+[    2.935103] i2c_dev: i2c /dev entries driver
+[    2.949368] device-mapper: core: CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will not be recorded in the IMA log.
+[    2.951231] device-mapper: uevent: version 1.0.3
+[    2.956094] device-mapper: ioctl: 4.48.0-ioctl (2023-03-01) initialised: dm-devel@redhat.com
+[    2.974219] ledtrig-cpu: registered to indicate activity on CPUs
+[    3.011672] hw perfevents: enabled with armv8_pmuv3 PMU driver, 7 counters available
+[    3.017836] watchdog: Delayed init of the lockup detector failed: -19
+[    3.018248] watchdog: Hard watchdog permanently disabled
+[    3.024344] drop_monitor: Initializing network drop monitor service
+[    3.028943] NET: Registered PF_INET6 protocol family
+[    4.238181] Freeing initrd memory: 28608K
+[    5.891013] Segment Routing with IPv6
+[    5.894938] In-situ OAM (IOAM) with IPv6
+[    5.898304] NET: Registered PF_PACKET protocol family
+[    5.904626] Key type dns_resolver registered
+[    6.017670] registered taskstats version 1
+[    6.039705] Loading compiled-in X.509 certificates
+[    6.079916] Loaded X.509 cert 'Build time autogenerated kernel key: fac1f98c633465bebbd6af8ad2ed94ce3153d21a'
+[    6.086116] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing 2025 Kmod: d541cef61dc7e793b7eb7e899970a2eef0b5dc8c'
+[    6.091977] Loaded X.509 cert 'Canonical Ltd. Live Patch Signing: 14df34d1a87cf37625abec039ef2bf521249b969'
+[    6.097982] Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing 2025 Kmod: 4627603d2357a2a3f81006370894c221175893e9'
+[    6.103919] Loaded X.509 cert 'Canonical Ltd. Kernel Module Signing: 88f752e560a1e0737e31163a466ad7b70a850c19'
+[    6.104774] blacklist: Loading compiled-in revocation X.509 certificates
+[    6.108037] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing: 61482aa2830d0ab2ad5af10b7250da9033ddcef0'
+[    6.109810] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2017): 242ade75ac4a15e50d50c84b0d45ff3eae707a03'
+[    6.111294] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (ESM 2018): 365188c1d374d6b07c3c8f240f8ef722433d6a8b'
+[    6.112253] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2019): c0746fd6c5da3ae827864651ad66ae47fe24b3e8'
+[    6.113415] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v1): a8d54bbb3825cfb94fa13c9f8a594a195c107b8d'
+[    6.115007] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v2): 4cf046892d6fd3c9a5b03f98d845f90851dc6a8c'
+[    6.116033] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (2021 v3): 100437bb6de6e469b581e61cd66bce3ef4ed53af'
+[    6.117003] Loaded X.509 cert 'Canonical Ltd. Secure Boot Signing (Ubuntu Core 2019): c1d57b8f6b743f23ee41f4f7ee292f06eecadfb9'
+[    6.241285] Key type .fscrypt registered
+[    6.242141] Key type fscrypt-provisioning registered
+[    7.315471] Key type encrypted registered
+[    7.318010] AppArmor: AppArmor sha256 policy hashing enabled
+[    7.321838] ima: No TPM chip found, activating TPM-bypass!
+[    7.323163] Loading compiled-in module X.509 certificates
+[    7.332067] Loaded X.509 cert 'Build time autogenerated kernel key: fac1f98c633465bebbd6af8ad2ed94ce3153d21a'
+[    7.334680] ima: Allocated hash algorithm: sha256
+[    7.342654] ima: No architecture policies found
+[    7.344937] evm: Initialising EVM extended attributes:
+[    7.345273] evm: security.selinux
+[    7.345776] evm: security.SMACK64
+[    7.345966] evm: security.SMACK64EXEC
+[    7.346130] evm: security.SMACK64TRANSMUTE
+[    7.346305] evm: security.SMACK64MMAP
+[    7.346700] evm: security.apparmor
+[    7.346867] evm: security.ima
+[    7.347009] evm: security.capability
+[    7.347204] evm: HMAC attrs: 0x1
+[    7.557215] clk: Disabling unused clocks
+[    7.909803] Freeing unused kernel memory: 12288K
+[    8.098387] Checked W+X mappings: passed, no W+X pages found
+[    8.101499] Run /init as init process
+Loading, please wait...
+Starting systemd-udevd version 255.4-1ubuntu8.18
+[   46.072232] virtio_net virtio0 enp0s1: renamed from eth0
+[   46.894118] hrtimer: interrupt took 3170320 ns
+[   47.037658] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+Begin: Loading essential drivers ... [   66.381646] raid6: neonx8   gen()  1390 MB/s
+[   66.398530] raid6: neonx4   gen()  1333 MB/s
+[   66.415523] raid6: neonx2   gen()  1051 MB/s
+[   66.432638] raid6: neonx1   gen()   669 MB/s
+[   66.449530] raid6: int64x8  gen()   675 MB/s
+[   66.466554] raid6: int64x4  gen()   490 MB/s
+[   66.483528] raid6: int64x2  gen()   811 MB/s
+[   66.500520] raid6: int64x1  gen()   603 MB/s
+[   66.500962] raid6: using algorithm neonx8 gen() 1390 MB/s
+[   66.517564] raid6: .... xor() 510 MB/s, rmw enabled
+[   66.518048] raid6: using neon recovery algorithm
+[   66.614256] xor: measuring software checksum speed
+[   66.618835]    8regs           :  1324 MB/sec
+[   66.622247]    32regs          :  1402 MB/sec
+[   66.628307]    arm64_neon      :  1022 MB/sec
+[   66.630804] xor: using function: 32regs (1402 MB/sec)
+[   66.672948] async_tx: api initialized (async)
+done.
+Begin: Running /scripts/init-premount ... done.
+Begin: Mounting root file system ... Begin: Running /scripts/local-top ... done.
+Begin: Running /scripts/local-premount ... [   73.941438] Btrfs loaded, zoned=yes, fsverity=yes
+Scanning for Btrfs filesystems
+done.
+Warning: fsck not present, so skipping root file system
+[   77.579099] EXT4-fs (vda): mounted filesystem 50dc2df2-5a55-4211-a6f1-3713bb77b84e r/w with ordered data mode. Quota mode: none.
+done.
+Begin: Running /scripts/local-bottom ... done.
+Begin: Running /scripts/init-bottom ... mkdir: can't create directory '/root/lib/': No such file or directory
+Warning: No /lib/modules in target. cannot help.
+done.
+mount: mounting /run on /root/run failed: No such file or directory
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+[   88.748021] [pid=1][Init][INFO][init_firststage.c:215]Start init first stage.
+[   88.749282] [pid=1][Init][INFO][device.c:38]dev already mounted
+[   88.762805] [pid=1][Init][ERROR][device.c:71]Mount sysfs failed. Resource busy
+[   88.765958] [pid=1][Init][ERROR][device.c:74]Mount selinuxfs failed. No such file or directory
+[   88.773157] [pid=1][Init][INFO][boot_detector_init.c:178]bootfail set first stage
+[   88.776171] [bootfail]read dev node failed!
+[   88.780186] [bootfail]SetBootStage ioctl failed, errorNo: 9:Bad file descriptor
+[   88.783948] [bootfail]set boot stage failed, ret is -1
+[   88.785106] [pid=1][Init][ERROR][boot_detector_init.c:185]bootfail SetBootStage failed ret = -1
+[   88.785734] [pid=1][Init][INFO][boot_detector_init.c:164]bootfail SymlinkDevices
+[   88.791207] [pid=1][BEGET][INFO][init_utils.c:849]GetParameterFromCmdLine: ret=-1,paramName=default_boot_device,value=
+[   88.793813] [pid=1][ueventd][ERROR][ueventd.c:401]Failed get default_boot_device value from cmdline
+[   90.920128] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[   92.299895] [pid=1][ueventd][ERROR][ueventd.c:166]Create device node /dev/console failed. File exists
+[   92.725166] [pid=1][ueventd][ERROR][ueventd.c:166]Create device node /dev/tty failed. File exists
+[   93.026307] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[   93.081299] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[   93.136858] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[   93.193840] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[   93.250202] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[   93.315079] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[   93.374098] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[   93.435014] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[   93.701891] [pid=1][Init][INFO][init_mount.c:39]Cannot load fstab from command line, try read from fstab.required
+[   93.704233] [pid=1][Init][ERROR][init_mount.c:42]Failed get fstab.required
+[   93.705756] [pid=1][Init][INFO][init_firststage.c:174]Start init second stage.
+[   94.967242] [pid=1][BEGET][INFO][init_utils.c:839]GetExactParameterFromCmdLine: ret=-1,paramName=oemmode,value=
+[   94.970062] [pid=1][BEGET][ERROR][erofs_overlay_common.c:28]Failed get oenmode from cmdline.
+[   94.986273] [pid=1][Init][INFO][init.c:87]Init fd holder socket done
+[   95.005764] [pid=1][BEGET][INFO][init_utils.c:849]GetParameterFromCmdLine: ret=-1,paramName=bootgroup,value=device.boot.group
+[   95.010902] [pid=1][BEGET][INFO][fstab.c:493]fstab not found from cmdline, try to get it from file
+[   95.014049] [pid=1][BEGET][INFO][init_utils.c:849]GetParameterFromCmdLine: ret=-1,paramName=hardware,value=
+[   95.015930] [pid=1][BEGET][ERROR][fstab.c:301]Failed get hardware from cmdline
+[   95.017270] [pid=1][BEGET][ERROR][reboot_misc.c:77]Failed to get misc path
+[   95.018292] [pid=1][Init][INFO][init_group_manager.c:235]boot start device.boot.group
+[   95.025284] [pid=1][PARAM][WARNING][param_manager.c:704]deny access const.cust.config_dir_layer label 0 0
+[   95.026291] [pid=1][PARAM][WARNING][param_manager.c:755]SystemReadParam failed! name is:const.cust.config_dir_layer, err:1002!
+[   95.031303] [pid=1][PARAM][WARNING][param_manager.c:704]deny access const.cust.follow_x_rules label 0 0
+[   95.033028] [pid=1][PARAM][WARNING][param_manager.c:755]SystemReadParam failed! name is:const.cust.follow_x_rules, err:1002!
+[   95.055696] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libhmos_cust_init'
+[   95.355920] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libkdump_resize'
+[   95.407100] [pid=1][Init][INFO][kerneldump_resize.cpp:54]Kerneldump HookMgrAdd
+[   95.409118] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libprop_migrate'
+[   95.461904] [pid=1][Init][INFO][prop_migrate_server.c:145]Start prop_migrate now ...
+[   95.463149] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libcheckpoint'
+[   95.664000] [pid=1][Init][INFO][checkpoint.cpp:284]Init checkpoint start
+[   95.665825] [pid=1][Init][INFO][checkpoint.cpp:288]Init checkpoint end
+[   95.667003] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_dfmalloc'
+[   95.723890] [pid=1][Init][INFO][init_dfmalloc.c:83]init dfmalloc CONSTRUCTOR
+[   95.726131] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libprocess_exit'
+[   95.778754] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libprop_bridge'
+[   95.833153] [pid=1][Init][INFO][prop_bridge_server.c:454]Start prop_bridge now ...
+[   95.841818] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libfile_migrate_init'
+[   95.899076] [pid=1][Init][INFO][file_migrate_init.cpp:173]Init file migrate start
+[   95.900990] [pid=1][Init][INFO][file_migrate_init.cpp:177]Init file migrate end
+[   95.902049] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libkickdog'
+[   95.959083] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_quickfix'
+[   96.158185] [pid=1][Init][INFO][init_quickfix.cpp:139]init quickfix start
+[   96.159984] [pid=1][Init][INFO][init_quickfix.cpp:144]init quickfix end
+[   96.161661] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_dec'
+[   96.213214] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libhmos_custom_init_update'
+[   96.266709] [pid=1][Init][INFO][hmos_init_custom.c:185]hmos_custom_init run success.
+[   96.267944] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libtee_chmod'
+[   96.322060] [pid=1][Init][INFO][tee_chmod.c:205]TeeChmodChownTargetDir start
+[   96.323286] [pid=1][Init][INFO][tee_chmod.c:209]TeeChmodChownTargetDir end
+[   96.324683] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libmark_slot'
+[   96.407122] [pid=1][Init][INFO][mark_slot.c:108]init mark slot HookMgrAdd
+[   96.408829] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_security'
+[   96.460694] [pid=1][Init][INFO][init_security.c:52]hw security init start
+[   96.462089] [pid=1][Init][INFO][init_security.c:54]hw security init end
+[   96.463839] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libfont_manager_init'
+[   96.527140] [pid=1][Init][INFO][font_manager_init.cpp:89]font_manager_init init start
+[   96.530230] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_manufacture'
+[   96.600615] [pid=1][Init][INFO][init_manufacture.c:145]hw factory init start
+[   96.602888] [pid=1][Init][INFO][init_manufacture.c:147]hw factory init end
+[   96.604689] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libmodule_update_init'
+[   96.656982] [pid=1][Init][INFO][module_update_init.cpp:65]module_update_init add hookMgr.
+[   96.658496] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_usbconfig'
+[   96.710115] [pid=1][Init][INFO][usb_config.c:233]MODULE_CONSTRUCTOR enter
+[   96.711608] [pid=1][Init][INFO][usb_config.c:237]MODULE_CONSTRUCTOR leave
+[   96.712256] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinithp'
+[   96.775983] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [1755905]us, result 0.
+[   96.780743] [pid=1][PARAM][WARNING][param_manager.c:704]deny access const.cust.config_dir_layer label 0 0
+[   96.781706] [pid=1][PARAM][WARNING][param_manager.c:755]SystemReadParam failed! name is:const.cust.config_dir_layer, err:1002!
+[   96.785848] [pid=1][PARAM][WARNING][param_manager.c:704]deny access const.cust.follow_x_rules label 0 0
+[   96.786998] [pid=1][PARAM][WARNING][param_manager.c:755]SystemReadParam failed! name is:const.cust.follow_x_rules, err:1002!
+[   96.796643] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [19133]us, result 0.
+[   96.798039] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [582]us, result 0.
+[   96.799079] [pid=1][PLUGIN][INFO][selinux_static.c:23]Install selinuxadp.
+[   96.880688] [pid=1][PLUGIN][INFO][selinux_adp.c:178]Selinux adapter plug-in init now ...
+[   96.882312] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [83284]us, result 0.
+[   96.883855] [pid=1][Init][INFO][boot_detector_init.c:220]bootfail SecondStage
+[   96.997194] [pid=1][Init][INFO][boot_detector_init.cpp:342]init bootfail CONSTRUCTOR
+[   97.005055] [bootfail]SetBootStage ioctl failed, errorNo: 9:Bad file descriptor
+[   97.008137] [bootfail]set boot stage failed, ret is -1
+[   97.009342] [pid=1][Init][ERROR][boot_detector_init.cpp:104]bootfail SetBootStage failed ret = -1
+[   97.055012] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [171516]us, result 0.
+[   97.056624] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [184]us, result 0.
+[   97.681393] [pid=1][Init][INFO][init_quickfix.cpp:73]QuickfixDirectlyExecutor exit ret = 0
+[   97.682895] [pid=1][Init][INFO][init_quickfix.cpp:79]GlobalInitQuickfixHook executed
+[   97.683905] [pid=1][Init][INFO][init.c:197]Executing hook [0:1] cost [626528]us, result 0.
+[   97.710088] [pid=1][BEGET][INFO][init_utils.c:839]GetExactParameterFromCmdLine: ret=-1,paramName=ohos.boot.root_package,value=
+[   97.712227] [pid=1][Init][INFO][init.c:197]Executing hook [0:2] cost [27066]us, result 0.
+[   97.714327] [pid=1][PARAM][INFO][param_service.c:422]InitParamService pipe: /dev/unix/socket/paramservice.
+[   97.719122] [pid=1][PARAM][INFO][param_base.c:230]CloseParamWorkSpace 1
+[   97.724656] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for musl.log.enable
+[   97.725752] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter musl.log.enable
+[   97.727091] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for musl.log.level
+[   97.728087] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter musl.log.level
+[   97.729049] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for musl.ld.debug.dlopen
+[   97.730060] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter musl.ld.debug.dlopen
+[   97.731042] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for musl.ld.debug.dlclose
+[   97.732034] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter musl.ld.debug.dlclose
+[   97.733128] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for debug.hitrace.tags.enableflags
+[   97.734127] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter debug.hitrace.tags.enableflags
+[   97.905861] [pid=1][PARAM][WARNING][param_base.c:324]Not enough memory for label index 64 need to extend memory 64
+[   97.910048] [pid=1][PARAM][INFO][param_base.c:204]Max selinux label 128 112
+[   97.923072] [pid=1][Init][INFO][init_group_manager.c:102]Parse group config /system/etc/device.boot.group.cfg
+[   97.932261] [pid=1][Init][INFO][init.c:307]boot stage: init finish.
+[   97.935048] [pid=1][PLUGIN][INFO][selinux_adp.c:49]LoadSelinuxPolicy 
+[   97.940671] [pid=1][SELINUX][ERROR] No developer cil file found, fallback to normal mode
+[   97.944743] [pid=1][SELINUX][ERROR] Access file /vendor/etc/selinux/prebuild_sepolicy.system.cil.sha256 failed
+[   97.950979] [pid=1][SELINUX][ERROR] Access file /vendor/etc/selinux/version failed
+[   97.952112] [pid=1][SELINUX][ERROR] Get vendor policy version failed
+qemu-system-aarch64: terminating on signal 15 from pid 2035703 (timeout)

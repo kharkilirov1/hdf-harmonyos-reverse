@@ -14,3 +14,5 @@
 *.log
 noble.img
 seed.img
+# логи экспериментов нужны в репозитории
+!docs/arm-kernel-swap/*.log
