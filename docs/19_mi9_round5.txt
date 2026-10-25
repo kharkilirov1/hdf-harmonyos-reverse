@@ -1,0 +1,67 @@
+=== 19. РАУНД 5: НАЙДЕНА ПРИЧИНА ВСЕХ ЗАВИСАНИЙ — НЕХВАТКА ЭНТРОПИИ ===
+
+Дата: 2026-10-26. Продолжение 18_mi9_round4.
+
+═══════════════════════════════════════════════════════════════════════
+КОРЕНЬ ПРОБЛЕМЫ
+═══════════════════════════════════════════════════════════════════════
+
+1) Собран диагностический сэмплер (/system/bin/sampler, статический
+   aarch64, 620 КБ): через N секунд после старта выгружает
+   /proc/<pid>/{status,task/*/wchan,task/*/stat,stack} всех
+   foundation/sa_main/bms/samgr в /data/diag/stack_N.txt.
+2) Дамп на 300-й и 700-й секундах показал:
+     tid 2475 (foundation, main)  wchan=wait_for_random_bytes.part.0
+     tid 2625 (SaInit0)           wchan=wait_for_random_bytes.part.0
+   То есть foundation висел В ЯДРЕ на ожидании инициализации CRNG
+   (/dev/random → getrandom), потому что в QEMU не было источника энтропии.
+
+═══════════════════════════════════════════════════════════════════════
+ИСПРАВЛЕНИЕ
+═══════════════════════════════════════════════════════════════════════
+
+- Ядро: включены CONFIG_HW_RANDOM=y и CONFIG_HW_RANDOM_VIRTIO=y,
+  пересобран Image.
+- QEMU: добавлен `-device virtio-rng-pci`.
+
+РЕЗУЛЬТАТ (первое же включение):
+  [ 1.46] random: crng init done          <-- энтропия есть с 1.4 c
+  [405.2] bootevent.samgr.ready
+  [408.8] bootevent.appfwk.ready          <-- ВПЕРВЫЕ: AMS поднялся!
+  [409.0] bootevent.appspawn.started      <-- ВПЕРВЫЕ
+  [415.1] bootevent.hdf_devmgr.ready
+  [419.7] bootevent.param_watcher.started
+  [471.4] bootevent.renderservice.ready
+  [480.5] bootevent.powermgr.ready
+  [845.2] bootevent.avsessionservice.ready
+
+Итого 10 настоящих bootevent'ов, включая appfwk.ready и appspawn.started.
+BMS в hilog ожил: было 156 строк за прогон, стало 298+493 строк в двух
+последних чанках (активное сканирование бандлов). panic=0, reboot=0.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО ОСТАЛОСЬ
+═══════════════════════════════════════════════════════════════════════
+
+Не выставлены: launcher.ready, wms.ready, lockscreen.ready,
+bms.main.bundles.ready, boot.completed.
+
+Наблюдение: foundation-процесс штатно завершается (exit code 0) на
+502 c и 738 c, init его перезапускает (start foundation x3), и каждый
+раз заново выставляются appfwk.ready/appspawn.started. Похоже, что
+перезапуск foundation мешает BMS довести сканирование и выставить
+bms.main.bundles.ready.
+
+Следующие шаги:
+1. Прогон 2400 c с virtio-rng: дать BMS досканировать 305 бандлов и
+   посмотреть, появится ли bms.main.bundles.ready / launcher.ready.
+2. Разобраться, почему foundation выходит с кодом 0: если это "одноразовый"
+   загрузчик SAs — запретить init перезапускать его (once: 1 / убрать
+   on-restart job), чтобы не сбрасывать bootevent'ы.
+3. Если launcher.ready так и не появится — смотреть, стартует ли
+   appspawn → com.ohos.launcher, и что пишет launcher в hilog.
+
+Артефакты: 19_mi9_round5.log (консоль, 70k строк),
+19_mi9_round5_bms.txt (выжимка BMS из hilog), 19_mi9_round5.txt.
+Ключевые правки: CONFIG_HW_RANDOM_VIRTIO=y, -device virtio-rng-pci,
+/system/bin/sampler (диагностика), installs start-mode boot.
