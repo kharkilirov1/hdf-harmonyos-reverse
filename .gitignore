@@ -18,3 +18,5 @@ seed.img
 !docs/arm-kernel-swap/*.log
 
 !docs/*.config
+
+!docs/09_*.log
