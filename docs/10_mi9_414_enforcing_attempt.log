@@ -1,0 +1,635 @@
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 4.14.180 (kharki@DESKTOP-1GQBEAH) (gcc version 13.3.0 (Ubuntu 13.3.0-6ubuntu2~24.04.1)) #2 SMP PREEMPT Mon Oct 26 00:34:41 CST 2026
+[    0.000000] Boot CPU: AArch64 Processor [410fd083]
+[    0.000000] Machine model: linux,dummy-virt
+[    0.000000] efi: Getting EFI parameters from FDT:
+[    0.000000] efi: UEFI not found.
+[    0.000000] cma: Reserved 16 MiB at 0x00000000ff000000
+[    0.000000] NUMA: No NUMA configuration found
+[    0.000000] NUMA: Faking a node at [mem 0x0000000040000000-0x000000013fffffff]
+[    0.000000] NUMA: NODE_DATA [mem 0x13ffe8980-0x13ffea47f]
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000040000000-0x00000000ffffffff]
+[    0.000000]   Normal   [mem 0x0000000100000000-0x000000013fffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000040000000-0x000000013fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000040000000-0x000000013fffffff]
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: Trusted OS migration not required
+[    0.000000] psci: SMC Calling Convention v1.0
+[    0.000000] percpu: Embedded 22 pages/cpu s53144 r8192 d28776 u90112
+[    0.000000] Detected PIPT I-cache on CPU0
+[    0.000000] ARM_SMCCC_ARCH_WORKAROUND_1 missing from firmware
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 1032192
+[    0.000000] Policy zone: Normal
+[    0.000000] Kernel command line: console=ttyAMA0 root=/dev/vda rw init=/system/bin/init security=selinux selinux=1
+[    0.000000] PID hash table entries: 4096 (order: 3, 32768 bytes)
+[    0.000000] software IO TLB: mapped [mem 0xfafff000-0xfefff000] (64MB)
+[    0.000000] Memory: 4027860K/4194304K available (9852K kernel code, 1186K rwdata, 4348K rodata, 1152K init, 406K bss, 150060K reserved, 16384K cma-reserved)
+[    0.000000] Virtual kernel memory layout:
+[    0.000000]     modules : 0xffff000000000000 - 0xffff000008000000   (   128 MB)
+[    0.000000]     vmalloc : 0xffff000008000000 - 0xffff7dffbfff0000   (129022 GB)
+[    0.000000]       .text : 0xffff000008080000 - 0xffff000008a20000   (  9856 KB)
+[    0.000000]     .rodata : 0xffff000008a20000 - 0xffff000008e70000   (  4416 KB)
+[    0.000000]       .init : 0xffff000008e70000 - 0xffff000008f90000   (  1152 KB)
+[    0.000000]       .data : 0xffff000008f90000 - 0xffff0000090b8a00   (  1187 KB)
+[    0.000000]        .bss : 0xffff0000090b8a00 - 0xffff00000911e540   (   407 KB)
+[    0.000000]     fixed   : 0xffff7dfffe7f9000 - 0xffff7dfffec00000   (  4124 KB)
+[    0.000000]     PCI I/O : 0xffff7dfffee00000 - 0xffff7dffffe00000   (    16 MB)
+[    0.000000]     vmemmap : 0xffff7e0000000000 - 0xffff800000000000   (  2048 GB maximum)
+[    0.000000]               0xffff7e0000000000 - 0xffff7e0004000000   (    64 MB actual)
+[    0.000000]     memory  : 0xffff800000000000 - 0xffff800100000000   (  4096 MB)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] Preemptible hierarchical RCU implementation.
+[    0.000000] 	RCU restricting CPUs from NR_CPUS=64 to nr_cpu_ids=4.
+[    0.000000] 	Tasks RCU enabled.
+[    0.000000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000] GICv2m: range[mem 0x08020000-0x08020fff], SPI[80:143]
+[    0.000000] arch_timer: cp15 timer(s) running at 62.50MHz (virt).
+[    0.000000] clocksource: arch_sys_counter: mask: 0xffffffffffffff max_cycles: 0x1cd42e208c, max_idle_ns: 881590405314 ns
+[    0.000294] sched_clock: 56 bits at 62MHz, resolution 16ns, wraps every 4398046511096ns
+[    0.014934] Console: colour dummy device 80x25
+[    0.017394] Calibrating delay loop (skipped), value calculated using timer frequency.. 125.00 BogoMIPS (lpj=250000)
+[    0.017624] pid_max: default: 32768 minimum: 301
+[    0.020061] Security Framework initialized
+[    0.020316] SELinux:  Initializing.
+[    0.039794] Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes)
+[    0.045400] Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes)
+[    0.045863] Mount-cache hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.046032] Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.100072] /cpus/cpu-map: empty cluster
+[    0.123948] ASID allocator initialised with 32768 entries
+[    0.131560] Hierarchical SRCU implementation.
+[    0.146187] EFI services will not be available.
+[    0.159430] smp: Bringing up secondary CPUs ...
+[    0.192232] Detected PIPT I-cache on CPU1
+[    0.193635] CPU1: Booted secondary processor [410fd083]
+[    0.231204] Detected PIPT I-cache on CPU2
+[    0.231517] CPU2: Booted secondary processor [410fd083]
+[    0.261577] Detected PIPT I-cache on CPU3
+[    0.261947] CPU3: Booted secondary processor [410fd083]
+[    0.263208] smp: Brought up 1 node, 4 CPUs
+[    0.263319] SMP: Total of 4 processors activated.
+[    0.263471] CPU features: detected: 32-bit EL0 Support
+[    0.407897] CPU: All CPU(s) started at EL1
+[    0.410070] alternatives: patching kernel code
+[    0.450861] devtmpfs: initialized
+[    0.465499] random: get_random_u32 called from bucket_table_alloc+0x10c/0x250 with crng_init=0
+[    0.475223] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.475578] futex hash table entries: 1024 (order: 5, 131072 bytes)
+[    0.490550] pinctrl core: initialized pinctrl subsystem
+[    0.513297] DMI not present or invalid.
+[    0.522246] NET: Registered protocol family 16
+[    0.549113] cpuidle: using governor menu
+[    0.551262] vdso: 2 pages (1 code @ ffff000008a26000, 1 data @ ffff000008f95000)
+[    0.551682] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.570183] DMA: preallocated 256 KiB pool for atomic allocations
+[    0.576286] Serial: AMBA PL011 UART driver
+[    0.627428] 9000000.pl011: ttyAMA0 at MMIO 0x9000000 (irq = 39, base_baud = 0) is a PL011 rev1
+[    0.657568] console [ttyAMA0] enabled
+[    0.792608] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.828147] ACPI: Interpreter disabled.
+[    0.839622] vgaarb: loaded
+[    0.843974] SCSI subsystem initialized
+[    0.853051] usbcore: registered new interface driver usbfs
+[    0.856152] usbcore: registered new interface driver hub
+[    0.858244] usbcore: registered new device driver usb
+[    0.865094] pps_core: LinuxPPS API ver. 1 registered
+[    0.865713] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.866414] PTP clock support registered
+[    0.868051] EDAC MC: Ver: 3.0.0
+[    0.873804] dmi: Firmware registration failed.
+[    0.879315] Advanced Linux Sound Architecture Driver Initialized.
+[    0.903064] clocksource: Switched to clocksource arch_sys_counter
+[    0.906326] VFS: Disk quotas dquot_6.6.0
+[    0.907072] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.914767] pnp: PnP ACPI: disabled
+[    1.075854] NET: Registered protocol family 2
+[    1.092806] TCP established hash table entries: 32768 (order: 6, 262144 bytes)
+[    1.094230] TCP bind hash table entries: 32768 (order: 7, 524288 bytes)
+[    1.096790] TCP: Hash tables configured (established 32768 bind 32768)
+[    1.100738] UDP hash table entries: 2048 (order: 4, 65536 bytes)
+[    1.101542] UDP-Lite hash table entries: 2048 (order: 4, 65536 bytes)
+[    1.105508] NET: Registered protocol family 1
+[    1.117150] RPC: Registered named UNIX socket transport module.
+[    1.117727] RPC: Registered udp transport module.
+[    1.117958] RPC: Registered tcp transport module.
+[    1.118170] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    1.136413] hw perfevents: enabled with armv8_pmuv3 PMU driver, 7 counters available
+[    1.137918] kvm [1]: HYP mode not available
+[    1.201802] audit: initializing netlink subsys (disabled)
+[    1.206406] audit: type=2000 audit(1.076:1): state=initialized audit_enabled=0 res=1
+[    1.212732] workingset: timestamp_bits=44 max_order=20 bucket_order=0
+[    1.274201] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    1.286158] NFS: Registering the id_resolver key type
+[    1.288807] Key type id_resolver registered
+[    1.289158] Key type id_legacy registered
+[    1.289615] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    1.293431] 9p: Installing v9fs 9p2000 file system support
+[    1.357110] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 246)
+[    1.358423] io scheduler noop registered
+[    1.361586] io scheduler cfq registered (default)
+[    1.365156] io scheduler mq-deadline registered
+[    1.365653] io scheduler kyber registered
+[    1.421243] pl061_gpio 9030000.pl061: PL061 GPIO chip @0x0000000009030000 registered
+[    1.436165] OF: PCI: host bridge /pcie@10000000 ranges:
+[    1.437398] OF: PCI:    IO 0x3eff0000..0x3effffff -> 0x00000000
+[    1.438543] OF: PCI:   MEM 0x10000000..0x3efeffff -> 0x10000000
+[    1.441017] OF: PCI:   MEM 0x8000000000..0xffffffffff -> 0x8000000000
+[    1.445158] pci-host-generic 4010000000.pcie: ECAM at [mem 0x4010000000-0x401fffffff] for [bus 00-ff]
+[    1.449389] pci-host-generic 4010000000.pcie: PCI host bridge to bus 0000:00
+[    1.450261] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    1.451195] pci_bus 0000:00: root bus resource [io  0x0000-0xffff]
+[    1.453698] pci_bus 0000:00: root bus resource [mem 0x10000000-0x3efeffff]
+[    1.454109] pci_bus 0000:00: root bus resource [mem 0x8000000000-0xffffffffff]
+[    1.481661] pci 0000:00:01.0: BAR 6: assigned [mem 0x10000000-0x1007ffff pref]
+[    1.482807] pci 0000:00:01.0: BAR 4: assigned [mem 0x8000000000-0x8000003fff 64bit pref]
+[    1.485061] pci 0000:00:02.0: BAR 4: assigned [mem 0x8000004000-0x8000007fff 64bit pref]
+[    1.485475] pci 0000:00:01.0: BAR 1: assigned [mem 0x10080000-0x10080fff]
+[    1.485924] pci 0000:00:02.0: BAR 1: assigned [mem 0x10081000-0x10081fff]
+[    1.486376] pci 0000:00:02.0: BAR 0: assigned [io  0x1000-0x107f]
+[    1.486759] pci 0000:00:01.0: BAR 0: assigned [io  0x1080-0x109f]
+[    1.584438] virtio-pci 0000:00:01.0: enabling device (0000 -> 0003)
+[    1.597909] virtio-pci 0000:00:02.0: enabling device (0000 -> 0003)
+[    1.677065] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    1.697312] SuperH (H)SCI(F) driver initialized
+[    1.701622] msm_serial: driver initialized
+[    1.708471] cacheinfo: Unable to detect cache hierarchy for CPU 0
+[    1.785891] loop: module loaded
+[    1.931427] libphy: Fixed MDIO Bus: probed
+[    1.937845] tun: Universal TUN/TAP device driver, 1.6
+[    1.981025] e1000e: Intel(R) PRO/1000 Network Driver - 3.2.6-k
+[    1.981686] e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+[    1.982471] igb: Intel(R) Gigabit Ethernet Network Driver - version 5.4.0-k
+[    1.984031] igb: Copyright (c) 2007-2014 Intel Corporation.
+[    1.984801] igbvf: Intel(R) Gigabit Virtual Function Network Driver - version 2.4.0-k
+[    1.985615] igbvf: Copyright (c) 2009 - 2012 Intel Corporation.
+[    1.989201] sky2: driver version 1.30
+[    1.995662] VFIO - User Level meta-driver version: 0.3
+[    2.010342] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    2.012685] ehci-pci: EHCI PCI platform driver
+[    2.013734] ehci-platform: EHCI generic platform driver
+[    2.015116] ehci-orion: EHCI orion driver
+[    2.017914] ehci-exynos: EHCI EXYNOS driver
+[    2.020103] ehci-msm: Qualcomm On-Chip EHCI Host Controller
+[    2.021805] ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+[    2.022430] ohci-pci: OHCI PCI platform driver
+[    2.025113] ohci-platform: OHCI generic platform driver
+[    2.026277] ohci-exynos: OHCI EXYNOS driver
+[    2.033438] usbcore: registered new interface driver usb-storage
+[    2.068683] rtc-pl031 9010000.pl031: rtc core: registered pl031 as rtc0
+[    2.074612] i2c /dev entries driver
+[    2.118748] sdhci: Secure Digital Host Controller Interface driver
+[    2.122613] sdhci: Copyright(c) Pierre Ossman
+[    2.128444] Synopsys Designware Multimedia Card Interface Driver
+[    2.138044] sdhci-pltfm: SDHCI platform and OF driver helper
+[    2.161042] ledtrig-cpu: registered to indicate activity on CPUs
+[    2.189430] usbcore: registered new interface driver usbhid
+[    2.190023] usbhid: USB HID core driver
+[    2.195122] ashmem: initialized
+[    2.240175] NET: Registered protocol family 17
+[    2.244891] 9pnet: Installing 9P2000 support
+[    2.246228] Key type dns_resolver registered
+[    2.257176] registered taskstats version 1
+[    2.296023] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    2.308952] rtc-pl031 9010000.pl031: setting system clock to 2026-10-25 16:42:19 UTC (1792946539)
+[    2.321581] ALSA device list:
+[    2.321905]   No soundcards found.
+[    2.340672] uart-pl011 9000000.pl011: no DMA platform data
+[    2.459824] EXT4-fs (vda): mounted filesystem with ordered data mode. Opts: (null)
+[    2.460761] VFS: Mounted root (ext4 filesystem) on device 254:0.
+[    2.469920] devtmpfs: mounted
+[    2.661152] Freeing unused kernel memory: 1152K
+[    3.086544] random: init: uninitialized urandom read (8 bytes read)
+[    3.104464] random: init: uninitialized urandom read (8 bytes read)
+[    3.105103] random: init: uninitialized urandom read (8 bytes read)
+[    3.708082] random: fast init done
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+HiLogBase: Can't connect to server. Errno: 2
+[    4.215537] [pid=1][Init][INFO][init_firststage.c:215]Start init first stage.
+[    4.216145] [pid=1][Init][INFO][device.c:38]dev already mounted
+[    4.231693] [pid=1][Init][INFO][boot_detector_init.c:178]bootfail set first stage
+[    4.233174] [bootfail]read dev node failed!
+[    4.235194] [bootfail]SetBootStage ioctl failed, errorNo: 9:Bad file descriptor
+[    4.236224] [bootfail]set boot stage failed, ret is -1
+[    4.236725] [pid=1][Init][ERROR][boot_detector_init.c:185]bootfail SetBootStage failed ret = -1
+[    4.236847] [pid=1][Init][INFO][boot_detector_init.c:164]bootfail SymlinkDevices
+[    4.243726] [pid=1][BEGET][INFO][init_utils.c:849]GetParameterFromCmdLine: ret=-1,paramName=default_boot_device,value=
+[    4.244807] [pid=1][ueventd][ERROR][ueventd.c:401]Failed get default_boot_device value from cmdline
+[    4.389996] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[    4.482430] [pid=1][ueventd][ERROR][ueventd.c:166]Create device node /dev/binder failed. File exists
+[    4.540689] [pid=1][ueventd][ERROR][ueventd.c:166]Create device node /dev/console failed. File exists
+[    4.646124] [pid=1][ueventd][ERROR][ueventd.c:166]Create device node /dev/tty failed. File exists
+[    4.704420] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[    4.710275] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[    4.718184] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[    4.726457] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[    4.737582] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[    4.742639] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[    4.749925] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[    4.757146] [pid=1][ueventd][WARNING][ueventd.c:203]Not found device for partitionName (null) 
+[    4.782997] [pid=1][Init][INFO][init_mount.c:39]Cannot load fstab from command line, try read from fstab.required
+[    4.784412] [pid=1][Init][ERROR][init_mount.c:42]Failed get fstab.required
+[    4.784887] [pid=1][Init][INFO][init_firststage.c:174]Start init second stage.
+[    5.759708] [pid=1][BEGET][INFO][init_utils.c:839]GetExactParameterFromCmdLine: ret=-1,paramName=oemmode,value=
+[    5.762840] [pid=1][BEGET][ERROR][erofs_overlay_common.c:28]Failed get oenmode from cmdline.
+[    5.771574] [pid=1][Init][INFO][init.c:87]Init fd holder socket done
+[    5.782641] [pid=1][BEGET][INFO][init_utils.c:849]GetParameterFromCmdLine: ret=-1,paramName=bootgroup,value=device.boot.group
+[    5.786084] [pid=1][BEGET][INFO][fstab.c:493]fstab not found from cmdline, try to get it from file
+[    5.787790] [pid=1][BEGET][INFO][init_utils.c:849]GetParameterFromCmdLine: ret=-1,paramName=hardware,value=
+[    5.788822] [pid=1][BEGET][ERROR][fstab.c:301]Failed get hardware from cmdline
+[    5.789457] [pid=1][BEGET][ERROR][reboot_misc.c:77]Failed to get misc path
+[    5.790050] [pid=1][Init][INFO][init_group_manager.c:235]boot start device.boot.group
+[    5.793535] [pid=1][PARAM][WARNING][param_manager.c:704]deny access const.cust.config_dir_layer label 0 0
+[    5.794233] [pid=1][PARAM][WARNING][param_manager.c:755]SystemReadParam failed! name is:const.cust.config_dir_layer, err:1002!
+[    5.796018] [pid=1][PARAM][WARNING][param_manager.c:704]deny access const.cust.follow_x_rules label 0 0
+[    5.796653] [pid=1][PARAM][WARNING][param_manager.c:755]SystemReadParam failed! name is:const.cust.follow_x_rules, err:1002!
+[    5.807468] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libkickdog'
+[    5.840922] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libfile_migrate_init'
+[    5.856233] [pid=1][Init][INFO][file_migrate_init.cpp:173]Init file migrate start
+[    5.857076] [pid=1][Init][INFO][file_migrate_init.cpp:177]Init file migrate end
+[    5.857590] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_quickfix'
+[    6.029471] [pid=1][Init][INFO][init_quickfix.cpp:139]init quickfix start
+[    6.031864] [pid=1][Init][INFO][init_quickfix.cpp:144]init quickfix end
+[    6.032592] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_usbconfig'
+[    6.043909] [pid=1][Init][INFO][usb_config.c:233]MODULE_CONSTRUCTOR enter
+[    6.044654] [pid=1][Init][INFO][usb_config.c:237]MODULE_CONSTRUCTOR leave
+[    6.045142] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libhmos_cust_init'
+[    6.057823] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libfont_manager_init'
+[    6.068239] [pid=1][Init][INFO][font_manager_init.cpp:89]font_manager_init init start
+[    6.069143] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libtee_chmod'
+[    6.079478] [pid=1][Init][INFO][tee_chmod.c:205]TeeChmodChownTargetDir start
+[    6.080173] [pid=1][Init][INFO][tee_chmod.c:209]TeeChmodChownTargetDir end
+[    6.080622] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_security'
+[    6.091302] [pid=1][Init][INFO][init_security.c:52]hw security init start
+[    6.092448] [pid=1][Init][INFO][init_security.c:54]hw security init end
+[    6.092979] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libcheckpoint'
+[    6.156278] [pid=1][Init][INFO][checkpoint.cpp:284]Init checkpoint start
+[    6.157178] [pid=1][Init][INFO][checkpoint.cpp:288]Init checkpoint end
+[    6.157698] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_dec'
+[    6.171882] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libkdump_resize'
+[    6.184199] [pid=1][Init][INFO][kerneldump_resize.cpp:54]Kerneldump HookMgrAdd
+[    6.184861] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinithp'
+[    6.200538] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libprocess_exit'
+[    6.213281] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libhmos_custom_init_update'
+[    6.228193] [pid=1][Init][INFO][hmos_init_custom.c:185]hmos_custom_init run success.
+[    6.228938] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libprop_migrate'
+[    6.240533] [pid=1][Init][INFO][prop_migrate_server.c:145]Start prop_migrate now ...
+[    6.241169] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_manufacture'
+[    6.254129] [pid=1][Init][INFO][init_manufacture.c:145]hw factory init start
+[    6.254707] [pid=1][Init][INFO][init_manufacture.c:147]hw factory init end
+[    6.255868] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libinit_dfmalloc'
+[    6.265897] [pid=1][Init][INFO][init_dfmalloc.c:83]init dfmalloc CONSTRUCTOR
+[    6.266474] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libmodule_update_init'
+[    6.276815] [pid=1][Init][INFO][module_update_init.cpp:65]module_update_init add hookMgr.
+[    6.277416] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libmark_slot'
+[    6.303308] [pid=1][Init][INFO][mark_slot.c:108]init mark slot HookMgrAdd
+[    6.304154] [pid=1][BEGET][INFO][modulemgr.c:224]Scan module with name '/system/lib64/init/autorun/libprop_bridge'
+[    6.315210] [pid=1][Init][INFO][prop_bridge_server.c:454]Start prop_bridge now ...
+[    6.319574] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [528480]us, result 0.
+[    6.320666] [pid=1][PARAM][WARNING][param_manager.c:704]deny access const.cust.config_dir_layer label 0 0
+[    6.321113] [pid=1][PARAM][WARNING][param_manager.c:755]SystemReadParam failed! name is:const.cust.config_dir_layer, err:1002!
+[    6.322083] [pid=1][PARAM][WARNING][param_manager.c:704]deny access const.cust.follow_x_rules label 0 0
+[    6.322529] [pid=1][PARAM][WARNING][param_manager.c:755]SystemReadParam failed! name is:const.cust.follow_x_rules, err:1002!
+[    6.356041] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [35849]us, result 0.
+[    6.356794] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [156]us, result 0.
+[    6.357188] [pid=1][PLUGIN][INFO][selinux_static.c:23]Install selinuxadp.
+[    6.377227] [pid=1][PLUGIN][INFO][selinux_adp.c:178]Selinux adapter plug-in init now ...
+[    6.378379] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [21203]us, result 0.
+[    6.378920] [pid=1][Init][INFO][boot_detector_init.c:220]bootfail SecondStage
+[    6.410106] [pid=1][Init][INFO][boot_detector_init.cpp:342]init bootfail CONSTRUCTOR
+[    6.413792] [bootfail]SetBootStage ioctl failed, errorNo: 9:Bad file descriptor
+[    6.415345] [bootfail]set boot stage failed, ret is -1
+[    6.415913] [pid=1][Init][ERROR][boot_detector_init.cpp:104]bootfail SetBootStage failed ret = -1
+[    6.439613] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [60823]us, result 0.
+[    6.440156] [pid=1][Init][INFO][init.c:197]Executing hook [0:0] cost [94]us, result 0.
+[    6.625787] [pid=1][Init][INFO][init_quickfix.cpp:73]QuickfixDirectlyExecutor exit ret = 0
+[    6.626277] [pid=1][Init][INFO][init_quickfix.cpp:79]GlobalInitQuickfixHook executed
+[    6.626730] [pid=1][Init][INFO][init.c:197]Executing hook [0:1] cost [186178]us, result 0.
+[    6.628474] [pid=1][BEGET][INFO][init_utils.c:839]GetExactParameterFromCmdLine: ret=-1,paramName=ohos.boot.root_package,value=
+[    6.629405] [pid=1][Init][INFO][init.c:197]Executing hook [0:2] cost [1563]us, result 0.
+[    6.630629] [pid=1][PARAM][INFO][param_service.c:422]InitParamService pipe: /dev/unix/socket/paramservice.
+[    6.632213] [pid=1][PARAM][INFO][param_base.c:230]CloseParamWorkSpace 1
+[    6.633761] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for musl.log.enable
+[    6.634078] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter musl.log.enable
+[    6.634407] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for musl.log.level
+[    6.634739] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter musl.log.level
+[    6.636242] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for musl.ld.debug.dlopen
+[    6.636638] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter musl.ld.debug.dlopen
+[    6.636988] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for musl.ld.debug.dlclose
+[    6.637340] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter musl.ld.debug.dlclose
+[    6.637712] [pid=1][PARAM][ERROR][param_base.c:390]Invalid workSpace for debug.hitrace.tags.enableflags
+[    6.638161] [pid=1][PARAM][ERROR][param_base.c:620]Forbid to access parameter debug.hitrace.tags.enableflags
+[    6.705641] [pid=1][PARAM][WARNING][param_base.c:324]Not enough memory for label index 64 need to extend memory 64
+[    6.707675] [pid=1][PARAM][WARNING][param_base.c:324]Not enough memory for label index 128 need to extend memory 128
+[    6.709417] [pid=1][PARAM][INFO][param_base.c:204]Max selinux label 192 169
+[    6.717165] [pid=1][Init][INFO][init_group_manager.c:102]Parse group config /system/etc/device.boot.group.cfg
+[    6.735452] [pid=1][Init][INFO][init.c:307]boot stage: init finish.
+[    6.736872] [pid=1][PLUGIN][INFO][selinux_adp.c:49]LoadSelinuxPolicy 
+[    6.739591] [pid=1][SELINUX][ERROR] Access file /proc/dsmm/developer failed
+[    6.760273] audit: type=1404 audit(1792946543.952:2): enforcing=1 old_enforcing=0 auid=4294967295 ses=4294967295
+[    7.090763] SELinux:  policy capability network_peer_controls=1
+[    7.091434] SELinux:  policy capability open_perms=1
+[    7.091691] SELinux:  policy capability extended_socket_class=1
+[    7.091903] SELinux:  policy capability always_check_network=0
+[    7.092101] SELinux:  policy capability cgroup_seclabel=0
+[    7.092284] SELinux:  policy capability nnp_nosuid_transition=1
+[    7.103124] SELinux: (dev vda, type ext4) has no security xattr handler
+[    7.214774] audit: type=1403 audit(1792946544.404:3): policy loaded auid=4294967295 ses=4294967295
+[    7.377659] audit: type=1400 audit(1792946544.568:4): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:kernel:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[    7.378586] audit: type=1400 audit(1792946544.568:5): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:kernel:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[    7.380020] audit: type=1400 audit(1792946544.568:6): avc:  denied  { ioctl } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 ioctlcmd=0x5413 scontext=u:r:kernel:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[    7.483416] audit: type=1400 audit(1792946544.672:7): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[    7.517525] audit: type=1400 audit(1792946544.708:8): avc:  denied  { read } for  pid=1 comm="init" name="etc" dev="vda" ino=14 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[    7.518291] audit: type=1400 audit(1792946544.708:9): avc:  denied  { read } for  pid=1 comm="init" name="etc" dev="vda" ino=14 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[    7.521935] audit: type=1400 audit(1792946544.712:10): avc:  denied  { relabelfrom } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[    7.524667] audit: type=1400 audit(1792946544.716:11): avc:  denied  { read } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   11.766332] kauditd_printk_skb: 9929 callbacks suppressed
+[   11.766596] audit: type=1400 audit(1792946548.956:9941): avc:  denied  { read } for  pid=1 comm="init" name="etc" dev="vda" ino=14 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   11.773137] audit: type=1400 audit(1792946548.956:9942): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   11.776995] audit: type=1400 audit(1792946548.956:9943): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   11.778832] audit: type=1400 audit(1792946548.964:9944): avc:  denied  { read } for  pid=1 comm="init" name="etc" dev="vda" ino=14 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   11.781523] audit: type=1400 audit(1792946548.964:9945): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   11.782582] audit: type=1400 audit(1792946548.964:9946): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   11.786092] audit: type=1400 audit(1792946548.972:9947): avc:  denied  { read } for  pid=1 comm="init" name="etc" dev="vda" ino=14 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   11.790696] audit: type=1400 audit(1792946548.972:9948): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   11.793098] audit: type=1400 audit(1792946548.972:9949): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   11.797151] audit: type=1400 audit(1792946548.972:9950): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   16.897441] kauditd_printk_skb: 1080 callbacks suppressed
+[   16.897476] audit: type=1400 audit(1792946554.088:11031): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   16.901612] audit: type=1400 audit(1792946554.088:11032): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   16.905295] audit: type=1400 audit(1792946554.088:11033): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   16.907586] audit: type=1400 audit(1792946554.088:11034): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   16.909883] audit: type=1400 audit(1792946554.088:11035): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   16.912144] audit: type=1400 audit(1792946554.092:11036): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   16.913521] audit: type=1400 audit(1792946554.092:11037): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   16.914466] audit: type=1400 audit(1792946554.092:11038): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   16.917069] audit: type=1400 audit(1792946554.092:11039): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   16.917894] audit: type=1400 audit(1792946554.092:11040): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   22.051693] kauditd_printk_skb: 347 callbacks suppressed
+[   22.051718] audit: type=1400 audit(1792946559.244:11388): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   22.053681] audit: type=1400 audit(1792946559.244:11389): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   22.056508] audit: type=1400 audit(1792946559.244:11390): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   22.058588] audit: type=1400 audit(1792946559.244:11391): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   22.060372] audit: type=1400 audit(1792946559.244:11392): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   22.061639] audit: type=1400 audit(1792946559.244:11393): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   22.064145] audit: type=1400 audit(1792946559.244:11394): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   22.065676] audit: type=1400 audit(1792946559.244:11395): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   22.068636] audit: type=1400 audit(1792946559.244:11396): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   22.070404] audit: type=1400 audit(1792946559.244:11397): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   27.276835] kauditd_printk_skb: 348 callbacks suppressed
+[   27.276859] audit: type=1400 audit(1792946564.468:11746): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   27.278558] audit: type=1400 audit(1792946564.468:11747): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   27.284474] audit: type=1400 audit(1792946564.468:11748): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   27.285857] audit: type=1400 audit(1792946564.468:11749): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   27.288071] audit: type=1400 audit(1792946564.468:11750): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   27.288985] audit: type=1400 audit(1792946564.468:11751): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   27.290017] audit: type=1400 audit(1792946564.468:11752): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   27.292706] audit: type=1400 audit(1792946564.468:11753): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   27.293634] audit: type=1400 audit(1792946564.468:11754): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   27.294411] audit: type=1400 audit(1792946564.476:11755): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   32.436733] kauditd_printk_skb: 347 callbacks suppressed
+[   32.436759] audit: type=1400 audit(1792946569.628:12103): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   32.438744] audit: type=1400 audit(1792946569.628:12104): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   32.442311] audit: type=1400 audit(1792946569.628:12105): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   32.444453] audit: type=1400 audit(1792946569.628:12106): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   32.445910] audit: type=1400 audit(1792946569.628:12107): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   32.449065] audit: type=1400 audit(1792946569.628:12108): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   32.451472] audit: type=1400 audit(1792946569.628:12109): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   32.453307] audit: type=1400 audit(1792946569.628:12110): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   32.456431] audit: type=1400 audit(1792946569.628:12111): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   32.457726] audit: type=1400 audit(1792946569.628:12112): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   37.582358] kauditd_printk_skb: 348 callbacks suppressed
+[   37.582383] audit: type=1400 audit(1792946574.772:12461): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   37.585860] audit: type=1400 audit(1792946574.772:12462): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   37.587582] audit: type=1400 audit(1792946574.772:12463): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   37.588709] audit: type=1400 audit(1792946574.776:12464): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   37.589830] audit: type=1400 audit(1792946574.776:12465): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   37.592111] audit: type=1400 audit(1792946574.776:12466): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   37.592907] audit: type=1400 audit(1792946574.776:12467): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   37.593799] audit: type=1400 audit(1792946574.776:12468): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   37.594617] audit: type=1400 audit(1792946574.776:12469): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   37.596203] audit: type=1400 audit(1792946574.776:12470): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   42.800607] kauditd_printk_skb: 347 callbacks suppressed
+[   42.800633] audit: type=1400 audit(1792946579.992:12818): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   42.806620] audit: type=1400 audit(1792946579.992:12819): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   42.809009] audit: type=1400 audit(1792946579.992:12820): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   42.810277] audit: type=1400 audit(1792946579.996:12821): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   42.813782] audit: type=1400 audit(1792946579.996:12822): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   42.816582] audit: type=1400 audit(1792946579.996:12823): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   42.817982] audit: type=1400 audit(1792946579.996:12824): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   42.821538] audit: type=1400 audit(1792946579.996:12825): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   42.824321] audit: type=1400 audit(1792946579.996:12826): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   42.825643] audit: type=1400 audit(1792946579.996:12827): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   47.970445] kauditd_printk_skb: 348 callbacks suppressed
+[   47.970471] audit: type=1400 audit(1792946585.160:13176): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   47.974150] audit: type=1400 audit(1792946585.160:13177): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   47.977922] audit: type=1400 audit(1792946585.160:13178): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   47.980220] audit: type=1400 audit(1792946585.164:13179): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   47.981697] audit: type=1400 audit(1792946585.164:13180): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   47.984449] audit: type=1400 audit(1792946585.164:13181): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   47.985854] audit: type=1400 audit(1792946585.164:13182): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   47.988500] audit: type=1400 audit(1792946585.164:13183): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   47.989903] audit: type=1400 audit(1792946585.164:13184): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   47.992878] audit: type=1400 audit(1792946585.164:13185): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   53.176981] kauditd_printk_skb: 347 callbacks suppressed
+[   53.177009] audit: type=1400 audit(1792946590.368:13533): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   53.179508] audit: type=1400 audit(1792946590.368:13534): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   53.182600] audit: type=1400 audit(1792946590.368:13535): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   53.185677] audit: type=1400 audit(1792946590.368:13536): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   53.189703] audit: type=1400 audit(1792946590.368:13537): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   53.192216] audit: type=1400 audit(1792946590.368:13538): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   53.193747] audit: type=1400 audit(1792946590.368:13539): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   53.196146] audit: type=1400 audit(1792946590.368:13540): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   53.197236] audit: type=1400 audit(1792946590.368:13541): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   53.198111] audit: type=1400 audit(1792946590.368:13542): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   58.328159] kauditd_printk_skb: 348 callbacks suppressed
+[   58.328185] audit: type=1400 audit(1792946595.520:13891): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   58.330223] audit: type=1400 audit(1792946595.520:13892): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   58.334455] audit: type=1400 audit(1792946595.520:13893): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   58.336794] audit: type=1400 audit(1792946595.520:13894): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   58.337961] audit: type=1400 audit(1792946595.520:13895): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   58.341026] audit: type=1400 audit(1792946595.520:13896): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   58.342236] audit: type=1400 audit(1792946595.520:13897): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   58.344352] audit: type=1400 audit(1792946595.520:13898): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   58.345800] audit: type=1400 audit(1792946595.520:13899): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   58.348890] audit: type=1400 audit(1792946595.520:13900): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   63.510486] kauditd_printk_skb: 347 callbacks suppressed
+[   63.510511] audit: type=1400 audit(1792946600.700:14248): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   63.517288] audit: type=1400 audit(1792946600.700:14249): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   63.518619] audit: type=1400 audit(1792946600.700:14250): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   63.520740] audit: type=1400 audit(1792946600.704:14251): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   63.522089] audit: type=1400 audit(1792946600.704:14252): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   63.525746] audit: type=1400 audit(1792946600.708:14253): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   63.526609] audit: type=1400 audit(1792946600.708:14254): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   63.528250] audit: type=1400 audit(1792946600.708:14255): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   63.529199] audit: type=1400 audit(1792946600.708:14256): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   63.530072] audit: type=1400 audit(1792946600.708:14257): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   68.656379] kauditd_printk_skb: 348 callbacks suppressed
+[   68.656404] audit: type=1400 audit(1792946605.848:14606): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   68.658434] audit: type=1400 audit(1792946605.848:14607): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   68.662627] audit: type=1400 audit(1792946605.848:14608): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   68.664673] audit: type=1400 audit(1792946605.848:14609): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   68.666228] audit: type=1400 audit(1792946605.848:14610): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   68.669629] audit: type=1400 audit(1792946605.848:14611): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   68.671521] audit: type=1400 audit(1792946605.848:14612): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   68.672795] audit: type=1400 audit(1792946605.848:14613): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   68.674158] audit: type=1400 audit(1792946605.848:14614): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   68.676723] audit: type=1400 audit(1792946605.848:14615): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   73.815024] kauditd_printk_skb: 347 callbacks suppressed
+[   73.815052] audit: type=1400 audit(1792946611.004:14963): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   73.836942] audit: type=1400 audit(1792946611.004:14964): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   73.839594] audit: type=1400 audit(1792946611.028:14965): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   73.841118] audit: type=1400 audit(1792946611.028:14966): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   73.841995] audit: type=1400 audit(1792946611.028:14967): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   73.843571] audit: type=1400 audit(1792946611.028:14968): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   73.844388] audit: type=1400 audit(1792946611.028:14969): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   73.845448] audit: type=1400 audit(1792946611.028:14970): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   73.846346] audit: type=1400 audit(1792946611.028:14971): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   73.848939] audit: type=1400 audit(1792946611.028:14972): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   79.011495] kauditd_printk_skb: 348 callbacks suppressed
+[   79.011520] audit: type=1400 audit(1792946616.200:15321): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   79.032045] audit: type=1400 audit(1792946616.204:15322): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   79.033711] audit: type=1400 audit(1792946616.204:15323): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   79.035927] audit: type=1400 audit(1792946616.220:15324): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   79.037976] audit: type=1400 audit(1792946616.220:15325): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   79.040205] audit: type=1400 audit(1792946616.220:15326): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   79.041637] audit: type=1400 audit(1792946616.220:15327): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   79.045116] audit: type=1400 audit(1792946616.220:15328): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   79.048049] audit: type=1400 audit(1792946616.220:15329): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   79.049413] audit: type=1400 audit(1792946616.224:15330): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   84.269362] kauditd_printk_skb: 347 callbacks suppressed
+[   84.269387] audit: type=1400 audit(1792946621.460:15678): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   84.272895] audit: type=1400 audit(1792946621.460:15679): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   84.274137] audit: type=1400 audit(1792946621.460:15680): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   84.275393] audit: type=1400 audit(1792946621.460:15681): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   84.276126] audit: type=1400 audit(1792946621.460:15682): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   84.276992] audit: type=1400 audit(1792946621.460:15683): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   84.277914] audit: type=1400 audit(1792946621.460:15684): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   84.278740] audit: type=1400 audit(1792946621.460:15685): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   84.281237] audit: type=1400 audit(1792946621.460:15686): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   84.282099] audit: type=1400 audit(1792946621.464:15687): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   89.412937] kauditd_printk_skb: 348 callbacks suppressed
+[   89.412969] audit: type=1400 audit(1792946626.604:16036): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   89.416182] audit: type=1400 audit(1792946626.604:16037): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   89.418665] audit: type=1400 audit(1792946626.604:16038): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   89.421354] audit: type=1400 audit(1792946626.604:16039): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   89.423690] audit: type=1400 audit(1792946626.604:16040): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   89.425208] audit: type=1400 audit(1792946626.604:16041): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   89.426534] audit: type=1400 audit(1792946626.604:16042): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   89.429965] audit: type=1400 audit(1792946626.604:16043): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   89.433790] audit: type=1400 audit(1792946626.604:16044): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   89.435281] audit: type=1400 audit(1792946626.608:16045): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   94.559805] kauditd_printk_skb: 347 callbacks suppressed
+[   94.559831] audit: type=1400 audit(1792946631.752:16393): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   94.562608] audit: type=1400 audit(1792946631.752:16394): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   94.566239] audit: type=1400 audit(1792946631.752:16395): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   94.569144] audit: type=1400 audit(1792946631.752:16396): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   94.570979] audit: type=1400 audit(1792946631.752:16397): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   94.573046] audit: type=1400 audit(1792946631.752:16398): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   94.574496] audit: type=1400 audit(1792946631.752:16399): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   94.577738] audit: type=1400 audit(1792946631.752:16400): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   94.581288] audit: type=1400 audit(1792946631.752:16401): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   94.583680] audit: type=1400 audit(1792946631.752:16402): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   99.722838] kauditd_printk_skb: 348 callbacks suppressed
+[   99.722863] audit: type=1400 audit(1792946636.912:16751): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   99.725430] audit: type=1400 audit(1792946636.912:16752): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   99.728711] audit: type=1400 audit(1792946636.916:16753): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   99.730210] audit: type=1400 audit(1792946636.916:16754): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   99.732400] audit: type=1400 audit(1792946636.916:16755): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   99.734217] audit: type=1400 audit(1792946636.916:16756): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   99.739484] audit: type=1400 audit(1792946636.916:16757): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[   99.741363] audit: type=1400 audit(1792946636.916:16758): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[   99.742298] audit: type=1400 audit(1792946636.916:16759): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[   99.743862] audit: type=1400 audit(1792946636.916:16760): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  105.013263] kauditd_printk_skb: 347 callbacks suppressed
+[  105.013287] audit: type=1400 audit(1792946642.204:17108): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  105.017070] audit: type=1400 audit(1792946642.204:17109): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  105.019829] audit: type=1400 audit(1792946642.204:17110): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  105.021305] audit: type=1400 audit(1792946642.204:17111): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  105.023766] audit: type=1400 audit(1792946642.204:17112): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  105.026096] audit: type=1400 audit(1792946642.204:17113): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  105.028520] audit: type=1400 audit(1792946642.204:17114): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  105.029980] audit: type=1400 audit(1792946642.204:17115): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  105.034511] audit: type=1400 audit(1792946642.208:17116): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[  105.036611] audit: type=1400 audit(1792946642.208:17117): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  110.276268] kauditd_printk_skb: 348 callbacks suppressed
+[  110.276292] audit: type=1400 audit(1792946647.468:17466): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  110.277969] audit: type=1400 audit(1792946647.468:17467): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  110.281250] audit: type=1400 audit(1792946647.468:17468): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  110.283058] audit: type=1400 audit(1792946647.468:17469): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  110.284385] audit: type=1400 audit(1792946647.468:17470): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  110.285373] audit: type=1400 audit(1792946647.468:17471): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  110.286240] audit: type=1400 audit(1792946647.468:17472): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  110.288819] audit: type=1400 audit(1792946647.468:17473): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[  110.289750] audit: type=1400 audit(1792946647.468:17474): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  110.291316] audit: type=1400 audit(1792946647.468:17475): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  115.506402] kauditd_printk_skb: 347 callbacks suppressed
+[  115.506427] audit: type=1400 audit(1792946652.696:17823): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  115.512809] audit: type=1400 audit(1792946652.696:17824): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  115.514218] audit: type=1400 audit(1792946652.696:17825): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  115.517807] audit: type=1400 audit(1792946652.696:17826): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  115.520627] audit: type=1400 audit(1792946652.696:17827): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  115.521887] audit: type=1400 audit(1792946652.700:17828): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  115.525404] audit: type=1400 audit(1792946652.700:17829): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  115.528297] audit: type=1400 audit(1792946652.700:17830): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  115.529570] audit: type=1400 audit(1792946652.704:17831): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[  115.532248] audit: type=1400 audit(1792946652.704:17832): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  120.718176] kauditd_printk_skb: 348 callbacks suppressed
+[  120.718201] audit: type=1400 audit(1792946657.908:18181): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  120.724608] audit: type=1400 audit(1792946657.908:18182): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  120.725657] audit: type=1400 audit(1792946657.908:18183): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  120.726463] audit: type=1400 audit(1792946657.912:18184): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  120.728882] audit: type=1400 audit(1792946657.912:18185): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  120.730115] audit: type=1400 audit(1792946657.912:18186): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  120.731923] audit: type=1400 audit(1792946657.912:18187): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  120.732832] audit: type=1400 audit(1792946657.912:18188): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[  120.733685] audit: type=1400 audit(1792946657.916:18189): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  120.734547] audit: type=1400 audit(1792946657.916:18190): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  125.902659] kauditd_printk_skb: 347 callbacks suppressed
+[  125.902768] audit: type=1400 audit(1792946663.092:18538): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  125.905551] audit: type=1400 audit(1792946663.092:18539): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  125.908982] audit: type=1400 audit(1792946663.096:18540): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  125.910504] audit: type=1400 audit(1792946663.096:18541): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  125.912712] audit: type=1400 audit(1792946663.096:18542): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  125.914174] audit: type=1400 audit(1792946663.096:18543): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  125.917775] audit: type=1400 audit(1792946663.096:18544): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  125.920525] audit: type=1400 audit(1792946663.096:18545): avc:  denied  { write } for  pid=1 comm="init" path="/dev/null" dev="devtmpfs" ino=3074 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  125.921872] audit: type=1400 audit(1792946663.096:18546): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[  125.925241] audit: type=1400 audit(1792946663.096:18547): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  131.202637] kauditd_printk_skb: 348 callbacks suppressed
+[  131.202663] audit: type=1400 audit(1792946668.392:18896): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  131.207783] audit: type=1400 audit(1792946668.396:18897): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  131.209617] audit: type=1400 audit(1792946668.396:18898): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  131.212102] audit: type=1400 audit(1792946668.396:18899): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  131.213374] audit: type=1400 audit(1792946668.396:18900): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  131.216183] audit: type=1400 audit(1792946668.396:18901): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  131.217952] audit: type=1400 audit(1792946668.396:18902): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+[  131.220216] audit: type=1400 audit(1792946668.400:18903): avc:  denied  { read } for  pid=1 comm="init" name="bin" dev="vda" ino=12 scontext=u:r:init:s0 tcontext=u:object_r:unlabeled:s0 tclass=lnk_file permissive=0
+[  131.221663] audit: type=1400 audit(1792946668.400:18904): avc:  denied  { search } for  pid=1 comm="init" name="/" dev="devtmpfs" ino=1025 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=dir permissive=0
+[  131.224005] audit: type=1400 audit(1792946668.400:18905): avc:  denied  { write } for  pid=1 comm="init" path="/dev/kmsg" dev="devtmpfs" ino=3080 scontext=u:r:init:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=0
+qemu-system-aarch64: terminating on signal 15 from pid 2195661 ()

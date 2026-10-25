@@ -23,3 +23,6 @@ seed.img
 
 !docs/09_*.log
 !docs/09_*.config
+
+!docs/10_*.log
+!docs/10_*.config

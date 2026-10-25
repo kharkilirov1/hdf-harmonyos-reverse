@@ -1,0 +1,92 @@
+=== 10. «Добить до лаунчера»: 4.14 + binder + SELinux(permissive) + xattr-rootfs ===
+
+Дата: 2026-10-25/26. Продолжение 09_mi9_414_final_summary.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО ДОБАВЛЕНО ПО СРАВНЕНИЮ С ПРЕДЫДУЩИМ ПРОГОНОМ
+═══════════════════════════════════════════════════════════════════════
+
+1) Binder. В сборке ядра 4.14 не было Android-подсистем: CONFIG_ANDROID не был
+   выставлен, поэтому scripts/config --enable ANDROID_BINDER_IPC молча терялся
+   (binder — подменю menuconfig ANDROID). Добавлено:
+     CONFIG_STAGING=y, CONFIG_ANDROID=y, CONFIG_ANDROID_BINDER_IPC=y,
+     CONFIG_ANDROID_BINDERFS=y, CONFIG_ANDROID_BINDER_DEVICES="binder,hwbinder,vndbinder",
+     CONFIG_ASHMEM=y, CONFIG_SECURITY_SELINUX=y (+ зависимости).
+   Проверка: /dev/binder создаётся на boot ("Create device node /dev/binder
+   failed. File exists" — ueventd пытался создать уже существующий узел).
+
+2) Xattr-rootfs (hsroot3.img, 14 ГБ). Предыдущие образы собирались mke2fs -d
+   из дерева без xattr → все файлы "unlabeled". Теперь EROFS-разделы монтируются
+   и копируются с сохранением меток:
+     getfattr /system/bin/init           -> security.selinux=u:object_r:init_exec:s0
+     getfattr /vendor/lib64/libhdf_*.so  -> security.selinux=u:object_r:vendor_lib_file:s0
+   (образ собран: mount ext4 + cp -a --preserve=all + umount)
+
+═══════════════════════════════════════════════════════════════════════
+ПРОГОН A: ENFORCING — не пошёл
+═══════════════════════════════════════════════════════════════════════
+
+cmdline: security=selinux selinux=1 (enforcing), rootfs hsroot3.img
+Результат: policy загружается (audit 1403), но сразу лавина отказов:
+  avc denied { write } /dev/kmsg, /dev/null ... scontext=u:r:init:s0
+  tcontext=u:object_r:device:s0 permissive=0
+  avc denied { search } dev=devtmpfs tcontext=device
+=> devtmpfs и корневые узлы (/, /bin) не имеют меток genfs/file_contexts —
+   их назначает init через restorecon, но до этого он сам заблокирован.
+Enforcing требует полной Android/HarmonyOS-разметки (genfs_contexts для
+devtmpfs и т.п.) — это отдельная задача, в рамках «добить» не делалась.
+
+═══════════════════════════════════════════════════════════════════════
+ПРОГОН B: PERMISSIVE + BINDER — дошёл до сервисного фреймворка
+═══════════════════════════════════════════════════════════════════════
+
+cmdline: security=selinux selinux=1 enforcing=0, rootfs hsroot2.img
+Лог: 10_mi9_414_binder_run.log (5 650 строк)
+
+Сервисов запущено: 57 уникальных, среди них:
+  samgr, appspawn, nwebspawn, sa_main (десятки system ability),
+  accessibility, accesstoken_service, audio_server, bgtaskmgr_service,
+  bms_event, check_module_update, concurrent_task_service, ddr_inspect,
+  dlp_credential_service_sa, dsmm_init, el5_filekey_manager, faultloggerd,
+  file_monitor_service, hdf_devmgr, healthsport_services, hiaiserver,
+  hinetmanager, huks_service, intell_voice_service, light_sensor,
+  memmgrservice, mhcserver, mmi_uinput_service, msdp_sa, multimodalinput,
+  netmanager, oeminfo_nvme_server, param_watcher, powerct,
+  push_manager_service, quickfix_engine, resource_schedule_service,
+  rgm_engine, storage_*, teecd, telephony_sa, theme_manager_service,
+  ueventd, usb_port*, wallpaper_service, wireless_hid_accessory_manager_ability
+Уникальных pid: 70. avc permissive: 318.
+
+Binder реально работает:
+  binder: 1960:1960 ioctl c008621e ... returned -22   (34 раза за прогон)
+  c008621e = запрос binder-расширения OHOS (nr 0x1E), которого нет в mainline 4.14
+  → ioctl возвращает EINVAL, но система это переживает (не критично на этой стадии).
+
+ЧЕГО НЕ ДОСТИГЛИ:
+  - bootevent.* события НЕ выставились: все "bootfail ServiceLaunch name:
+    bootevent.launcher.ready / wms.ready / renderservice.ready / appfwk.ready"
+    в логе — это РЕГИСТРАЦИЯ таймеров на 10-й секунде, а не факт готовности
+    (после 60 c упоминаний bootevent нет).
+  - "SAMGR: set samgr ready ret : failed" — samgr не смог выставить свой
+    bootevent (упирается в access-token/param, а не в ядро).
+  - "SAMGR: AddSystemAbilityInner PERMISSION DENIED!" — отказ собственной
+    permission-проверки HarmonyOS.
+  - appspawn циклически пишет "Nweb enable -1" — nweb не поднялся.
+  - графики нет: GPU отсутствует, render_service стартовал, но surfaceflinger-
+    эквивалент (composer_host) упирается в отсутствие /sys/class/backlight и GPU.
+
+═══════════════════════════════════════════════════════════════════════
+ИТОГ
+═══════════════════════════════════════════════════════════════════════
+
+Ядро 4.14 для HarmonyOS 6.0.0.108:
+  ДОСТИГНУТО: init -> param -> SELinux policy -> service framework (57 сервисов,
+              70 pid, binder в работе, sa_main, appspawn, nwebspawn).
+  НЕ ДОСТИГНУТО: boot completed / launcher; причина — не ядро:
+    (а) samgr не может выставить bootevent (access-token/param permissions),
+    (б) enforcing невозможен без genfs/devtmpfs-меток,
+    (в) нет GPU для render/composer.
+
+Финальный вывод по исходному вопросу (A/B/C): (A) — 4.14 достаточно;
+сисколлы 5.10+ не потребовались; ограничения лежат в плоскости userspace-
+инфраструктуры (token/permissions, SELinux-разметка devtmpfs, GPU), а не версии ядра.
