@@ -1,0 +1,60 @@
+=== 16. Итог раунда 2: система живёт, 3 bootevent'а настоящие, foundation буксует ===
+
+Дата: 2026-10-26. Завершение 15_mi9_round2b.
+
+═══════════════════════════════════════════════════════════════════════
+СОСТОЯНИЕ НА КОНЕЦ РАУНДА (лог 16_mi9_round2_long.log, прогон до 900 c)
+═══════════════════════════════════════════════════════════════════════
+
+ЯДРО: panic = 0, reboot = 0 за весь прогон (sysrq выключен, reboot()
+      в ядре замокан: "OHOS_TEST: reboot(RESTART) ignored" — init пробовал
+      один раз на 430 c, система продолжила жить).
+
+BOOTEVENT'ы, выставленные САМОЙ СИСТЕМОЙ (без нашей подделки):
+  [353.0] pid 1776  bootevent.samgr.ready
+  [436.7] pid 2186  bootevent.hdf_devmgr.ready
+  [437.3] pid 2188  bootevent.param_watcher.started
+
+НЕ выставлены: appfwk.ready, launcher.ready, wms.ready, lockscreen.ready,
+bms.main.bundles.ready, boot.completed (+ ещё 6) — boot_detector пишет
+"not set" 12 раз.
+
+foundation перезапускался 3 раза (ServiceStart started info foundation),
+каждый раз заново выполняя job services:foundation (mkdir
+/data/service/el1/public/database/bundle_manager_service и т.д.).
+При этом его SA публикуются успешно (Publish SA result:0), включая
+audio_server SA:3009 ("StartSystemAbilityTask audio_server SA:3009 init
+finished, 182461 ms").
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО ЭТО ЗНАЧИТ
+═══════════════════════════════════════════════════════════════════════
+
+1. Пользовательские гейты, которые раньше душили загрузку, сняты:
+   SELinux-проверки сервисов, тип токена, разрешения accesstoken.
+   samgr пишет свой bootevent (впервые за все эксперименты).
+2. Ядро больше не паникует и не ребутится — можно наблюдать дальше.
+3. Оставшийся барьер — foundation/bms: SA-фреймворк поднимает system
+   abilities (включая audio_server), но appfwk.ready/bms.main.bundles.ready
+   не наступают, foundation перезапускается. Скорее всего bms не может
+   просканировать/установить HAP'ы (305 .hap в /system/app): нужен
+   рабочий /data/service/el1/public/database/bundle_manager_service (rdb),
+   права ddms, sandbox, возможно — отсутствующие вендорские узлы.
+
+═══════════════════════════════════════════════════════════════════════
+ПЛАН РАУНДА 3
+═══════════════════════════════════════════════════════════════════════
+
+1. Найти причину перезапуска foundation: логи SAFWK/AMS/BMS между 340-440 c
+   (какой SA не публикуется, что пишет bms при сканировании /system/app).
+2. Проверить rdb (libnative_rdb) в контейнере: /data/service/el1/public/
+   database/bundle_manager_service должен создаваться с правами
+   foundation:ddms 02770 — есть ли gid ddms в /system/etc/group и права.
+3. Держать reboot() замоканным, sysrq выключенным — чтобы система жила.
+4. После bms.main.bundles.ready ожидаем appfwk.ready -> launcher.ready ->
+   appspawn запускает com.ohos.launcher.
+
+Артефакты: 16_mi9_round2_long.log (1.5 МБ), правки: kernel/reboot.c (мок
+reboot), CONFIG_MAGIC_SYSRQ off, libservice_checker/libselinux/
+libaccesstoken_sdk (vaddr-патчи), foundation.cfg (без critical),
+zz_bootfail.cfg, /data-дерево.
