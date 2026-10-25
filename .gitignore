@@ -1,0 +1,16 @@
+# firmware images / OTA packages — никогда не коммитим
+*.img
+*.zip
+*.bin
+!kernel-notes/ksymtab_strings.bin
+# сборки
+*.o
+*.ko
+*.exe
+*.so
+!harness/*.so
+# артефакты VM
+*.qcow2
+*.log
+noble.img
+seed.img

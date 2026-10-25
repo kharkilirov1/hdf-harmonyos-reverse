@@ -1,0 +1,28 @@
+libhdf_platform.z.so
+  NEEDED libhdf_utils.z.so
+  NEEDED libutils.z.so
+  NEEDED libhilog.so
+  NEEDED libc.so            (musl, OHOS sysroot)
+  SONAME libhdf_platform.z.so
+
+libhdf_utils.z.so
+  NEEDED libutils.z.so
+  NEEDED libhilog.so
+  NEEDED libc.so            (musl)
+  SONAME libhdf_utils.z.so
+  imports: ioctl, open, poll, OHOS::AshmemCreate/GetSize/SetProt,
+           SbufBindIpc, SbufObtainIpc, SbufBindRawIpcHw, SbufObtainIpcHw
+
+libhdf_host.z.so
+  NEEDED libhdf_ipc_adapter.z.so   <-- не было в предыдущем списке, ключевая зависимость IPC-ветки
+  NEEDED libhdf_utils.z.so
+  NEEDED libutils.z.so
+  NEEDED libhilog.so
+  NEEDED libc.so            (musl)
+  SONAME libhdf_host.z.so
+
+Требования к sysroot для сборки harness:
+  - musl aarch64 (разрядность ELF обязана совпадать: aarch64, LP64)
+  - libc.so, libhilog.so, libutils.z.so, libhdf_ipc_adapter.z.so, libhdf_utils.z.so
+  - заголовки: hdf_io_service.h (struct HdfWriteReadBuf), i2c_if.h
+  - тулчейн: prebuilts/clang/ohos/<host>/.../musl  (НЕ host gcc/glibc)

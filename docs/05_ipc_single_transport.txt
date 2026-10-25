@@ -1,0 +1,37 @@
+=== 05. IPC транспорт HarmonyOS: libipc_single / libipc_common ===
+
+Источник: ~/hp6/sys6 (6.0.0.108 arm64), ~/b7 (7.0.0-B1 x86-64), ~/hdfcore (нет IPC), kernel.config (7.0.0-B1).
+
+1) СТАТИКА — строки libipc_common.z.so (6.0.0.108):
+   /dev/access_token_id
+   /dev/binder
+   ioctl_binder returned EINTR
+   "Get Binder version failed, error:%d or version not match, driver version:%d, ipc version:%d"
+   "Get Binder featureSet failed:%d, disable all enhance feature."
+   BinderConnector::OpenDriver/WriteBinder/GetSelfTokenID/IsAccessTokenSupported/IsRealPidSupported/IsRefreshSupported
+   => транспорт = Android-style binder через /dev/binder + ioctl; отдельный /dev/access_token_id.
+
+2) СТАТИКА — libipc_single.z.so: dbinder (распределённый binder), socketId/ownName/peerName/deviceId,
+   ashmemSize, "WriteBinder failed", "Listen ok, socketId:%d" — поверх того же binder (dbinder = binder + deviceId).
+
+3) ЯДРО (7.0.0-B1 config, C:\Users\Kharki\Desktop\harmony_kernel_re\kernel.config):
+   CONFIG_ANDROID_BINDER_IPC=y
+   CONFIG_ANDROID_BINDER_DEVICES="binder,hwbinder,vndbinder"
+   CONFIG_BINDER_SENDER_INFO=y        <-- расширение OHOS, не входит в mainline
+   # CONFIG_ANDROID_BINDERFS is not set
+   => userland IPC рассчитан на binder-драйвер; в mainline Linux драйвер есть, но BINDER_SENDER_INFO — отдельный патч.
+
+4) ЭМПИРИКА (VM Ubuntu 6.8.0-147, x86_64 libipc_single + все NEEDED из образа 7.0.0-B1):
+   [ipc] dlopen OK
+   [ipc] IPCSkeleton::GetInstance = 0x...
+   [ipc] GetInstance() -> 0x...
+   [ipc] SetMaxWorkThreadNum(1) -> 0
+   [ipc] done
+   strace: обращения к /dev/binder НЕТ (binder открывается лениво, при первом межпроцессном вызове);
+   наблюдался только hilog-сокет: socket(AF_UNIX, SOCK_DGRAM) -> connect("/dev/unix/socket/hilogInput") ENOENT.
+
+ВЫВОД:
+   гипотеза: binder (/dev/binder, ioctl) + dbinder поверх него;
+   доказательство: строки + имена символов BinderConnector + kernel config;
+   эмуляция: "требует kernel-патча" в части BINDER_SENDER_INFO; сам binder есть в mainline,
+   userspace-часть (libipc_*) на Linux загружается и инициализируется без правок.

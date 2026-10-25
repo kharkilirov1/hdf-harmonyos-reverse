@@ -1,0 +1,25 @@
+=== 07. samgr / ability smoke на Linux (x86_64, 7.0.0-B1) ===
+
+Окружение то же, что в 06 (VM Ubuntu 24.04, kernel 6.8.0-147, musl-лоадер образа).
+Собрано транзитивное замыкание NEEDED для пары libsamgr_proxy.z.so + libability_manager.z.so:
+124 библиотеки образа, missing = [] (пусто).
+
+Результат (harness_dlopen, RTLD_LAZY затем RTLD_NOW):
+
+  === libsamgr_proxy.z.so ===
+  [dl] LAZY: OK
+  [dl] NOW: OK
+  [dl] done
+
+  === libability_manager.z.so ===
+  [dl] LAZY: OK
+  [dl] NOW: OK
+  [dl] done
+
+Вывод: и samgr-клиент, и ability manager грузятся на Linux без единого отсутствующего символа.
+Барьер — не ELF; следующий шаг потребует запуска samgr-сервера (системного сервиса) и
+binder-канала, которых на голом Linux нет.
+
+Примечание: libability_manager в 6.0.0.108 (arm64) имеет 26 NEEDED, в 7.0.0-B1 (x86-64) — 27
+(добавился libipc_single.z.so); libsamgr_proxy в обоих — 6 NEEDED (utils, hilog, begetutil,
+ipc_single, c, c++).

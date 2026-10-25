@@ -1,0 +1,10 @@
+=== SANITY: I2cOpen on emulator (expect ENOENT) ===
+FileTransfer finish, Size:12704, File count = 1, time:884ms rate:14.37kB/s
+
+-rwxr-xr-x 1 shell shell 12704 2026-10-25 13:51 /data/local/tmp/harness_i2c
+--- run ---
+[harness] dlopen OK: /system/lib64/libhdf_platform.z.so
+[harness] I2cOpen=0x7fa31ed4c520 I2cTransfer=0x7fa31ed4ca30 I2cClose=0x7fa31ed4c900
+[harness] I2cOpen(0) -> 0, errno=13 (Permission denied)
+--- strace availability ---
+/bin/sh: strace: inaccessible or not found

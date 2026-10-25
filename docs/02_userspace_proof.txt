@@ -1,0 +1,22 @@
+=== USERSPACE PROOF (half #1) ===
+Метод: реальная libhdf_platform.z.so (x86_64, образ HarmonyOS 6.1.1) + LD_PRELOAD-шим (роль ядра).
+Запуск: musl loader + sysroot образа. Дата: 2026-10-25
+
+--- harness stdout (без HiLog-шума) ---
+[harness] dlopen OK: /mnt/emu/system/lib64/libhdf_platform.z.so
+[harness] I2cOpen=0x72e0ebdcc520 I2cTransfer=0x72e0ebdcca30 I2cClose=0x72e0ebdcc900
+[harness] I2cOpen(0) -> 0x72e0ec1eacb0, errno=22 (Invalid argument)
+[harness] I2cTransfer(addr=0x50, len=1) -> 1, errno=0 (No error information)
+[harness] I2cClose done
+
+--- shim_ioctl.log ---
+[shim] open(/dev/HDF_PLATFORM_I2C_MANAGER) -> FAKE_FD 1000 (kernel-side stand-in)
+[shim] ioctl(FAKE_FD, 0x6201 /*HDF_WRITE_READ*/, arg=0x7fff9f300a88)
+[shim]   HdfWriteReadBuf: writeSize=4 writeConsumed=0 writeBuffer=0x72e0ec144770 readSize=128 readConsumed=0 readBuffer=0x72e0ec1448a0 cmdCode=1
+[shim]   sbuf payload (4 bytes, first 32): 00000000
+[shim] ioctl(FAKE_FD, 0x6201 /*HDF_WRITE_READ*/, arg=0x7fff9f300a58)
+[shim]   HdfWriteReadBuf: writeSize=28 writeConsumed=0 writeBuffer=0x72e0ec144770 readSize=128 readConsumed=0 readBuffer=0x72e0ec1448a0 cmdCode=0
+[shim]   sbuf payload (28 bytes, first 32): 314332490100000006000000500001000000000001000000a5000000
+[shim] ioctl(FAKE_FD, 0x6201 /*HDF_WRITE_READ*/, arg=0x7fff9f300aa8)
+[shim]   HdfWriteReadBuf: writeSize=4 writeConsumed=0 writeBuffer=0x72e0ec144770 readSize=0 readConsumed=0 readBuffer=0x0 cmdCode=2
+[shim]   sbuf payload (4 bytes, first 32): 31433249

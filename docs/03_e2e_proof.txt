@@ -1,0 +1,19 @@
+=== E2E PROOF (half #2 + end-to-end) ===
+VM: Ubuntu 24.04 cloud image, kernel 6.8.0-147-generic, KVM; module module_hdfstub.ko (misc_register)
+Userspace: реальная libhdf_platform.z.so (x86_64 musl, из HarmonyOS 6.1.1), musl loader, sysroot образа
+Дата: 2026-10-25
+
+--- harness stdout ---
+[harness] dlopen OK: ./libhdf_platform.z.so
+[harness] I2cOpen=0x7b11c2fcc520 I2cTransfer=0x7b11c2fcca30 I2cClose=0x7b11c2fcc900
+[harness] I2cOpen(0) -> 0x7b11c3046320, errno=22 (Invalid argument)
+[harness] I2cTransfer(addr=0x50, len=1) -> 1, errno=0 (No error information)
+[harness] I2cClose done
+
+--- dmesg (kernel side, Dispatch) ---
+[  187.808045] hdfstub: DISPATCH cmdId=1 writeSize=4 readSize=128
+[  187.808054] hdfstub: sbuf[0..4]=00000000
+[  187.808063] hdfstub: DISPATCH cmdId=0 writeSize=28 readSize=128
+[  187.808065] hdfstub: sbuf[0..28]=314332490100000006000000500001000000000001000000a5000000
+[  187.808070] hdfstub: DISPATCH cmdId=2 writeSize=4 readSize=0
+[  187.808071] hdfstub: sbuf[0..4]=31433249

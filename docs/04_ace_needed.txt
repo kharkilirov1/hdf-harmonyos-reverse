@@ -1,0 +1,150 @@
+04. ACE / ArkUI — NEEDED-цепочка (статика, 6.0.0.108 arm64 и 7.0.0-B1 x86-64)
+
+
+## 6.0.0.108 :: libace_engine_pa_ark.z.so  (413160 B, ELF64/AArch64)
+| NEEDED | в образе | класс |
+|---|---|---|
+| libhilog.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libhilog.so | OHOS-сервис |
+| libutils.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libutils.z.so | OHOS (прочее) |
+| libappexecfwk_core.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libappexecfwk_core.z.so | OHOS-сервис |
+| libwant.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libwant.z.so | OHOS-сервис |
+| libform_manager.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libform_manager.z.so | OHOS-сервис |
+| libdm.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/libdm.z.so | OHOS-сервис |
+| libnapi_common.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libnapi_common.z.so | ArkUI/JS-рантайм |
+| libappexecfwk_base.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libappexecfwk_base.z.so | OHOS-сервис |
+| libeventhandler.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libeventhandler.z.so | OHOS-сервис |
+| libshared_libz.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/chipset-sdk/libshared_libz.z.so | POSIX |
+| libace_napi.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libace_napi.z.so | ArkUI/JS-рантайм |
+| libark_jsruntime.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libark_jsruntime.so | ArkUI/JS-рантайм |
+| libintl_util.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libintl_util.z.so | OHOS-сервис |
+| libbeget_proxy.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libbeget_proxy.z.so | OHOS-сервис |
+| libbegetutil.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libbegetutil.z.so | OHOS-сервис |
+| libzuri.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libzuri.z.so | OHOS-сервис |
+| libnapi_ability_common.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libnapi_ability_common.z.so | ArkUI/JS-рантайм |
+| libruntime.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libruntime.z.so | ArkUI/JS-рантайм |
+| libipc_napi.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libipc_napi.z.so | ArkUI/JS-рантайм |
+| libnative_dataability.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libnative_dataability.z.so | OHOS-сервис |
+| libnative_rdb.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libnative_rdb.z.so | OHOS-сервис |
+| libhitracechain.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libhitracechain.so | OHOS-сервис |
+| libace_compatible.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libace_compatible.z.so | ArkUI/JS-рантайм |
+| libace_container_scope.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libace_container_scope.z.so | ArkUI/JS-рантайм |
+| libc.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/libc.so | POSIX |
+| libc++.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/libc++.so | POSIX |
+
+## 6.0.0.108 :: libace_ndk.z.so  (887680 B, ELF64/AArch64)
+| NEEDED | в образе | класс |
+|---|---|---|
+| libdrawable_descriptor.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libdrawable_descriptor.z.so | OHOS (прочее) |
+| libsec_shared.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libsec_shared.z.so | OHOS-сервис |
+| libnative_drawing_ndk.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/libnative_drawing_ndk.z.so | графика/GPU (OHOS) |
+| libhilog.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libhilog.so | OHOS-сервис |
+| libpixelmap.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/ndk/libpixelmap.so | графика/GPU (OHOS) |
+| libace_napi.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libace_napi.z.so | ArkUI/JS-рантайм |
+| libudmf.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/ndk/libudmf.so | OHOS (прочее) |
+| libudmf_client.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libudmf_client.z.so | OHOS (прочее) |
+| libc.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/libc.so | POSIX |
+| libuv.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libuv.so | POSIX |
+| libc++.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/libc++.so | POSIX |
+| libclang_rt.ubsan_minimal.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/chipset-sdk/libclang_rt.ubsan_minimal.so | POSIX |
+
+## 6.0.0.108 :: libace_napi.z.so  (608632 B, ELF64/AArch64)
+| NEEDED | в образе | класс |
+|---|---|---|
+| libark_jsruntime.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libark_jsruntime.so | ArkUI/JS-рантайм |
+| libuv.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libuv.so | POSIX |
+| libsec_shared.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libsec_shared.z.so | OHOS-сервис |
+| libhilog.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libhilog.so | OHOS-сервис |
+| libhmicuuc.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libhmicuuc.z.so | OHOS-сервис |
+| libace_container_scope.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libace_container_scope.z.so | ArkUI/JS-рантайм |
+| libunwinder.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libunwinder.z.so | POSIX |
+| libeventhandler.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libeventhandler.z.so | OHOS-сервис |
+| libffrt.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/ndk/libffrt.so | ArkUI/JS-рантайм |
+| libhitrace_meter.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libhitrace_meter.so | OHOS-сервис |
+| libhitracechain.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libhitracechain.so | OHOS-сервис |
+| libucollection_client.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libucollection_client.z.so | OHOS-сервис |
+| libbegetutil.z.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/platformsdk/libbegetutil.z.so | OHOS-сервис |
+| libc.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/libc.so | POSIX |
+| libc++.so | да — 6.0.0.108: ~/hp6/sys6/system/lib64/libc++.so | POSIX |
+
+## 7.0.0-B1 :: libace_engine_pa_ark.z.so  (412488 B, ELF64/x86-64)
+| NEEDED | в образе | класс |
+|---|---|---|
+| libhilog.so | да — 7.0.0-B1: ~/b7/system/lib64/chipset-sdk/libhilog.so | OHOS-сервис |
+| libutils.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libutils.z.so | OHOS (прочее) |
+| libappexecfwk_core.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libappexecfwk_core.z.so | OHOS-сервис |
+| libwant.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libwant.z.so | OHOS-сервис |
+| libskia_canvaskit.z.so | да — 7.0.0-B1: ~/b7/system/lib64/libskia_canvaskit.z.so | графика/GPU (OHOS) |
+| libdm.z.so | да — 7.0.0-B1: ~/b7/system/lib64/libdm.z.so | OHOS-сервис |
+| libnapi_common.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libnapi_common.z.so | ArkUI/JS-рантайм |
+| libappexecfwk_base.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libappexecfwk_base.z.so | OHOS-сервис |
+| libeventhandler.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libeventhandler.z.so | OHOS-сервис |
+| libace_napi.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libace_napi.z.so | ArkUI/JS-рантайм |
+| libark_jsruntime.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libark_jsruntime.so | ArkUI/JS-рантайм |
+| libintl_util.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libintl_util.z.so | OHOS-сервис |
+| libbeget_proxy.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libbeget_proxy.z.so | OHOS-сервис |
+| libbegetutil.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libbegetutil.z.so | OHOS-сервис |
+| libzuri.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libzuri.z.so | OHOS-сервис |
+| libnapi_ability_common.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libnapi_ability_common.z.so | ArkUI/JS-рантайм |
+| libruntime.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libruntime.z.so | ArkUI/JS-рантайм |
+| libform_render_info.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libform_render_info.z.so | графика/GPU (OHOS) |
+| libipc_napi.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libipc_napi.z.so | ArkUI/JS-рантайм |
+| libnative_dataability.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libnative_dataability.z.so | OHOS-сервис |
+| libnative_rdb.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libnative_rdb.z.so | OHOS-сервис |
+| libhitracechain.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libhitracechain.so | OHOS-сервис |
+| libace_compatible.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libace_compatible.z.so | ArkUI/JS-рантайм |
+| libace_container_scope.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libace_container_scope.z.so | ArkUI/JS-рантайм |
+| libc.so | да — 7.0.0-B1: ~/b7/system/lib64/libc.so | POSIX |
+| libc++.so | да — 7.0.0-B1: ~/b7/system/lib64/libc++.so | POSIX |
+
+## 7.0.0-B1 :: libace_ndk.z.so  (1312264 B, ELF64/x86-64)
+| NEEDED | в образе | класс |
+|---|---|---|
+| libdrawable_descriptor.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libdrawable_descriptor.z.so | OHOS (прочее) |
+| libsec_shared.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libsec_shared.z.so | OHOS-сервис |
+| libnative_drawing_ndk.z.so | да — 7.0.0-B1: ~/b7/system/lib64/libnative_drawing_ndk.z.so | графика/GPU (OHOS) |
+| libhilog.so | да — 7.0.0-B1: ~/b7/system/lib64/chipset-sdk/libhilog.so | OHOS-сервис |
+| libpixelmap.so | да — 7.0.0-B1: ~/b7/system/lib64/ndk/libpixelmap.so | графика/GPU (OHOS) |
+| libimage_native.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libimage_native.z.so | графика/GPU (OHOS) |
+| libace_napi.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libace_napi.z.so | ArkUI/JS-рантайм |
+| libudmf.so | да — 7.0.0-B1: ~/b7/system/lib64/ndk/libudmf.so | OHOS (прочее) |
+| libudmf_client.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libudmf_client.z.so | OHOS (прочее) |
+| libc.so | да — 7.0.0-B1: ~/b7/system/lib64/libc.so | POSIX |
+| libuv.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libuv.so | POSIX |
+| libc++.so | да — 7.0.0-B1: ~/b7/system/lib64/libc++.so | POSIX |
+| libclang_rt.ubsan_minimal.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libclang_rt.ubsan_minimal.so | POSIX |
+
+## 7.0.0-B1 :: libace_napi.z.so  (706696 B, ELF64/x86-64)
+| NEEDED | в образе | класс |
+|---|---|---|
+| libark_jsruntime.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libark_jsruntime.so | ArkUI/JS-рантайм |
+| libuv.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libuv.so | POSIX |
+| libsec_shared.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libsec_shared.z.so | OHOS-сервис |
+| libhilog.so | да — 7.0.0-B1: ~/b7/system/lib64/chipset-sdk/libhilog.so | OHOS-сервис |
+| libhmicuuc.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libhmicuuc.z.so | OHOS-сервис |
+| libace_container_scope.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libace_container_scope.z.so | ArkUI/JS-рантайм |
+| libunwinder.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libunwinder.z.so | POSIX |
+| libeventhandler.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libeventhandler.z.so | OHOS-сервис |
+| libffrt.so | да — 7.0.0-B1: ~/b7/system/lib64/ndk/libffrt.so | ArkUI/JS-рантайм |
+| libhitrace_meter.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libhitrace_meter.so | OHOS-сервис |
+| libhitracechain.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libhitracechain.so | OHOS-сервис |
+| libucollection_client.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libucollection_client.z.so | OHOS-сервис |
+| libbegetutil.z.so | да — 7.0.0-B1: ~/b7/system/lib64/platformsdk/libbegetutil.z.so | OHOS-сервис |
+| libc.so | да — 7.0.0-B1: ~/b7/system/lib64/libc.so | POSIX |
+| libc++.so | да — 7.0.0-B1: ~/b7/system/lib64/libc++.so | POSIX |
+
+## Ответы на целевые вопросы
+
+
+6.0.0.108:
+- libskia_canvaskit: нет
+- libqos: нет
+- libffrt: ДА
+- libuv: ДА
+- GPU/DRM/DMA-специфичное: нет
+
+7.0.0-B1:
+- libskia_canvaskit: ДА: ['skia_canvaskit']
+- libqos: нет
+- libffrt: ДА
+- libuv: ДА
+- GPU/DRM/DMA-специфичное: нет

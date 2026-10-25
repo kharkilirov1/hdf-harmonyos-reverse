@@ -1,0 +1,96 @@
+=== uname ===
+$ uname -a
+Linux localhost 5.10.210 #1 SMP Mon May 18 09:32:07 CST 2026 x86_64 Toybox
+
+=== HDF_PLATFORM nodes ===
+$ ls -la /dev/HDF_PLATFORM_*
+ls: /dev/HDF_PLATFORM_*: No such file or directory
+
+=== dev hdf entries ===
+$ ls -la /dev | grep -i hdf
+ls: /dev: Permission denied
+
+=== cmdline ===
+$ cat /proc/cmdline
+/bin/sh: cat: /proc/cmdline: Permission denied
+
+=== dmesg hdf ===
+$ dmesg | grep -i hdf
+dmesg: klogctl: Operation not permitted
+
+=== libhdf_platform search ===
+$ find / -name 'libhdf_platform*' 2>/dev/null
+
+
+=== libhdf_utils ===
+$ find / -name 'libhdf_utils*' 2>/dev/null
+
+
+=== hdf devmgr ===
+$ ps -ef | grep -i hdf
+hdf_devmgr      135      1 0 13:39:16 ?     00:00:00 hdf_devmgr
+shell          3425   1018 0 13:41:13 ?     00:00:00 sh -c ps -ef | grep -i hdf
+shell          3435   3425 0 13:41:13 ?     00:00:00 grep -i hdf
+
+=== id ===
+$ id
+uid=2000(shell) gid=2000(shell) groups=2000(shell),1006(file_manager),1007(log),1097(netsys_socket),3009(readproc) context=u:r:sh:s0
+
+=== libhdf in /system/lib64 ===
+$ ls -l /system/lib64 | grep -i hdf
+ls: /system/lib64: Permission denied
+
+=== chipset-sdk hdf ===
+$ ls -l /system/lib64/chipset-sdk 2>/dev/null | grep -i hdf
+
+
+=== node HDF_PLATFORM_I2C_MANAGER ===
+$ ls -l /dev/HDF_PLATFORM_I2C_MANAGER
+ls: /dev/HDF_PLATFORM_I2C_MANAGER: No such file or directory
+
+=== dev hdf glob ===
+$ ls -l /dev/hdf*
+ls: /dev/hdf*: No such file or directory
+
+=== proc devices ===
+$ grep -i hdf /proc/devices
+grep: /proc/devices: Permission denied
+
+=== misc ===
+$ ls /sys/class/misc | head -20
+ls: /sys/class/misc: Permission denied
+
+=== getprop hdf ===
+$ getprop | grep -i hdf
+/bin/sh: getprop: inaccessible or not found
+
+=== which hdf_devhost ===
+$ ls -l /vendor/bin/hdf_devhost /system/bin/hdf_devhost 2>/dev/null
+
+
+
+=== СТАТИЧЕСКОЕ ПОДТВЕРЖДЕНИЕ (образ 6.1.1 phone_all_x86) ===
+kernel banner: Linux version 5.10.210 (huawei@0ae3bc651300) (OHOS (BiSheng Mobile CPU STD 205.0.1.B007) clang 15.0.4)
+CONFIG_DRIVERS_HDF: # CONFIG_DRIVERS_HDF is not set    <-- HDF-драйвера в ядре эмулятора НЕТ
+CONFIG_KALLSYMS_ALL=y ; CONFIG_SECURITY_SELINUX=y
+system.img: ext4 (не EROFS, в отличие от телефона)
+/system/lib64/libhdf_platform.z.so  — 77 240 байт, x86_64, присутствует
+/system/lib64/chipset-sdk/libhdf_utils.z.so — присутствует
+/system/lib64/libhril_hdf_ext.z.so — присутствует
+process: hdf_devmgr pid 135 работает (uhdf userspace есть)
+
+=== ВЫВОД ПО ШАГУ 0 ===
+/dev/HDF_PLATFORM_* : нет (проверено напрямую ls /dev/HDF_PLATFORM_I2C_MANAGER -> No such file)
+/dev/hdf* : нет
+ядро без CONFIG_DRIVERS_HDF
+=> ВЕТКА B (узла нет; HDF в эмуляторе только userspace/uhdf)
+
+[ARCHITECTURAL FINDING]
+CONFIG_DRIVERS_HDF=n in emulator kernel.
+-> uhdf runs but without kernel backend.
+-> Phone has CONFIG_DRIVERS_HDF=y (HDF_PLATFORM nodes in file_contexts).
+-> Emulator != phone in HDF architecture.
+-> Cepheus port starts with CONFIG_DRIVERS_HDF=y in kernel config,
+   then drivers/hdf_core compile check against mainline SM8150 tree.
+-> Platform-layer test on emulator is IMPOSSIBLE by design.
+-> QEMU with custom module is the only live kernel-side test path.

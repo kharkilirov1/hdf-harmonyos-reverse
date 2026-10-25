@@ -1,0 +1,38 @@
+=== 06. ArkRuntime smoke на Linux (x86_64, libark_jsruntime.so из 7.0.0-B1) ===
+
+Окружение: Ubuntu 24.04 cloud-image, QEMU/KVM, kernel 6.8.0-147-generic;
+musl-лоадер и sysroot из образа 7.0.0-B1 (`/system/lib/ld-musl-x86_64.so.1` -> libc.so,
+LD_LIBRARY_PATH на каталог с 29 библиотеками образа).
+
+1) ЗАКРЫТИЕ NEEDED
+   Прямые NEEDED libark_jsruntime.so: все 17 присутствуют в образе (найдены в /system/lib64/**).
+   Транзитивное замыкание: 29 библиотек скопированы, missing = [] (пусто).
+   libhilog реальный (не stub), libc = musl-лоадер образа.
+
+2) DLOPEN
+   harness_ark (RTLD_LAZY затем RTLD_NOW): EXIT=0, 3 прогона из 3:
+     [ark] dlopen(RTLD_LAZY) = <handle>
+     [ark] dlopen(RTLD_NOW)  = <handle>
+     [ark] NOW OK — все символы разрешены
+   Итог: 1533 экспортируемых символа, 670 undefined — все разрешились на Linux.
+
+   Контрольный harness_ark3 (тот же dlopen, затем dlsym+вызов своих функций): EXIT=139 (segfault),
+   2 прогона из 2. Причина не определена; падение происходит внутри первого dlopen
+   в этом варианте harness. Зафиксировано как открытый вопрос, не как свойство ArkRuntime.
+
+3) SYSSCALLS ПРИ ЗАГРУЗКЕ (strace -f, trace=openat,mmap,ioctl,socket,connect)
+   - /dev/binder: 0 обращений
+   - ashmem/dma-buf: 0 обращений
+   - единственная сетевая активность: socket(AF_UNIX, SOCK_DGRAM) + connect("/dev/unix/socket/hilogInput")
+     -> ENOENT (нет hilog-сервера). Это libhilog, а не ArkRuntime.
+   - 429 событий openat/mmap (загрузка 29 .so + релокации).
+
+4) ЭКСПОРТЫ (nm -D --defined-only)
+   C-точки входа: GetAOTVersion, ark_create_local, ark_create_js_symbol_extractor,
+   ark_parse_js_file_info, step_ark, step_ark_with_record_jit, LazyDeoptEntry.
+   C++: panda::ecmascript::EcmaVM, panda::JSValueRef..., common::BaseRuntime::Init/HasBeenInitialized.
+
+ВЕРДИКТ: ArkRuntime проходит dlopen (LAZY и NOW) на обычном Linux: ELF-, релокационных и
+символьных барьеров нет. Первый сервисный барьер — hilog (AF_UNIX сокет), появляется ещё
+до вызова API и не является блокером для загрузки. Вызов собственных функций ArkRuntime
+в этом прогоне не подтверждён (harness с вызовом падал; причина не установлена).
