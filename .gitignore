@@ -81,3 +81,5 @@ seed.img
 !docs/38_*.log
 
 !docs/39_*.log
+
+!docs/41_*.txt

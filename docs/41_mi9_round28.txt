@@ -1,0 +1,59 @@
+=== 41. Раунд 28: цепочка публикации найдена — и в ней нет вызова для BMS ===
+
+Дата: 2026-10-27. Продолжение 40_mi9_round27.
+
+═══════════════════════════════════════════════════════════════════════
+СТАТИЧЕСКИЙ АНАЛИЗ (новые факты)
+═══════════════════════════════════════════════════════════════════════
+
+1) /system/bin/sa_main:
+     - строки: "libsystem_ability_fwk.z.so", "enter SAFWK main, proc:%d";
+     - импорты: LocalAbilityManager::GetInstance / SetStartReason /
+       DoStartSAProcess, ReportSaMainExit;
+   => sa_main грузит Rust/C++ SAFWK и вызывает
+      LocalAbilityManager::DoStartSAProcess(profile, id).
+
+2) Провайдер LocalAbilityManager/SystemAbility:
+     /system/lib64/platformsdk/libsystem_ability_fwk.z.so (164 КБ, C++)
+     - экспортирует SystemAbility::Publish (0x1f324),
+       LocalAbilityManager::DoStartSAProcess (0x16c18),
+       OnStartAbility (0x16ae4), StartPhaseTasks (0x19b90) и др.
+
+3) ВАЖНО: в этом C++ SAFWK НЕТ ни одного вызова SystemAbility::Publish
+   (проверено по дизасму: все ссылки на 0x1f324 — только определения
+   внутри самой функции/соседние), и нет импорта
+   ISystemAbilityManager::AddSystemAbility.
+   => SAFWK сам НЕ публикует SA. Публикацию должен вызывать сам SA
+      (его .so), как это делают, например:
+        libdownload_server.dylib.so, libasset_service.dylib.so —
+        они вызывают AbilityWrapper::PublishWrapper (Rust SAFWK API).
+
+4) libbms.z.so:
+     - НЕ импортирует ни SystemAbility::Publish,
+       ни PublishWrapper, ни LocalAbilityManager::*,
+       ни ISystemAbilityManager::AddSystemAbility;
+     - импортирует только MakeAndRegisterAbility/AddSystemAbilityListener/
+       SystemAbilityC2/D2 и SystemAbilityManagerClient (для запросов).
+   => BMS НЕ публикует себя сам и НЕ вызывает PublishWrapper.
+
+5) ИТОГ: "insert SA:401" отсутствует потому, что в цепочке
+     sa_main -> SAFWK(DoStartSAProcess) -> OnStart(BMS) -> [Publish]
+   звено Publish отсутствует: BMS его не вызывает, а SAFWK его не делает
+   за SA. У других SA (403, 4005, 4010/4011/4014) публикация происходит
+   (их .so вызывают Publish/PublishWrapper), у BMS — нет.
+
+═══════════════════════════════════════════════════════════════════════
+ПУТИ ОБХОДА (раунд 29-30)
+═══════════════════════════════════════════════════════════════════════
+
+A. Заставить BMS вызвать Publish: технически можно попытаться
+   пропатчить libbms так, чтобы в OnStart вызывался SystemAbility::Publish
+   через вызов safwk (нужна инъекция вызова — сложно, т.к. нет импорта;
+   можно добавить в GOT вручную — трудоёмко, но реально).
+B. Обход: самим «опубликовать» SA 401 извне нельзя (нужен сам объект SA
+   в процессе BMS).
+C. Признать барьер: без публикации SA 401 невозможно:
+   bm CLI -> установка лаунчера -> bms.main.bundles.ready ->
+   launcher.ready -> boot.completed.
+
+Артефакты: 41_mi9_round28.txt (этот файл).
