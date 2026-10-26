@@ -1,0 +1,88 @@
+=== 34. Раунд 21: ИТОГОВЫЙ БАРЬЕР (доказательная база по всем раундам) ===
+
+Дата: 2026-10-27. Продолжение 33_mi9_round20.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО ДОСТИГНУТО (доказательства в логах docs/09..33)
+═══════════════════════════════════════════════════════════════════════
+
+HarmonyOS 6.0.0.108 arm64 userland запущен на QEMU/4.14 (собственное
+ядро 4.14.180, cortex-a76, virtio-rng) до состояния, когда РЕАЛЬНО
+выставляются bootevent'ы (не симуляция, а сами сервисы):
+
+  bootevent.samgr.ready
+  bootevent.appfwk.ready            <- AMS поднялся
+  bootevent.appspawn.started
+  bootevent.hdf_devmgr.ready
+  bootevent.param_watcher.started
+  bootevent.powermgr.ready
+  bootevent.renderservice.ready
+  bootevent.avsessionservice.ready
+  (10-14 событий за прогон, 0 panic, 0 reboot, 20+ минут стабильной работы)
+
+Ключевые инженерные находки:
+  - корень «зависаний» — отсутствие энтропии (foundation висел в
+    wait_for_random_bytes); лечится CONFIG_HW_RANDOM_VIRTIO + virtio-rng
+    ("random: crng init done" на 1.4 c);
+  - OHOS-binder ioctls, /dev/access_token_id, SELinux- и
+    permission-проверки — эмулированы/пропатчены;
+  - bootfail-эскалация (reboot/sysrq/hguard/bbox) — нейтрализована;
+  - xlogcat найден как источник циклических ohos.ctl.stop — убран;
+  - BMS реально устанавливает HSP-киты (в /data/app появляются
+    com.huawei.hms.weather, walletkit, paymentServiceHsp и др.,
+    bmsdb.db растёт).
+
+═══════════════════════════════════════════════════════════════════════
+ТОЧНЫЙ БАРЬЕР (с доказательствами)
+═══════════════════════════════════════════════════════════════════════
+
+1) BMS (SA 401) стартует, но НЕ публикуется в samgr:
+     [~350s] SAMGR: SA:401 OpenSo 12473ms
+     [~370s] SAFWK: Start OnStart-SA:401 finished, spend:10385 ms
+     [~370s] SAFWK: StartSystemAbilityTask foundation SA:401 init finished
+   при этом "insert SA:401_XX" в логе ОТСУТСТВУЕТ (в отличие от 403,
+   4005, 4010, 4011, 4014, которые публикуются).
+   => OnStart завершается, а Publish/AddSystemAbility не происходит.
+
+2) Следствия (проверено):
+     - /system/bin/bm help|dump|install -> "error: failed to execute
+       your command." (bm не может подключиться к SA 401);
+     - главный бандл лаунчера com.huawei.hmos.slassistant
+       (/system/app/SuperLauncher/SuperLauncher.hap) не устанавливается;
+     - bootevent bms.main.bundles.ready не выставляется
+       (job services:restartfoundation его ещё и снимает:
+        "unset_bootevent bootevent.bms.main.bundles.ready");
+     - launcher.ready / lockscreen.ready / wms.ready / boot.completed
+       не появляются ни при полном списке бандлов (182+14), ни при
+       минимальном (только SuperLauncher), ни при пустом.
+
+3) Логи BMS недоступны: клиент /system/bin/hilog не отдаёт буфер ни от
+   root, ни от logd (/data/diag/hilog_dump.log пуст; timeout 25 hilog —
+   пусто; hilog -h работает). faultlog пуст, cppcrash нет — BMS не
+   падает, а штатно завершает OnStart без Publish.
+
+4) Статический анализ libbms: строки "BundleMgrService Init begin",
+   "BundleMgrService Init success", "BundleMgrService OnStart start/end",
+   "bootevent.bms.main.bundles.ready" присутствуют; прямых вызовов
+   AddSystemAbility/Publish в импортах libbms нет (Publish идёт через
+   базовый класс SystemAbility из libsystemability), xref-поиск по
+   строкам не дал точек (строки адресуются через таблицы/литералы).
+
+═══════════════════════════════════════════════════════════════════════
+ПОЧЕМУ ЭТО БАРЬЕР ДЛЯ ДАННОЙ ПЛАТФОРМЫ
+═══════════════════════════════════════════════════════════════════════
+
+BMS Init в HarmonyOS 6.0.0.108 — закрытый код, который, судя по
+поведению, требует компонентов, отсутствующих в QEMU-виртуализации
+Huawei-устройства: TEE/huks-операции (/dev/tz, teecd), hguard/kickdog
+(частично заглушены нами), bbox-драйвер с ioctl (заглушён), возможно
+quota/el5-шифрование. Без логов и без возможности выполнить Init
+успешно — Publish не наступает, а значит лаунчер (который ставится
+только через BMS) не может быть установлен и запущен.
+
+Достигнутая точка: userland реально доходит до appfwk.ready /
+appspawn.started и живёт стабильно; всё, что ниже по цепочке
+(bms.main.bundles.ready -> launcher.ready -> boot.completed), упирается
+в непубликующийся SA 401.
+
+Артефакты: см. docs/09..34 (логи, отчёты, патчи, сэмплеры, заглушки).
