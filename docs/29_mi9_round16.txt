@@ -1,0 +1,57 @@
+=== 29. Раунд 16: минимальные списки бандлов не дают bms.ready; списки есть в 3 разделах ===
+
+Дата: 2026-10-27. Продолжение 28_mi9_round15.
+
+═══════════════════════════════════════════════════════════════════════
+УСТАНОВЛЕНО
+═══════════════════════════════════════════════════════════════════════
+
+1) Предустановочные списки лежат в нескольких разделах:
+     /system/etc/app/install_list.json                — 182 записи
+     /system/etc/app/app_service_fwk_install_list.json — 15 (HSP-киты)
+     /system/etc/app/shared_bundles_install_list.json  — 5
+     /sys_prod/etc/app/install_list.json               — 9
+     /sys_prod/variant/region_comm/china/etc/app/install_list.json — 5
+   Реально устанавливаемые в /data/app бандлы (weather, walletkit,
+   paymentServiceHsp, hwstylusfeature, mapservice.kit, health.kit,
+   hdscomponent, pic, hiai.hsp, security.pickersheet) — это в основном
+   HSP-киты из app_service_fwk_install_list.
+
+2) ЭКСПЕРИМЕНТ «минимальный список»:
+   в system install_list оставлен ТОЛЬКО SuperLauncher,
+   appServiceFwk/shared/sys_prod обнулены; все app-каталоги, кроме
+   SuperLauncher, убраны.
+   РЕЗУЛЬТАТ (1200 c):
+     - /data/app/el1/bundle/public ПУСТ (не установлен даже SuperLauncher),
+     - bms.main.bundles.ready НЕТ,
+     - bootevent'ов 10, foundation перезапускается, appfwk.ready
+       выставляется 3 раза.
+   Вывод: «пусто/минимум» НЕ ускоряет bms.ready; BMS не ставит главный
+   бандл (SuperLauncher) вообще, а событие ready не наступает.
+
+3) Дерево восстановлено в исходное состояние (все списки и app-каталоги
+   возвращены: system 182 + appServiceFwk 15 + shared 5 + sys_prod 9+5),
+   образ пересобран.
+
+═══════════════════════════════════════════════════════════════════════
+СОСТОЯНИЕ
+═══════════════════════════════════════════════════════════════════════
+
+BMS стартует (SA 401 OnStart завершается за 5-13 c), HSP-киты ставятся
+порциями, но ни main-бандлы (SuperLauncher), ни bootevent
+bms.main.bundles.ready не появляются ни при полном, ни при пустом списке.
+
+═══════════════════════════════════════════════════════════════════════
+ПЛАН раунда 17
+═══════════════════════════════════════════════════════════════════════
+
+1. Статический анализ libbms.z.so: найти, какая функция выставляет
+   "bms.main.bundles.ready" (xref через .rela.dyn addend 0xbe80c ->
+   r_offset -> код, который грузит этот слот), и какие условия этому
+   предшествуют (что именно ждёт BMS).
+2. Проверить, не блокируется ли main-бандл на проверке подписи через
+   HUKS/TEE (в QEMU нет /dev/tz): искать в libbms типичные сообщения.
+3. По результату: либо подменить/эмулировать нужный вызов, либо
+   пропатчить BMS так, чтобы он завершал main-этап на доступных данных.
+
+Артефакты: 29_mi9_round16.log, 29_mi9_round16.txt.
