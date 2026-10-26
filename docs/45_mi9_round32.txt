@@ -1,0 +1,62 @@
+=== 45. Раунд 32: runtime-доказательство (code=3 = AddSystemAbility) и ===
+=== попытки принудительной публикации SA 401 (LD_PRELOAD) ===
+
+Дата: 2026-10-27. Продолжение 44_mi9_round31.
+
+═══════════════════════════════════════════════════════════════════════
+1. RUNTIME-ДОКАЗАТЕЛЬСТВО БАРЬЕРА (kernel binder tracing)
+═══════════════════════════════════════════════════════════════════════
+
+В ядро добавлен дамп payload'а транзакций foundation->samgr (FNDTXN:
+code + до 24 слов Parcel). После расшифровки Parcel:
+  - формат: [0x100, 0, len(UTF16), "ohos.samgr.accessToken", id, "foundation"]
+  - идентифицирован код AddSystemAbility = 3:
+      [497.385] FNDTXN code=3 sz=112 ... id=0x11ff=4607
+      [497.550] SAMGR: insert SA:4607_48      <- точная корреляция
+  - все AddSystemAbility от foundation за прогон (16 шт):
+      ids = 180, 182, 403, 501, 1404, 3299, 3704, 4009, 4607
+  - BMS OnStart проходил дважды:
+      [465.3] SA:401 OpenSo 15795ms -> [471.8] OnStart-SA:401 finished
+      [613.3] SA:401 OpenSo 18976ms -> [616.8] OnStart-SA:401 finished
+  - ЗА ВСЁ ВРЕМЯ НИ ОДНОЙ транзакции code=3 с id=401.
+  => runtime-подтверждение: BMS не вызывает AddSystemAbility вообще
+     (совпадает со статическим анализом libbms).
+
+═══════════════════════════════════════════════════════════════════════
+2. ПОПЫТКА ПРИНУДИТЬ ПУБЛИКАЦИЮ (LD_PRELOAD hook)
+═══════════════════════════════════════════════════════════════════════
+
+Идея: перехватить SystemAbility::AddSystemAbilityListener(int), который
+BMS вызывает в OnStart (ids 3299, 0x100500, 8250); по смещению +8
+объекта SystemAbility лежит SA id (видно в дизасме Publish:
+ldr w7,[x0,#8]). Если id==401 — вызвать
+SystemAbility::Publish(this, this->GetAbilityRemoteObject()) через
+dlsym (оба символа экспортированы safwk).
+
+Сделано:
+  - libsa_pub_hook.so (interpose + dlsym RTLD_NEXT) — собран;
+  - вариант A: замена /system/bin/sa_main на статический launcher,
+    который выставляет LD_PRELOAD и exec'ает sa_main.real.
+    РЕЗУЛЬТАТ: SELinux-отказы "denied { entrypoint }/{ execute }"
+    для /system/bin/sa_main, init: "ServiceStart invalid:foundation" —
+    foundation не стартует, 0 bootevent. Откат.
+  - вариант B: /system/etc/ld.so.preload с libsa_pub_hook.so
+    (без замены sa_main). РЕЗУЛЬТАТ: система загрузилась штатно
+    (9 bootevent, BMS OnStart дважды), но SAHOOK ни разу не
+    напечатался => ld.so.preload не применяется к sa_main
+    (он статический musl-бинарь; загружаемые им .so не проходят
+    через preload-механизм). Откат (ld.so.preload удалён).
+
+═══════════════════════════════════════════════════════════════════════
+3. ВЫВОД
+═══════════════════════════════════════════════════════════════════════
+
+Барьер подтверждён на двух уровнях (статический и runtime):
+BMS (SA 401) никогда не вызывает AddSystemAbility/Publish.
+Чтобы заставить его публиковаться, остаётся один реальный путь:
+бинарная инъекция вызова Publish в один из загружаемых компонентов
+foundation (например, в safwk_cpp: AddSystemAbilityListener ->
+после тела вызвать Publish, если [this+8]==401), через code cave
+и правку машинного кода. Это отдельная задача уровня патчинга ELF.
+
+Артефакты: 45_mi9_round32.log, sa_pub_hook.c, sa_main_wrap.c.
