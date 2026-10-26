@@ -1,0 +1,48 @@
+=== 37. Раунд 24: Publish делает не libbms, а фреймворк; подозрение на Rust-проверки samgr ===
+
+Дата: 2026-10-27. Продолжение 36_mi9_round23.
+
+═══════════════════════════════════════════════════════════════════════
+НОВЫЕ СТАТИЧЕСКИЕ ФАКТЫ
+═══════════════════════════════════════════════════════════════════════
+
+1) В libbms.z.so НЕТ импорта SystemAbility::Publish (и вообще чего-либо
+   с "Publish" кроме EventFwk::CommonEventManager). Значит BMS сам не
+   вызывает Publish — публикацию выполняет SA-фреймворк (safwk/samgr)
+   после/вокруг OnStart. Значит «insert SA:401» отсутствует не из-за
+   BMS-кода в libbms, а из-за решения фреймворка.
+
+2) /system/bin/samgr импортирует:
+     AccessTokenKit::VerifyAccessToken
+     AccessTokenKit::GetTokenTypeFlag
+   (обе цепочки у нас пропатчены: VerifyAccessToken -> 0,
+    GetTokenTypeFlag -> 1).
+
+3) НО samgr НЕ импортирует selinux_check_access из libselinux! При этом в
+   его строках есть "AddSystemAbilityInner selinux permission denied!",
+   "CheckAddRemoteSAPermission selinux permission denied!" и т.п.
+   => проверки SELinux в samgr реализованы внутри Rust-кода
+   (libsamgr.dylib.so — Rust-обёртка), а не через libselinux.
+   Наш патч libselinux.z.so на них НЕ влияет. Вполне вероятно, что
+   именно эта внутренняя проверка отклоняет регистрацию SA 401.
+
+4) В прогоне раунда 23 (650 c): ни одного "insert SA:401" (любой суффикс),
+   24517 строк лога; bootevent'ы идут (appfwk.ready и др.).
+
+═══════════════════════════════════════════════════════════════════════
+ПЛАН раунда 25
+═══════════════════════════════════════════════════════════════════════
+
+1. Найти в /system/bin/samgr строку "AddSystemAbilityInner selinux
+   permission denied!" и её xref; найти ветвление, ведущее к отказу
+   (печать этой строки), и патчить его так, чтобы выполнялся путь
+   успешной вставки SA.
+2. Аналогично для CheckAddRemoteSAPermission.
+3. Проверить результат: появление "insert SA:401"; затем bm CLI и
+   установка лаунчера, bms.main.bundles.ready, launcher.ready.
+
+Альтернатива, если Rust-дизасм окажется неподъёмным: патчить
+libsamgr.dylib.so (Rust) — найти в нём символы/строки и заменить
+selinux-проверку на «разрешено».
+
+Артефакты: 37_mi9_round24.txt (этот файл).
