@@ -47,3 +47,5 @@ seed.img
 !docs/19_*.log
 
 !docs/20_*.log
+
+!docs/21_*.log

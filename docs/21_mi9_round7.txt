@@ -1,0 +1,55 @@
+=== 21. Раунд 7: виновник остановок — service_control (ohos.ctl.stop); powerct пропатчен ===
+
+Дата: 2026-10-26. Продолжение 20_mi9_round6.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+1) Найден механизм остановки сервисов: init-команды "stop X" и внутренние
+   вызовы StopService пишут параметр `ohos.ctl.stop=X`, а init через
+   param_hook превращает его в команду "stop X". Всплеск из 6-13 остановок
+   на ~300 c приводил к выходу foundation (code 0), appspawn и др. и к
+   перезапуску foundation (3-5 раз за прогон).
+
+2) Патчи:
+   - /system/bin/init: строка "ohos.ctl.stop" -> "ohos.ctl.stoX"
+     (param_hook больше не срабатывает);
+   - /system/lib64/chipset-sdk-sp/libbegetutil.z.so: та же замена
+     (ServiceControl больше не пишет рабочий параметр);
+   - /vendor/bin/powerct: та же замена (powerct — один из источников
+     остановок; после патча в логе появились "ohos.ctl.stoX", т.е. его
+     вызовы нейтрализованы).
+   - kernel: /dev/bbox stub (misc device), лог "open bbox node failed"
+     исчез; CONFIG_HW_RANDOM_VIRTIO=y + -device virtio-rng-pci
+     ("random: crng init done" на 1.4 c).
+
+3) Прогон 900 c с virtio-rng и патчами:
+   - bootevent'ов 14 (самые частые: appfwk.ready, appspawn.started
+     выставляются после каждого перезапуска foundation),
+   - foundation по-прежнему стартует 5 раз / выходит 4 раза,
+   - ctl.stoX = 3 (powerct нейтрализован), но ctl.stop = 10 — остались
+     другие источники остановок,
+   - launcher.ready / bms.main.bundles.ready / boot.completed НЕ появились.
+
+═══════════════════════════════════════════════════════════════════════
+ВЫВОД
+═══════════════════════════════════════════════════════════════════════
+
+Система устойчиво доходит до appfwk.ready/appspawn.started, но циклические
+перезапуски foundation (каждые ~230 c) не дают BMS завершить сканирование
+305 бандлов и не дают дойти до launcher.ready и boot.completed.
+
+Следующие шаги:
+1. Найти оставшиеся источники ohos.ctl.stop (кто пишет сейчас): проверить
+   hiview/bootfail-модуль, watchdog, samgr и оставшиеся копии
+   libbegetutil/других бинарей; патчить все.
+2. Либо жёстко заблокировать обработку ohos.ctl.stop в init (param_hook)
+   так, чтобы никакие вызовы не приводили к stop (например, переписать
+   таблицу хука).
+3. После стабилизации — длинный прогон 2400 c, чтобы BMS досканировал и
+   выставил bms.main.bundles.ready, затем launcher.ready / boot.completed.
+
+Артефакты: 21_mi9_round7.log (900 c), 21_mi9_round7.txt.
+Патчи: init/libbegetutil/powerct (ohos.ctl.stop -> stoX), kernel bbox stub,
+virtio-rng.
