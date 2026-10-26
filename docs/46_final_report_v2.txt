@@ -1,0 +1,86 @@
+=== 46. ФИНАЛЬНЫЙ ОТЧЁТ (раунд 30/30): двухуровневое доказательство барьера ===
+
+Дата: 2026-10-27. Продолжение 45_mi9_round32. Итог всех раундов.
+
+═══════════════════════════════════════════════════════════════════════
+1. ДОСТИГНУТО (доказательства в docs/09..45)
+═══════════════════════════════════════════════════════════════════════
+
+HarmonyOS 6.0.0.108 arm64 userland работает на QEMU с ядром 4.14.180:
+  - реальные bootevent'ы (их пишут сами сервисы):
+      samgr.ready, appfwk.ready, appspawn.started, hdf_devmgr.ready,
+      param_watcher.started, powermgr.ready, renderservice.ready,
+      avsessionservice.ready (и др.) — 9-14 за прогон;
+  - 0 kernel panic, 0 reboot, 20+ минут стабильной работы;
+  - ключевые фиксы: virtio-rng+CONFIG_HW_RANDOM_VIRTIO (энтропия),
+    OHOS-binder ioctls, access_token stub, SELinux/perm-патчи,
+    нейтрализация bootfail (libinit_bootDetector, sysrq off, reboot mock,
+    bbox ioctl, /proc/sys/hguard/user_list), xlogcat ctl.stop;
+  - BMS ставит HSP-киты, bmsdb.db растёт.
+
+═══════════════════════════════════════════════════════════════════════
+2. БАРЬЕР — ДОКАЗАН СТАТИЧЕСКИ И RUNTIME
+═══════════════════════════════════════════════════════════════════════
+
+A. СТАТИКА:
+   - libbms.z.so (SA 401) НЕ импортирует: SystemAbility::Publish,
+     PublishWrapper, LocalAbilityManager::*, ISystemAbilityManager::
+     AddSystemAbility (импортируются только MakeAndRegisterAbility /
+     AddSystemAbilityListener / ctor-dtor / SystemAbilityManagerClient);
+   - SAFWK (libsystem_ability_fwk.z.so, C++ 164 КБ) ОПРЕДЕЛЯЕТ
+     SystemAbility::Publish (0x1f324) и GetAbilityRemoteObject (0x213c0),
+     но САМ Publish нигде не вызывает и не импортирует
+     ISystemAbilityManager::AddSystemAbility;
+   - цепочка: sa_main -> SAFWK(DoStartSAProcess) -> OnStart(BMS) ->
+     [Publish]  <- звено отсутствует.
+
+B. RUNTIME (kernel binder tracing, code+parcel):
+   - в binder_transaction добавлен дамп payload'а транзакций
+     foundation->samgr; расшифрован формат Parcel:
+       [0x100, 0, len(UTF16), "ohos.samgr.accessToken", SAid, "foundation"]
+   - установлено: code=3 = AddSystemAbility (4607 -> insert SA:4607_48);
+   - все AddSystemAbility от foundation (16 шт): 180, 182, 403, 501,
+     1404, 3299, 3704, 4009, 4607;
+   - BMS OnStart прошёл дважды (465/471 c и 613/616 c) —
+     НИ ОДНОЙ транзакции code=3 с SAid=401.
+
+C. ПОПЫТКИ ОБХОДА:
+   - LD_PRELOAD-хук + замена sa_main -> SELinux "denied entrypoint",
+     foundation не стартует;
+   - /etc/ld.so.preload -> не применяется (sa_main — статический musl);
+   - патчи Init/SELinux-ветки samgr -> публикации не дают;
+   - ручное выставление bms.main.bundles.ready -> работает (событие
+     видно), но лаунчер всё равно не установлен (bm CLI не работает
+     без SA 401).
+
+D. СЛЕДСТВИЯ (проверены):
+   - /system/bin/bm help|dump|install -> "error: failed to execute your
+     command." (нет SA 401);
+   - лаунчер com.huawei.hmos.slassistant (/system/app/SuperLauncher)
+     не устанавливается;
+   - bms.main.bundles.ready не выставляется (job restartfoundation его
+     ещё и снимает);
+   - launcher.ready / boot.completed недостижимы при полном/минимальном/
+     пустом install-списках (182+15+5+9+5 / 1 / 0);
+   - hilog недоступен (пустой буфер от root и logd), faultlog пуст.
+
+═══════════════════════════════════════════════════════════════════════
+3. ПРИЧИНА И ОСТАВШИЙСЯ ПУТЬ
+═══════════════════════════════════════════════════════════════════════
+
+BMS 6.0.0.108 (закрытый код) не публикует себя как SystemAbility; так как
+bm CLI и установка бандлов идут только через SA 401, лаунчер установить
+невозможно. Выставит его может только инъекция вызова
+SystemAbility::Publish в процесс foundation (например, патч
+safwk_cpp: AddSystemAbilityListener -> при [this+8]==401 вызвать
+Publish(this,&GetAbilityRemoteObject()) через code cave с расширением
+PT_LOAD). Это отдельная задача уровня патчинга ELF-кода.
+
+═══════════════════════════════════════════════════════════════════════
+4. АРТЕФАКТЫ (все в репозитории)
+═══════════════════════════════════════════════════════════════════════
+
+https://github.com/kharkilirov1/hdf-harmonyos-reverse
+docs/09..46 — отчёты, логи, патчи (kernel/rootfs), сэмплеры, hook-исходники.
+Ключевые: 19 (энтропия), 21 (ctl.stop), 24-28 (BMS SA 401, статика),
+34/42 (сводные барьеры), 43-45 (runtime-трассировка, Parcel, hook-попытки).
