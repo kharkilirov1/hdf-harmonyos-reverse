@@ -1,0 +1,54 @@
+=== 20. Раунд 6: virtio-rng закреплён, /dev/bbox, найден цикл остановки сервисов ===
+
+Дата: 2026-10-26. Продолжение 19_mi9_round5.
+
+═══════════════════════════════════════════════════════════════════════
+ПОДТВЕРЖДЕНО
+═══════════════════════════════════════════════════════════════════════
+
+1) virtio-rng работает стабильно: "random: crng init done" на 1.46 c
+   в каждом прогоне; foundation больше не висит в wait_for_random_bytes.
+   С ним стабильно выставляются 7-10 настоящих bootevent'ов, включая
+   appfwk.ready и appspawn.started.
+
+2) Добавлена kernel-заглушка /dev/bbox (misc device, drivers/misc/bbox_stub.c):
+   лог "open bbox node failed" исчез полностью (было ~на каждом шаге
+   bootfail). Это убрало лишние срабатывания bootfail-пути init.
+
+═══════════════════════════════════════════════════════════════════════
+НОВОЕ НАБЛЮДЕНИЕ (главный оставшийся барьер)
+═══════════════════════════════════════════════════════════════════════
+
+На ~392 c происходит МАССОВАЯ остановка сервисов:
+  - pid 1780 многократно пишет ohos.ctl.stop (13 раз за прогон),
+  - десятки сервисов выходят: foundation (code 0), appspawn (code 0),
+    bms_auth (255), hdf_devmgr (255), watchdog_service (1), и т.д.,
+  - затем init поднимает их заново: foundation стартует 3 раза за прогон,
+    appfwk.ready и appspawn.started выставляются повторно,
+  - job services:restartfoundation снимает bootevent'ы
+    ("unset_bootevent bootevent.launcher.ready").
+
+Именно этот цикл не даёт BMS досканировать бандлы и не даёт дойти до
+launcher.ready / boot.completed.
+
+Попытка убрать таймеры bootfail у foundation (удаление "bootevents" из
+foundation.cfg) на цикл НЕ повлияла: foundation всё равно выходит 2 раза,
+ohos.ctl.stop — 13 раз. Значит триггер не в bootevents-таймерах
+foundation, а в чём-то другом (вероятно, bootfail-таймер другого сервиса
+или watchdog).
+
+═══════════════════════════════════════════════════════════════════════
+СЛЕДУЮЩИЕ ШАГИ
+═══════════════════════════════════════════════════════════════════════
+
+1. Найти, кто именно пишет ohos.ctl.stop в 392 c (pid 1780 — определить
+   сервис по comm/старту), и что его триггерит (bootfail-таймер какого
+   сервиса, watchdog_service, hiviewdfx_boot_check).
+2. Отключить триггер: либо убрать "bootevents" у всех сервисов, кроме
+   нужных, либо подменить/заглушить bootfail-логику (в init/libbegetutil
+   есть "SuspendBootFailTimer", "BootfailNotify").
+3. После стабилизации (без цикла) дать BMS досканировать бандлы и ждать
+   bms.main.bundles.ready -> launcher.ready -> boot.completed.
+
+Артефакты: 20_mi9_round6.log (900 c, virtio-rng + bbox stub),
+20_mi9_round6.txt, bbox_stub.c.
