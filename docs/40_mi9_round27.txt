@@ -1,0 +1,48 @@
+=== 40. Раунд 27: Publish приходит из libsystem_ability_fwk (Rust SAFWK) ===
+
+Дата: 2026-10-27. Продолжение 39_mi9_round26.
+
+═══════════════════════════════════════════════════════════════════════
+НАЙДЕНО
+═══════════════════════════════════════════════════════════════════════
+
+1) libbms.z.so НЕ импортирует SystemAbility::Publish (проверено ещё раз),
+   но импортирует:
+     SystemAbility::MakeAndRegisterAbility
+     SystemAbility::AddSystemAbilityListener
+     SystemAbilityC2/D2
+   => публикацию делает не BMS, а фреймворк.
+
+2) Провайдер Publish найден: /system/lib64/libsystem_ability_fwk.dylib.so
+   (Rust SAFWK, 108 КБ). Он:
+     - импортирует SystemAbility::Publish(sptr<IRemoteObject>),
+     - экспортирует Rust-обёртки:
+         OHOS$SafwkRust$cxxbridge1$AbilityWrapper$OnStart
+         ...AbilityWrapper$PublishWrapper
+         ...AbilityWrapper$OnAddSystemAbility и т.д.
+   В строках библиотеки: "system_ability_fwk::wrapper::ffi::
+   AbilityWrapper::PublishWrapper" и полный список OnStart/OnStop и др.
+
+3) В /system/bin/samgr есть только строка "safwk FfrtDumperProc execute
+   failed" (не PublishWrapper); в samgr импортa Publish нет. Значит
+   "SAFWK:"-логи и PublishWrapper живут в процессе/библиотеке
+   libsystem_ability_fwk.dylib.so, которую грузит foundation/sa_main.
+
+4) Итог: для SA 401 вызов PublishWrapper (→ SystemAbility::Publish →
+   AddSystemAbility → "insert SA:401") не происходит, хотя OnStart
+   завершается успешно. Другие SA (403, 4005, 4010/4011/4014) вставляются.
+
+═══════════════════════════════════════════════════════════════════════
+ПЛАН раунда 28
+═══════════════════════════════════════════════════════════════════════
+
+1. Дизассемблировать libsystem_ability_fwk.dylib.so (108 КБ, Rust):
+   найти AbilityWrapper::OnStart (экспорт
+   OHOS$SafwkRust$cxxbridge1$AbilityWrapper$OnStart) и место, где
+   вызывается PublishWrapper; понять, при каком условии публикация
+   пропускается.
+2. Патчить условие (или вызвать PublishWrapper безусловно после OnStart).
+3. Проверить появление "insert SA:401" → bm CLI → установка лаунчера →
+   bms.main.bundles.ready → launcher.ready.
+
+Артефакты: 40_mi9_round27.txt (этот файл).
