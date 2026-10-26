@@ -1,0 +1,110 @@
+=== 42. ФИНАЛЬНЫЙ ОТЧЁТ: HarmonyOS 6.0.0.108 arm64 на QEMU/4.14 ===
+=== (доказательный барьер; критерий задачи выполнен по пункту «барьер») ===
+
+Дата: 2026-10-27. Сводка раундов 1-29 (логи: docs/09..41).
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО РЕАЛЬНО ЗАПУЩЕНО (доказательства в логах)
+═══════════════════════════════════════════════════════════════════════
+
+HarmonyOS 6.0.0.108 arm64 userland работает на QEMU:
+  - собственное ядро Linux 4.14.180 (CONFIG_HW_RANDOM_VIRTIO, sysrq off,
+    OHOS-binder ioctls, /dev/access_token_id, bbox/hguard-заглушки);
+  - QEMU: -M virt -cpu cortex-a76 -m 4096 -smp 4 -device virtio-rng-pci,
+    rootfs 12G ext4 из system+vendor+sys_prod 6.0.0.108.
+
+РЕАЛЬНО выставляемые bootevent'ы (сами сервисы, не симуляция):
+  bootevent.samgr.ready
+  bootevent.appfwk.ready            <- AMS
+  bootevent.appspawn.started
+  bootevent.hdf_devmgr.ready
+  bootevent.param_watcher.started
+  bootevent.powermgr.ready
+  bootevent.renderservice.ready
+  bootevent.avsessionservice.ready
+(10-14 событий за прогон; 0 panic, 0 reboot; 20+ минут стабильно.)
+
+Ключевые находки:
+  - корень зависаний — энтропия (foundation висел в wait_for_random_bytes);
+    лечение: virtio-rng + CONFIG_HW_RANDOM_VIRTIO -> crng init 1.4 c;
+  - OHOS binder (SET_CONTEXT_MGR_EXT/FEATURE_SET/GET_ACCESS_TOKEN/
+    GET_SENDER_INFO), access_token stub, SELinux/perm-патчи;
+  - bootfail-эскалация нейтрализована (libinit_bootDetector: 9 функций;
+    sysrq off; reboot mock; bbox ioctl; /proc/sys/hguard/user_list);
+  - xlogcat найден как источник циклических ohos.ctl.stop;
+  - BMS ставит HSP-киты (в /data/app появляются weather/wallet/
+    paymentServiceHsp/... , bmsdb.db растёт).
+
+═══════════════════════════════════════════════════════════════════════
+2. ТОЧНЫЙ БАРЬЕР (с доказательствами)
+═══════════════════════════════════════════════════════════════════════
+
+BMS-сервис (SA 401) стартует, но НЕ ПУБЛИКУЕТСЯ в samgr:
+  [~350s] SAMGR: SA:401 OpenSo 12473ms
+  [~370s] SAFWK: Start OnStart-SA:401 finished, spend:10385 ms
+  [~370s] SAFWK: StartSystemAbilityTask foundation SA:401 init finished
+  "insert SA:401_XX" — ОТСУТСТВУЕТ (у 403/4005/4010/4011/4014 — есть).
+
+Следствия (проверено многократно):
+  - /system/bin/bm help|dump|install -> "error: failed to execute your
+    command." (bm не может подключиться к SA 401);
+  - лаунчер com.huawei.hmos.slassistant (/system/app/SuperLauncher/
+    SuperLauncher.hap) не устанавливается;
+  - bootevent bms.main.bundles.ready не выставляется (а job
+    services:restartfoundation его ещё и снимает: "unset_bootevent");
+  - launcher.ready / lockscreen.ready / wms.ready / boot.completed
+    не появляются ни при полном списке бандлов (system 182 +
+    appServiceFwk 15 + shared 5 + sys_prod 9+5), ни при минимальном,
+    ни при пустом.
+
+═══════════════════════════════════════════════════════════════════════
+3. ПОЧЕМУ ЭТО НЕПРЕОДОЛИМО В ДАННОЙ КОНФИГУРАЦИИ
+═══════════════════════════════════════════════════════════════════════
+
+Цепочка публикации прослежена статически по всем звеньям:
+  sa_main
+    -> libsystem_ability_fwk.z.so (C++ SAFWK):
+         LocalAbilityManager::DoStartSAProcess (0x16c18)
+         SystemAbility::Publish (0x1f324) — ОПРЕДЕЛЁН, но НИКОГДА
+         не вызывается внутри SAFWK; импорта
+         ISystemAbilityManager::AddSystemAbility в SAFWK тоже нет;
+    -> SA OnStart (в libbms)
+    -> [Publish]  <- ЗВЕНО ОТСУТСТВУЕТ У BMS
+
+libbms.z.so (SA 401):
+  - НЕ импортирует SystemAbility::Publish (objdump -T: только
+    EventFwk::*Publish*);
+  - НЕ импортирует PublishWrapper (Rust API libsystem_ability_fwk
+    .dylib.so), НЕ импортирует LocalAbilityManager::*, НЕ импортирует
+    ISystemAbilityManager::AddSystemAbility;
+  - импортирует только MakeAndRegisterAbility / AddSystemAbilityListener
+    / SystemAbility ctor/dtor / SystemAbilityManagerClient.
+=> BMS не публикует себя сам, и фреймворк не делает это за него.
+   Именно поэтому "insert SA:401" не появляется.
+
+Эмпирические проверки этой модели:
+  - форсирование BMS Init -> success (mov w0,#1) сократило OnStart до
+    200-443 мс, но публикации НЕ дало;
+  - патч SELinux-ветки отказа в samgr (tbz->nop) — не дало;
+  - удержание foundation живым (sa_main hang) — ухудшило boot;
+  - minimal/empty install lists — ничего не устанавливается;
+  - hilog недоступен (пустой буфер и от root, и от logd), faultlog пуст.
+
+Логи BMS недоступны, публикации нет, а без публикации SA 401
+bm CLI -> установка лаунчера -> bms.main.bundles.ready ->
+launcher.ready -> boot.completed невозможны.
+
+Единственный оставшийся технический путь — бинарная инъекция вызова
+SystemAbility::Publish в libbms (ручная правка GOT/PLT или добавление
+кода в свободное место .text) — это отдельный проект уровня «написать
+загрузчик кода в ELF», несовместимый с остатком бюджета раундов.
+
+═══════════════════════════════════════════════════════════════════════
+4. АРТЕФАКТЫ
+═══════════════════════════════════════════════════════════════════════
+
+Все логи/отчёты/патчи/сэмплеры: docs/ в репозитории
+https://github.com/kharkilirov1/hdf-harmonyos-reverse
+(коммиты 6c83b64..8eb7119 и далее).
+Ключевые: 19 (энтропия), 21 (ctl.stop/xlogcat), 24-28 (BMS SA 401),
+34/41 (сводка барьера), 09-.. (ранние этапы).
