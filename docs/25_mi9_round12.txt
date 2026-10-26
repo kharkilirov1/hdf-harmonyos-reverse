@@ -1,0 +1,56 @@
+=== 25. Раунд 12: ProcessCriticalProcessFault пропатчен — крашей hiview меньше, но foundation выходит сам ===
+
+Дата: 2026-10-26. Продолжение 24_mi9_round11.
+
+═══════════════════════════════════════════════════════════════════════
+СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+1) Найдено, что "ProcessCriticalProcessFault" живёт в
+   /system/lib64/init/libinit_bootDetector.z.so (экспортированные
+   BootFailInterface::ProcessCriticalProcessFault 0x4e264 и
+   ProcessCriticalDataFault 0x50b78), а не только HandleFault.
+   Пропатчены (mov w0,#0; ret) все: ProcessBootfail, HandleFault,
+   HandleTiming, EntryHandle, ProcessErrHandleReq, BootFailError,
+   BootFailTimerCtrl, ProcessCriticalProcessFault,
+   ProcessCriticalDataFault.
+
+2) Прогон 1200 c:
+   - "hiview exit 255" теперь 1 раз за прогон (было много),
+   - foundation по-прежнему выходит 5 раз (код 0),
+   - bootevent'ов 9 (appfwk.ready, powermgr.ready, renderservice.ready,
+     appspawn.started, ...),
+   - bms.main.bundles.ready — НЕТ.
+   - reboot() вызовов — 0, panic — 0.
+
+3) По логам перед выходами foundation:
+   - первый выход на 248 c идёт сразу после серии "SAMGR: rm DeadSA:..."
+     и перезапуска hiview;
+   - второй/третий — после "SAMGR: rm DeadSA:6200_59 / 403_58 / 4005_57".
+   То есть foundation выходит штатно (0) на фоне того, как samgr удаляет
+   мёртвые SA. Похоже на "прогрессивную инициализацию": каждый инстанс
+   foundation поднимает часть SA и завершается, следующий — продолжает.
+
+═══════════════════════════════════════════════════════════════════════
+СОСТОЯНИЕ
+═══════════════════════════════════════════════════════════════════════
+
+Достигнуто: стабильные 9-14 настоящих bootevent'ов, включая appfwk.ready
+и appspawn.started; система живёт без panic/reboot 20 минут.
+Барьер: bms.main.bundles.ready не наступает; foundation перезапускается
+5 раз; launcher.ready / boot.completed не появляются.
+
+═══════════════════════════════════════════════════════════════════════
+СЛЕДУЮЩИЕ ШАГИ
+═══════════════════════════════════════════════════════════════════════
+
+1. Понять, почему foundation завершается с кодом 0 после публикации SA:
+   проверить его профиль foundation.json (какие SA он обязан поднять,
+   есть ли "run-once"), и что означает "rm DeadSA" (кто умер).
+2. Попробовать удержать foundation живым (обёртка/патч main на
+   бесконечный цикл) — если BMS/AMS живут в нём, это даст им завершить
+   инициализацию.
+3. Как эталон: снять поведение рабочего эмулятора DevEco HarmonyOS 6.1.1
+   (когда bms.main.bundles.ready и launcher.ready появляются) и сравнить.
+
+Артефакты: 25_mi9_round12.log, 25_mi9_round12.txt.
