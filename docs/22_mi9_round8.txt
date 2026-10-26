@@ -1,0 +1,64 @@
+=== 22. Раунд 8: остановки идут от init-супервизии, не от bootDetector ===
+
+Дата: 2026-10-26. Продолжение 21_mi9_round7.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+1) Собран второй диагностический сэмплер (ps_sampler.c): снимает
+   /proc/<pid>/{comm,cmdline,status(uid,ppid)} всех процессов в
+   /data/diag/ps_N.txt через N секунд. Позволил сопоставлять pid из
+   param-логов с реальными процессами.
+
+2) Локализован автор остановок: pid 1780 в param-логе — это процесс,
+   который попеременно пишет ohos.ctl.start / ohos.ctl.stop парами
+   (72.8-77 c), а затем в 304.99 c — две остановки подряд, после чего
+   foundation (pid 1800) выходит (308.77 c).
+   По снимку ps_60: pid 1780 = /system/bin/xlogcat -t 1 (ppid=1, uid=0),
+   но к моменту остановок pid уже переиспользован — то есть остановки
+   делает дочерний процесс init, запущенный из job'а (comm=Unknown).
+
+3) Пропатчены ВСЕ экспортированные обработчики bootfail в
+   /system/lib64/init/libinit_bootDetector.z.so:
+     ProcessBootfail, BootFailEntry::HandleFault,
+     BootFailEntry::HandleTiming, BootFailEntry::EntryHandle,
+     ProcessErr::HandleReq, BootFailError, BootFailTimerCtrl,
+     BootDetectorBootCompleted  -> mov w0,#0; ret
+   ЭФФЕКТ: цикл перезапусков НЕ исчез (foundation всё равно выходит на
+   ~308 c и перезапускается), значит остановки идут не из bootDetector,
+   а из обычной init-супервизии: пары ctl.stop+ctl.start = перезапуск
+   сервиса init'ом (команда "restart"/restartfoundation-джоб).
+
+4) Также нейтрализован powerct (ohos.ctl.stoX), hongmeng-параметр
+   (ohos.boot.kernel=hongmeng) — на цикл не влияют.
+
+═══════════════════════════════════════════════════════════════════════
+СОСТОЯНИЕ
+═══════════════════════════════════════════════════════════════════════
+
+Стабильно: virtio-rng -> crng init 1.4 c; 8-14 настоящих bootevent'ов
+(samgr.ready, appfwk.ready, appspawn.started, hdf_devmgr.ready,
+param_watcher.started, powermgr.ready, renderservice.ready...).
+Осталось: foundation перезапускается каждые ~200-230 c по решению init
+(не bootfail), из-за чего сбрасываются bootevent'ы (restartfoundation
+джоб делает unset_bootevent) и не доходит до bms.main.bundles.ready /
+launcher.ready / boot.completed.
+
+═══════════════════════════════════════════════════════════════════════
+ПЛАН раунда 9
+═══════════════════════════════════════════════════════════════════════
+
+1. Найти, какой job/команда вызывает restart foundation: включить
+   подробный лог init (или перехватить "Execute command restart" в
+   консоли), проверить init.cfg/foundation.cfg на наличие таймерных
+   джобов ("timer_start"/"bootfail_timer").
+2. Если это restartfoundation по таймауту bootevent — отключить таймер
+   полностью (например, убрать все "bootevents" из foundation.cfg уже
+   сделано; проверить /system/etc/init/boot_detector.cfg и
+   /system/etc/init/init.cfg на "bootfail_timer").
+3. Альтернатива: запретить init перезапускать foundation (once: 1) и
+   посмотреть, дойдёт ли система до bms/launcher без рестартов.
+
+Артефакты: 22_mi9_round8.log, 22_mi9_round8.txt, ps_sampler.c,
+ps_60.txt/ps_290.txt (снимки процессов).
