@@ -67,3 +67,5 @@ seed.img
 !docs/29_*.log
 
 !docs/30_*.log
+
+!docs/31_*.log

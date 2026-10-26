@@ -1,0 +1,64 @@
+=== 31. Раунд 18: hguard/bbox-ioctl заглушки; BMS SA 401 так и не публикуется ===
+
+Дата: 2026-10-27. Продолжение 30_mi9_round17.
+
+═══════════════════════════════════════════════════════════════════════
+СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+1) Kernel-заглушки расширены (drivers/misc/bbox_stub.c):
+   - /dev/bbox теперь принимает ioctl (возвращает 0) — раньше был только
+     write/read, и любой ioctl давал ENOTTY;
+   - создан /proc/sys/hguard/user_list через register_sysctl_table
+     (mode 0666, proc_dostring).
+   Пересобран Image.
+
+2) РЕЗУЛЬТАТ прогона 1200 c:
+   - ошибок "kickdog: open /proc/sys/hguard/user_list fail" — 0 (было
+     на каждом старте hiview);
+   - bootevent'ов 10 (appfwk.ready, appspawn.started, powermgr.ready,
+     renderservice.ready, ...);
+   - "SA:401 OpenSo" — 2 раза, но "insert SA:401_XX" — 0 раз,
+     т.е. BMS (SA 401) НЕ публикуется в samgr;
+   - реального bootevent bms.main.bundles.ready нет (строка
+     "bms.main.bundles.ready" в логе — это только
+     'unset_bootevent' из job'а services:restartfoundation);
+   - launcher.ready нет, лаунчер не установлен.
+
+3) Ранее (раунд 17) доказано, что bm CLI НЕ РАБОТАЕТ:
+   "bm help", "bm dump -a", "bm install -p ..." — все возвращают
+   "error: failed to execute your command." Это следствие того, что
+   BMS SA 401 не опубликован (bm не может к нему подключиться).
+
+═══════════════════════════════════════════════════════════════════════
+ГЛАВНЫЙ БАРЬЕР (уточнён)
+═══════════════════════════════════════════════════════════════════════
+
+BMS-сервис (SA 401) стартует (SAMGR: SA:401 OpenSo, OnStart завершается
+за 5-15 c), но НЕ публикует себя через AddSystemAbility ("insert SA:401"
+отсутствует), поэтому:
+  - bm/bm CLI не работает,
+  - main-бандл com.huawei.hmos.slassistant (SuperLauncher) не
+    устанавливается,
+  - bms.main.bundles.ready не выставляется (а job restartfoundation
+    ещё и снимает его: "unset_bootevent bootevent.bms.main.bundles.ready"),
+  - launcher.ready / boot.completed недостижимы.
+
+Заглушки hguard/bbox/ioctl убрали часть ошибок, но публикацию SA 401
+не включили — значит причина внутри BMS Init (возможно, отказ
+инициализации из-за отсутствия TEE/huks-операций или прав).
+
+═══════════════════════════════════════════════════════════════════════
+ПЛАН раунда 19
+═══════════════════════════════════════════════════════════════════════
+
+1. Статический реверс libbms: найти BundleMgrService::OnStart/Init и
+   точку вызова Publish (AddSystemAbility); понять, что возвращает
+   ошибку (искать проверки на "hguard", "huks", "tee", "permission").
+2. Пропатчить Init так, чтобы Publish вызывался безусловно
+   (или пропатчить проверку, возвращающую ошибку).
+3. После появления "insert SA:401" — bm install лаунчера, затем
+   bms.main.bundles.ready -> appfwk -> launcher.ready.
+
+Артефакты: 31_mi9_round18.log, 31_mi9_round18.txt,
+bbox_stub.c (обновлённый, с ioctl и hguard).
