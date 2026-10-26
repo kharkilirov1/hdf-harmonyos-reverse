@@ -1,0 +1,85 @@
+=== 47. BMS unblock: статический аудит + первая code-cave инъекция ===
+
+Дата: 2026-10-27. Статус blocked снят, продолжаем (Путь 2 -> Путь 1).
+
+═══════════════════════════════════════════════════════════════════════
+ШАГ 1. СТАТИЧЕСКИЙ АУДИТ libbms (arm64)
+═══════════════════════════════════════════════════════════════════════
+
+Файл: /system/lib64/libbms.z.so (6.0.0.108, 6090544 байт,
+md5 a14bed193bfadb8cb703399e3fde850e; в дереве ~/hp6/sys6).
+
+1) Импорты (objdump -T): SystemAbility::Publish ОТСУТСТВУЕТ.
+   Есть только: MakeAndRegisterAbility, AddSystemAbilityListener,
+   SystemAbility ctor/dtor, SystemAbilityManagerClient, OnStart/OnStop и т.п.
+   => BMS не вызывает Publish.
+
+2) strings: "Publish*" есть только у EventFwk (CommonEventManager/
+   CommonEventPublishInfo) — это публикация common events, не SA.
+   Строк "AddSystemAbility"/"Publishing SA" нет.
+
+3) Сравнение версий:
+   - 6.0.0.108 (arm64): Publish НЕ импортируется;
+   - старый образ /home/kharki/hp/sys_extract (arm64, 4.x-подобный,
+     5764584 байт, md5 00464e216dd70202d745b1ad3b1970c7):
+     Publish ТОЖЕ не импортируется.
+   - x86_64 7.0.0-B1 в этой сессии НЕТ (поиск по /home, /mnt/c не нашёл
+     x86_64 libbms) — сравнение с эмулятором не выполнено.
+
+4) Проверка «как публикуются нормальные SA»: библиотеки SA, которые
+   реально попадают в "insert SA", импортируют Publish и вызывают его:
+     libscreen_session_manager.z.so (4607) — импортирует SystemAbility::Publish;
+     libabilityms.z.so (180)             — импортирует SystemAbility::Publish.
+   => норма — SA сам вызывает Publish; libbms этого не делает ни в 6.0,
+      ни в старом образе. Это architectural finding для arm64-сборки:
+      BMS-код в этих образах не содержит вызова публикации.
+
+5) Init (VA 0x2ac040) — один ret (0x2ac730), результат в w20
+   (успех — mov w20,#1 в 0x2adfb0). Внутри 4 вызова GetParameter,
+   pthread_create/ffrt — Init выполняет реальную работу (OnStart идёт
+   5-17 c), т.е. Init, скорее всего, успешен; OnStart после него
+   добавляет слушателей (3299, 0x100500, 8250) и логирует OnStart end.
+   Но Publish не вызывается нигде.
+
+═══════════════════════════════════════════════════════════════════════
+ШАГ 2. CODE-CAVE (Путь 1) — первая реализация
+═══════════════════════════════════════════════════════════════════════
+
+Цель: libsystem_ability_fwk.z.so (C++ SAFWK), функция
+SystemAbility::AddSystemAbilityListener (VA 0x1f15c), хвост 0x1f1e0.
+
+Патч (patch_libsafwk.py + cave_safwk.s):
+  - 0x1f1e0 (ldr w2,[x20,#8]) -> b 0xf1ac (пещера в padding .text);
+  - пещера:
+      if ([x20+8] == 401) {
+          x8 = &slot; x0 = x20; bl GetAbilityRemoteObject (0x213c0);
+          x1 = &slot; x0 = x20; bl Publish (0x1f324);
+      }
+      ldr w2,[x20,#8]; mov w1,w19; b 0x1f1e8
+    где x20 = SystemAbility* (self), w19 = listener id.
+
+Итерации:
+  A) первая версия без x8 (sret) — при вызове GetAbilityRemoteObject
+     ABI нарушен: функция пишет sptr по указателю x8. Прогон: OnStart-SA:401
+     не завершился, bootevent упал до 6, panic 0.
+  B) исправлено: add x8, sp, #16 перед bl getter. Прогон: OnStart-SA:401
+     завершился штатно (24 c), panic 0, но "insert SA:401" ОТСУТСТВУЕТ,
+     bootevent 2.
+     => Publish получил пустой remote object: SystemAbility member +112
+        (remoteObject_) у BMS равен null, т.к. BMS никогда его не
+        устанавливал (Publish как раз и записывает его в +112).
+
+Патч откачен (libsafwk возвращён из эталона), инфраструктура сохранена:
+  docs/patch_libsafwk.py, docs/cave_safwk.s, docs/47_mi9_cave*.log.
+
+═══════════════════════════════════════════════════════════════════════
+СЛЕДУЮЩИЙ ШАГ
+═══════════════════════════════════════════════════════════════════════
+
+Найти в libbms реальный host-объект (BundleMgrHostImpl), который BMS
+создаёт в Init/OnStart, и передать именно его в Publish:
+  - найти глобал/синглтон libbms, где хранится указатель на host;
+  - либо инъекция в libbms (GOT AddSystemAbilityListener + 0x1c8 =
+    адрес Publish в safwk) с загрузкой этого указателя.
+
+Артефакты: 47_mi9_cave*.log, patch_libsafwk.py, cave_safwk.s.
