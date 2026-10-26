@@ -1,0 +1,51 @@
+=== 30. Раунд 17: ручная установка события bms.ready работает; bm install падает ===
+
+Дата: 2026-10-27. Продолжение 29_mi9_round16.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+1) Собран helper delayed_exec (static aarch64): спит N секунд, затем
+   exec'ает команду с перенаправлением stdout/stderr в файл в /data.
+   Позволяет запускать любые CLI из init-job'ов с задержкой и читать вывод
+   офлайн через debugfs.
+
+2) В init-job добавлены две отложенные команды:
+     [300 c] /system/bin/bm install -p /system/app/SuperLauncher/SuperLauncher.hap
+             (лог -> /data/diag/bm_install.log)
+     [420 c] /system/bin/begetctl param set bootevent.bms.main.bundles.ready true
+             (лог -> /data/diag/bm_setevent.log)
+
+3) РЕЗУЛЬТАТЫ:
+   - bootevent bms.main.bundles.ready ПОЯВИЛСЯ в консоли (счётчик 1) —
+     значит механизм события рабочий, и его можно выставить вручную
+     в нужный момент.
+   - bm install вернул: "error: failed to execute your command."
+     (в /data/diag/bm_install.log), т.е. CLI-установка не сработала
+     (возможно из-за синтаксиса/прав/неготовности BMS на 300 c).
+   - SuperLauncher так и не установился (в /data/app/el1/bundle/public
+     его нет), launcher.ready не появился.
+   - За прогон 10 bootevent'ов; продолжают ставиться HSP-киты
+     (flexiblelayout, cloudcommon, animatronix, photobrowser...).
+
+4) Определён реальный bundle лаунчера:
+     /system/app/SuperLauncher/SuperLauncher.hap
+     bundleName = com.huawei.hmos.slassistant
+     mainAbility = SuperLauncherMainAbility
+     (из pack.info/module.json)
+
+═══════════════════════════════════════════════════════════════════════
+СЛЕДУЮЩИЕ ШАГИ
+═══════════════════════════════════════════════════════════════════════
+
+1. Разобрать синтаксис bm install (strings/help), попробовать варианты:
+   -p <path>, -u 100, -h; проверить, требует ли BMS уже опубликованный SA 401
+   и足够 ли прав (bm запускается от root, BMS ждёт uid shell?).
+2. Попробовать установить лаунчер через BMS-список: добавить
+   /system/app/SuperLauncher в sys_prod install_list (или system) и дать
+   больше времени; проверить, появится ли он в /data/app.
+3. После установки: выставить bms.main.bundles.ready (уже умеем) и
+   посмотреть, стартует ли launcher (ожидаем launcher.ready).
+
+Артефакты: 30_mi9_round17.log, 30_mi9_round17.txt, delayed_exec.c.
