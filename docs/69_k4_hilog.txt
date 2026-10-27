@@ -1,0 +1,317 @@
+10-28 02:31:03.784     0     0 I A00000/HiLog: ========Zeroth log of type: app
+10-28 02:31:03.787     0     0 I I00000/HiLog: ========Zeroth log of type: init
+10-28 02:31:04.255  1755  1755 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: MountCarrierToShared start
+10-28 02:31:04.260  1755  1755 W I02C01/hmos_cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR
+10-28 02:34:23.376  1973  1973 E I04301/light_sensor/LIGHT_SENSOR: OpenUuidFile fail, unknown log, uuid is: 418005723
+10-28 02:34:23.399  1973  1973 E I04301/light_sensor/LIGHT_SENSOR: OpenUuidFile fail, unknown log, uuid is: 418005723
+10-28 02:34:42.007  1905  1939 E A02700/multimodalinput/osfingersense: fingersense_on_resume: stream is null
+10-28 02:35:23.723  2096  2096 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: UpdateCotaOpkeyLink start
+10-28 02:35:23.775  2096  2096 W I02C01/hmos_cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
+10-28 02:35:34.456  2096  2096 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: success to update cota carrier
+10-28 02:42:52.635  2557  3239 E C01704/resource_schedule_service/TagSched: [OpenQosCtrl]Failed to open qos_ctrl device
+10-28 02:42:52.635  2557  3239 E C01704/resource_schedule_service/TagSched: [IsQosHandleOpen]get qosSetHandle_ fail
+10-28 02:42:52.635  2557  3239 E C01704/resource_schedule_service/TagSched: [SetQosInternal]qosSetHandle open fail
+10-28 02:42:52.644  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:52.644  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:52.649  1792  2220 I C01800/samgr/SAMGR: NF SA:1301,1905_1041
+10-28 02:42:52.652  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:52.656  2920  3041 I C01810/sensors/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:52.657  2920  3041 I C02700/sensors/SensorService: in OnAddSystemAbility, OnAddSystemAbility systemAbilityId:3503
+10-28 02:42:52.657  2920  3041 I C01810/sensors/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:52.671  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_651
+10-28 02:42:52.676  2920  3044 I C01810/sensors/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:52.691  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:52.654  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:52.695  1792  1840 I C01800/samgr/SAMGR: SubscribeSA:3299,2836_77_15
+10-28 02:42:52.697  1792  1840 I C01800/samgr/SAMGR: NF SA:3299,2836_4
+10-28 02:42:52.701  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:52.709  1792  2302 I C01800/samgr/SAMGR: NF SA:10,3074_652
+10-28 02:42:52.712  2928  3156 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:52.715  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:52.715  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:52.731  1905  2039 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 02:42:52.732  1905  2039 E C02802/multimodalinput/setting_DataShare: [][GetBoolValue:88] Get bool value fail
+10-28 02:42:52.732  2126  2371 I C02220/msdp/DisplayChangeEventListener: in OnRemoveSystemAbility, systemAbilityId:501
+10-28 02:42:52.754  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:52.760  2836  2836 I C02405/useriam/FINGERPRINT_AUTH_SA: [Subscribe:67] subscribe service CommonEventService status success
+10-28 02:42:52.761  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:52.761  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:52.763  2836  2836 I C02405/useriam/FINGERPRINT_AUTH_SA: [Subscribe:53] start name:OsAccountService systemAbilityId:200
+10-28 02:42:52.764  2836  2836 I C02405/useriam/FINGERPRINT_AUTH_SA: [FingerprintAuthServiceStatusListener:23] ServiceStatusListener OsAccountService get
+10-28 02:42:52.772  1792  2492 I C01800/samgr/SAMGR: SubscribeSA:2901,2920_6_4
+10-28 02:42:52.776  1792  2220 I C01800/samgr/SAMGR: NF SA:10,3074_653
+10-28 02:42:52.787  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:52.792  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:52.817  1792  2220 I C01800/samgr/SAMGR: NF SA:10,3074_654
+10-28 02:42:52.824  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:52.827  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:52.831  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:52.833  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:52.833  2557  3247 W C01719/resource_schedule_service/ffrt: 2:RecordSymbolAndBacktrace:392 Process:resource_schedule_service,Tid:3207,Qos:0,CWorker:2,EWorker:1,SWorker:1,TaskType:0,timeout:1s
+10-28 02:42:52.857  1792  2220 I C01800/samgr/SAMGR: NF SA:10,3074_655
+10-28 02:42:52.871  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:52.875  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:52.875  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:52.887  2999  3112 I C02B21/drm_service/DRM: {WriteServiceEvent()-drm_dfx.cpp:51}EventWrite success
+10-28 02:42:52.848  1792  2492 I C01800/samgr/SAMGR: NotifyAddSA:2901,2920_4
+10-28 02:42:52.899  1792  2220 I C01800/samgr/SAMGR: NF SA:10,3074_656
+10-28 02:42:52.900  1792  1840 I C01800/samgr/SAMGR: SubscribeSA:200,2836_20_16
+10-28 02:42:52.900  1792  1840 I C01800/samgr/SAMGR: NF SA:200,2836_3
+10-28 02:42:52.908  2920  3044 I C01810/sensors/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:52.909  2920  3041 I C01810/sensors/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:52.909  2920  3041 I C02700/sensors/SensorService: in OnAddSystemAbility, OnAddSystemAbility systemAbilityId:2901
+10-28 02:42:52.909  2836  2836 I C02405/useriam/FINGERPRINT_AUTH_SA: [Subscribe:67] subscribe service OsAccountService status success
+10-28 02:42:52.911  2920  3041 I C02700/sensors/SensorService: in IsNeedLoadMotionLib, firstValue:0
+10-28 02:42:52.913  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:52.917  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:52.917  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:52.913  2920  3041 I C02700/sensors/SensorService: in IsNeedLoadMotionLib, Not support in this device
+10-28 02:42:52.936  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_657
+10-28 02:42:52.954  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:52.960  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:52.965  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:52.967  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:52.978  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_658
+10-28 02:42:52.979  2836  2836 I C02405/useriam/FINGERPRINT_AUTH_SA: [Subscribe:53] start name:OsAccountService systemAbilityId:200
+10-28 02:42:53.024  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:53.027  2999  3112 I C01810/drm_service/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:52.938  2920  3041 I C02700/sensors/SensorService: in OnAddSystemAbility, No need to load motion lib
+10-28 02:42:53.028  2920  3041 I C01810/sensors/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:53.028  2836  2836 I C02405/useriam/FINGERPRINT_AUTH_SA: [FingerprintAuthServiceStatusListener:23] ServiceStatusListener OsAccountService get
+10-28 02:42:53.219  1905  2039 I C02800/multimodalinput/AccountManager: [][InitializeSetting:170] enter
+10-28 02:42:53.229  1905  2039 I C02801/multimodalinput/AccountManager: [][RegisterSettingObserver:156] [AccountSetting] Registering observer of 'accessibility_shortcut_enabled' in datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_100?Proxy=true
+10-28 02:42:53.232  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_659
+10-28 02:42:53.153  1792  2492 I C01800/samgr/SAMGR: SubscribeSA:4607,2920_7_5
+10-28 02:42:53.249  1792  2492 I C01800/samgr/SAMGR: NF SA:4607,2920_1
+10-28 02:42:53.307  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_660
+10-28 02:42:53.323  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:53.324  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:53.356  2920  3044 I C01810/sensors/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:53.363  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:53.365  2920  3044 I C01810/sensors/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:53.368  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:53.368  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:53.368  2920  2920 I C01810/sensors/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:53.487  1792  2620 I C01800/samgr/SAMGR: AddDMListener called
+10-28 02:42:53.489  1792  2620 I C01800/samgr/SAMGR: NF SA:4802,1792_608
+10-28 02:42:53.489  1792  2620 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 02:42:53.492  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_661
+10-28 02:42:53.493  2999  3112 I C01810/drm_service/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:53.496  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:53.500  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:53.501  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:53.510  2999  2999 I C01810/drm_service/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:53.515  1792  1840 I C01800/samgr/SAMGR: SubscribeSA:200,2836_21_17
+10-28 02:42:53.515  1792  1840 I C01800/samgr/SAMGR: NF SA:200,2836_4
+10-28 02:42:53.520  1792  2220 I C01800/samgr/SAMGR: NF SA:1301,1905_1042
+10-28 02:42:53.543  1792  2220 I C01800/samgr/SAMGR: NF SA:10,3074_662
+10-28 02:42:53.549  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:53.552  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:53.552  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:53.552  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:53.559  1905  2039 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 02:42:53.574  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:53.584  1792  2220 I C01800/samgr/SAMGR: NF SA:10,3074_663
+10-28 02:42:53.591  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:53.596  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:53.596  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:53.597  2836  2836 I C02405/useriam/FINGERPRINT_AUTH_SA: [Subscribe:67] subscribe service OsAccountService status success
+10-28 02:42:53.599  2836  2836 I C02405/useriam/FINGERPRINT_AUTH_SA: [RegisterCommonEventListener:39] start
+10-28 02:42:53.600  2836  2836 I C02405/useriam/FINGERPRINT_AUTH_SA: [Subscribe:53] start name:common_event_service systemAbilityId:3299
+10-28 02:42:53.629  1792  2220 I C01800/samgr/SAMGR: NF SA:10,3074_664
+10-28 02:42:53.637  1905  2039 E C02801/multimodalinput/AccountManager: [][RegisterSettingObserver:162] [AccountSetting] Failed to register 'accessibility_shortcut_enabled' observer, error:19
+10-28 02:42:53.639  1905  2039 I C02801/multimodalinput/AccountManager: [][RegisterSettingObserver:156] [AccountSetting] Registering observer of 'accessibility_shortcut_enabled_on_lock_screen' in datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_100?Proxy=true
+10-28 02:42:53.655  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:53.669  1792  2220 I C01800/samgr/SAMGR: NF SA:10,3074_665
+10-28 02:43:32.259     0     0 I C00000/HiLog: ========Slow reader missed log lines: 161
+10-28 02:42:54.667  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:54.668  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:54.668  1792  3120 I C01800/samgr/SAMGR: FindSaNotify SA:931,3_89
+10-28 02:42:54.669  1792  3120 I C01800/samgr/SAMGR: SendSaAddedMsg notify SA:931
+10-28 02:42:54.669  2836  2982 I C02401/useriam/USER_AUTH_EXECUTOR: [GetParam@driver_manager.cpp:49] get param key bootevent.useriam.fwkready value true
+10-28 02:42:54.672  2836  2981 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:54.673  2836  2981 I C02401/useriam/USER_AUTH_SA: [OnCoAuthServiceStart@service_init_manager.cpp:62] co auth service start
+10-28 02:42:54.673  2836  2981 I C02401/useriam/USER_AUTH_SA: [CheckAllServiceStart@service_init_manager.cpp:95] idm service: 0, coauth service: 1, user authservice: 0, all service start: 0
+10-28 02:42:54.673  2836  2981 I C02401/useriam/USER_AUTH_SA: [LoadModeHandlerDefault@load_mode_handler_default.cpp:28] sa load mode is default
+10-28 02:42:54.682  1792  2220 W C01800/samgr/SAMGR: rm task 921 NF
+10-28 02:42:54.683  1792  2304 W C01800/samgr/SAMGR: rm task 901 NF
+10-28 02:42:54.684  1792  2304 I C01800/samgr/SAMGR: Scheduler SA:901 handle load suc event
+10-28 02:42:54.684  1792  2304 I C01800/samgr/SAMGR: Scheduler SA:901 loaded
+10-28 02:42:54.685  1792  2452 I C01800/samgr/SAMGR: FindSaNotify SA:901,3_89
+10-28 02:42:54.685  1792  2452 I C01800/samgr/SAMGR: SendSaAddedMsg notify SA:901
+10-28 02:42:54.687  2836  2979 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:54.688  2836  2979 I C02401/useriam/USER_AUTH_SA: [OnIdmServiceStart@service_init_manager.cpp:46] idm service start
+10-28 02:42:54.688  2836  2979 I C02401/useriam/USER_AUTH_SA: [CheckAllServiceStart@service_init_manager.cpp:95] idm service: 1, coauth service: 1, user authservice: 0, all service start: 0
+10-28 02:42:54.689  2836  2979 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:54.693  2276  3218 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:54.698  1792  2296 E C01800/samgr/SAMGR: UnloadSystemAbility invalid caller process, SA:8100
+10-28 02:42:54.701  1792  2304 I C01800/samgr/SAMGR: NF SA:10,3074_683
+10-28 02:42:54.703  2836  2981 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:54.705  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:54.706  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:54.708  1792  1840 I C01800/samgr/SAMGR: AddProc:av_session,57_0ms
+10-28 02:42:54.709  1792  1840 I C01800/samgr/SAMGR: Scheduler proc:av_session handle started event
+10-28 02:42:54.709  1792  1840 I C01800/samgr/SAMGR: Scheduler proc:av_session state 0 to 1
+10-28 02:42:54.709  1792  1840 I C01800/samgr/SAMGR: Scheduler proc:av_session started
+10-28 02:42:54.711  1792  2220 I C01800/samgr/SAMGR: Scheduler SA:921 handle load suc event
+10-28 02:42:54.711  1792  2220 I C01800/samgr/SAMGR: Scheduler SA:921 loaded
+10-28 02:42:54.712  1792  2620 I C01800/samgr/SAMGR: FindSaNotify SA:921,3_89
+10-28 02:42:54.712  1792  2620 I C01800/samgr/SAMGR: SendSaAddedMsg notify SA:921
+10-28 02:42:54.712  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:54.713  2836  2980 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:54.715  2836  2980 I C02401/useriam/USER_AUTH_SA: [OnUserAuthServiceStart@service_init_manager.cpp:78] user auth service start
+10-28 02:42:54.715  2836  2980 I C02401/useriam/USER_AUTH_SA: [CheckAllServiceStart@service_init_manager.cpp:95] idm service: 1, coauth service: 1, user authservice: 1, all service start: 1
+10-28 02:42:54.716  2836  2980 I C02401/useriam/USER_AUTH_SA: [CheckAllServiceStart@service_init_manager.cpp:106] all service start, init global instance begin
+10-28 02:42:54.719  2836  2980 I C02401/useriam/USER_AUTH_SA: [Subscribe@system_ability_listener.cpp:63] start name:device_manager, systemAbilityId::4802
+10-28 02:42:54.721  2836  2980 I C02401/useriam/USER_AUTH_SA: [SystemAbilityListener@system_ability_listener.cpp:29] start.
+10-28 02:42:54.713  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:54.739  2276  3218 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:54.745  1792  2304 I C01800/samgr/SAMGR: NF SA:10,3074_684
+10-28 02:42:54.751  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:54.752  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:54.763  2836  2979 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:54.736  2557  2622 I C01719/resource_schedule_service/ffrt: 7:RecordTimeoutFunctionInfo:367 Tid[3247] function is executed, which occupies worker for [1]s.
+10-28 02:42:54.807  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_685
+10-28 02:42:54.823  2276  3218 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:54.865  2024  2144 W C057C6/telephony/BinderInvoker: HandleCommands 1028: HandleCommands cmd:2148561418 cost time:23655ms
+10-28 02:42:54.868  1792  2220 I C01800/samgr/SAMGR: SubscribeSA:4802,2836_7_20
+10-28 02:42:54.879  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:54.879  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:54.880  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:54.881  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:54.883  2557  2745 I C01810/resource_schedule_service/SA_CLIENT: onProcStart,pid:3115
+10-28 02:42:54.885  2557  2745 E C01700/resource_schedule_service/RSS: [a92ab2f0aed812b 0 0]DispatchResource, not init.
+10-28 02:42:54.733  1792  2296 E C01800/samgr/SAMGR: unloadSa fail ret:1005
+10-28 02:42:54.887  1792  2220 I C01800/samgr/SAMGR: NF SA:4802,2836_1
+10-28 02:42:54.891  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_686
+10-28 02:42:54.897  2276  3219 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:54.903  2276  3218 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:54.903  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:54.905  2836  2982 E C057C2/useriam/IPCObjectProxy: PrintErrorDetailedInfo 163: failed, handle:1 error:-1 desc:*.V1_0 proxy:110166464 time:747050148336
+10-28 02:42:54.909  1974  1985 I C05A01/accesstoken_service/ATM: [GetDefPermission:219]Permission: ohos.permission.CAMERA
+10-28 02:42:54.637  2557  3247 W C01719/resource_schedule_service/ffrt: 6:RecordSymbolAndBacktrace:392 Process:resource_schedule_service,Tid:3247,Qos:0,CWorker:3,EWorker:3,SWorker:0,TaskType:0,timeout:1s
+10-28 02:42:54.924  2557  3247 E C02D11/resource_schedule_service/DfxUnwinder: params is nullptr, tid: 3247
+10-28 02:42:54.928  2836  2979 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:54.928  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:54.928  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:54.928  2836  2979 I C02405/useriam/FINGERPRINT_AUTH_SA: [OnStart:198] start
+10-28 02:42:54.928  2836  2979 I C02405/useriam/FINGERPRINT_AUTH_SA: [StartDriverManager:237] start
+10-28 02:42:54.929  2836  2979 I C02401/useriam/USER_AUTH_EXECUTOR: [Start@driver_manager.cpp:63] start
+10-28 02:42:54.749  2836  2981 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:54.931  2836  2980 I C02401/useriam/USER_AUTH_SA: [Subscribe@system_ability_listener.cpp:78] Subscribe service name:device_manager success
+10-28 02:42:54.932  2836  2980 I C02401/useriam/USER_AUTH_SA: [RegistDeviceManagerListener@soft_bus_manager.cpp:138] RegistDeviceManagerListener success.
+10-28 02:42:54.933  2836  2980 I C02401/useriam/USER_AUTH_SA: [Subscribe@system_ability_listener.cpp:63] start name:softbus_server, systemAbilityId::4700
+10-28 02:42:54.935  2836  2980 I C02401/useriam/USER_AUTH_SA: [SystemAbilityListener@system_ability_listener.cpp:29] start.
+10-28 02:42:54.940  1905  2039 I C02800/multimodalinput/AccountManager: [][InitializeSetting:170] enter
+10-28 02:42:54.941  1905  2039 I C02801/multimodalinput/AccountManager: [][RegisterSettingObserver:156] [AccountSetting] Registering observer of 'accessibility_shortcut_enabled' in datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_100?Proxy=true
+10-28 02:42:54.951  2276  3218 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:54.952  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:54.952  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:54.953  1792  1840 I C01800/samgr/SAMGR: NF SA:1301,1905_1048
+10-28 02:42:54.957  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:54.957  1905  2039 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 02:42:54.969  1792  2304 I C01800/samgr/SAMGR: SubscribeSA:4700,2836_3_21
+10-28 02:42:54.972  1792  2304 I C01800/samgr/SAMGR: NF SA:4700,2836_1
+10-28 02:42:54.976  2276  3218 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:54.983  2836  2980 I C02401/useriam/USER_AUTH_SA: [Subscribe@system_ability_listener.cpp:78] Subscribe service name:softbus_server success
+10-28 02:42:54.992  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:54.992  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:54.993  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_687
+10-28 02:42:54.996  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:54.996  3024  3024 W C03F00/MUSL-LDSO: dlopen so: /system/lib64/platformsdk/libfwmark_client.z.so init_time: 4946 ms
+10-28 02:42:55.004  2836  2982 E C02510/useriam/hdi_servmgr_client: get hdi service face_auth_interface_service failed, -1
+10-28 02:42:55.005  2836  2982 I C02401/useriam/USER_AUTH_EXECUTOR: [OnFrameworkReady@driver.cpp:106] start
+10-28 02:42:55.005  2836  2982 E C02401/useriam/USER_AUTH_EXECUTOR: [OnFrameworkReady@driver.cpp:114] hdi not connected, skip
+10-28 02:42:55.006  2836  2982 I C02401/useriam/USER_AUTH_EXECUTOR: [Start@driver_manager.cpp:91] add driver face_auth_interface_service
+10-28 02:42:55.007  2836  2982 I C02401/useriam/USER_AUTH_EXECUTOR: [Start@driver_manager.cpp:93] success
+10-28 02:42:55.008  2836  2979 I C02401/useriam/USER_AUTH_EXECUTOR: [GetParam@driver_manager.cpp:49] get param key bootevent.useriam.fwkready value true
+10-28 02:42:55.014  2276  3218 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:55.024  1905  2039 E C02801/multimodalinput/AccountManager: [][RegisterSettingObserver:162] [AccountSetting] Failed to register 'accessibility_shortcut_enabled' observer, error:19
+10-28 02:42:54.997  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:54.957  2928  3156 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.036  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_688
+10-28 02:42:55.041  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:55.045  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:55.045  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:54.985  2836  2980 I C02401/useriam/USER_AUTH_SA: [RegistSoftBusListener@soft_bus_manager.cpp:185] RegistSoftBusListener success.
+10-28 02:42:55.067  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.067  1792  1840 I C01800/samgr/SAMGR: insert SA:942_74
+10-28 02:42:55.068  1792  1840 W C01800/samgr/SAMGR: rm task 942 NF
+10-28 02:42:55.069  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.072  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.073  2276  3218 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:55.076  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:55.076  1792  2296 I C01800/samgr/SAMGR: NF SA:10,3074_689
+10-28 02:42:55.076  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:55.090  2836  2979 E C02510/useriam/hdi_servmgr_client: get hdi service fingerprint_auth_interface_service failed, -1
+10-28 02:42:55.091  2836  2979 I C02401/useriam/USER_AUTH_EXECUTOR: [OnFrameworkReady@driver.cpp:106] start
+10-28 02:42:55.092  2836  2979 E C02401/useriam/USER_AUTH_EXECUTOR: [OnFrameworkReady@driver.cpp:114] hdi not connected, skip
+10-28 02:42:55.092  2836  2979 I C02401/useriam/USER_AUTH_EXECUTOR: [Start@driver_manager.cpp:91] add driver fingerprint_auth_interface_service
+10-28 02:42:55.092  2836  2979 I C02401/useriam/USER_AUTH_EXECUTOR: [Start@driver_manager.cpp:93] success
+10-28 02:42:55.100  2836  2980 I C02401/useriam/USER_AUTH_SA: [Start@remote_auth_service.cpp:98] start
+10-28 02:42:55.101  2836  2980 I C02401/useriam/USER_AUTH_SA: [RegisterListener@remote_connect_listener_manager.cpp:47] RegisterListener connectionName:GLOBAL, endPointName:RemoteService
+10-28 02:42:55.103  1905  2039 I C02801/multimodalinput/AccountManager: [][RegisterSettingObserver:156] [AccountSetting] Registering observer of 'accessibility_shortcut_enabled_on_lock_screen' in datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_100?Proxy=true
+10-28 02:42:55.107  1792  1840 I C01800/samgr/SAMGR: Scheduler SA:942 handle load suc event
+10-28 02:42:55.107  1792  1840 I C01800/samgr/SAMGR: Scheduler SA:942 loaded
+10-28 02:42:55.110  2276  3219 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:55.111  1792  2620 I C01800/samgr/SAMGR: FindSaNotify SA:942,3_89
+10-28 02:42:55.111  1792  2620 I C01800/samgr/SAMGR: SendSaAddedMsg notify SA:942
+10-28 02:42:55.113  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:55.113  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:55.116  2836  2982 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:55.117  2836  2982 I C02406/useriam/FACE_AUTH_SA: [OnStart@face_auth_service.cpp:130] success
+10-28 02:42:55.118  2836  2982 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:55.124  1792  2296 I C01800/samgr/SAMGR: insert SA:943_75
+10-28 02:42:55.133  2276  3219 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:55.135  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:55.136  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:55.144  2836  2980 I C02401/useriam/USER_AUTH_SA: [Start@remote_auth_service.cpp:105] success
+10-28 02:42:55.163  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:55.163  2836  2982 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:55.167  1792  2296 W C01800/samgr/SAMGR: rm task 943 NF
+10-28 02:42:55.167  1792  2220 I C01800/samgr/SAMGR: NF SA:10,3074_690
+10-28 02:42:55.170  1792  1840 I C01800/samgr/SAMGR: NF SA:1301,1905_1049
+10-28 02:42:55.175  1905  2039 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 02:42:55.176  1905  2039 E C02801/multimodalinput/AccountManager: [][RegisterSettingObserver:162] [AccountSetting] Failed to register 'accessibility_shortcut_enabled_on_lock_screen' observer, error:19
+10-28 02:42:55.179  2836  2980 I C02401/useriam/USER_AUTH_SA: [Subscribe@system_ability_listener.cpp:63] start name:accesstoken_service, systemAbilityId::3503
+10-28 02:42:55.180  2836  2980 I C02401/useriam/USER_AUTH_SA: [SystemAbilityListener@system_ability_listener.cpp:29] start.
+10-28 02:42:55.183  1792  2296 I C01800/samgr/SAMGR: Scheduler SA:943 handle load suc event
+10-28 02:42:55.183  1792  2296 I C01800/samgr/SAMGR: Scheduler SA:943 loaded
+10-28 02:42:55.187  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:55.187  1792  2620 I C01800/samgr/SAMGR: FindSaNotify SA:943,3_89
+10-28 02:42:55.187  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:55.187  1792  2620 I C01800/samgr/SAMGR: SendSaAddedMsg notify SA:943
+10-28 02:42:55.191  2836  2979 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:55.192  2836  2979 I C02405/useriam/FINGERPRINT_AUTH_SA: [OnStart:207] success
+10-28 02:42:55.192  2836  2979 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:55.195  2836  2979 I C01810/useriam/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 02:42:55.195  1905  2039 I C02801/multimodalinput/AccountManager: [][RegisterSettingObserver:156] [AccountSetting] Registering observer of 'accessibility_shortcut_timeout' in datashare:///com.ohos.settingsdata/entry/settingsdata/USER_SETTINGSDATA_SECURE_100?Proxy=true
+10-28 02:42:55.157  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.200  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.201  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.204  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_691
+10-28 02:42:55.217  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:55.236  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.236  1792  1840 I C01800/samgr/SAMGR: SubscribeSA:3503,2836_6_22
+10-28 02:42:55.236  1792  1840 I C01800/samgr/SAMGR: NotifyAddSA:3503,2836_22
+10-28 02:42:55.284  1792  2296 I C01800/samgr/SAMGR: NF SA:10,3074_692
+10-28 02:42:55.305  2836  2978 I C02401/useriam/USER_AUTH_SA: [OnAddSystemAbility@system_ability_listener.cpp:34] start.
+10-28 02:42:55.315  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.352  2928  3155 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 02:42:55.359  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:42:55.360  2987  3140 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 02:42:55.368  1792  1840 I C01800/samgr/SAMGR: NF SA:10,3074_693
+10-28 02:42:55.334  2836  2980 I C02401/useriam/USER_AUTH_SA: [Subscribe@system_ability_listener.cpp:78] Subscribe service name:accesstoken_service success
+10-28 02:42:55.379  2836  2980 I C02401/useriam/USER_AUTH_SA: [RegisterAccessTokenListener@co_auth_service.cpp:336] RegisterAccessTokenListener success.
+10-28 02:42:55.381  2836  2978 I C02401/useriam/USER_AUTH_SA: [SetAccessTokenReady@co_auth_service.cpp:111] Set accesstk ready 1
+10-28 02:42:55.384  2836  2978 I C02401/useriam/USER_AUTH_SA: [OnAddSystemAbility@system_ability_listener.cpp:42] addFunc_ proc.
+10-28 02:42:55.385  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:42:55.392  2987  3140 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 02:44:00.327     0     0 I C00000/HiLog: ========Slow reader missed log lines: 723
+10-28 02:43:00.648  2999  3246 I A02B02/drm_service/OemCertService_V1: QueryMediaKeySystemName access.
+10-28 02:43:01.796  2999  3246 I A02B02/drm_service/OemCertService_V1: StopThread
+10-28 02:43:30.496  1792  2222 I C01800/samgr/SA: StartAbility proxy SA:2804
+10-28 02:43:30.499  2276  2332 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 02:43:30.501  2917  3019 I C01719/softbus_server/ffrt: 13:QueueHandler:72 Ctor sq_bt_switch_4, qos 2
+10-28 02:43:30.504  2917  3019 I C05760/softbus_server/ConnInit: InitSppSocketDriver# [InitSppSocketDriver]
+10-28 02:43:30.504  2917  3019 I C05762/softbus_server/ConnProxy: ProxyChannelManagerInit# ret=0

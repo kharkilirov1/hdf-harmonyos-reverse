@@ -1,0 +1,95 @@
+=== 69. Новый круг (раунд 1): ЧИСТЫЙ ЛОГ BMS ПОЙМАН + новая находка installd ===
+
+Дата: 2026-10-28. Цель: "добиться успеха любыми способами, возможно в
+старых вариантах что-то упущено".
+
+═══════════════════════════════════════════════════════════════════════
+A. НАЙДЕНО УПУЩЕННОЕ: installd (SA 511) не публиковался
+═══════════════════════════════════════════════════════════════════════
+
+На эмуляторе DevEco служба "installs" (SA 511, libinstalls.z.so,
+домен C01122/BMSInstalld) — ключевой участник установки: создаёт
+каталоги бандлов, распаковывает модули, проверяет code signature.
+В логах эмулятора её 502 строки, в наших логах — НОЛЬ.
+
+Наш /system/etc/init/installs.cfg отличался от эмуляторного:
+  было:  "start-mode": "boot"        (стартует слишком рано,
+          процесс зависает в binder-транзакциях, SA 511 не публикуется)
+  у эмулятора: "ondemand": true       (запуск по запросу от BMS)
+
+Исправил installs.cfg на эмуляторный вариант (ondemand).
+РЕЗУЛЬТАТ: в прогоне появилось
+  [377.5] ServiceStart starting:installs
+  [384.9] SAMGR: insert SA:511_39      <-- installd ВПЕРВЫЕ опубликован!
+
+═══════════════════════════════════════════════════════════════════════
+B. ЧИСТЫЙ ЛОГ BMS ПОЙМАН (важно!)
+═══════════════════════════════════════════════════════════════════════
+
+Прогон: полный install_list (182), ondemand installs, 7 снимков hilog
+(400/500/600/700/800/900/1000 c). Снимки 400-700 удались:
+  k1 = 552 КБ, k2 = 410 КБ, k3 = 205 КБ, k4 = 35 КБ (800+ пусто)
+
+В логе — РАБОТАЮЩАЯ верификация:
+  C011FE/HapVerify: parse root certs success, certs num: 2
+  trusted app source: huawei app gallery / huawei system apps / OpenHarmony
+  appSigningCert ... rootCa: Huawei CBG Root CA G2 ...
+  C011FE/HapVerify: Write 1 crls to file done
+=> сертификаты и trust anchors на месте, verify-инфраструктура жива.
+
+ОШИБКИ УСТАНОВКИ (ранние бандлы, полноценный лог):
+  C01122/installs/BMSInstalld: installd_operator.cpp:VerifyCodeSignature:1597
+     VerifyCode failed due to -769
+  C01122/installs/BMSInstalld: installd_host_impl.cpp:VerifyCodeSignature:1800
+     verify code signature failed: 8522362
+  C01122/foundation/BMSInstalld: installd_proxy.cpp:VerifyCodeSignature:762
+     TransactInstalldCmd failed
+  C01120/foundation/BMS: ProcessSystemHspInstall:1043
+     Install systemHsp /system/app/appServiceFwk/PaymentServiceHsp result 8522362
+  C01120/foundation/BMS: app_service_fwk_installer.cpp(CheckAndParseFiles:410)
+     Hsp syscap check failed 8519890
+  C01120/foundation/BMS: [bundle_data_mgr.cpp(UpdateBundleInstallState:295)]
+     update failed: incorrect state, -n: com.huawei.hmos.paymentServiceHsp
+  C01120/foundation/BMS: app_service_fwk_installer.cpp(RollBack:806)
+     RollBack: com.huawei.hmos.paymentServiceHsp
+
+Расшифровка: 8522362 = 0x820A7A ("verify code signature failed"?
+внутренняя ошибка -769 из VerifyCode). Проверка идёт на уровне
+installd: installd_operator::VerifyCodeSignature для HSP/HAP
+(нативные .so внутри), и она падает даже при живых рут-сертификатах.
+
+Про лаунчер в окне 400-700c сообщений нет — при полном install_list
+BMS обрабатывает 182 записи по очереди, лаунчер (SuperLauncher) ещё
+не дошёл. Окно 800+ не сняли (снимки пустые).
+
+═══════════════════════════════════════════════════════════════════════
+C. НОВАЯ РАБОЧАЯ ГИПОТЕЗА ПО "ВАРИАНТУ Б" (userdata)
+═══════════════════════════════════════════════════════════════════════
+
+Ранее мы вписали запись лаунчера в installed_bundle, но BMS её ВЫЧИСТИЛ.
+Возможно, причина не в подписи, а в НЕСОГЛАСОВАННОСТИ ФС: на эмуляторе
+BMS при старте видит записи БД + реальные каталоги /data/app/el1/
+bundle/public/<bundle>/... и ничего не чистит. У нас каталогов не было.
+
+Проверить на эмуляторном userdata:
+  /data/app/el1/bundle/public/<bundle>/  — что именно лежит
+     (libs/<abi>, <hsp>/<module>; для чистого ArkTS — возможно пусто)
+  /data/app/el1/100/base/<bundle>/ ...   — пользовательские каталоги
+  согласованность с полями BundleInfo (codePath, moduleDataDir...)
+Затем воспроизвести такую же согласованную раскладку для нашего
+arm64-лаунчера (+ DB строка) и проверить, переживёт ли запись boot.
+
+═══════════════════════════════════════════════════════════════════════
+D. СОСТОЯНИЕ
+═══════════════════════════════════════════════════════════════════════
+
+- installs.cfg: ondemand (как у эмулятора) — ОСТАВЛЕН (улучшение)
+- install_list.json: полный (182)
+- libsafwk: cave публикации SA 401 (работает)
+- libhapverify/libbms: оригиналы
+- probe-джобы: остались (снимки 400..1000)
+- ядро: без изменений с прошлого круга
+
+АРТЕФАКТЫ: docs/69_clean_bms_log.txt, docs/69_k1_hilog.txt (552 КБ),
+  docs/69_k2_hilog.txt, docs/69_k3_hilog.txt, docs/69_k4_hilog.txt,
+  docs/69_mi9_round48.log
