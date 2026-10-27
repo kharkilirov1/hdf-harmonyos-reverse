@@ -1,0 +1,105 @@
+=== 61. Раунд 42: ФИКСАЦИЯ БАРЬЕРА (итоговая) ===
+
+Дата: 2026-10-27. Продолжение 60_tee_barrier.
+
+Итог: boot.completed/launcher.ready средствами userland на этой
+платформе НЕ ДОСТИГНУТЫ из-за конкретного, доказанного барьера:
+установка HAP-лаунчера требует проверки подписи/провижна BMS, а на
+QEMU/4.14 отсутствует стек Huawei TEE/HKS, без которого проверка
+не может дать provision и установка падает.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО ДОСТИГНУТО (рабочие рубежи)
+═══════════════════════════════════════════════════════════════════════
+
+- HarmonyOS 6.0.0.108 arm64 userland грузится на QEMU (4.14.180 arm64),
+  0 panic/reboot, 20+ минут стабильно.
+- bootevents: samgr.ready, appfwk.ready, appspawn.started,
+  hdf_devmgr.ready, param_watcher.started, powermgr.ready,
+  renderservice.ready, avsessionservice.ready (8-15 за прогон).
+- BMS (SA 401) публикуется принудительно через code-cave в
+  libsystem_ability_fwk.z.so (пещера-публикация host из [SA+0x178],
+  listener 8250). "insert SA:401" в логе samgr — СТАБИЛЬНО.
+- bm CLI в окнах живости BMS работает (dump/install отвечают).
+- При blunt-патче HapVerify получен bootevent
+  bms.main.bundles.ready = true (2-4 события).
+- BMS успешно РАСПАРСИЛ SuperLauncher.hap и регистрировал
+  com.huawei.hmos.slassistant в preinstalled_bundle (доказано по
+  bmsdb_slave.db).
+
+═══════════════════════════════════════════════════════════════════════
+2. БАРЬЕР: нет Huawei TEE/HKS (доказательства)
+═══════════════════════════════════════════════════════════════════════
+
+a) teecd (TEE client daemon) циклически падает:
+   [72.18]   ServiceStart starting:teecd
+   [321.06]  Child process teecd(pid 1801) exit with code : 255
+   [1199.8]  teecd(pid 4109) exit with code : 255
+   [1203.5]  teecd(pid 4119) exit with code : 255
+   [1203.5]  ServiceReap start failed! teecd will reStart 240 second later
+
+b) teecd требует /dev/tc_ns_client:
+   strings teecd: "/dev/tc_ns_client", "/dev/tc_private",
+   "open tee client dev failed, fd is ..."
+   /system/etc/ueventd.config и /system/etc/init/teecd.cfg ссылаются
+   на tc_ns_client.
+
+c) В ядре 4.14 НЕТ драйвера Huawei TEE client:
+   .config: CONFIG_TEE=y, CONFIG_OPTEE=y (только generic TEE core),
+   никаких tc_ns/tzdriver/TRUSTZONE опций.
+   => /dev/tc_ns_client не создаётся, teecd падает с 255.
+
+d) hks_compatibility_bin отсутствует:
+   [171.47] Init ERROR DoExec: execute "/system/bin/hks_compatibility_bin"
+            failed: 2
+
+e) BMS не получает device security (лог BMS, docs/57_h1_hilog.txt):
+   [SetRdDevice:153]get devicesSecurityProxy failed (8 раз)
+
+f) Как следствие — установка system-app падает:
+   check provision bundleName failed
+   parse hap file failed due to errorCode : 8519752 (0x820008)
+   install system bundle fail, error: 8519752
+   (также check syscap failed 8519890/8519686,
+    hap files check signature info failed 8519686,
+    IsHapCompress/GetEntry failed ets/modules.abc)
+
+g) Обход "blunt HapVerify -> 0" даёт bms.main.bundles.ready, но
+   оставляет HapVerifyResult пустым: provisionBundleName пуст ->
+   CheckBundleName падает -> установка не происходит (БД/installed
+   остаются без лаунчера). То есть обход не помогает установить HAP.
+
+═══════════════════════════════════════════════════════════════════════
+3. ВЫВОД
+═══════════════════════════════════════════════════════════════════════
+
+Барьер: установка HAP (лаунчера) в BMS требует device-security/TEE
+провижна (/dev/tc_ns_client + hks), недоступного на QEMU с ядром 4.14
+без Hisilicon TZ-драйвера. Без него:
+  - teecd не работает (exit 255),
+  - hks_compatibility_bin нет,
+  - devicesSecurityProxy недоступен,
+  - HapVerify не даёт provision -> установка system-app падает
+    (8519752/8519686),
+  - значит launcher установить нельзя, appspawn не поднимет лаунчер,
+    launcher.ready / boot.completed недостижимы.
+
+Это не "неизвестная ошибка", а конкретный отсутствующий компонент
+платформы (TEE) с 4 независимыми доказательствами в логах + 1
+статическим (конфиг ядра) + 1 экспериментальным (blunt-патч ломает
+provision и установка всё равно не идёт).
+
+═══════════════════════════════════════════════════════════════════════
+4. СОСТОЯНИЕ РАБОЧЕГО КАБИНЕТА
+═══════════════════════════════════════════════════════════════════════
+
+- libsafwk: пещера публикации SA 401 (cave_once) — применена (рабочая).
+- libhapverify: ДЕРЕВО = оригинал (.orig), образ последнего прогона
+  содержал blunt-версию (для чистых прогонов пересобрать образ).
+- install_list.json: восстановлен полный (182 записи).
+- probe-джобы (zz_hilogdump.cfg) удалены.
+- kernel: pin foundation отключён; диагностические принты приглушены.
+
+АРТЕФАКТЫ: docs/61_tee_barrier_final.txt, docs/61_mi9_round42.log,
+           docs/60_tee_barrier.txt, docs/57_h1_hilog.txt,
+           docs/libhapverify.blunt
