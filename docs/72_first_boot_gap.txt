@@ -1,0 +1,82 @@
+=== 72. Круг 4: BMS НЕ входит в "first boot" -> install_list HAP не сканируется ===
+
+Дата: 2026-10-28. Продолжение 71_hap_gap.
+
+═══════════════════════════════════════════════════════════════════════
+1. ГЛАВНОЕ ОТКРЫТИЕ ЭТОГО КРУГА
+═══════════════════════════════════════════════════════════════════════
+
+В логах ЭМУЛЯТОРА, прямо перед установкой 75 бандлов:
+  C01120/BMS: OnBmsStarting first boot        (22:34:14)
+
+В НАШИХ логах (все прогоны, в т.ч. с ПОЛНОСТЬЮ ЧИСТЫМ /data — прогон
+с hilog-снимками на 260/380 c) строки "OnBmsStarting first boot" НЕТ.
+=> BMS не считает наш запуск "первым" и НЕ выполняет первичное
+   сканирование /system/app (install_list), поэтому HAP-приложения
+   (включая лаунчер) вообще не устанавливаются. Ставятся только HSP
+   из app_service_fwk_install_list (это отдельный, не-first-boot путь).
+
+Проверено также:
+  - все 182 записи install_list.json имеют существующие каталоги
+    в /system/app (missing: 0);
+  - в libbms есть строка "only scan app_list.json on first startup" —
+    первичное сканирование выполняется только на первом старте.
+
+═══════════════════════════════════════════════════════════════════════
+2. ЧТО ПРОБОВАЛОСЬ
+═══════════════════════════════════════════════════════════════════════
+
+(a) Сид user 100 из userdata эмулятора (account/*, os_account DB,
+    /data/app/el1/100, el2/100, service/el1/100):
+    -> ПРОВАЛ: mke2fs -d не сохраняет SELinux xattr, метки потеряны,
+       accountmgr зациклился в avc denied (чтение libaccountmgr.z.so и
+       др.), BMS создал пустую БД, installed_bundle=0.
+    Откатили (rm -rf tree/data).
+
+(b) Прогон с полностью отсутствующим /data (tree/data удалён):
+    insert401=5, insert511=1, w1=283 КБ лог (260 c)
+    "OnBmsStarting first boot" всё равно НЕТ.
+
+(c) Параметры BMS (bms.para):
+      bootevent.bms.main.bundles.ready = false
+      persist.bms.data.preload = true
+    bms_ext.para:
+      persist.bms.pre_install_with_card_status = default
+      persist.bms.pre_install_with_card_enable = false
+
+(d) В логах BMS видно "Pre-install exception app service save success"
+    и "LoadPreInstallBundleInfo QueryData failed" — таблица preinstall
+    в БД пуста/недоступна, но на first-boot признак это не влияет.
+
+═══════════════════════════════════════════════════════════════════════
+3. ПОЧЕМУ ЭТО ВАЖНО
+═══════════════════════════════════════════════════════════════════════
+
+Пока BMS не начнёт "first boot" сканирование, HAP-приложения
+(в т.ч. com.huawei.hmos.slassistant) не будут ставиться этим путём —
+значит ни launcher.ready, ни boot.completed не появятся.
+
+Ключевой вопрос следующего раунда: как BMS определяет "первый запуск"
+(какой файл/БД/параметр проверяет) и как заставить его считать наш
+запуск первым.
+
+Кандидаты (проверить в коде libbms / по состоянию /data на эмуляторе):
+  - наличие/отсутствие preinstall-данных в RDB (preinstall_data_storage);
+  - флаг в /data/service/el1/public/bms/bundle_manager_service (например
+    файл-маркер или таблица bms_param);
+  - проверка "версии системы" vs "версии данных" (upgrade != first boot);
+  - параметр persist.bms.* (data.preload / version).
+
+═══════════════════════════════════════════════════════════════════════
+4. СОСТОЯНИЕ
+═══════════════════════════════════════════════════════════════════════
+
+  - libinstalls.z.so — патчен (VerifyCodeSignature -> OK), бэкап есть
+  - installs.cfg — ondemand
+  - install_list.json — полный (182), каталоги все на месте
+  - /data в дереве отсутствует (чисто)
+  - libsafwk — cave SA 401; libhapverify/libbms — оригиналы
+  - probe-джобы: hilog -w start + снимки
+
+АРТЕФАКТЫ: docs/72_first_boot_gap.txt, docs/72_w1_hilog.txt (260 c),
+  docs/72_w2_hilog.txt (380 c), docs/72_mi9_round51.log

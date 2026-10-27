@@ -137,3 +137,5 @@ seed.img
 !docs/70_*.gz
 
 !docs/71_*.log
+
+!docs/72_*.log
