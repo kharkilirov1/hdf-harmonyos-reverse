@@ -95,3 +95,5 @@ seed.img
 !docs/48_*.log
 
 !docs/50_*.log
+
+!docs/51_*.log
