@@ -1,0 +1,91 @@
+=== 68. Вариант B: "уже установленный" лаунчер из userdata эмулятора ===
+
+Дата: 2026-10-27/28. По команде пользователя "делай б".
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО ВЫТАЩИЛ ИЗ ЭМУЛЯТОРА
+═══════════════════════════════════════════════════════════════════════
+
+Живой DevEco-эмулятор (Mate 90 Pro, HarmonyOS 7.0.0.107, x86_64):
+  deployed userdata.img.qcow2 (1.4 ГБ, backing = Sdk/.../7.0.0/phone_all_x86/userdata.img)
+
+Конвертация в raw (qcow2 с Windows-путём backing):
+  qemu-img rebase -u -f qcow2 -F raw -b <wsl-путь к userdata.img> overlay.qcow2
+  qemu-img convert -O raw overlay.qcow2 userdata.raw      (6 ГБ)
+Монтирование: mount -o loop,ro,noload userdata.raw /mnt/emuud
+  (обычный ro-mount не даёт: "recovery required on readonly filesystem")
+
+В /data эмулятора:
+  /data/app/el1/bundle/public/<bundle>/ — 77 установленных бандлов;
+    ЛАУНЧЕР = com.ohos.sceneboard (не slassistant!)
+  Содержимое каталога бандла: ТОЛЬКО нативные библиотеки и вложенные HSP
+    (libs/x86_64/*.so, <hsp-bundle>/<module>), НЕТ module.json/ets —
+    т.е. HAP остаётся в /system/app, а в /data только libs/HSP.
+    codePath в BundleInfo = /data/app/el1/bundle/public/<bundle>,
+    но hapPath модуля = /system/app/SceneBoard/SceneBoard.hap.
+  BMS DB: /data/service/el1/public/bms/bundle_manager_service/bmsdb.db
+    (3 МБ, 77 записей installed_bundle, полный BundleInfo JSON).
+
+Структура BundleInfo (на примере sceneboard):
+  baseApplicationInfo: bundleName, codePath, cpuAbi=x86_64,
+    nativeLibraryPath=libs/x86_64, versionCode, appProvisionType=release...
+  baseBundleInfo: appId (bundleName+подписные данные), entryModuleName,
+    hapModuleNames, cpuAbi, uid=-1, entryInstallationFree...
+  innerModuleInfos: {moduleName: {isEntry, hapPath, mainAbility,
+    compileMode=esmodule, deviceTypes, abilityInfos[]...}} (53 шт.)
+  baseAbilityInfos: {"<bundle>.<module>.<Ability>": {...поля ability...}}
+  bundleStatus, installMark, innerBundleUserInfos ...
+
+═══════════════════════════════════════════════════════════════════════
+2. ЧТО СДЕЛАЛ В НАШЕМ arm64-ОБРАЗЕ
+═══════════════════════════════════════════════════════════════════════
+
+Скрипт inject_launcher_full.py: берёт из БД эмулятора запись
+com.ohos.sceneboard (entry-HAP /system/app/SceneBoard/SceneBoard.hap) и
+перецеливает на наш лаунчер:
+  bundleName com.huawei.hmos.slassistant, module phone,
+  hapPath /system/app/SuperLauncher/SuperLauncher.hap,
+  codePath /system/app/SuperLauncher, cpuAbi arm64, versionCode 60000302,
+  abilities: SuperLauncherMainAbility + SuperLauncherUIability +
+  DefaultIntentBackgroundUiAbility + PermissionRequestAbility,
+  внутренние модули — только entry "phone".
+Пишет запись в installed_bundle (bmsdb.db и bmsdb_slave.db) прямо в
+дерево образа; preinstalled НЕ пишет (чтобы BMS не ставил HAP).
+
+═══════════════════════════════════════════════════════════════════════
+3. РЕЗУЛЬТАТ ПРОГОНА (900 c, insert401=5)
+═══════════════════════════════════════════════════════════════════════
+
+  insert SA:401 = 5 (BMS публикуется, стабильно)
+  в консоли про slassistant/launcher — НИЧЕГО
+  bm/aa/hilog-пробы снова пустые (висят)
+  ЧЕРЕЗ 900 c В БД: записи лаунчера НЕТ —
+    installed_bundle = 4 HSP-кита (hdscomponent, health.kit, walletkit,
+    weather). BMS УДАЛИЛ нашу запись при старте.
+
+ВЫВОД: BMS при инициализации пере-проверяет записи installed_bundle
+(парсит/верифицирует HAP по hapPath) и вычищает всё, что не прошло
+проверку. То есть подсунуть "уже установленный" бандл без прохождения
+проверки подписи нельзя — барьер verify всё равно срабатывает.
+
+На эмуляторе записи валидны потому, что там первый boot прошёл с
+эмуляторным обходом проверки ("Emulator does not verify signature").
+
+═══════════════════════════════════════════════════════════════════════
+4. СЛЕДУЮЩИЙ ШАГ (главный)
+═══════════════════════════════════════════════════════════════════════
+
+Теперь у нас есть x86_64-библиотеки эмулятора 7.0.0 (libbms/libhapverify)
+и x86_64-ядро 5.10 — можно точно найти условие эмуляторного обхода:
+  - в x86 коде ссылки на строки — RIP-relative (lea reg,[rip+disp]),
+    ищутся тривиально (в отличие от arm64 adrp/add);
+  - находим функцию, которая логирует
+    "Emulator does not verify signature" и что она проверяет
+    (const.product.name=="emulator"? const.product.model? иное);
+  - переносим условие на arm64: либо патч соответствующей ветки в
+    нашем libbms (mov w0,#1 / безусловный переход), либо подделка
+    параметра, который читает именно та функция (аккуратно, без
+    поломки param_service).
+
+АРТЕФАКТЫ: docs/68_userdata_attempt.txt, docs/68_mi9_round47.log,
+           docs/inject_launcher_full.py
