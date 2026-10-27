@@ -1,0 +1,70 @@
+=== 59. Раунд 40: лаунчер ПОПАЛ в preinstalled_bundle (BMS его распарсил) ===
+
+Дата: 2026-10-27. Продолжение 58_syscap_errors.
+
+═══════════════════════════════════════════════════════════════════════
+ЭКСПЕРИМЕНТ: минимальный install_list (только SuperLauncher)
+═══════════════════════════════════════════════════════════════════════
+
+1) /system/etc/app/install_list.json заменён на
+   {"install_list":[{"app_dir":"/system/app/SuperLauncher","removable":false}]}
+   (полный список сохранён как install_list.json.full).
+2) Прогон с 4 снимками hilog (380/460/540/620 c): m1=18K, m2=21K,
+   m3=12K, m4=0 — в снимках НЕТ строк BMS (hilog нестабилен).
+3) НО по БД BMS (bmsdb_slave.db после прогона):
+   preinstalled_bundle (10 записей) СОДЕРЖИТ:
+     com.huawei.hmos.slassistant   <-- ЛАУНЧЕР!
+   installed_bundle (5): только HSP-киты, лаунчера нет.
+   /data/app/el1/bundle/public = 14 каталогов.
+
+ВЫВОД: BMS РАСПАРСИЛ SuperLauncher.hap и зарегистрировал его как
+preinstalled (это уже большой шаг: HAP читается, bundleName извлекается),
+но до installed_bundle (фактическая установка) не дошёл.
+
+═══════════════════════════════════════════════════════════════════════
+ПОВТОРНЫЙ ПРОГОН НА ТОМ ЖЕ ОБРАЗЕ (данные /data сохранены)
+═══════════════════════════════════════════════════════════════════════
+
+  insert SA:401 = 1; bootevents 8; bms.ready = 0; лаунчер не установлен
+  installed_bundle не изменился (5 китов), preinstalled остался.
+
+=> Повторный старт сам по себе не устанавливает preinstalled-записи;
+   похоже, установка preinstalled происходит только после
+   bms.main.bundles.ready (а он в этом прогоне не выставился).
+
+═══════════════════════════════════════════════════════════════════════
+ПОПЫТКА СКОМБИНИРОВАТЬ: blunt-патч HapVerify + существующие данные
+═══════════════════════════════════════════════════════════════════════
+
+Собрал blunt-версию libhapverify (HapVerify -> mov w0,#0; ret, пещера
+0x1a204) в /mnt/c/.../libhapverify.blunt (320536 байт) — БЕЗ изменения
+дерева, чтобы не потерять /data.
+Вписать её в образ через debugfs -w НЕ УДАЛОСЬ:
+  "Inode bitmap checksum does not match bitmap while reading allocation bitmaps"
+  -> debugfs не открывает ФС на запись (образ с metadata_csum).
+Нужен другой способ: mount -o loop из WSL (sudo) или пересборка образа
+с сохранением data-раздела.
+
+═══════════════════════════════════════════════════════════════════════
+СОСТОЯНИЕ / АРТЕФАКТЫ
+═══════════════════════════════════════════════════════════════════════
+
+- libsafwk cave_once — рабочий (insert SA:401).
+- libhapverify в дереве = .orig (без патча).
+- install_list.json в дереве = МИНИМАЛЬНЫЙ (только SuperLauncher);
+  backup: install_list.json.full (182 записи).
+- В образе /data: preinstalled_bundle содержит slassistant.
+- libhapverify.blunt готов для инъекции.
+
+ПЛАН (раунд 41)
+1. Инъекция blunt-патча в образ через `sudo mount -o loop` (WSL) —
+   с сохранением /data (preinstalled=slassistant).
+2. Boot 1200 c: ждём bms.main.bundles.ready=true; после него BMS должен
+   доустановить preinstalled-лаунчер -> installed_bundle += slassistant
+   -> appspawn стартует лаунчер -> launcher.ready.
+3. Если не установит — проверить, что мешает (hilog-снимки после ready).
+4. Фиксировать результат: либо launcher.ready/boot.completed,
+   либо точный барьер.
+
+АРТЕФАКТЫ: docs/59_launcher_preinstalled.txt, docs/59_mi9_round40.log,
+           docs/libhapverify.blunt, install_list.min.json

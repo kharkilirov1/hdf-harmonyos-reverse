@@ -111,3 +111,6 @@ seed.img
 !docs/57_*.log
 
 !docs/58_*.log
+
+!docs/59_*.log
+!docs/*.blunt
