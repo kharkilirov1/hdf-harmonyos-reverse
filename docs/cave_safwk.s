@@ -6,9 +6,9 @@ cave:
 	ldr	w10, [x20, #8]
 	cmp	w10, #401
 	b.ne	skip
-	add	x8, sp, #16
-	mov	x0, x20
-	bl	getter
+	ldr	x9, [x20, #0x178]
+	cbz	x9, skip
+	str	x9, [sp, #16]
 	add	x1, sp, #16
 	mov	x0, x20
 	bl	publish

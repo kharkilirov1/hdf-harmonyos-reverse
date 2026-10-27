@@ -87,7 +87,7 @@ def build_cave(cave_va):
     words = list(struct.unpack("<%dI" % (len(code) // 4), code))
     bl_idx = [i for i, w in enumerate(words) if w == 0x94000000]
     b_idx = [i for i, w in enumerate(words) if w == 0x14000000]
-    assert len(bl_idx) == 2, "expect 2 bl placeholders, got %d" % len(bl_idx)
+    assert len(bl_idx) in (1, 2), "bl placeholders: %d" % len(bl_idx)
     assert len(b_idx) == 1, "expect 1 b placeholder, got %d" % len(b_idx)
 
     def enc(insn_va, target_va):
@@ -99,8 +99,11 @@ def build_cave(cave_va):
     def enc_b(insn_va, target_va):
         return 0x14000000 | (((target_va - insn_va) >> 2) & 0x3FFFFFF)
 
-    words[bl_idx[0]] = enc_bl(cave_va + bl_idx[0] * 4, GETTER_VA)
-    words[bl_idx[1]] = enc_bl(cave_va + bl_idx[1] * 4, PUBLISH_VA)
+    if len(bl_idx) == 2:
+        words[bl_idx[0]] = enc_bl(cave_va + bl_idx[0] * 4, GETTER_VA)
+        words[bl_idx[1]] = enc_bl(cave_va + bl_idx[1] * 4, PUBLISH_VA)
+    else:
+        words[bl_idx[0]] = enc_bl(cave_va + bl_idx[0] * 4, PUBLISH_VA)
     words[b_idx[0]] = enc_b(cave_va + b_idx[0] * 4, RET_VA)
     return struct.pack("<%dI" % len(words), *words)
 
