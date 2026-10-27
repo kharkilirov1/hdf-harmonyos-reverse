@@ -1,0 +1,69 @@
+=== 58. Раунд 39: в логах BMS — ошибки syscap (8519890/8519686) ===
+
+Дата: 2026-10-27. Продолжение 57_hilog_works.
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО НАШЛИ В СОХРАНЁННОМ ЛОГЕ BMS (docs/57_h1_hilog.txt)
+═══════════════════════════════════════════════════════════════════════
+
+Уникальные ошибки BMS/HapVerify (grep по C0112/C011F):
+
+  8  [SetRdDevice:153]get devicesSecurityProxy failed
+  3  check syscap failed 8519890
+  2  bundle_install_checker.cpp:ParseHapFiles:393 check provision bundleName failed
+  2  base_bundle_installer.cpp:ParseHapFiles:4192 parse hap file failed ... 8519752
+  2  [system_bundle_installer.cpp(InstallSystemBundle:43)]install system bundle fail, error: 8519752
+  1  check syscap failed 8519686
+  1  [base_bundle_installer.cpp(ProcessBundleInstall:1326)]hap files check signature info failed 8519686
+  1  [bundle_extractor.cpp(IsHapCompress:69)]GetEntry failed entryName: ets/modules.abc
+  1  [zip_file.cpp(GetEntry:327)]get entry failed
+  1  check hap syscaps fail
+  1  empty bundlePaths check hap syscaps fail
+  1  Install System app:/system/app/pasteboard_dialog error
+  1  Install System app:/system/app/eSIM error
+  1  Install System app:/system/app/WalletKitHsp error
+
+ВЫВОД
+  Помимо подписи (0x820008-класс) в системе есть отдельный барьер:
+  ПРОВЕРКА SYSCAP (SystemCapability). Для непатченного HapVerify
+  именно она может ронять установку system-app'ов:
+    check syscap failed 8519890 / 8519686  (0x81FF06/0x820002 области)
+    hap files check signature info failed 8519686
+    IsHapCompress/GetEntry failed (ets/modules.abc)
+
+  Файлы syscap в образе ЕСТЬ:
+    /system/etc/syscap.json (46 КБ, список компонентов)
+    /system/etc/param/syscap.para (const.SystemCapability.*=true)
+  То есть профиль есть, но проверка всё равно падает.
+
+═══════════════════════════════════════════════════════════════════════
+СОСТОЯНИЕ
+═══════════════════════════════════════════════════════════════════════
+
+- libhapverify восстановлен из .orig (без патча).
+- libsafwk cave_once работает (insert SA:401 = 1-2 за прогон).
+- hilog-клиент: снимок БЕЗ аргументов иногда даёт полный лог (187 КБ),
+  иногда 0 байт (зависит от момента/буфера). Надо снимать несколько
+  снимков подряд (300..700 c), чтобы гарантированно поймать окно
+  установки system-app'ов.
+- Попытки снять hilog на 420/500/580 в последнем прогоне дали 0 байт.
+
+═══════════════════════════════════════════════════════════════════════
+ПЛАН (раунд 40)
+═══════════════════════════════════════════════════════════════════════
+
+1. Снять 8 снимков hilog подряд: 300, 350, 400, 450, 500, 550, 600, 650
+   (delayed_exec в одном job). Один из них попадёт в окно установки.
+2. Grep по: SuperLauncher, slassistant, "Install System app:", "check
+   syscap failed", "error: 85".
+3. По результату:
+   - если лаунчер падает на syscap -> найти и патчить syscap-проверку
+     в libbms (в логе есть адрес строки: refs 0x36d5ec и 0x3917f0);
+   - если на подписи -> точечный патч HapVerify (provision/ticket);
+   - если на appspawn/установке -> другой путь.
+4. Альтернатива, если точечные патчи не даются: предустановка через
+   таблицу preinstalled_bundle в bmsdb.db (формат строк известен:
+   KEY=bundleName, VALUE=JSON с bundlePaths, bundleType,
+   moduleName, systemApp и т.д.).
+
+АРТЕФАКТЫ: docs/58_syscap_errors.txt
