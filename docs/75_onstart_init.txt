@@ -1,0 +1,74 @@
+=== 75. Круг 7: разобрана структура OnStart — висит вызов Init() ===
+
+Дата: 2026-10-28. Продолжение 74_start_hang.
+
+═══════════════════════════════════════════════════════════════════════
+1. СТРУКТУРА BundleMgrService::OnStart (VA 0x2a920c, найдена статически)
+═══════════════════════════════════════════════════════════════════════
+
+  2a922c..2a9260  log "BundleMgrService OnStart start"  (строка _hilog_ 0x9010)
+  2a9278          bl 0x2ac040            <-- ВЫЗОВ Init() (возвращает bool)
+  2a9280          tbz w0 -> 2a9318      (если Init не удался — пропуск)
+  2a9290          AddSystemAbilityListener(0xce3  = 3299)
+  2a92a8          AddSystemAbilityListener(0x100500)
+  2a92c4          AddSystemAbilityListener(0x203a = 8250)  <-- наш гейт в пещере
+
+Т.е. наш крючок (8250) срабатывает в самом конце OnStart, а ДО него
+OnStart вызывает Init() (0x2ac040). Именно внутри Init() и находится
+зависание: в логе после "integrity check succeed" (это логи из
+rdb_data_manager, вызываемого из Init) поток OnStart больше ничего не
+пишет, watchdog фиксирует "BundleMgrService::Start to check 240000ms ago".
+
+В Init() (0x2ac040) уже видны вызовы:
+  0x2ac104 bl 0x19fafc   (конструктор/инициализация строки)
+  0x2ac11c bl 0x439c68
+  0x2ac154 bl 0x1c0c58
+  0x2ac184 std::string::append
+  0x2ac200 operator new
+  0x2ac270 HiLogPrintDictNew (какой-то лог)
+  0x2ac2e0 bl 0x1a5ce0
+  0x2ac2ec bl 0x1a5fb4
+  0x2ac314 bl 0x4e9960
+  0x2ac328 bl 0x1324cc
+  0x2ac354 bl 0x1a6024
+  ...
+
+Порядок соответствует эмуляторному:
+  Init begin -> (открытие bmsdb: OnCreate/OnOpen/integrity check)
+  -> InitBmsParam -> InitPreInstallExceptionMgr -> Create BundledataMgr
+  -> BundleDataStorageRdb -> PreInstallDataStorageRdb -> BundleSandboxDataMgr
+  -> QueryAllSandboxInnerBundleInfo -> Shortcut* -> (post events)
+  -> BMSEventHandler::OnBmsStarting (поток 1041 на эмуляторе)
+
+У нас обрыв сразу после integrity check succeed.
+
+═══════════════════════════════════════════════════════════════════════
+2. ПОПЫТКА СНЯТЬ СТЕК ПОТОКОВ (не удалась)
+═══════════════════════════════════════════════════════════════════════
+
+Написан /system/bin/dumpstack.sh (pidof foundation/sa_main, обход
+/proc/pid/task/*, wchan/syscall/stack), init-джоб delayed_exec 400/600/800.
+Результат: файлы пустые (джобы не выполнились — известная флакиность
+init-джобов). Также в ядре CONFIG_STACKTRACE не установлен, поэтому
+/proc/pid/stack всё равно недоступен.
+
+═══════════════════════════════════════════════════════════════════════
+3. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Найти в Init() (0x2ac040) вызов, который висит: сопоставить
+     последовательность bl с эмуляторными логами (InitBmsParam — первый
+     шаг после открытия rdb). Проверить каллы 0x1a5ce0 / 0x1a5fb4 /
+     0x1324cc / 0x1a6024 — один из них, вероятно, дергает параметр-сервис
+     или user manager и блокируется.
+  B. Заменить проблемный вызов на "успех" (как VerifyCodeSignature) или
+     пропатчить Init, чтобы он продолжался после точки зависания.
+  C. Дальше по цепочке: InitBmsParam ... -> BMSEventHandler::OnBmsStarting
+     (строка-start найдена: _hilog_ 0x9c22, код вокруг 0x2b4490) ->
+     first boot -> установка ~75 бандлов (включая launcher).
+
+СОСТОЯНИЕ: libsafwk с пещерой Publish+Start (экспериментально),
+installs boot+depend, libinstalls verify OK, install_list полный.
+
+АРТЕФАКТЫ: docs/75_onstart_init.txt, docs/75_mi9_round54.log,
+  docs/dumpstack.sh
