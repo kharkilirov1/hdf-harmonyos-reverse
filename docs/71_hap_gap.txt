@@ -1,0 +1,85 @@
+=== 71. Круг 3: длинный прогон, HSP ставятся, HAP-приложения — нет ===
+
+Дата: 2026-10-28. Продолжение 70_installd_breakthrough.
+
+═══════════════════════════════════════════════════════════════════════
+1. ДЛИННЫЙ ПРОГОН (2350 c, полный install_list, installd патчен)
+═══════════════════════════════════════════════════════════════════════
+
+  insert SA:401 = 5, insert SA:511 = 1, foundation стартовал 6 раз
+  bms.main.bundles.ready = 0
+  installed_bundle = 14 (те же HSP-киты: animatronix, hdscomponent,
+    health.kit, hwstylusfeature, paymentServiceHsp, photobrowser, pic,
+    security.pickersheet, walletkit, cloudcommon, mapservice.kit,
+    weather, flexiblelayout, hiai.hsp)
+  HAP-приложений из install_list (182 записи) НЕ установлено ни одного,
+  лаунчера нет.
+
+ВЫВОД: путь HSP (app_service_fwk_install_list) полностью работает —
+  в логе видно: "OTA Install system hsp(com.huawei.hmos.walletkit)
+  by path(/system/app/appServiceFwk/WalletKitHsp) ret 0".
+Но install_list HAP-приложения не ставятся вовсе (даже не начинаются).
+
+═══════════════════════════════════════════════════════════════════════
+2. ПЛОТНЫЕ ТЕКСТОВЫЕ СНИМКИ (s1..s7, 250..950 c) — что в BMS-логе
+═══════════════════════════════════════════════════════════════════════
+
+  C01121/BMSInstaller: base_bundle_installer.cpp:ProcessBundleInstall:1293
+     install cross-app shared bundles only, result : 0
+  C01120/BMS: [app_service_fwk_installer.cpp(Install:91)]
+     /system/app/appServiceFwk/WalletKitHsp com.huawei.hmos.walletkit result 0 first time
+  C01120/BMS: OTA Install system hsp(...) by path(...) ret 0
+  C01120/BMS: [shared_bundle_installer.cpp(GetCallingEventInfo:198)]
+     CallingUid 0 is not hap, no bundleName
+  C01122/BMSInstalld: CreateBundleDir /data/app/el1/bundle/public/...
+  C01122/BMSInstalld: ExtractModuleFiles ...
+  C01120/BMS: FetchInnerBundleInfo not found com.ss.hm.ugc.aweme
+  C01120/BMS: FetchInnerBundleInfo not found com.tencent.hm.qqmusic
+  C01121/BMSInstaller: appSignature of signature is empty
+  C011FC/BMSExt: [SetRdDevice:153]get devicesSecurityProxy failed
+
+Никаких "Install System app:" (HAP) в окне 250..950 c нет.
+
+═══════════════════════════════════════════════════════════════════════
+3. bm install больше не падает мгновенно, но ВИСНЕТ
+═══════════════════════════════════════════════════════════════════════
+
+Прогон с bmretry 600/900: все попытки rc=-2 (таймаут 20 c), bm висит.
+installed_bundle = 11 (часть HSP не успела). Лаунчер не установлен.
+
+═══════════════════════════════════════════════════════════════════════
+4. НОВЫЕ ЗАЦЕПКИ (для следующего раунда)
+═══════════════════════════════════════════════════════════════════════
+
+(a) В libbms есть строки:
+      "bootevent.bms.main.bundles.ready"   <- кто и когда его ставит
+      "%{public}s is not in startupBundles"
+    Похоже, BMS ждёт набор "main bundles" (startupBundles) и только после
+    этого выставляет событие; HAP-приложения install_list, вероятно,
+    ставятся ПОСЛЕ этого события или в рамках него.
+    Действие: найти в libbms место, где читается startupBundles/ставится
+    bms.main.bundles.ready, понять условие.
+
+(b) "appSignature of signature is empty" — у HSP не заполнена сигнатура
+    в BundleInfo (следствие нашего обхода VerifyCodeSignature?). Возможно,
+    это блокирует дальнейшую фазу "main bundles".
+
+(c) "FetchInnerBundleInfo not found com.ss.hm.ugc.aweme / com.tencent.hm.qqmusic"
+    — BMS ищет сторонние приложения (aweme, qqmusic) в списке — значит
+    install_list всё же разбирается, но установка "не начинается":
+    возможно, BMS ждёт, пока appspawn/AMS будут готовы, либо установка
+    HAP идёт через отдельный механизм "system app install" после
+    bootevent bms.main.bundles.ready (а без него — не идёт).
+
+(d) Эмулятор: при первом boot поставил 75 бандлов (HSP+HAP), т.е. путь
+    есть; отличие — там "userdata" и его flow проходит до конца.
+
+СОСТОЯНИЕ:
+  - libinstalls.z.so — патчен (VerifyCodeSignature -> OK), бэкап есть
+  - installs.cfg — ondemand
+  - install_list.json — полный (182)
+  - libsafwk — cave SA 401
+  - probe-джобы — hilog -w start + bmretry
+
+АРТЕФАКТЫ: docs/71_hap_gap.txt, docs/71_s1..s7_hilog.txt (текстовые
+  логи BMS 250..950 c), docs/71_mi9_round50.log
