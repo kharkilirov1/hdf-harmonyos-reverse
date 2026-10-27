@@ -1,0 +1,132 @@
+=== 65. ИТОГ: что достигнуто и точный барьер (закрытие цели) ===
+
+Дата: 2026-10-27. Сводка по всей работе (раунды 1-45 цели).
+
+═══════════════════════════════════════════════════════════════════════
+A. ДОСТИГНУТО (подтверждено логами)
+═══════════════════════════════════════════════════════════════════════
+
+1. HarmonyOS 6.0.0.108 arm64 userland загружается на QEMU
+   (собственное ядро Linux 4.14.180, cortex-a76, 4 ГБ, TCG).
+   20+ минут стабильно, 0 kernel panic / 0 перезагрузок.
+
+2. Исправленные барьеры платформы (все задокументированы ранее):
+   - энтропия: CONFIG_HW_RANDOM_VIRTIO + virtio-rng-pci (crng за 1.4 c)
+   - OHOS-binder ioctl 13/30/31/32 в drivers/android/binder.c
+   - /dev/access_token_id stub, SELinux/token патчи
+   - нейтрализация bootfail (libinit_bootDetector.z.so, 9 функций)
+   - ohos.ctl.stop -> ohos.ctl.stoX (xlogcat/powerct)
+   - bbox ioctl stub, /proc/sys/hguard/user_list stub
+
+3. bootevents (8-15 за прогон): samgr.ready, appfwk.ready,
+   appspawn.started, hdf_devmgr.ready, param_watcher.started,
+   powermgr.ready, renderservice.ready, avsessionservice.ready.
+
+4. BMS (SA 401) ПРИНУДИТЕЛЬНО ПУБЛИКУЕТСЯ:
+   code-cave в libsystem_ability_fwk.z.so: в хвосте
+   SystemAbility::AddSystemAbilityListener (VA 0x1f1e0 -> пещера 0xf1ac)
+   при [SA+8]==401 && listener_id==8250 вызывается
+   Publish(self, &host из [SA+0x178]).
+   РЕЗУЛЬТАТ: "insert SA:401" в логе samgr — стабильно (1-5 за прогон).
+   Без патча BMS не публикуется вообще (libbms не импортирует Publish).
+
+5. bootevent bms.main.bundles.ready=true ДОСТИГАЛСЯ (2-4 события)
+   при blunt-патче HapVerify (mov w0,#0; ret).
+
+6. bm CLI работает фрагментарно: в части прогонов отвечает
+   (usage, "failed to install bundle"), в остальных висит.
+
+7. BMS распарсил SuperLauncher.hap и регистрировал
+   com.huawei.hmos.slassistant в preinstalled_bundle (по БД).
+
+8. Инъекция BundleInfo лаунчера в installed_bundle+preinstalled_bundle
+   переживает перезагрузку (BMS не стирает запись).
+
+═══════════════════════════════════════════════════════════════════════
+B. ТОЧНЫЙ БАРЬЕР (почему launcher.ready/boot.completed недостижимы)
+═══════════════════════════════════════════════════════════════════════
+
+Установка HAP-лаунчера в BMS требует проверки подписи/провижна, а на
+этой платформе отсутствует стек Huawei TEE/HKS:
+
+B1. teecd циклически падает:
+    "Child process teecd(pid 1801) exit with code : 255" (72 c)
+    "Child process teecd(pid 4109) exit with code : 255" (1199 c)
+    "Child process teecd(pid 4119) exit with code : 255" (1203 c)
+    "ServiceReap start failed! teecd will reStart 240 second later"
+
+B2. teecd требует /dev/tc_ns_client (Huawei TEE client driver):
+    strings teecd: "/dev/tc_ns_client", "/dev/tc_private",
+    "open tee client dev failed, fd is ..."
+    ссылки в /system/etc/ueventd.config и /system/etc/init/teecd.cfg
+
+B3. В ядре нет драйвера tc_ns_client:
+    .config: CONFIG_TEE=y, CONFIG_OPTEE=y (generic TEE core),
+    НЕТ tc_ns/tzdriver/TRUSTZONE => /dev/tc_ns_client не создаётся.
+
+B4. /system/bin/hks_compatibility_bin отсутствует:
+    "[171.47] Init ERROR DoExec: execute ... failed: 2"
+
+B5. BMS не получает device security (лог BMS):
+    "[SetRdDevice:153]get devicesSecurityProxy failed" (8 раз)
+
+B6. Как следствие — установка system-app падает:
+    "check provision bundleName failed"
+    "parse hap file failed due to errorCode : 8519752" (0x820008)
+    "install system bundle fail, error: 8519752"
+    (также "check syscap failed 8519890/8519686",
+     "hap files check signature info failed 8519686")
+
+B7. Обход blunt HapVerify даёт bms.main.bundles.ready, но оставляет
+    HapVerifyResult пустым -> provisionBundleName пуст -> установка
+    не происходит (installed_bundle без лаунчера).
+
+B8. Обход syscap-проверок (патч функций 0x357a40/0x3913d4 в libbms)
+    сам по себе установку не открывает (проверено прогоном).
+
+B9. Даже при наличии записи в БД BMS, проверить/запустить лаунчер не
+    удаётся: bm и aa висят (RPC к SA-процессам не обслуживается вне
+    окон живости foundation), a boot.completed/launcher.ready не
+    выставляются.
+
+═══════════════════════════════════════════════════════════════════════
+C. ВЫВОД
+═══════════════════════════════════════════════════════════════════════
+
+Цель достигнута по второму критерию: зафиксирован точный непреодолимый
+барьер с доказательством — отсутствие Huawei TEE/HKS
+(/dev/tc_ns_client + драйвер + hks) делает невозможной проверку
+подписи/провижна HAP, без которой BMS не устанавливает лаунчер, поэтому
+launcher.ready / boot.completed недостижимы на QEMU/4.14.
+
+Что уже сделано сверх барьера: принудительная публикация BMS
+(insert SA:401), bms.main.bundles.ready=true, регистрация лаунчера
+в БД BMS, инъекция BundleInfo, патчи syscap/HapVerify.
+
+═══════════════════════════════════════════════════════════════════════
+D. СОСТОЯНИЕ РАБОЧЕГО КАБИНЕТА
+═══════════════════════════════════════════════════════════════════════
+
+- libsafwk (libsystem_ability_fwk.z.so): пещера публикации SA 401
+  ПРИМЕНЕНА (это и есть рабочий механизм).
+- libbms/libhapverify/libselinux: оригиналы (экспериментальные патчи
+  откачены; бэкапы .orig* в дереве).
+- install_list.json: штатный (182 записи), backup .full.
+- БД BMS в дереве: содержит экспериментальную запись лаунчера
+  (installed+preinstalled) — можно удалить, пересобрав /data.
+- Ядро: pin foundation отключён; диагностические принты приглушены.
+- probe-джобы (zz_hilogdump.cfg) удалены.
+
+АРТЕФАКТЫ (все в репозитории, docs/):
+  09..46 — предыдущие барьеры и патчи
+  47,48 — аудит libbms и первая публикация SA 401
+  49..52 — bm RPC, оконная природа, single-publish
+  53..56 — patching HapVerify (blunt/targeted), логи BMS
+  57..61 — логи BMS, syscap, TEE-барьер, итог
+  62..64 — патч syscap, инъекция БД лаунчера, aa/hilog
+  65 — этот итог
+  patch_libsafwk_work.py / patch_once.py / cave_*.s — публикация SA 401
+  patch_hapverify.py / patch_hapverify2.py / patch_bms_syscap.py
+  inject_launcher_db.py, bmrun.c, bmretry.c, wait_exec.c
+Логи: docs/57_h1_hilog.txt (лог BMS с ошибками), 60_mi9_round41.log,
+  61_mi9_round42.log, 63_qh_hilog.txt и др.
