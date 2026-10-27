@@ -1,0 +1,38 @@
+=== 53. Раунд 34: bm работает, но только в «окнах живости» BMS ===
+
+Дата: 2026-10-27. Продолжение 52_bm_works.
+
+ФАКТЫ
+  1) bm CLI функционально работает, когда foundation/BMS жив:
+       b3 (700 c): RC=0 за 15 c, вывод "error: failed to get information
+       and the parameters may be wrong." (значит ответ от BMS получен).
+  2) Но foundation периодически завершается (exit code 0), init его
+     перезапускает; вместе с процессом умирает и BMS (SA 401).
+       "Child process foundation exit code : 0" — 3 раза за прогон.
+     После рестарта BMS публикуется заново (insert SA:401), но старые
+     handle у bm уже недействительны -> bm висит (TIMEOUT).
+  3) Попытка удержать foundation: в /system/bin/sa_main пропатчены оба
+     вызова ReportSaMainExit (0x2898, 0x2eb8) в "b ." (бесконечный цикл).
+     Это НЕ остановило выходы (3 exit остались) -> foundation
+     завершается другим путём (не через ReportSaMainExit).
+  4) Install лаунчера: все попытки в неудачных окнах -> TIMEOUT;
+     лаунчер не установлен; bms.main.bundles.ready / launcher.ready нет.
+
+ВЫВОД
+  Осталось два взаимозависимых вопроса:
+   a) удержать foundation (и BMS) живым, либо
+   b) стабильно попадать в окно живости и успеть установить лаунчер.
+
+ПЛАН (раунд 35)
+  1. Найти реальный путь выхода foundation: трассировать exit_group/exit
+     для процесса foundation (kernel printk на do_exit) — увидеть, откуда
+     выходит (main return / _exit / killed).
+  2. Если это нормальный main-return после DoStartSAProcess — заменить
+     возврат на бесконечный sleep в самой sa_main (патч main entry/epilogue),
+     а не только ReportSaMainExit.
+  3. Параллельно сделать bmretry: повторять bm install каждые 5 c
+     с коротким таймаутом (15 c), пока не получим "successfully".
+
+АРТЕФАКТЫ
+  docs/53_bm_window.txt, docs/53_mi9_round34.log
+  docs/patch_sa_main.py (патч ReportSaMainExit), docs/bmrun.c
