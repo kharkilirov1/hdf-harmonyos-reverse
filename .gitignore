@@ -125,3 +125,5 @@ seed.img
 !docs/63_*.txt
 
 !docs/64_*.log
+
+!docs/67_*.log

@@ -1,0 +1,64 @@
+=== 67. Раунд 46: попытка включить "эмуляторный" режим через product-параметры ===
+
+Дата: 2026-10-27. Продолжение 66_deveco_hint (по команде пользователя "да").
+
+ЦЕЛЬ: проверить гипотезу "BMS определяет эмулятор по product-параметрам
+и тогда пропускает проверку подписи" (строка libbms:
+"Emulator does not verify signature"; живые параметры эмулятора:
+const.product.model=emulator, const.product.name=emulator,
+const.product.software.version="emulator 7.0.0.107(...)").
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО ДЕЛАЛОСЬ
+═══════════════════════════════════════════════════════════════════════
+
+1) В /system/etc/param/ohos.para нашего arm64-образа выставлено:
+     const.product.model=emulator
+     const.product.name=emulator
+     const.product.software.version="emulator 6.0.0.108"
+   (бэкап ohos.para.orig.hm; install_list — минимальный, только
+    SuperLauncher; hilog-снимки на 500/600/700/800 c)
+
+2) Прогон №1 (900 c): система ушла в "first-boot/installer" путь
+   (param_service/install, mkdir /mnt/sys_installer), к 730 c foundation
+   только стартовал; insert SA:401 не дошёл; bootevents "key:" не
+   появились. Заподозрена некорректная строка с пробелом без кавычек.
+
+3) Исправлено на кавычки: const.product.software.version=
+   "emulator 6.0.0.108"; прогон №2 (1250 c):
+   - лог всего 5210 строк, до 438 c,
+   - foundation не стартовал,
+   - param_watcher зациклился:
+       binder: 1795:1795 transaction failed 29189/-22, size 0-0
+       binder: OHOS_DBG_TXN pid=1795 comm=param_watcher ...
+     (повторяется сотни раз),
+   - insert SA:401 = 0, bootevents = 0, снимков hilog нет.
+
+ВЫВОД: смена product-параметров ломает загрузку (param_watcher
+зацикливается на -EINVAL; похоже на пересогласование параметров
+param_service из-за смены product-конфигурации). Гипотезу через
+параметры проверить не удалось; baseline восстановлен:
+  ohos.para = оригинал (model=ohos, name="OpenHarmony 3.2",
+  software.version=OpenHarmony 6.0.0.107);
+  install_list = полный (182); probe-джобы удалены.
+
+═══════════════════════════════════════════════════════════════════════
+АЛЬТЕРНАТИВНЫЕ ПУТИ (на выбор)
+═══════════════════════════════════════════════════════════════════════
+
+A. Найти статически в arm64 libbms функцию, читающую const.product.name,
+   и включить эмуляторный режим патчем (mov w0,#1 / безусловный переход
+   на ветку "skip verify"). Нужен аккуратный xref-анализ (строки в
+   _hilog_/rodata; REA таймаутит на 6 МБ, нужен ручной adrp/add-поиск
+   по всем секциям).
+B. "Уже установлен": вытащить deployed userdata.qcow2 эмулятора
+   (Mate 90 Pro, 867 МБ), посмотреть раскладку /data для лаунчера
+   (com.ohos.sceneboard / com.huawei.hmos.slassistant) и воспроизвести
+   в arm64-образе: /data/app/el1/bundle/public/<bundle>/... + записи
+   BMS DB (bundle_info и т.п.).
+C. Задать параметры не в ohos.para, а через bootargs ядра
+   (ohos.boot.* / ro.boot.*), которые param_service читает при старте,
+   не пересогласовывая product-конфиг (риск снова сломать загрузку,
+   но можно менять только const.product.name).
+
+АРТЕФАКТЫ: docs/67_param_attempt.txt, docs/67_mi9_round46.log
