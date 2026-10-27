@@ -1,0 +1,39 @@
+=== 54. Раунд 35: удержание foundation через pin — init убивает (code=9) ===
+
+Дата: 2026-10-27. Продолжение 53_bm_window.
+
+ЧТО ДЕЛАЛИ
+  1) В ядро добавлен «pin» foundation: в do_group_exit() при
+     comm=="foundation" процесс не завершается, а уходит в
+     schedule_timeout_uninterruptible(HZ) навсегда.
+  2) Первая версия (pin с самого начала): PINNED pid=1792 на 94 c,
+     но insert SA:401 = 0 — foundation блокируется ДО того, как
+     загрузятся SA (BMS грузится только со второго запуска) -> плохо.
+  3) Вторая версия (pin только при uptime > 250 c): PINNED pid=2255
+     code=9 на 351 c, т.е. init УБИВАЕТ процесс (SIGKILL), потому что
+     сервис не завершается по таймауту. bm в 620 c -> TIMEOUT 120 c;
+     insert SA:401 = 1; лаунчер не установлен.
+
+ВЫВОД
+  Удерживать foundation нельзя: либо блокируем старт SA (pin рано),
+  либо init убивает по таймауту (pin поздно).
+  Значит надо не удерживать BMS, а попадать в его окно живости сразу
+  после публикации.
+
+ИДЕЯ (раунд 36)
+  Сразу после Publish (в той же пещере) вызвать
+      system("bm install -p /system/app/SuperLauncher/SuperLauncher.hap
+              > /data/diag/auto.log 2>&1 &");
+  bm стартует в момент, когда BMS только что опубликован и жив,
+  и успевает выполнить установку до перезапуска foundation.
+  Требуется: найти system@plt в libsafwk (или execl/fork+exec)
+  и положить строку команды в свободное место .rodata.
+
+СОСТОЯНИЕ ПАТЧЕЙ
+  - libsafwk: cave_once (публикация host из [SA+0x178] при 8250) — рабочая.
+  - ядро: pin-патч ВРЕМЕННЫЙ, его надо убрать/выключить
+    (сейчас pin срабатывает при uptime>250 c и вызывает SIGKILL).
+  - sa_main: патч ReportSaMainExit (0x2898/0x2eb8) — оставлен, не мешает.
+
+АРТЕФАКТЫ
+  docs/54_pin_foundation.txt, docs/54_mi9_round35.log
