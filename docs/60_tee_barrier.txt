@@ -1,0 +1,94 @@
+=== 60. Раунд 41: инъекция blunt-патча через loop-mount; барьер TEE/HKS ===
+
+Дата: 2026-10-27. Продолжение 59_launcher_preinstalled.
+
+═══════════════════════════════════════════════════════════════════════
+1. ИНЪЕКЦИЯ БЕЗ ПОТЕРИ /data — РАБОТАЕТ ЧЕРЕЗ loop-mount
+═══════════════════════════════════════════════════════════════════════
+
+debugfs -w не открывает образ на запись (metadata_csum). Рабочий способ:
+  sudo mount -o loop ~/hsroot2.img /mnt/hsimg
+  sudo cp libhapverify.blunt /mnt/hsimg/system/lib64/libhapverify.z.so
+  sudo umount /mnt/hsimg
+Проверено: файл в образе 320536 байт, по адресу 0x36148 (off 0x35148)
+байты 2f90ff17 = b <cave> (blunt: mov w0,#0; ret).
+Данные /data (в т.ч. preinstalled_bundle со slassistant) сохраняются.
+
+═══════════════════════════════════════════════════════════════════════
+2. ПРОГОН blunt + сохранённые данные (1250 c)
+═══════════════════════════════════════════════════════════════════════
+
+  insert SA:401 = 1
+  bootevents 8;  bms.main.bundles.ready = 0 (в этом прогоне НЕ выставился)
+  launcher = 0 в логе; boot.completed как bootevent нет.
+  Лаунчер в installed_bundle не появился.
+
+ВЫВОД: даже с blunt-патчем и preinstalled-записью лаунчера установка
+не произошла (ready-событие не выставилось). Поведение нестабильно
+(в раунде 36 blunt давал ready 2-4 раза).
+
+═══════════════════════════════════════════════════════════════════════
+3. ДОКАЗАТЕЛЬСТВА БАРЬЕРА TEE/HKS (важно!)
+═══════════════════════════════════════════════════════════════════════
+
+a) teecd (TEE client daemon) запускается и КРУШИТСЯ:
+   [72.18] ServiceStart starting:teecd
+   [321.06] Child process teecd(pid 1801) exit with code : 255
+   [1199.8] teecd(pid 4109) exit with code : 255
+   [1203.5] teecd(pid 4119) exit with code : 255
+   [1203.5] ServiceReap start failed! teecd will reStart 240 second later
+   (цикл: старт -> exit 255 -> рестарт через 240 c)
+
+b) teecd требует устройство /dev/tc_ns_client (Huawei TEE client):
+   strings teecd: "/dev/tc_ns_client", "/dev/tc_private",
+   "open tee client dev failed, fd is ..."
+   Также /system/etc/ueventd.config, /system/etc/init/teecd.cfg
+   ссылаются на tc_ns_client.
+
+c) ЯДРО 4.14 НЕ ИМЕЕТ ДРАЙВЕРА tc_ns_client:
+   .config содержит только CONFIG_TEE=y и CONFIG_OPTEE=y
+   (generic TEE core + OP-TEE), НЕТ опций Hisilicon tzdriver
+   (tc_ns/tzdriver/TRUSTZONE отсутствуют в .config).
+   => /dev/tc_ns_client не создаётся, teecd не может открыть его
+      и завершается с 255.
+
+d) hks_compatibility_bin ОТСУТСТВУЕТ:
+   [171.47] Init ERROR DoExec: execute "/system/bin/hks_compatibility_bin"
+            failed: 2
+
+e) BMS/BMSExt не может получить device security:
+   лог BMS (docs/57_h1_hilog.txt):
+     [SetRdDevice:153]get devicesSecurityProxy failed  (8 раз)
+   => provision/rd-данные недоступны.
+
+f) Как следствие — установка system-app падает:
+     check provision bundleName failed
+     parse hap file failed due to errorCode : 8519752 (0x820008)
+     install system bundle fail, error: 8519752
+   (а также check syscap failed 8519890/8519686 и
+    hap files check signature info failed 8519686)
+
+═══════════════════════════════════════════════════════════════════════
+4. ВЫВОД
+═══════════════════════════════════════════════════════════════════════
+
+Для установки лаунчера (а значит и launcher.ready / boot.completed)
+BMS нужно проверить подпись/провижн HAP. На этой платформе это
+невозможно: нет Huawei TEE-клиента (/dev/tc_ns_client, драйвер
+tzdriver в ядре 4.14 отсутствует), teecd циклически падает с 255,
+hks_compatibility_bin отсутствует, devicesSecurityProxy недоступен.
+Blunt-обход HapVerify даёт bms.main.bundles.ready, но оставляет
+HapVerifyResult пустым — после этого установка гарантированно падает
+(provision bundleName пуст).
+
+ПЛАН (раунд 42, если продолжаем)
+1. Снять чистый лог установки лаунчера: 12 снимков hilog
+   (300,340,...,740) в одном прогоне, grep "SuperLauncher|slassistant|
+   Install System app:|error: 85".
+   - Если ошибка только в provision/verify — барьер подтверждён.
+   - Если syscap — попробовать патч syscap-проверки.
+2. Если подтвердится verify/provision — зафиксировать цель как blocked
+   с этим доказательством (документ 60 + логи).
+
+АРТЕФАКТЫ: docs/60_tee_barrier.txt, docs/60_mi9_round41.log,
+           docs/libhapverify.blunt
