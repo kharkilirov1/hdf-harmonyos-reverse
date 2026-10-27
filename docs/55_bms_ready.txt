@@ -1,0 +1,67 @@
+=== 55. Раунд 36: bms.main.bundles.ready = TRUE при патче подписи ===
+
+Дата: 2026-10-27. Продолжение 54_pin_foundation.
+(Раунд по заданию: обход проверки подписи + инъекция bm install.)
+
+═══════════════════════════════════════════════════════════════════════
+1. ПАТЧ ПОДПИСИ
+═══════════════════════════════════════════════════════════════════════
+
+Провайдер: /system/lib64/libhapverify.z.so
+Символ: OHOS::Security::Verify::HapVerify(const std::string&,
+        HapVerifyResult&, bool); экспорт 0x4a094 = b 0x36148
+        (реальная реализация 0x36148).
+Патч (patch_hapverify.py):
+  0x36148 (file 0x35148) -> b <cave>
+  cave: mov w0,#0 ; ret   (0 = успех)
+Бэкап: libhapverify.z.so.orig.
+
+═══════════════════════════════════════════════════════════════════════
+2. РЕЗУЛЬТАТ ПРОГОНА (патч подписи + cave_once публикации BMS)
+═══════════════════════════════════════════════════════════════════════
+
+  insert SA:401 = 4;  bootevents 12
+  БОЛЬШОЙ РЕЗУЛЬТАТ:
+    [531.724] key: bootevent.bms.main.bundles.ready   <-- ВПЕРВЫЕ TRUE!
+    (всего 2 события: 332 c и 531 c)
+  Однако:
+    - /data/app/el1/bundle/public пуст (в прошлых прогонах ~13 каталогов);
+    - bmsdb empty: installed_bundle=0, preinstalled_bundle=0;
+    - лаунчер (com.huawei.hmos.slassistant) не установлен;
+    - launcher.ready / boot.completed (как bootevent) отсутствуют.
+
+ВЫВОД: патч HapVerify (успех с пустым HapVerifyResult) ломает
+последующую запись бандлов (БД пустая), но заставляет BMS считать
+main-фазу завершённой -> bms.main.bundles.ready=true.
+
+═══════════════════════════════════════════════════════════════════════
+3. КОНТРОЛЬНЫЙ ПРОГОН БЕЗ ПАТЧА ПОДПИСИ (hapverify из .orig)
+═══════════════════════════════════════════════════════════════════════
+
+  insert SA:401 = 3; bootevents 11
+  bootevent.bms.main.bundles.ready = 0  (событие НЕ ставится)
+  /data/app/el1/bundle/public = 13 каталогов (HSP-киты копируются!)
+  bm-пробы D1-D3 не создали файлов (не отработали).
+
+=> Подпись надо обходить ТОЧЕЧНО: оставить реальную проверку
+   (чтобы HapVerifyResult заполнялся), а убрать только отказ
+   (trust-проверку цепочки/системного приложения).
+
+═══════════════════════════════════════════════════════════════════════
+4. ПЛАН (раунд 37)
+═══════════════════════════════════════════════════════════════════════
+
+A. Найти в libhapverify реальную точку отказа: внутри 0x36148
+   функции проверки (CheckIsSystemAppByHapSign / IsTrustedSource /
+   VerifySignature) — патчить только финальное сравнение, оставив
+   заполнение HapVerifyResult.
+B. Параллельно/альтернативно: «предустановка через БД» —
+   bmsdb.db в /data/service/el1/public/bms/bundle_manager_service/
+   имеет таблицы installed_bundle/preinstalled_bundle (KEY,VALUE).
+   Можно добавить запись для com.huawei.hmos.slassistant и дать BMS
+   при старте зарегистрировать её как preinstalled (минуя bm/CLI).
+C. После установки лаунчера ждать launcher.ready / boot.completed.
+
+АРТЕФАКТЫ
+  docs/55_bms_ready.txt, docs/55_mi9_round36.log,
+  docs/patch_hapverify.py
