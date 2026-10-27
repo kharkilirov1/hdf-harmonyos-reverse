@@ -1,0 +1,1385 @@
+10-28 06:18:37.526     0     0 I A00000/HiLog: ========Zeroth log of type: app
+10-28 06:18:37.528     0     0 I I00000/HiLog: ========Zeroth log of type: init
+10-28 06:18:37.941  1756  1756 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: MountCarrierToShared start
+10-28 06:18:37.947  1756  1756 W I02C01/hmos_cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR
+10-28 06:21:15.904  1982  1982 E I04301/light_sensor/LIGHT_SENSOR: OpenUuidFile fail, unknown log, uuid is: 418005723
+10-28 06:21:15.927  1982  1982 E I04301/light_sensor/LIGHT_SENSOR: OpenUuidFile fail, unknown log, uuid is: 418005723
+10-28 06:21:27.383  1915  1948 E A02700/multimodalinput/osfingersense: fingersense_on_resume: stream is null
+10-28 06:21:36.816  2099  2099 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: UpdateCotaOpkeyLink start
+10-28 06:21:36.837  2099  2099 W I02C01/hmos_cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
+10-28 06:21:47.067  2099  2099 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: success to update cota carrier
+10-28 06:26:33.419  2753  3002 I A02B02/drm_service/OemCertService_V1: OpenUuidFile fail, unknown log, uuid is: 3595324724
+10-28 06:27:55.903  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:55.904  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:55.907  2345  2495 I C02D11/swing_service/DfxFaultLogger: search thread name failed
+10-28 06:27:55.914  2510  3173 E C01719/softbus_server/ffrt: 49:ffrt_queue_cancel:268 input invalid, handle is nullptr
+10-28 06:27:55.927  1792  1820 I C02C02/PARAM: [param_request.c:294]SystemWaitParameter startup.service.ctl.bluetooth_service v 5 ret 0
+10-28 06:27:55.928  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:55.932  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:55.932  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:55.933  1792  1792 I C01800/samgr/SAMGR: NF SA:10,2864_2214
+10-28 06:27:55.939  1792  1822 I C01800/samgr/SAMGR: NF SA:4606,2918_1
+10-28 06:27:55.939  1792  1822 I C01800/samgr/SAMGR: NF SA:4606,2918_2
+10-28 06:27:55.942  2931  2942 E C02D11/resource_schedule_service/DfxThreadContext: wait_for timeout. tid = 2931
+10-28 06:27:55.947  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_165
+10-28 06:27:55.954  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:55.959  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:55.959  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:55.967  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:55.974  1792  1820 I C02C02/PARAM: [param_request.c:208]SystemSetParameter name ohos.ctl.start id:83 ret:0 
+10-28 06:27:55.944  2918  3318 E C057C2/aps_manager/IPCObjectProxy: PrintErrorDetailedInfo 163: failed, handle:0 error:7 desc:*.accessToken proxy:2510845504 time:593111243600
+10-28 06:27:55.981  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_166
+10-28 06:27:55.986  1792  1792 I C01800/samgr/SAMGR: NF SA:10,2864_2215
+10-28 06:27:55.986  1792  2001 I C01800/samgr/SAMGR: NF SA:4802,2115_762
+10-28 06:27:55.989  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:55.989  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:55.990  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:55.991  1792  1792 I C01800/samgr/SAMGR: NF SA:1130,2292_3
+10-28 06:27:55.991  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.000  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.001  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.018  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2871_923
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Name:	resource_schedu
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Umask:	0022
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: State:	S (sleeping)
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Tgid:	2931
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Ngid:	0
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Pid:	2931
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: PPid:	1
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: TracerPid:	0
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Uid:	1096	1096	1096	1096
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Gid:	1096	1096	1096	1096
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: FDSize:	256
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Groups:	1000 5001 
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: NStgid:	2931
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: NSpid:	2931
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: NSpgid:	0
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: NSsid:	0
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmPeak:	 2392572 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmSize:	 2386680 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmLck:	       0 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmPin:	       0 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmHWM:	  124068 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmRSS:	  123656 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: RssAnon:	   28508 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: RssFile:	   94804 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: RssShmem:	     344 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmData:	   55424 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmStk:	     132 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmExe:	      24 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmLib:	  108476 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmPTE:	     588 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmPMD:	      20 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: VmSwap:	       0 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Threads:	15
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: SigQ:	0/15733
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: SigPnd:	0000000000000000
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: SigBlk:	0000000400000000
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: SigIgn:	0000000200001000
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: CapInh:	0000000000000000
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: CapPrm:	0000000000000000
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: CapEff:	0000000000000000
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: CapAmb:	0000000000000000
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: NoNewPrivs:	0
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Seccomp:	2
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Cpus_allowed:	f
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Mems_allowed:	1
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: Mems_allowed_list:	0
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: voluntary_ctxt_switches:	27
+10-28 06:27:56.019  2931  2942 I C02D11/resource_schedule_service/DfxThreadContext: nonvoluntary_ctxt_switches:	563
+10-28 06:27:56.020  1792  1820 I C01800/samgr/SAMGR: Start dynamic proc:bluetooth_service,1130,0_90ms
+10-28 06:27:56.023  1792  1792 I C01800/samgr/SAMGR: NF SA:10,2864_2216
+10-28 06:27:56.037  2292  2501 I C01500/comm_protocol_resource_manager/CommResourceManager: [(OnStateChanged:339)]transport: 0, status: 3
+10-28 06:27:56.038  2292  2501 I C01500/comm_protocol_resource_manager/CommResourceManager: [(OnStateChanged:339)]transport: 1, status: 3
+10-28 06:27:56.043  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.055  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.020  1792  1820 I C01800/samgr/SAMGR: Scheduler SA:1130 loading
+10-28 06:27:56.058  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.063  1792  1792 I C01800/samgr/SAMGR: NF SA:10,2864_2217
+10-28 06:27:56.074  2292  2501 E C01719/comm_protocol_resource_manager/ffrt: 14:ffrt_queue_cancel:268 input invalid, handle is nullptr
+10-28 06:27:56.075  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.088  1792  1792 I C01800/samgr/SAMGR: NF SA:4606,1812_1013
+10-28 06:27:56.089  1792  1792 I C01800/samgr/SAMGR: NF SA:4606,1812_1014
+10-28 06:27:56.092  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.095  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.096  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.118  1792  1792 I C01800/samgr/SAMGR: NF SA:4802,2115_763
+10-28 06:27:56.118  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.118  1792  1820 I C01800/samgr/SAMGR: NF SA:10,2864_2218
+10-28 06:27:56.119  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.120  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.119  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.120  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.122  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.127  2931  2942 I C02D11/resource_schedule_service/DfxFaultLogger: search thread name failed
+10-28 06:27:56.140  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.145  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.146  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.159  1792  1820 I C01800/samgr/SAMGR: NF SA:10,2864_2219
+10-28 06:27:56.178  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.187  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,2918_3
+10-28 06:27:56.187  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,2918_4
+10-28 06:27:56.202  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.202  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.226  2871  3279 E C02D11/foundation/DfxThreadContext: wait_for timeout. tid = 3096
+10-28 06:27:56.256  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2871_924
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Name:	OS_FFRT_Delay
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Umask:	0002
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: State:	S (sleeping)
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Tgid:	2871
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Ngid:	0
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Pid:	3096
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: PPid:	1
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: TracerPid:	0
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Uid:	5523	5523	5523	5523
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Gid:	1000	1000	1000	1000
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: FDSize:	256
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Groups:	1065 2002 6005 6666 
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: NStgid:	2871
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: NSpid:	3096
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: NSpgid:	0
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: NSsid:	0
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmPeak:	 2476756 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmSize:	 2452704 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmLck:	       0 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmPin:	       0 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmHWM:	  168004 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmRSS:	  164736 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: RssAnon:	   41780 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: RssFile:	  122572 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: RssShmem:	     384 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmData:	   80088 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmStk:	     132 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmExe:	      24 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmLib:	  133656 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmPTE:	     744 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmPMD:	      20 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: VmSwap:	       0 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Threads:	27
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: SigQ:	1/15733
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: SigPnd:	0000000000000000
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: SigBlk:	0000000400000000
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: SigIgn:	0000000200001000
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: SigCgt:	08000e3c400084fa
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: CapInh:	0000000000080020
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: CapPrm:	0000000000080020
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: CapEff:	0000000000080020
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: CapAmb:	0000000000080020
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: NoNewPrivs:	0
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Seccomp:	2
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Cpus_allowed:	f
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Mems_allowed:	1
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: Mems_allowed_list:	0
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: voluntary_ctxt_switches:	135
+10-28 06:27:56.272  2871  3279 I C02D11/foundation/DfxThreadContext: nonvoluntary_ctxt_switches:	19
+10-28 06:27:56.331  2871  3279 I C02D11/foundation/DfxFaultLogger: search thread name failed
+10-28 06:27:56.347  1792  2933 I C01800/samgr/SAMGR: AddDMListener called
+10-28 06:27:56.350  1792  2001 I C01800/samgr/SAMGR: NF SA:4606,1812_1015
+10-28 06:27:56.351  1792  2001 I C01800/samgr/SAMGR: NF SA:4606,1812_1016
+10-28 06:27:56.357  1792  2933 I C01800/samgr/SAMGR: NF SA:4802,1792_517
+10-28 06:27:56.358  1792  2933 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 06:27:56.335  1792  1820 I C01800/samgr/SAMGR: NF SA:10,2864_2220
+10-28 06:27:56.378  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.382  1792  1822 I C01800/samgr/SAMGR: NF SA:3524,2533_167
+10-28 06:27:56.382  1792  1822 I C01800/samgr/SAMGR: NF SA:3524,2533_168
+10-28 06:27:56.386  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.388  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.389  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.394  1792  2260 I C01800/samgr/SAMGR: NF SA:4606,2918_5
+10-28 06:27:56.395  1792  2260 I C01800/samgr/SAMGR: NF SA:4606,2918_6
+10-28 06:27:56.408  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2864_2221
+10-28 06:27:56.408  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.414  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.414  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.423  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:27:56.423  2533  3201 E C01810/security_guard/SA_CLIENT: GetSaWrap SA:3524 not start
+10-28 06:27:56.424  2533  3201 E C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:27:56.424  2533  3201 E C02F07/security_guard/SG_Service: [SubscribeEvent]Subscribe failed, code: 8, eventId: 0x21000000in retry list
+10-28 06:27:56.431  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.438  1792  1820 I C01800/samgr/SAMGR: NF SA:4802,2115_764
+10-28 06:27:56.440  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.443  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.443  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.445  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.446  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.446  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2222
+10-28 06:27:56.467  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.471  2716  2860 E C057C2/render_service/IPCObjectProxy: PrintErrorDetailedInfo 163: failed, handle:3 error:-1 desc:*.V1_0 proxy:4207108224 time:593638916400
+10-28 06:27:56.471  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.471  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.496  2533  3201 I C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:27:56.497  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2871_925
+10-28 06:27:56.519  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.542  1792  1820 I C01800/samgr/SAMGR: NF SA:10,2864_2223
+10-28 06:27:56.583  1792  3114 I C01800/samgr/SAMGR: NF SA:3525,1792_1
+10-28 06:27:56.583  1792  3114 I C01800/samgr/SAMGR: SendCheckLoadedMsg handle for SA:3525
+10-28 06:27:56.584  1792  3114 I C01800/samgr/SAMGR: CleanCallback clean process:security_collector
+10-28 06:27:56.588  1792  3114 I C01800/samgr/SAMGR: CleanCallback startingAbilityMap remove SA:3525. with deviceId
+10-28 06:27:56.588  1792  3114 I C01800/samgr/SAMGR: CleanCallback startingAbilityMap remove SA:3525.
+10-28 06:27:56.589  1792  2260 I C01800/samgr/SAMGR: NF SA:4606,1812_1017
+10-28 06:27:56.590  1792  3114 I C01800/samgr/SAMGR: SendCheckLoadedMsg SA:3525, load timeout
+10-28 06:27:56.590  1792  2260 I C01800/samgr/SAMGR: NF SA:4606,1812_1018
+10-28 06:27:56.592  1792  3114 I C01800/samgr/SAMGR: Scheduler SA:3525 handle load fail event
+10-28 06:27:56.593  1792  3114 I C01800/samgr/SAMGR: Scheduler SA:3525 not loaded
+10-28 06:27:56.593  1792  3114 E C01800/samgr/SAMGR: process:security_collector not exist
+10-28 06:27:56.594  1792  3111 I C01800/samgr/SAMGR: NotifySaLoadFail SA:3525
+10-28 06:27:56.597  2533  3290 I C01810/security_guard/SA_CLIENT: OnLoadSystemAbilityFailInner, SA:3525
+10-28 06:27:56.598  2533  3290 I C02F07/security_guard/S_COLLCTOR: OpenUuidFile fail, unknown log, uuid is: 1118583813
+10-28 06:27:56.598  2533  3290 W C01810/security_guard/SA_CLIENT: OnLoadSaFailInner SA:3525 spend 0ms
+10-28 06:27:56.606  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.606  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.607  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_169
+10-28 06:27:56.608  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_170
+10-28 06:27:56.608  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2864_2224
+10-28 06:27:56.614  2978  2978 I C02503/aptouch_daemon/aptouch_daemon: OpenUuidFile fail, unknown log, uuid is: 1416767008
+10-28 06:27:56.614  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.615  2978  2978 I C02503/aptouch_daemon/aptouch_daemon: OpenUuidFile fail, unknown log, uuid is: 1416767008
+10-28 06:27:56.616  1792  1822 I C01800/samgr/SAMGR: NF SA:4802,2115_765
+10-28 06:27:56.622  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.625  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.626  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.626  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.626  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,2918_7
+10-28 06:27:56.627  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,2918_8
+10-28 06:27:56.630  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.630  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.650  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2225
+10-28 06:27:56.662  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.664  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.665  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.679  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.688  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2226
+10-28 06:27:56.691  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.691  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.706  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.714  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.714  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.718  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2871_926
+10-28 06:27:56.726  1792  1820 I C01800/samgr/SAMGR: NF SA:10,2864_2227
+10-28 06:27:56.730  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.731  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.734  1792  1820 I C01800/samgr/SAMGR: NF SA:4802,2115_766
+10-28 06:27:56.738  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.738  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.738  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.738  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.738  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.755  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.758  1792  1820 I C01800/samgr/SAMGR: NF SA:1901,2085_57
+10-28 06:27:56.758  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.759  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.759  2085  2191 E C01700/file_monitor_service/RSS: ResSchedClient::Fail to connect resource schedule service.
+10-28 06:27:56.767  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2228
+10-28 06:27:56.772  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.780  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.780  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.797  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,1812_1019
+10-28 06:27:56.798  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,1812_1020
+10-28 06:27:56.799  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.806  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.807  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.807  1812  1858 E C01810/cadaemon/SA_CLIENT: GetSaWrap SA:4606 not start
+10-28 06:27:56.808  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2229
+10-28 06:27:56.808  1812  1858 I C05B00/cadaemon/tee_tui_daemon: SA service [targetID = 4606] is not exist
+10-28 06:27:56.813  2864  2864 E C057C2/bootanimation/IPCObjectProxy: PrintErrorDetailedInfo 163: failed, handle:0 error:7 desc:*.accessToken proxy:2256385664 time:593978460528
+10-28 06:27:56.826  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.835  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,2918_9
+10-28 06:27:56.835  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,2918_10
+10-28 06:27:56.842  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.843  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.847  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.849  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2230
+10-28 06:27:56.850  1792  1822 I C01800/samgr/SAMGR: NF SA:4802,2115_767
+10-28 06:27:56.857  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.858  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.858  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.865  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_171
+10-28 06:27:56.867  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_172
+10-28 06:27:56.866  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.870  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.873  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.894  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.894  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2231
+10-28 06:27:56.898  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.898  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.916  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.932  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.932  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.938  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2864_2232
+10-28 06:27:56.939  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2871_927
+10-28 06:27:56.942  2871  3075 E C01810/foundation/SA_CLIENT: GetSaWrap SA:10 not start
+10-28 06:27:56.948  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.950  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2871_928
+10-28 06:27:56.951  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.951  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.962  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.967  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:27:56.968  1792  1822 I C01800/samgr/SAMGR: NF SA:4802,2115_768
+10-28 06:27:56.975  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:56.975  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.976  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.978  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:56.982  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2233
+10-28 06:27:56.988  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:56.988  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:56.999  1792  2260 I C01800/samgr/SAMGR: NF SA:1301,1915_146
+10-28 06:27:57.017  2345  2495 I C02D06/swing_service/XCollie: hisysevent write result=0, send event [FRAMEWORK,SERVICE_TIMEOUT_WARNING], msg=timeout: safwk--openso_66106 to check 60000ms ago
+10-28 06:27:57.019  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.038  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.043  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.058  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2864_2234
+10-28 06:27:57.122  1792  1820 I C01800/samgr/SAMGR: NF SA:10,2864_2235
+10-28 06:27:57.123  2533  3308 W C01719/security_guard/ffrt: 50:RecordSymbolAndBacktrace:392 Process:security_guard,Tid:3316,Qos:2,CWorker:7,EWorker:3,SWorker:4,TaskType:0,timeout:5s
+10-28 06:27:57.125  1792  2001 I C01800/samgr/SAMGR: NF SA:3524,2533_173
+10-28 06:27:57.126  1792  2001 I C01800/samgr/SAMGR: NF SA:3524,2533_174
+10-28 06:27:57.127  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.134  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.135  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.142  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: 51:RecordSymbolAndBacktrace:400 Tid:3316, Name:OS_FFRT_2_13
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #00 pc 000000000018a584 /lib/ld-musl-aarch64.so.1
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #01 pc 000000000000ecd0 /system/lib64/chipset-pub-sdk/libipc_common.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #02 pc 0000000000071a84 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #03 pc 000000000007046c /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #04 pc 000000000006f970 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #05 pc 0000000000048918 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #06 pc 0000000000049364 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #07 pc 000000000012f858 /system/lib64/platformsdk/libappexecfwk_core.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #08 pc 00000000001444e0 /system/lib64/platformsdk/libappexecfwk_core.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #09 pc 00000000000fd528 /system/lib64/platformsdk/libappexecfwk_core.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #10 pc 000000000004e978 /system/lib64/libsg_detect_security_event_plugin.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #11 pc 00000000000394c0 /system/lib64/libsg_detect_security_event_plugin.z.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #12 pc 0000000000091380 /system/lib64/ndk/libffrt.so
+10-28 06:27:57.156  2533  3308 W C01719/security_guard/ffrt: #13 pc 000000000005ffb8 /system/lib64/ndk/libffrt.so
+10-28 06:27:57.157  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.159  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,2918_11
+10-28 06:27:57.160  1792  1820 I C01800/samgr/SAMGR: NF SA:4606,2918_12
+10-28 06:27:57.160  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.160  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.166  1792  2001 I C01800/samgr/SAMGR: NF SA:10,2864_2236
+10-28 06:27:57.166  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2871_929
+10-28 06:27:57.167  1792  2260 I C01800/samgr/SAMGR: NF SA:4802,2115_769
+10-28 06:27:57.176  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.178  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:57.178  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:57.178  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:57.186  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.187  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.202  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2864_2237
+10-28 06:27:57.206  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.210  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.211  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.230  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.234  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.235  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.242  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2864_2238
+10-28 06:27:57.249  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.251  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.254  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.271  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.277  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2864_2239
+10-28 06:27:57.282  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:57.287  1792  1822 I C01800/samgr/SAMGR: NF SA:4802,2115_770
+10-28 06:27:57.290  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:57.290  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:57.290  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.290  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:27:57.290  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.306  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.307  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.307  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.318  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2864_2240
+10-28 06:27:57.325  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.327  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.327  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.333  1792  1822 I C01800/samgr/SAMGR: NF SA:3524,2533_175
+10-28 06:27:57.333  1792  1822 I C01800/samgr/SAMGR: NF SA:3524,2533_176
+10-28 06:27:57.347  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.350  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.352  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.352  2632  3294 I C01650/clouddevelopproxy/Rdb: OpenUuidFile fail, unknown log, uuid is: 3937290174
+10-28 06:27:57.359  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2864_2241
+10-28 06:27:57.362  1792  2933 I C01800/samgr/SAMGR: AddDMListener called
+10-28 06:27:57.363  1792  2933 I C01800/samgr/SAMGR: NF SA:4802,1792_518
+10-28 06:27:57.363  1792  2933 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 06:27:57.366  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:27:57.370  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:27:57.372  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:27:57.378  1792  1822 I C01800/samgr/SAMGR: NF SA:10,2871_930
+10-28 06:28:47.424     0     0 I C00000/HiLog: ========Slow reader missed log lines: 4223
+10-28 06:28:21.469  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.470  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.486  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.489  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.490  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.509  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2691
+10-28 06:28:21.515  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.516  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.517  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.532  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.535  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.535  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.555  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2692
+10-28 06:28:21.557  1792  2001 I C01800/samgr/SAMGR: NF SA:10,2871_1046
+10-28 06:28:21.559  2871  3075 E C01810/foundation/SA_CLIENT: GetSaWrap SA:10 not start
+10-28 06:28:21.561  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.563  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.563  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.565  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:21.565  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:21.569  1792  2001 I C01800/samgr/SAMGR: NF SA:10,2871_1047
+10-28 06:28:21.571  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_289
+10-28 06:28:21.581  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_290
+10-28 06:28:21.587  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:21.588  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:21.595  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.614  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.617  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.666  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.678  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.679  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.710  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.713  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:21.714  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.715  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.715  2016  2216 W C01719/netmanager/ffrt: 38:RecordTimeoutTaskInfo:318 Normal task[RefreshUidStatsFlag], gid[63], qos[2], delay[0]us, current status[EXECUTING], start at[2026-10-28 06:27:21.630], last status[EXECUTING], timeout for[30]s, reported count: 1
+10-28 06:28:21.717  2016  2216 W C01719/netmanager/ffrt: 39:RecordTimeoutTaskInfo:318 Normal task[RefreshUidStatsFlag], gid[62], qos[2], delay[0]us, current status[FINISH], start at[2026-10-28 06:27:21.629], last status[EXECUTING], timeout for[30]s, reported count: 1
+10-28 06:28:21.719  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2693
+10-28 06:28:21.720  3317  3317 I C01810/security_detect/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:21.734  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.738  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.739  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.739  2931  3099 I C02D11/resource_schedule_service/DfxFaultLogger: search thread name failed
+10-28 06:28:21.758  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.762  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.762  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.763  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2694
+10-28 06:28:21.773  2182  2202 E C01C42/time_service/TimeService: Create# timerfd_create 6  failed:Invalid argument
+10-28 06:28:21.774  2182  2202 E C01C42/time_service/TimeService: GetInstance# Create Timer handle failed
+10-28 06:28:21.780  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:21.783  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:21.783  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:21.786  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:21.787  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:21.791  1792  2001 I C01800/samgr/SAMGR: NF SA:3524,2533_291
+10-28 06:28:21.792  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2871_1048
+10-28 06:28:21.795  1792  2001 I C01800/samgr/SAMGR: NF SA:3524,2533_292
+10-28 06:28:21.799  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_2695
+10-28 06:28:21.801  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:47.738     0     0 I C00000/HiLog: ========Slow reader missed log lines: 220
+10-28 06:28:22.918  2510  3173 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:22.930  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_2721
+10-28 06:28:22.930  1792  2001 I C01800/samgr/SAMGR: NF SA:10,2871_1053
+10-28 06:28:22.931  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:22.934  1792  2425 I C01800/samgr/SAMGR: NF SA:4606,2918_107
+10-28 06:28:22.934  1792  2425 I C01800/samgr/SAMGR: NF SA:4606,2918_108
+10-28 06:28:22.934  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:22.935  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:22.935  2871  3075 E C01810/foundation/SA_CLIENT: GetSaWrap SA:10 not start
+10-28 06:28:22.938  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:22.939  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_303
+10-28 06:28:22.940  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_304
+10-28 06:28:22.950  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:22.950  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2871_1054
+10-28 06:28:22.960  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:22.961  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:22.972  2510  3173 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:22.973  2510  3173 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:22.977  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:22.979  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_2722
+10-28 06:28:22.979  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:22.979  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:22.980  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.006  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.010  2887  2887 W C03F00/MUSL-LDSO: dlopen so: /system/lib64/libusagestatservice.z.so init_time: 1110 ms
+10-28 06:28:23.011  2887  2887 I C01800/bgtaskmgr_service/SAMGR: OpenUuidFile fail, unknown log, uuid is: 1890223293
+10-28 06:28:23.019  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_2723
+10-28 06:28:23.022  2006  2627 I C05A01/accesstoken_service/ATM: [Find:371]Find cost 1333, query 0 records from table permission_definition_table.
+10-28 06:28:23.023  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.023  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.030  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.031  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.042  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.056  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.056  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.058  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_2724
+10-28 06:28:23.071  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.074  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.074  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.075  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.127  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_2725
+10-28 06:28:23.076  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.187  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2871_1055
+10-28 06:28:23.187  1792  2000 I C01800/samgr/SAMGR: NF SA:4606,2918_109
+10-28 06:28:23.188  1792  2000 I C01800/samgr/SAMGR: NF SA:4606,2918_110
+10-28 06:28:23.190  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:23.190  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:23.192  1792  2000 I C01800/samgr/SAMGR: NF SA:3524,2533_305
+10-28 06:28:23.193  2510  3173 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:23.194  1792  2000 I C01800/samgr/SAMGR: NF SA:3524,2533_306
+10-28 06:28:23.194  2510  3173 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:23.198  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.201  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.201  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:22.964  2931  2944 I C01705/resource_schedule_service/IOLIMIT: [(SendWriteCmd):526] SendRequestAsync path iocontrol/iolimit.read_limit content 3145728
+10-28 06:28:23.211  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.220  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_2726
+10-28 06:28:23.220  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.223  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.224  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.242  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.243  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.250  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.251  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.267  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_2727
+10-28 06:28:23.269  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.279  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.280  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.298  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.301  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.302  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.306  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_2728
+10-28 06:28:23.280  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.311  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.322  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.330  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.338  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.338  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.351  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_2729
+10-28 06:28:23.352  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.353  2864  2864 E C057C2/bootanimation/IPCObjectProxy: PrintErrorDetailedInfo 163: failed, handle:0 error:7 desc:*.accessToken proxy:2256385664 time:620520212736
+10-28 06:28:23.353  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.354  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.356  2931  2944 I C01705/resource_schedule_service/IOLIMIT: [(SendWriteCmd):526] SendRequestAsync path iocontrol/iolimit.write_limit content 3145728
+10-28 06:28:23.383  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.387  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.387  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.392  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_2730
+10-28 06:28:23.401  2510  3173 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:23.402  2510  3173 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:23.402  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2871_1056
+10-28 06:28:23.402  1792  2260 I C01800/samgr/SAMGR: NF SA:4606,2918_111
+10-28 06:28:23.403  1792  2260 I C01800/samgr/SAMGR: NF SA:4606,2918_112
+10-28 06:28:23.405  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:23.405  2918  3318 E C01810/aps_manager/SA_CLIENT: GetSaWrap SA:4606 not start
+10-28 06:28:23.406  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:23.406  2918  3318 I C01409/aps_manager/APS_MANAGER: request system service object is not ready yet!
+10-28 06:28:23.406  1792  2001 I C01800/samgr/SAMGR: NF SA:3524,2533_307
+10-28 06:28:23.407  1792  2001 I C01800/samgr/SAMGR: NF SA:3524,2533_308
+10-28 06:28:23.408  2345  2345 W C03F00/MUSL-LDSO: Error loading header libneural_network_runtime_ext.so: failed to map header
+10-28 06:28:23.410  2345  2345 W C03F00/MUSL-LDSO: load libneural_network_runtime_ext.so failed, namespace=ndk, errno=2
+10-28 06:28:23.410  2345  2345 W C03F00/MUSL-LDSO: dlopen_impl load library header failed for libneural_network_runtime_ext.so
+10-28 06:28:23.412  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.412  2533  3201 E C01810/security_guard/SA_CLIENT: GetSaWrap SA:3524 not start
+10-28 06:28:23.414  2533  3201 E C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:28:23.414  2533  3201 E C02F07/security_guard/SG_Service: [SubscribeEvent]Subscribe failed, code: 8, eventId: 0x1c000001in retry list
+10-28 06:28:23.415  2533  3201 I C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:28:23.416  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.417  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.418  2571  3368 E C05A01/privacy_service/ATM: [nodict]Read result failed, code is: 2.
+10-28 06:28:23.420  2571  3368 E C05A01/privacy_service/ATM: [GetDefPermission:162]Request fail, result: 12100012
+10-28 06:28:23.422  2571  3368 E C05A02/privacy_service/PRIVACY: [PermissionListFilter:1464]Permission ohos.permission.MICROPHONE invalid!
+10-28 06:28:23.420  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_309
+10-28 06:28:23.423  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_310
+10-28 06:28:23.431  2006  2627 I C05A01/accesstoken_service/ATM: [GetDefPermission:219]Permission: ohos.permission.LOCATION_IN_BACKGROUND
+10-28 06:28:23.433  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.434  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.435  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.435  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.435  2931  2944 I C01705/resource_schedule_service/IOLIMIT: [(SendWriteCmd):526] SendRequestAsync path heavyio/iolimit.read_limit content 3145728
+10-28 06:28:23.436  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.437  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.444  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_2731
+10-28 06:28:23.449  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.451  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.452  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.466  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.470  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.471  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.473  2931  2944 I C01705/resource_schedule_service/IOLIMIT: [(SendWriteCmd):526] SendRequestAsync path heavyio/iolimit.write_limit content 3145728
+10-28 06:28:23.507  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_2732
+10-28 06:28:23.509  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.571  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_2733
+10-28 06:28:23.572  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.573  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.588  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.589  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.590  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.602  3321  3321 I C01810/security_collector/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:23.607  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.610  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_2734
+10-28 06:28:23.614  2510  3173 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:23.614  2510  3173 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:23.618  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2871_1057
+10-28 06:28:23.619  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:23.620  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:23.629  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.629  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.634  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_311
+10-28 06:28:23.583  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.634  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_312
+10-28 06:28:23.637  2533  2824 E C02F07/security_guard/SG_Service: [StrToLL]strtoll converse error,str=
+10-28 06:28:23.646  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_2735
+10-28 06:28:23.649  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.652  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.652  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.678  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.687  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.687  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.688  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_2736
+10-28 06:28:23.702  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.715  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.715  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.730  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.734  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_2737
+10-28 06:28:23.734  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.734  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.751  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.754  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.754  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.768  2016  3388 W C01719/netmanager/ffrt: 40:TrivalOpenQosCtrlNode:64 pid 2016 belong to user 1099 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 06:28:23.769  1792  2425 I C01800/samgr/SAMGR: NF SA:1901,2085_62
+10-28 06:28:23.770  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:23.773  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:23.774  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:23.775  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_2738
+10-28 06:28:23.784  2085  2191 W C01700/file_monitor_service/HiLog: write socket failed, 1 line(s) dropped!
+10-28 06:28:23.784  2085  2191 E C01700/file_monitor_service/RSS: ResSchedClient::Fail to connect resource schedule service.
+10-28 06:28:23.790  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:29:06.525     0     0 I C00000/HiLog: ========Slow reader missed log lines: 857
+10-28 06:28:27.155  2345  2345 E A0FFFF/swing_service/HIAI_DDK_MSG: graph_infer_initializer.cpp GraphInferInitializer(30)::"load libhiai_ir_infershape.so failed. errmsg[Error loading shared library libhiai_ir_infershape.so: No such file or directory]"
+10-28 06:28:36.961  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:36.962  1792  2851 I C01800/samgr/SAMGR: NF SA:501,2918_21
+10-28 06:28:36.967  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_467
+10-28 06:28:36.969  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_468
+10-28 06:28:36.973  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.017  1792  2851 I C01800/samgr/SAMGR: NF SA:10,2864_2995
+10-28 06:28:37.056  2533  3201 I C02F18/security_guard/SECURITY_AUDIT_Service: KinScamCarePlugin init start.
+10-28 06:28:37.042  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.086  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.086  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.087  1792  2851 I C01800/samgr/SAMGR: NF SA:10,2864_2996
+10-28 06:28:37.092  2533  3201 I C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:28:37.094  1792  2851 I C01800/samgr/SAMGR: NF SA:3524,2533_469
+10-28 06:28:37.095  1792  2851 I C01800/samgr/SAMGR: NF SA:3524,2533_470
+10-28 06:28:37.099  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.102  1876  1897 I C01719/audio_server/ffrt: 13:QueueHandler:72 Ctor sq_ces_queue_3_8, qos 2
+10-28 06:28:37.105  1876  1897 E C01202/audio_server/Ces: [nodict]Send request failed!
+10-28 06:28:37.110  1792  2851 I C01800/samgr/SAMGR: NF SA:401,2016_126
+10-28 06:28:37.114  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.115  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.115  1876  1897 I C02B8B/audio_server/AudioPolicyServer: [SubscribeCommonEvent]subscribe event: <private> action
+10-28 06:28:36.791  2533  2824 I C02F07/security_guard/S_COLLCTOR: [CallGetCollector]CallGetCollector start
+10-28 06:28:37.074  1792  2425 I C01800/samgr/SAMGR: NF SA:4802,2115_896
+10-28 06:28:37.122  2533  2824 E C02F07/security_guard/SG_KELNEL_MONITOR: [SecSub]open <private> failed, No such file or directory
+10-28 06:28:37.122  2533  2824 I C02F07/security_guard/SG_KELNEL_MONITOR: [Subscribe]subscribe the kernel event 469766912
+10-28 06:28:37.123  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.123  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.123  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.123  1792  2851 I C01800/samgr/SAMGR: NF SA:3299,1876_10
+10-28 06:28:37.125  1792  1843 I C01800/samgr/SAMGR: NF SA:10,2864_2997
+10-28 06:28:37.127  2533  2824 I C02F07/security_guard/S_COLLCTOR: [LoadCollector]End LoadCollector
+10-28 06:28:37.129  2533  2824 I C02F07/security_guard/S_COLLCTOR: [SubscribeCollectors]SubscribeCollectors eventId is 0x1c001400
+10-28 06:28:37.129  2533  2824 I C02F07/security_guard/S_COLLCTOR: [GetCollectorPath]Start GetCollectorPath
+10-28 06:28:37.154  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.161  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.162  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.165  1792  1843 I C01800/samgr/SAMGR: NF SA:4606,1812_1099
+10-28 06:28:37.166  1792  2851 I C01800/samgr/SAMGR: NF SA:10,2864_2998
+10-28 06:28:37.175  1792  1843 I C01800/samgr/SAMGR: NF SA:501,2918_22
+10-28 06:28:37.178  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.186  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.187  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.206  1792  2851 I C01800/samgr/SAMGR: NF SA:10,2864_2999
+10-28 06:28:37.207  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.218  1792  1820 I C01800/samgr/SAMGR: NF SA:3299,1972_57
+10-28 06:28:37.219  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.219  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_471
+10-28 06:28:37.219  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.219  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_472
+10-28 06:28:37.229  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.236  1792  2425 I C01800/samgr/SAMGR: NF SA:4802,2115_897
+10-28 06:28:37.238  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.240  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.240  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.245  1792  1820 I C01800/samgr/SAMGR: NF SA:10,2864_3000
+10-28 06:28:37.256  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.258  2978  2978 I C02503/aptouch_daemon/aptouch_daemon: OpenUuidFile fail, unknown log, uuid is: 1416767008
+10-28 06:28:37.273  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.274  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.274  1792  3424 I C01800/samgr/SAMGR: AddDMListener called
+10-28 06:28:37.275  1792  3424 I C01800/samgr/SAMGR: NF SA:4802,1792_563
+10-28 06:28:37.275  1792  3424 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 06:28:37.276  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.283  3321  3433 W C01719/security_collector/ffrt: 7:TrivalOpenQosCtrlNode:64 pid 3321 belong to user 3521 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 06:28:37.283  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_3001
+10-28 06:28:37.286  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.286  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.264  2978  2978 I C02503/aptouch_daemon/aptouch_daemon: OpenUuidFile fail, unknown log, uuid is: 1416767008
+10-28 06:28:37.301  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_473
+10-28 06:28:37.302  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_474
+10-28 06:28:37.371  1792  1820 I C01800/samgr/SAMGR: NF SA:10,2864_3002
+10-28 06:28:37.455  1792  2424 I C01800/samgr/SAMGR: NF SA:3524,2533_475
+10-28 06:28:37.461  1792  2851 I C01800/samgr/SAMGR: NF SA:4606,1812_1100
+10-28 06:28:37.484  1792  2424 I C01800/samgr/SAMGR: NF SA:3524,2533_476
+10-28 06:28:37.498  2334  2490 E C02D11/nearlink_service/DfxThreadContext: wait_for timeout. tid = 2991
+10-28 06:28:37.499  1792  1843 I C01800/samgr/SAMGR: NF SA:401,2016_127
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Name:	OS_IPC_2_2991
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Umask:	0022
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: State:	S (sleeping)
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Tgid:	2334
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Ngid:	0
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Pid:	2991
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: PPid:	1
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: TracerPid:	0
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Uid:	7030	7030	7030	7030
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Gid:	7030	7030	7030	7030
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: FDSize:	256
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Groups:	2000 3010 3011 
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: NStgid:	2334
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: NSpid:	2991
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: NSpgid:	0
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: NSsid:	0
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmPeak:	 2291112 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmSize:	 2291112 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmLck:	       0 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmPin:	       0 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmHWM:	   66172 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmRSS:	   66172 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: RssAnon:	   22380 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: RssFile:	   43476 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: RssShmem:	     316 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmData:	   38748 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmStk:	     132 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmExe:	      24 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmLib:	   58808 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmPTE:	     344 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmPMD:	      24 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: VmSwap:	       0 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Threads:	9
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: SigQ:	0/15733
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: SigPnd:	0000000000000000
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: SigBlk:	0000000000000000
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: SigIgn:	0000000200001000
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: CapInh:	0000001800801000
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: CapPrm:	0000001800801000
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: CapEff:	0000001800801000
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: CapAmb:	0000001800801000
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: NoNewPrivs:	0
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Seccomp:	2
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Cpus_allowed:	f
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Mems_allowed:	1
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: Mems_allowed_list:	0
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: voluntary_ctxt_switches:	2
+10-28 06:28:37.506  2334  2490 I C02D11/nearlink_service/DfxThreadContext: nonvoluntary_ctxt_switches:	1
+10-28 06:28:37.521  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.522  1792  2851 I C01800/samgr/SAMGR: NF SA:501,2918_23
+10-28 06:28:37.563  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.563  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.564  1792  2851 I C01800/samgr/SAMGR: NF SA:10,2864_3003
+10-28 06:28:37.565  1792  2424 I C01800/samgr/SAMGR: NF SA:3299,1972_58
+10-28 06:28:37.569  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.571  1792  2424 I C01800/samgr/SAMGR: NF SA:4802,2115_898
+10-28 06:28:37.571  2334  2490 I C02D11/nearlink_service/DfxFaultLogger: search thread name failed
+10-28 06:28:37.579  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.582  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.582  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.587  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.587  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.587  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.697  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.702  1792  2424 I C01800/samgr/SAMGR: NF SA:4802,2115_899
+10-28 06:28:37.706  1792  2851 I C01800/samgr/SAMGR: NF SA:4606,1812_1101
+10-28 06:28:37.707  1874  3363 I C01D00/accessibility/accessibility: [(operator():434)]Remove system ability start
+10-28 06:28:37.714  1792  1843 I C01800/samgr/SAMGR: NF SA:10,2864_3004
+10-28 06:28:37.719  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.722  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.724  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.727  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.728  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.771  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.805  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.813  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.819  1792  1843 I C01800/samgr/SAMGR: NF SA:10,2864_3005
+10-28 06:28:37.826  1792  1820 I C01800/samgr/SAMGR: NF SA:3299,1972_59
+10-28 06:28:37.829  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.835  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.835  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.836  1792  2424 I C01800/samgr/SAMGR: NF SA:3524,2533_478
+10-28 06:28:37.838  1792  2424 I C01800/samgr/SAMGR: NF SA:3524,2533_479
+10-28 06:28:37.843  1792  2425 I C01800/samgr/SAMGR: NF SA:501,2918_24
+10-28 06:28:37.662  1792  2000 I C01800/samgr/SAMGR: NF SA:3524,2533_477
+10-28 06:28:37.850  1792  2851 I C01800/samgr/SAMGR: NF SA:401,2016_128
+10-28 06:28:37.850  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.724  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.862  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.862  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.867  1792  2851 I C01800/samgr/SAMGR: NF SA:10,2864_3006
+10-28 06:28:37.882  1874  3211 I C01810/accessibility/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:37.895  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.905  2918  3318 E C01810/aps_manager/SA_CLIENT: GetSaWrap SA:501 not start
+10-28 06:28:37.905  2918  3318 I C01409/aps_manager/APS_MANAGER: request system service object is not ready yet!
+10-28 06:28:37.906  1792  2851 I C01800/samgr/SAMGR: NF SA:10,2864_3007
+10-28 06:28:37.910  2902  3434 W C01719/batterycare_service/ffrt: 5:TrivalOpenQosCtrlNode:64 pid 2902 belong to user 6268 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 06:28:37.913  1792  2851 I C01800/samgr/SAMGR: NF SA:4606,1812_1102
+10-28 06:28:37.872  1792  2000 I C01800/samgr/SAMGR: NF SA:3524,2533_480
+10-28 06:28:37.931  2902  3435 W C01719/batterycare_service/ffrt: 6:operator():110 [192887176] set priority warn ret[1] eno[22]
+10-28 06:28:37.933  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.934  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.934  1874  2877 I C01810/accessibility/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:37.936  1874  2877 I C01D00/accessibility/accessibility: [(OnRemoveSystemAbility:426)]systemAbilityId:180 removed!
+10-28 06:28:37.947  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_3008
+10-28 06:28:37.953  2695  2872 E C02D11/huawei_id_svc/DfxThreadContext: wait_for timeout. tid = 3234
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Name:	hwid_ha_0_0
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Umask:	0022
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: State:	S (sleeping)
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Tgid:	2695
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Ngid:	0
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Pid:	3234
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: PPid:	1
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: TracerPid:	0
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Uid:	7008	7008	7008	7008
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Gid:	7008	7008	7008	7008
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: FDSize:	128
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Groups:	1097 
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: NStgid:	2695
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: NSpid:	3234
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: NSpgid:	0
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: NSsid:	0
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmPeak:	 2217352 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmSize:	 2210140 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmLck:	       0 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmPin:	       0 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmHWM:	   45448 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmRSS:	   43940 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: RssAnon:	   16316 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: RssFile:	   27264 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: RssShmem:	     360 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmData:	   38816 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmStk:	     132 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmExe:	      24 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmLib:	   31892 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmPTE:	     248 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmPMD:	      24 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: VmSwap:	       0 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Threads:	14
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: SigQ:	0/15733
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: SigPnd:	0000000000000000
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: SigBlk:	0000000400000000
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: SigIgn:	0000000200001000
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: CapInh:	0000000000000000
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: CapPrm:	0000000000000000
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: CapEff:	0000000000000000
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: CapAmb:	0000000000000000
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: NoNewPrivs:	0
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Seccomp:	2
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Cpus_allowed:	f
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Mems_allowed:	1
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: Mems_allowed_list:	0
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: voluntary_ctxt_switches:	2
+10-28 06:28:37.962  2695  2872 I C02D11/huawei_id_svc/DfxThreadContext: nonvoluntary_ctxt_switches:	0
+10-28 06:28:37.963  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:37.975  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:37.932  3321  3433 W C01719/security_collector/ffrt: 8:RecordSymbolAndBacktrace:392 Process:security_collector,Tid:3417,Qos:2,CWorker:1,EWorker:1,SWorker:0,TaskType:0,timeout:1s
+10-28 06:28:37.987  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:37.988  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:37.995  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_3009
+10-28 06:28:37.997  1792  2851 I C01800/samgr/SAMGR: NF SA:4802,2115_900
+10-28 06:28:38.001  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:38.001  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:38.001  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:38.003  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:38.007  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:38.010  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:38.031  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:38.036  1792  2851 I C01800/samgr/SAMGR: NF SA:10,2864_3010
+10-28 06:28:38.036  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:38.037  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:38.051  1792  2851 I C01800/samgr/SAMGR: NF SA:3524,2533_481
+10-28 06:28:38.051  1792  2851 I C01800/samgr/SAMGR: NF SA:3524,2533_482
+10-28 06:28:38.052  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:38.054  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:38.054  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:38.058  2533  3316 E C01810/security_guard/SA_CLIENT: GetSaWrap SA:3524 not start
+10-28 06:28:38.067  1792  2425 I C01800/samgr/SAMGR: NF SA:3299,1972_60
+10-28 06:28:38.070  1972  1985 E C01810/_hid_accessory_manager_ability/SA_CLIENT: GetSaWrap SA:3299 not start
+10-28 06:28:38.070  1972  1985 E C01202/_hid_accessory_manager_ability/Ces: OpenUuidFile fail, unknown log, uuid is: 1973011987
+10-28 06:28:38.070  1972  1985 I C00103/_hid_accessory_manager_ability/WirelessHIDAccessoryManager: [UnSubscribeCommonEvent:157]UnSubscribeCommonEvent=0
+10-28 06:28:38.071  1972  1985 I C01810/_hid_accessory_manager_ability/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:38.071  1792  2000 I C01800/samgr/SAMGR: NF SA:401,2016_129
+10-28 06:28:38.074  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_3011
+10-28 06:28:38.082  2695  2872 I C02D11/huawei_id_svc/DfxFaultLogger: search thread name failed
+10-28 06:28:38.089  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:38.095  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:38.096  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:38.101  2533  3316 E C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:28:38.110  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:38.110  2115  2363 E C02220/msdp/DDMAdapterImpl: in Enable, DM::InitDeviceManager fail
+10-28 06:28:38.111  2115  2363 E C02220/msdp/DeviceStatusService: in EnableDDM, Failed to enable DistributedDeviceManager, try again later
+10-28 06:28:38.111  2115  2363 I C02220/msdp/DeviceStatusService: in EnableDDM, leave
+10-28 06:28:38.112  2533  3316 E C02F18/security_guard/SECURITY_AUDIT_Service: DataCollectManager QuerySecurityEventConfig failed
+10-28 06:28:38.113  1792  2425 I C01800/samgr/SAMGR: NF SA:10,2864_3012
+10-28 06:28:38.114  3321  3433 W C02C02/PARAM: [param_base.c:483]Param 'faultloggerd.priv.mixstack.enabled' label gid:3521 uid:3521 mode 0100
+10-28 06:28:38.115  2115  2363 I C02220/msdp/DeviceStatusService: in EnableDSoftbus, enter
+10-28 06:28:38.115  3321  3433 W C02C02/PARAM: [param_base.c:484]Cfg label 16480 gid:2000 uid:1202 mode 01f8 
+10-28 06:28:38.115  3321  3433 W C02C02/PARAM: [param_manager.c:704]deny access faultloggerd.priv.mixstack.enabled label 16480 61
+10-28 06:28:38.116  3321  3433 W C02C02/PARAM: [param_manager.c:755]SystemReadParam failed! name is:faultloggerd.priv.mixstack.enabled, err:1001!
+10-28 06:28:38.118  2115  2363 I C01719/msdp/ffrt: 20:QueueHandler:72 Ctor sq_EventHandler_QUEUE_61, qos 2
+10-28 06:28:38.118  1792  2425 I C01800/samgr/SAMGR: NF SA:4606,1812_1103
+10-28 06:28:38.119  2115  2363 I C01719/msdp/ffrt: 21:Stop:151 clear [queueId=60] succ
+10-28 06:28:38.119  2115  2363 I C02220/msdp/DSoftbusAdapterImpl: in SetupServer, enter
+10-28 06:28:38.125  2115  2363 I C02220/msdp/DSoftbusAdapterImpl: in SetupServer, Server session name: 'ohos.msdp.device_status.intention.serversession'
+10-28 06:28:38.126  2115  2363 I C02220/msdp/DSoftbusAdapterImpl: in SetupServer, Package name: 'ohos.msdp.fusioninteraction'
+10-28 06:28:38.126  2115  2363 I C02220/msdp/DSoftbusAdapterImpl: in InitSocket, enter
+10-28 06:28:38.127  2115  2363 I C05740/msdp/TransSdk: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.127  2115  2363 I C05780/msdp/LnnInit: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.129  2115  2363 I C05787/msdp/LnnState: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.129  2115  2363 I C05780/msdp/LnnInit: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.129  2115  2363 I C05780/msdp/LnnInit: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.130  2115  2363 I C05760/msdp/ConnInit: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.130  2115  2363 I C05740/msdp/TransSdk: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.130  2115  2363 I C05740/msdp/TransSdk: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.130  2115  2363 E C05742/msdp/TransInit: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.131  2115  2363 W C05740/msdp/TransSdk: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.131  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:38.131  2115  2363 I C05742/msdp/TransInit: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:38.131  2115  2363 E C05742/msdp/TransInit: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.132  2115  2363 I C05742/msdp/TransInit: OpenUuidFile fail, unknown log, uuid is: 146755340
+10-28 06:28:38.134  1874  3333 I C01D00/accessibility/accessibility: [(operator():434)]Remove system ability start
+10-28 06:28:38.138  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:38.138  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:38.140  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_483
+10-28 06:28:38.141  1792  2425 I C01800/samgr/SAMGR: NF SA:3524,2533_484
+10-28 06:28:38.107  2846  2976 W C057C6/camera_service/BinderInvoker: HandleCommands 1028: HandleCommands cmd:29197 cost time:145976ms
+10-28 06:28:38.153  1874  2877 I C01810/accessibility/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:38.155  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_3013
+10-28 06:28:38.169  2237  2956 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:38.174  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:38.175  1874  1874 I C01810/accessibility/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:38.175  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:38.175  1874  1874 I C01D00/accessibility/accessibility: [(OnRemoveSystemAbility:426)]systemAbilityId:401 removed!
+10-28 06:28:38.180  1792  3414 I C01800/samgr/SAMGR: NF SA:4802,1792_564
+10-28 06:28:38.181  1792  3414 I C01800/samgr/SAMGR: SendCheckLoadedMsg handle for SA:4802
+10-28 06:28:38.183  1792  3414 I C01800/samgr/SAMGR: CleanCallback startingAbilityMap remove SA:4802. with deviceId
+10-28 06:28:38.184  1792  3414 I C01800/samgr/SAMGR: CleanCallback startingAbilityMap remove SA:4802.
+10-28 06:28:38.185  1792  3414 I C01800/samgr/SAMGR: SendCheckLoadedMsg SA:4802, load timeout
+10-28 06:28:38.187  1792  3414 I C01800/samgr/SAMGR: Scheduler SA:4802 handle load fail event
+10-28 06:28:38.187  1792  3414 I C01800/samgr/SAMGR: Scheduler SA:4802 not loaded
+10-28 06:28:38.190  1792  3424 I C01800/samgr/SAMGR: NotifySaLoadFail SA:4802
+10-28 06:29:35.253     0     0 I C00000/HiLog: ========Slow reader missed log lines: 3495
+10-28 06:28:54.366  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.366  2493  2842 E C01810/useriam/SA_CLIENT: GetSaWrap SA:200 not start
+10-28 06:28:54.370  2493  2842 E C01B00/useriam/DistributedAccountFwk: OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 06:28:54.370  2493  2842 E C01B00/useriam/DistributedAccountFwk: OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 06:28:54.371  2493  2842 E C01B00/useriam/OsAccountNativeFwk: OpenUuidFile fail, unknown log, uuid is: 89985654
+10-28 06:28:54.374  2493  2842 E C02406/useriam/FACE_AUTH_SA: [Subscribe@current_user_id_manager.cpp:68] subscribe fail, errCode = 4194321
+10-28 06:28:54.374  2493  2842 E C02406/useriam/FACE_AUTH_SA: subscribe fail, errCode = 4194321
+10-28 06:28:54.379  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.380  2978  2978 I C02503/aptouch_daemon/aptouch_daemon: OpenUuidFile fail, unknown log, uuid is: 1416767008
+10-28 06:28:54.386  2978  2978 I C02503/aptouch_daemon/aptouch_daemon: OpenUuidFile fail, unknown log, uuid is: 1416767008
+10-28 06:28:54.386  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:54.393  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.394  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.395  1792  2853 I C01800/samgr/SAMGR: NF SA:10,2864_3331
+10-28 06:28:54.399  1792  2000 I C01800/samgr/SAMGR: NF SA:200,2493_31
+10-28 06:28:54.408  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.408  2493  3001 I C02406/useriam/FACE_AUTH_SA: [OnRemoveSystemAbility@face_auth_service_status_listener.cpp:44] OsAccountService RemoveFunc called
+10-28 06:28:54.409  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.410  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.417  2493  3001 E C02406/useriam/FACE_AUTH_SA: [Unsubscribe@current_user_id_manager.cpp:97] unsubscribe fail, errCode = 4587534
+10-28 06:28:54.417  2493  3001 E C02406/useriam/FACE_AUTH_SA: unsubscribe fail, errCode = 4587534
+10-28 06:28:54.427  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.438  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.438  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.451  1792  2261 I C01800/samgr/SAMGR: NF SA:10,2864_3332
+10-28 06:28:54.454  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.458  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.459  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.470  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:54.473  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:54.478  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.484  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.486  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.504  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.632  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.633  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.659  1792  2853 I C01800/samgr/SAMGR: NF SA:3524,2533_613
+10-28 06:28:54.660  1792  2853 I C01800/samgr/SAMGR: NF SA:3524,2533_614
+10-28 06:28:54.671  1792  2260 I C01800/samgr/SAMGR: NF SA:401,2016_183
+10-28 06:28:54.703  2493  2717 E C02D11/useriam/DfxThreadContext: wait_for timeout. tid = 3375
+10-28 06:28:54.704  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.659  1792  2261 I C01800/samgr/SAMGR: NF SA:10,2864_3333
+10-28 06:28:54.732  2493  3001 E C02406/useriam/FACE_AUTH_SA: [Unsubscribe@current_user_id_manager.cpp:106] unsubscribe activedInstance fail, errCode = 4587534
+10-28 06:28:54.739  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:54.740  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:54.746  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.747  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.754  1792  2000 I C01800/samgr/SAMGR: NF SA:200,2493_32
+10-28 06:28:54.758  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_3334
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Name:	OS_FFRT_Delay
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Umask:	0022
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: State:	S (sleeping)
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Tgid:	2493
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Ngid:	0
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Pid:	3375
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: PPid:	1
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: TracerPid:	0
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Uid:	1088	1088	1088	1088
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Gid:	1088	1088	1088	1088
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: FDSize:	64
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Groups:	2000 3020 
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: NStgid:	2493
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: NSpid:	3375
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: NSpgid:	0
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: NSsid:	0
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmPeak:	 2202496 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmSize:	 2202496 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmLck:	       0 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmPin:	       0 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmHWM:	   43516 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmRSS:	   43516 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: RssAnon:	   17784 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: RssFile:	   25420 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: RssShmem:	     312 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmData:	   43320 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmStk:	     132 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmExe:	      24 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmLib:	   25624 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmPTE:	     224 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmPMD:	      20 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: VmSwap:	       0 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Threads:	13
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: SigQ:	1/15733
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: SigPnd:	0000000000000000
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: SigBlk:	0000000400000000
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: SigIgn:	0000000200001000
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: SigCgt:	08000e3c400084fa
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: CapInh:	0000000000000000
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: CapPrm:	0000000000000000
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: CapEff:	0000000000000000
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: CapAmb:	0000000000000000
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: NoNewPrivs:	0
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Seccomp:	2
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Cpus_allowed:	f
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Mems_allowed:	1
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: Mems_allowed_list:	0
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: voluntary_ctxt_switches:	107
+10-28 06:28:54.765  2493  2717 I C02D11/useriam/DfxThreadContext: nonvoluntary_ctxt_switches:	62
+10-28 06:28:54.775  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.777  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.777  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.779  2493  2717 I C02D11/useriam/DfxFaultLogger: search thread name failed
+10-28 06:28:54.732  2493  3001 E C02406/useriam/FACE_AUTH_SA: unsubscribe activedInstance fail, errCode = 4587534
+10-28 06:28:54.823  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_3335
+10-28 06:28:54.878  1792  2933 I C01800/samgr/SAMGR: AddDMListener called
+10-28 06:28:54.879  1792  2933 I C01800/samgr/SAMGR: NF SA:4802,1792_582
+10-28 06:28:54.880  1792  2933 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 06:28:54.883  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.888  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.890  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.882  1792  2000 I C01800/samgr/SAMGR: NF SA:3524,2533_615
+10-28 06:28:54.893  1792  2000 I C01800/samgr/SAMGR: NF SA:3524,2533_616
+10-28 06:28:54.895  2533  3201 E C01810/security_guard/SA_CLIENT: GetSaWrap SA:3524 not start
+10-28 06:28:54.895  2533  3201 E C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:28:54.895  1792  2260 I C01800/samgr/SAMGR: NF SA:401,2016_184
+10-28 06:28:54.895  2533  3201 E C02F07/security_guard/SG_Service: [SubscribeEvent]Subscribe failed, code: 8, eventId: 0x27000001in retry list
+10-28 06:28:54.895  2533  3201 I C02F07/security_guard/SG_Service: [RetrySubscriptionTask]Retry subscription event: 0x22000000
+10-28 06:28:54.896  2533  3201 I C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:28:54.902  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_617
+10-28 06:28:54.902  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_618
+10-28 06:28:54.906  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:54.909  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:54.910  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:54.913  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_3336
+10-28 06:28:54.994  2493  3001 I C02406/useriam/FACE_AUTH_SA: [Unsubscribe@current_user_id_manager.cpp:111] unsubscribe finish
+10-28 06:28:55.017  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_3337
+10-28 06:28:55.034  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:55.038  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:55.038  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:55.039  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:55.039  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:55.047  1792  2260 I C01800/samgr/SAMGR: NF SA:200,2493_33
+10-28 06:28:55.052  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:55.055  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:55.055  3348  3459 W C01719/deviceauth_service/ffrt: 6:TrivalOpenQosCtrlNode:64 pid 3348 belong to user 3333 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 06:28:55.055  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:55.066  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_3338
+10-28 06:28:55.069  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:55.073  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:55.074  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:55.077  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:55.079  2902  3437 E C02510/batterycare_service/hdi_servmgr_client: get hdi service battery_extra_service failed, -1
+10-28 06:28:55.090  2902  3437 E C02510/batterycare_service/battery_extra_interface_proxy: Get:get remote object failed!
+10-28 06:28:55.171  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_3339
+10-28 06:28:55.183  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:55.187  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_619
+10-28 06:28:55.187  1792  2260 I C01800/samgr/SAMGR: NF SA:3524,2533_620
+10-28 06:28:55.187  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:55.187  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:55.194  1792  2260 I C01800/samgr/SAMGR: NF SA:401,2016_185
+10-28 06:28:55.208  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:55.143  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:55.217  1792  2853 I C01800/samgr/SAMGR: NF SA:10,2864_3340
+10-28 06:28:55.222  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:55.223  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:55.238  1792  2000 I C01800/samgr/SAMGR: AddProc:index_insert_service,58_0ms
+10-28 06:28:55.242  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:55.251  1792  2260 I C01800/samgr/SAMGR: NF SA:501,2918_53
+10-28 06:28:55.259  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:55.259  1792  2853 I C01800/samgr/SAMGR: NF SA:200,2493_34
+10-28 06:28:55.272  1792  2261 I C01800/samgr/SAMGR: NF SA:10,2864_3341
+10-28 06:28:55.274  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:55.274  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:55.260  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:55.293  3348  3457 W C01719/deviceauth_service/ffrt: 7:CheckTimeInterval:254 handle work more than [791]ms
+10-28 06:28:54.356  1874  3211 I C01810/accessibility/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:55.300  1792  2260 I C01800/samgr/SAMGR: NF SA:4802,2115_922
+10-28 06:28:55.306  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:55.314  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_3342
+10-28 06:28:55.308  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:55.319  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:55.326  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:55.326  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:55.327  1792  2000 I C01800/samgr/SAMGR: Scheduler proc:index_insert_service handle started event
+10-28 06:28:55.327  1792  2000 I C01800/samgr/SAMGR: Scheduler proc:index_insert_service state 0 to 1
+10-28 06:28:55.341  1792  2260 I C01800/samgr/SAMGR: Scheduler SA:4802 load start 2115,0_1_0
+10-28 06:28:55.341  1792  2260 I C01800/samgr/SAMGR: NF SA:4802,2115_923
+10-28 06:28:55.342  2533  3125 W C01719/security_guard/ffrt: 82:CheckTimeInterval:254 handle work more than [516]ms
+10-28 06:28:55.347  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:55.348  1792  2261 I C01800/samgr/SAMGR: NF SA:10,2864_3343
+10-28 06:28:55.353  1792  2260 I C01800/samgr/SAMGR: DoLoadSA:4802,1_1
+10-28 06:28:55.354  1792  2260 I C01800/samgr/SAMGR: NF onDemand SA:4802
+10-28 06:28:55.355  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:55.356  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:55.356  1792  2260 I C01800/samgr/SAMGR: Scheduler SA:4802 loading
+10-28 06:29:37.567     0     0 I C00000/HiLog: ========Slow reader missed log lines: 126
+10-28 06:28:56.279  2006  2009 E C02D11/accesstoken_service/DfxThreadContext: wait_for timeout. tid = 3322
+10-28 06:28:56.318  1792  2853 I C01800/samgr/SAMGR: NF SA:10,2864_3358
+10-28 06:28:56.328  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.330  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.343  1792  2853 I C01800/samgr/SAMGR: NF SA:4802,2115_927
+10-28 06:28:56.346  2533  2824 I C02F07/security_guard/S_COLLCTOR: [LoadLib]dlopen success
+10-28 06:28:56.346  2533  2824 I C02F07/security_guard/S_COLLCTOR: [CallGetCollector]CallGetCollector start
+10-28 06:28:56.347  2533  2824 E C02F07/security_guard/SG_KELNEL_MONITOR: [SecSub]open <private> failed, No such file or directory
+10-28 06:28:56.347  2533  2824 I C02F07/security_guard/SG_KELNEL_MONITOR: [Subscribe]subscribe the kernel event 301994115
+10-28 06:28:56.348  2533  2824 I C02F07/security_guard/S_COLLCTOR: [LoadCollector]End LoadCollector
+10-28 06:28:56.348  2533  2824 I C02F07/security_guard/S_COLLCTOR: [SubscribeCollectors]SubscribeCollectors eventId is 0x12001082
+10-28 06:28:56.348  2533  2824 I C02F07/security_guard/S_COLLCTOR: [GetCollectorPath]Start GetCollectorPath
+10-28 06:28:56.354  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.354  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.358  1792  1841 I C01800/samgr/SAMGR: NF SA:4606,1812_1136
+10-28 06:28:56.360  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_3359
+10-28 06:28:56.376  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.379  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.381  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.387  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:56.387  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:56.409  1792  1841 I C01800/samgr/SAMGR: NF SA:10,2864_3360
+10-28 06:28:56.411  2978  2978 I C02503/aptouch_daemon/aptouch_daemon: OpenUuidFile fail, unknown log, uuid is: 1416767008
+10-28 06:28:56.412  1792  2259 I C01800/samgr/SAMGR: NF SA:3524,2533_627
+10-28 06:28:56.413  1792  2259 I C01800/samgr/SAMGR: NF SA:3524,2533_628
+10-28 06:28:56.413  2978  2978 I C02503/aptouch_daemon/aptouch_daemon: OpenUuidFile fail, unknown log, uuid is: 1416767008
+10-28 06:28:56.415  1792  2000 I C01800/samgr/SAMGR: NF SA:501,2918_57
+10-28 06:28:56.418  1792  2260 I C01800/samgr/SAMGR: NF SA:401,2016_190
+10-28 06:28:56.422  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.425  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.426  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.455  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.482  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.483  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.488  1792  2853 I C01800/samgr/SAMGR: NF SA:200,2493_39
+10-28 06:28:56.495  1792  2259 I C01800/samgr/SAMGR: NF SA:10,2864_3361
+10-28 06:28:56.454  2314  3461 I C01810/index_insert_service/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:56.499  2314  3461 I C0430A/index_insert_service/file_monitor_service: [OnStart:1649]IndexInsertServiceStub start.
+10-28 06:28:56.499  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.500  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.501  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Name:	OS_IPC_7_3322
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Umask:	0002
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: State:	S (sleeping)
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Tgid:	2006
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Ngid:	0
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Pid:	3322
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: PPid:	1
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: TracerPid:	0
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Uid:	3020	3020	3020	3020
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Gid:	3020	3020	3020	3020
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: FDSize:	64
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Groups:	1065 3020 
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: NStgid:	2006
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: NSpid:	3322
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: NSpgid:	0
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: NSsid:	0
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmPeak:	 2173136 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmSize:	 2171032 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmLck:	       0 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmPin:	       0 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmHWM:	   27768 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmRSS:	   27748 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: RssAnon:	   13340 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: RssFile:	   14112 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: RssShmem:	     296 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmData:	   31448 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmStk:	     132 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmExe:	      24 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmLib:	   14620 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmPTE:	     152 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmPMD:	      20 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: VmSwap:	       0 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Threads:	10
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: SigQ:	2/15733
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: SigPnd:	0000000000000000
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: SigBlk:	0000000400000000
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: SigIgn:	0000000200001000
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: SigCgt:	08000e3c400084fa
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: CapInh:	0000000000000000
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: CapPrm:	0000000000000000
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: CapEff:	0000000000000000
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: CapAmb:	0000000000000000
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: NoNewPrivs:	0
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Seccomp:	2
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Cpus_allowed:	f
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Mems_allowed:	1
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: Mems_allowed_list:	0
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: voluntary_ctxt_switches:	2
+10-28 06:28:56.506  2006  2009 I C02D11/accesstoken_service/DfxThreadContext: nonvoluntary_ctxt_switches:	1
+10-28 06:28:56.518  1792  2259 I C01800/samgr/SAMGR: insert SA:66074_70
+10-28 06:28:56.518  1792  2259 W C01800/samgr/SAMGR: rm task 66074 NF
+10-28 06:28:56.518  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.519  1792  2259 I C01800/samgr/SAMGR: Scheduler SA:66074 handle load suc event
+10-28 06:28:56.520  1792  2259 I C01800/samgr/SAMGR: Scheduler SA:66074 loaded
+10-28 06:28:56.520  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.520  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.522  1792  2933 I C01800/samgr/SAMGR: FindSaNotify SA:66074,3_88
+10-28 06:28:56.523  1792  2933 I C01800/samgr/SAMGR: SendSaAddedMsg notify SA:66074
+10-28 06:28:56.531  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.535  1792  2853 I C01800/samgr/SAMGR: NF SA:4802,2115_928
+10-28 06:28:56.536  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.537  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.538  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.538  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.540  1792  2259 I C01800/samgr/SAMGR: NF SA:10,2864_3362
+10-28 06:28:56.439  1794  1794 E C02C11/nwebspawn/APPSPAWN: [appspawn_kickdog.c:29]open /sys/kernel/hungtask/userlist fail,errno:2
+10-28 06:28:56.558  2314  3461 I C01810/index_insert_service/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 06:28:56.565  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.565  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.566  1792  2259 I C01800/samgr/SAMGR: NF SA:4606,1812_1137
+10-28 06:28:56.573  2314  3461 I C0430A/index_insert_service/file_monitor_service: [DoStart:1661]before CheckSystemAbility
+10-28 06:28:56.573  3432  3432 W C03F00/MUSL-LDSO: dlopen so: /system/lib64/platformsdk/libfwmark_client.z.so init_time: 5083 ms
+10-28 06:28:56.575  1792  2259 I C01800/samgr/SAMGR: NF SA:10,2864_3363
+10-28 06:28:56.595  2510  2510 E C05704/softbus_server/CommEvent: OpenUuidFile fail, unknown log, uuid is: 282561991
+10-28 06:28:56.597  2510  2510 E C05701/softbus_server/CommSvc: OnRemoteRequest# server not init
+10-28 06:28:56.615  1792  2259 I C01800/samgr/SAMGR: NF SA:10,2864_3364
+10-28 06:28:56.630  1792  2853 I C01800/samgr/SAMGR: NF SA:501,2918_58
+10-28 06:28:56.633  1792  2000 I C01800/samgr/SAMGR: NF SA:401,2016_191
+10-28 06:28:56.629  3453  3453 W C01719/sa_main/ffrt: 1:ffrt_init:220 libffrt_acc.so not exist
+10-28 06:28:56.643  2493  2717 I C02D06/useriam/XCollie: hisysevent write result=0, send event [FRAMEWORK,SERVICE_TIMEOUT_WARNING], msg=timeout: taskBlockMonitor to check 20000ms ago
+10-28 06:28:56.643  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.643  2493  2717 E C02D06/useriam/XCollie: taskBlockMonitor blocked, after timeout 20000 ,process will exit
+10-28 06:28:56.642  3423  3423 I C04301/init/StorageDaemon: [SetGlobalEl1DirPolicy:490] Fscrypt have not enabled
+10-28 06:28:56.655  1792  2260 I C01800/samgr/SAMGR: NF SA:10,2864_3365
+10-28 06:28:56.663  1792  2000 I C01800/samgr/SAMGR: NF SA:4802,2115_929
+10-28 06:28:56.670  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.670  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.670  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.673  1792  2259 I C01800/samgr/SAMGR: NF SA:3524,2533_629
+10-28 06:28:56.674  1792  2259 I C01800/samgr/SAMGR: NF SA:3524,2533_630
+10-28 06:28:56.675  2533  3201 E C01810/security_guard/SA_CLIENT: GetSaWrap SA:3524 not start
+10-28 06:28:56.675  2533  3201 E C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:28:56.676  2533  3201 E C02F07/security_guard/SG_Service: [SubscribeEvent]Subscribe failed, code: 8, eventId: 0x22000000in retry list
+10-28 06:28:56.676  2533  3201 I C02F07/security_guard/SG_Service: [RetrySubscriptionTask]Retry subscription event: 0x9000003
+10-28 06:28:56.677  2533  3201 I C02F07/security_guard/SG_Service: OpenUuidFile fail, unknown log, uuid is: 3943070524
+10-28 06:28:56.683  1792  2000 I C01800/samgr/SAMGR: NF SA:3524,2533_631
+10-28 06:28:56.684  1792  2000 I C01800/samgr/SAMGR: NF SA:3524,2533_632
+10-28 06:28:56.686  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.688  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.688  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.694  3453  3453 I C01810/sa_main/SAFWK: main enter SAFWK main, proc:3453
+10-28 06:28:56.697  1792  2853 I C01800/samgr/SAMGR: NF SA:10,2864_3366
+10-28 06:28:56.710  1792  2259 I C01800/samgr/SAMGR: NF SA:200,2493_40
+10-28 06:28:56.710  3453  3453 I C01810/resource_schedule_service/SAFWK: operator() Set process name to resource_schedule_service
+10-28 06:28:56.712  2533  3456 E C02F07/security_guard/S_COLLCTOR: OpenUuidFile fail, unknown log, uuid is: 1118583813
+10-28 06:28:56.717  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.719  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.721  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.734  3453  3453 E C02D33/resource_schedule_service/HitraceMeter: open trace file /sys/kernel/debug/tracing/trace_marker failed: 2
+10-28 06:28:56.735  3453  3453 E C02D33/resource_schedule_service/HitraceMeter: open trace file /sys/kernel/tracing/trace_marker failed: 2
+10-28 06:28:56.737  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.738  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.739  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.739  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_3367
+10-28 06:28:56.756  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.760  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:28:56.762  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:28:56.779  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:28:56.786  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:28:56.793  1792  2000 I C01800/samgr/SAMGR: NF SA:10,2864_3368
+10-28 06:28:56.799  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:30:50.888     0     0 I C00000/HiLog: ========Slow reader missed log lines: 2602
+10-28 06:30:51.078     0     0 I C00000/HiLog: ========Slow reader missed log lines: 266
+10-28 06:29:10.918  1792  2424 I C01800/samgr/SAMGR: NF SA:10,2864_3626
+10-28 06:29:10.938  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:29:10.946  2767  3345 E C04111/distributeddata/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:29:10.946  2767  3345 I C04111/distributeddata/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:29:10.946  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:29:10.947  2767  3345 E C04111/distributeddata/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:29:10.947  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:29:10.964  1792  2424 I C01800/samgr/SAMGR: NF SA:10,2864_3627
+10-28 06:29:10.968  1792  2424 I C01800/samgr/SAMGR: NF SA:4606,1812_1165
+10-28 06:29:10.981  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:29:10.985  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:29:10.985  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:29:10.987  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:29:10.990  1792  2424 I C01800/samgr/SAMGR: NF SA:4802,2115_962
+10-28 06:29:10.992  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:29:10.993  2115  2363 I C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:29:10.993  2115  2363 E C04111/msdp/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:29:10.999  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:29:10.999  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:29:11.000  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:29:11.008  1792  2260 I C01800/samgr/SAMGR: NF SA:501,2918_84
+10-28 06:29:11.008  1792  2424 I C01800/samgr/SAMGR: NF SA:10,2864_3628
+10-28 06:29:11.013  2237  2277 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:29:11.015  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:29:11.015  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:29:11.041  2237  2865 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 06:29:11.050  2716  2860 E C02510/render_service/hdi_servmgr_client: get hdi service display_composer_service failed, -1
+10-28 06:29:11.051  2716  2860 E C02510/render_service/display_composer_proxy: Get:get remote object failed!
+10-28 06:29:11.051  2767  3345 I C04111/distributeddata/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742
+10-28 06:29:11.053  1792  2424 I C01800/samgr/SAMGR: NF SA:10,2864_3629
+10-28 06:29:11.055  2864  2864 E C057C2/bootanimation/IPCObjectProxy: PrintErrorDetailedInfo 163: failed, handle:0 error:7 desc:*.accessToken proxy:2256385664 time:668222602848
+10-28 06:29:11.056  1792  2260 I C01800/samgr/SAMGR: NF SA:4802,2767_20
+10-28 06:29:11.059  2767  3345 E C04111/distributeddata/DHDM: OpenUuidFile fail, unknown log, uuid is: 315090742

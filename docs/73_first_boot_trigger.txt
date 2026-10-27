@@ -1,0 +1,90 @@
+=== 73. Круг 5: триггер первого старта — BMSEventHandler::OnBmsStarting ===
+
+Дата: 2026-10-28. Продолжение 72_first_boot_gap.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО ТРИГГЕРИТ ПЕРВЫЙ СТАРТ (по логам эмулятора)
+═══════════════════════════════════════════════════════════════════════
+
+Эмулятор, 22:34:14:
+  14.635  PARAM: SystemSetParameter name ohos.ctl.start id:12 ret:0
+  14.812  BMS: BMSEventHandler OnBmsStarting start
+  14.827  BMS: E OnBmsStarting Load all preInstall bundleInfos failed
+  14.831  BMS: OnBmsStarting first boot
+  33.603  BMS: BMSEventHandler OnBmsStarting end   (19 секунд!)
+  ...в эти 19 секунд ставились 75 бандлов (HSP+HAP).
+
+То есть: первый старт запускается событием BMSEventHandler OnBmsStarting,
+которое следует сразу за установкой параметра ohos.ctl.start
+(init запускает сервис). "first boot" = не удалось загрузить preinstall
+bundleInfos (пустая preinstall-таблица) -> включается полный скан
+/system/app (install_list) и установка HAP.
+
+═══════════════════════════════════════════════════════════════════════
+2. НАША ПРОБЛЕМА: OnBmsStarting НЕ ВЫЗЫВАЕТСЯ ВООБЩЕ
+═══════════════════════════════════════════════════════════════════════
+
+Ни в одном нашем снимке hilog (w1/w2, s1..s7, k1..k4, x1..x3, y1..y3)
+строк "OnBmsStarting"/"BMSEventHandler" НЕТ.
+При этом BMS жив и работает: ставит HSP через app_service_fwk_installer,
+пишет в rdb, отвечает на GetBundleInfo и т.д.
+
+Найденная попутно причина сбоя на старте BMS:
+  BMS: [installd_client.cpp(LoadInstalldService:299)]Wait for load sa timeout
+  BMS: load installd service failed
+  => на момент старта BMS служба installs (SA 511) ещё не была поднята.
+
+ИСПРАВЛЕНО (упорядочивание init):
+  - installs.cfg: start-mode=boot (как в более ранних раундах — там SA 511
+    публиковался);
+  - foundation.cfg: сервису foundation добавлено "depend": ["installs"].
+  РЕЗУЛЬТАТ: installs стартует в 72.9 c, foundation — в 74.1 c;
+  ошибки "LoadInstalldService timeout" ИСЧЕЗЛИ, HSP-установка пошла
+  сразу (installed_bundle=14).
+
+НО OnBmsStarting всё равно не вызывается, лаунчер не ставится.
+
+═══════════════════════════════════════════════════════════════════════
+3. ЧТО ПРОБОВАЛОСЬ ДЛЯ ТРИГГЕРА
+═══════════════════════════════════════════════════════════════════════
+
+  - hidumper -s 401 (на 300 c) и hidumper -s 401 -a (на 340 c):
+    вывод пуст (завис), OnBmsStarting так и не появился.
+  - bm install и bm dump: висят.
+  - Заказ SA у samgr через клиентов не сработал.
+
+ВЫВОД: наш BMS публикуется через пещеру (Publish host из [SA+0x178]),
+минуя штатный путь start/OnStart, поэтому BundleMgrService::OnStart
+(и BMSEventHandler::OnBmsStarting) не вызывается. Именно этот обработчик
+делает первичную установку HAP (включая лаунчер).
+
+═══════════════════════════════════════════════════════════════════════
+4. ПЛАН (следующий раунд)
+═══════════════════════════════════════════════════════════════════════
+
+  A. Найти адрес BMSEventHandler::OnBmsStarting в arm64 libbms и вызвать
+     его из нашей пещеры сразу после Publish (dlsym не подходит —
+     символ не экспортирован; нужен прямой адрес/смещение).
+     - В x86-библиотеке эмулятора 7.0.0 символы читаемы (readelf) —
+       по ней можно определить сигнатуру и паттерн вызова.
+     - Затем: cave -> после Publish вызвать OnBmsStarting (или его
+       статический аналог), либо записать в журнал адрес для проверки.
+  B. Либо вызвать BundleMgrService::OnStart (SA startup callback) вместо
+     только Publish: Publish + Start. В libsafwk/system_ability есть
+     SystemAbility::Start (импортируется), можно добавить в пещеру
+     вызов Start для SA 401.
+  C. Альтернатива: найти в libbms, что именно OnBmsStarting делает
+     (загрузка preinstall, скан app_list.json, установка), и вызвать
+     эту функцию напрямую.
+
+СОСТОЯНИЕ:
+  - installs.cfg — start-mode boot (SA 511 публикуется; ранние раунды)
+  - foundation.cfg — "depend": ["installs"]
+  - libinstalls.z.so — патчен (VerifyCodeSignature -> OK)
+  - install_list.json — полный (182)
+  - libsafwk — cave публикации SA 401
+  - libhapverify/libbms — оригиналы
+
+АРТЕФАКТЫ: docs/73_first_boot_trigger.txt, docs/73_x1_hilog.txt (250 c),
+  docs/73_x2_hilog.txt (400 c), docs/73_x3_hilog.txt (550 c),
+  docs/73_mi9_round52.log
