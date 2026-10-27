@@ -132,3 +132,6 @@ seed.img
 
 !docs/69_*.log
 !docs/69_*.txt
+
+!docs/70_*.log
+!docs/70_*.gz

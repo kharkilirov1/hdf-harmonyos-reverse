@@ -1,0 +1,95 @@
+=== 70. ПРОРЫВ: installd заработал — 14 бандлов установились (было 2-5) ===
+
+Дата: 2026-10-28. Круг 2 цели "добиться успеха любыми способами".
+
+═══════════════════════════════════════════════════════════════════════
+1. ДВЕ НАЙДЕННЫЕ ПРИЧИНЫ, ПОЧЕМУ УСТАНОВКА НЕ ШЛА
+═══════════════════════════════════════════════════════════════════════
+
+(a) служба installs (SA 511, libinstalls.z.so, домен C01122/BMSInstalld)
+    НЕ ПУБЛИКОВАЛАСЬ: в нашем installs.cfg стояло "start-mode":"boot" —
+    процесс стартовал слишком рано, зависал в binder-транзакциях, SA 511
+    не публиковался (в логах эмулятора её 502 строки, у нас 0).
+    ИСПРАВЛЕНО: installs.cfg -> "ondemand": true (как у эмулятора).
+    РЕЗУЛЬТАТ: "insert SA:511_39" в логе samgr (впервые!).
+
+(b) installd.VerifyCodeSignature падал на КАЖДОМ HSP/HAP:
+      BMSInstalld: VerifyCode failed due to -769
+      BMSInstalld: verify code signature failed: 8522362
+      BMS: Install systemHsp ... result 8522362
+      BMS: RollBack: com.huawei.hmos.paymentServiceHsp
+    ИСПРАВЛЕНО: патч libinstalls.z.so — на входе серверных обработчиков
+      InstalldHostImpl::VerifyCodeSignature        @0x91f14
+      InstalldHostImpl::VerifyCodeSignatureForHap  @0x92ad8
+    записано "mov w0,#0; ret" (ERR_OK). Бэкап libinstalls.z.so.orig.verify.
+    Скрипт: docs/patch_installd_verify.py
+
+═══════════════════════════════════════════════════════════════════════
+2. ДОКАЗАТЕЛЬСТВО РЕЗУЛЬТАТА (БД после прогона)
+═══════════════════════════════════════════════════════════════════════
+
+ДО патча (типичный прогон): installed_bundle = 2-5 бандлов
+  (weather, walletkit, health.kit, hdscomponent …), остальные падали
+  с 8522362/8519890.
+
+ПОСЛЕ патча: installed_bundle = 14 бандлов, в т.ч. РАНЕЕ ПАДАВШИЕ:
+  com.huawei.hmos.paymentServiceHsp   <-- падал с 8522362
+  com.huawei.hmos.animatronix
+  com.huawei.hmos.hwstylusfeature
+  com.huawei.hmos.pic
+  com.huawei.hmos.photobrowser
+  com.huawei.hms.cloudcommon
+  com.huawei.hms.mapservice.kit
+  com.huawei.hmsapp.flexiblelayout
+  com.huawei.hmsapp.hiai.hsp
+  ... и HSP-киты (weather, walletkit, health.kit, hdscomponent,
+      security.pickersheet)
+/data/app/el1/bundle/public = 14 каталогов.
+=> Проверка code signature больше не блокирует установку;
+   БД и ФС наполняются (впервые).
+
+═══════════════════════════════════════════════════════════════════════
+3. ПОБОЧНАЯ НАХОДКА: ДЕТЕРМИНИРОВАННЫЕ ЛОГИ
+═══════════════════════════════════════════════════════════════════════
+
+`/system/bin/hilog -w start` (init-джоб) включает ПЕРСИСТЕНТНЫЙ лог:
+  /data/log/hilog/hilog.000..002.<дата>.gz  (~0.9 МБ каждый)
+Формат — бинарный (записи с заголовками), строки сообщений частично
+закодированы словарём, но не-dictionary строки (имена бандлов и т.п.)
+видны как есть. Это дало нам надёжный источник логов (не зависит от
+капризов hilog-клиента).
+Артефакты: docs/70_hilog.*.gz (3 файла).
+
+═══════════════════════════════════════════════════════════════════════
+4. ЧТО ЕЩЁ НЕ ТАК / СЛЕДУЮЩИЙ ШАГ
+═══════════════════════════════════════════════════════════════════════
+
+Лаунчер (com.huawei.hmos.slassistant) в minimal install_list прогоне
+НЕ устанавливался: в логе вообще нет "SuperLauncher"/"/system/app/Super"
+— BMS в этом прогоне обрабатывал только app_service_fwk_install_list
+(14 HSP), до install_list-приложений (HAP) не дошёл за 1150 c.
+В preinstalled_bundle лаунчера тоже нет.
+
+План:
+ 1. Длинный прогон (2200-2600 c) с ПОЛНЫМ install_list (182 записи),
+    патченным installd и включённым `hilog -w start`:
+    дождаться, пока BMS дойдёт до HAP-приложений install_list
+    (в т.ч. /system/app/SuperLauncher) и установит их.
+ 2. Проверить: installed_bundle += com.huawei.hmos.slassistant,
+    /data/app/el1/bundle/public/com.huawei.hmos.slassistant,
+    preinstalled/installed записи; затем launcher.ready.
+ 3. Если BMS не берёт SuperLauncher из install_list — проверить формат
+    записи (эталон: /system/app/Camera в полном списке) и
+    app_control/startupBundles конфиг.
+
+СОСТОЯНИЕ:
+  - libinstalls.z.so — ПАТЧЕН (verify -> OK), бэкап .orig.verify
+  - installs.cfg — ondemand (как эмулятор)
+  - install_list.json — полный (182)
+  - libsafwk — cave публикации SA 401
+  - libhapverify/libbms — оригиналы
+  - probe-джобы: hilog -w start + снимки 500/700/900
+
+АРТЕФАКТЫ: docs/70_installd_breakthrough.txt,
+  docs/patch_installd_verify.py, docs/70_hilog.000..002.gz,
+  docs/70_mi9_round49.log
