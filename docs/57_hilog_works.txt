@@ -1,0 +1,70 @@
+=== 57. Раунд 38: ЛОГИ BMS ПОЛУЧЕНЫ (hilog без аргументов) ===
+
+Дата: 2026-10-27. Продолжение 56_hapverify_targeted.
+
+═══════════════════════════════════════════════════════════════════════
+ГЛАВНОЕ: hilog-клиент РАБОТАЕТ
+═══════════════════════════════════════════════════════════════════════
+
+Вызов `/system/bin/hilog` БЕЗ аргументов (через delayed_exec с
+перенаправлением в /data/diag/h1.log) даёт полный снапшот логов
+(187 КБ, 618+ строк), включая домены BMS/HapVerify/BMSExt!
+Опции `-x`, `-s`, `-r` не нужны (и, похоже, не поддерживаются).
+
+═══════════════════════════════════════════════════════════════════════
+ЧТО ВИДНО В ЛОГАХ BMS (прогон с "грубым" патчем HapVerify)
+═══════════════════════════════════════════════════════════════════════
+
+10-27 17:55:18 W C01120/foundation/BMS:
+  [bundle_parser.cpp(ParsePackInfo:164)]cannot find pack.info in the hap file
+10-27 17:55:18 E C01121/foundation/BMSInstaller:
+  bundle_install_checker.cpp:CheckBundleName:741
+  CheckBundleName provisionBundleName:, bundleName:com.ohos.xxx
+10-27 17:55:18 E ... Verify: bundle_install_checker.cpp:ParseHapFiles:393
+  check provision bundleName failed
+10-27 17:55:18 E ... base_bundle_installer.cpp:ParseHapFiles:4192
+  parse hap file failed due to errorCode : 8519752
+10-27 17:55:18 E C01120/foundation/BMS:
+  [base_bundle_installer.cpp(ProcessBundleInstall:1339)]parse haps file failed 8519752
+10-27 17:55:18 E C01120/foundation/BMS:
+  [system_bundle_installer.cpp(InstallSystemBundle:43)]install system bundle fail, error: 8519752
+
+errorCode 8519752 = 0x820008; также встречается 8519686.
+Причина: наш "грубый" патч (HapVerify -> 0) оставляет HapVerifyResult
+ПУСТЫМ, поэтому provisionBundleName пуст -> CheckBundleName падает ->
+парсинг HAP падает -> install system bundle fail -> БД/установка пустые.
+
+=> Грубый патч не годится: он даёт bms.main.bundles.ready=true, но
+   ломает саму установку (нет provision info).
+
+═══════════════════════════════════════════════════════════════════════
+СОСТОЯНИЕ ПАТЧЕЙ
+═══════════════════════════════════════════════════════════════════════
+
+- libsafwk: cave_once (публикация BMS host при listener 8250) — рабочая,
+  insert SA:401 стабильно.
+- libhapverify: сейчас ТОЧЕЧНЫЙ патч (patch_hapverify2.py, nop в 0x36190).
+  backup .orig лежит рядом.
+- kernel: pin foundation отключён (порог 100000 c).
+- /system/bin/hilog, bmrun, bmretry, delayed_exec — на месте.
+
+ТЕКУЩИЙ ПРОГОН (точечный патч + hilog 600 c + bm install 660 c)
+  insert SA:401 = 2; bootevents 9; bms.ready = 0;
+  h4.log = 72 КБ (618 строк), но BMS-сообщений в окне до 600 c нет;
+  H1.log/.rc созданы, но пустые (bm не успел/завис).
+
+═══════════════════════════════════════════════════════════════════════
+ПЛАН (раунд 39)
+═══════════════════════════════════════════════════════════════════════
+
+1. Снять hilog В МОМЕНТ установки: запускать bm install около 660 c,
+   а hilog — в 680 и 760 c (снапшот уже содержит события установки).
+2. Найти точную ошибку для SuperLauncher.hap (grep по
+   SuperLauncher/slassistant/errorCode в этих снапшотах).
+3. По ней решить: патчить конкретную проверку в libhapverify/libbms
+   (например, provision/ticket/trust) ИЛИ обойти установку через
+   preinstalled_bundle в bmsdb.db.
+4. После установки — launcher.ready / boot.completed.
+
+АРТЕФАКТЫ: docs/57_hilog_works.txt, docs/57_h1_hilog.txt (лог BMS),
+           docs/57_h4_hilog.txt, docs/patch_hapverify2.py
