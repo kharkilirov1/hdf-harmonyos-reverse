@@ -1,0 +1,39 @@
+=== 52. Раунд 33: bm ЗАРАБОТАЛ (single-publish!) ===
+
+Дата: 2026-10-27. Продолжение 51_bm_hangs.
+
+ГЛАВНОЕ: причина зависания bm — ТРОЙНАЯ публикация SA 401.
+С пещерой, публикующей host ТОЛЬКО на listener 8250 (один раз):
+  - insert SA:401 = 2 (по числу стартов BMS)
+  - bootevents 10
+  - bm dump -a      -> RC=0 за 13 c  (не висит!)
+  - bm install -p   -> RC=0 за 33 c
+  - bm dump -n ...  -> TIMEOUT (возможно, нужен другой синтаксис)
+
+СОДЕРЖИМОЕ ВЫВОДА bm:
+  bmd.log: "error: failed to get information and the parameters may be wrong."
+  bmi.log: "error: failed to install bundle."
+
+ВЫВОД: BMS RPC РАБОТАЕТ (bm доходит и получает ответы), но:
+  - у bm dump неверные аргументы для этой версии;
+  - bm install возвращает "failed to install bundle" — вероятно,
+    проверка подписи/установщик (code_sign_utils / HKS / TEE) либо
+    ограничения установщика.
+
+Лаунчер пока не установлен (в /data/app/el1/bundle/public нет
+com.huawei.hmos.slassistant), bms.main.bundles.ready / launcher.ready
+отсутствуют.
+
+ТЕКУЩАЯ КОНФИГУРАЦИЯ:
+  patch_once.py + cave_once.s -> libsafwk: публикация host из [SA+0x178]
+  только при [SA+0x8]==401 && listener_id==8250.
+  /system/bin/bmrun — раннер с таймаутом.
+
+СЛЕДУЮЩИЕ ШАГИ:
+  1. Подобрать рабочий синтаксис bm dump (например, "bm dump -n <bundle>"
+     с -u 0), получить список бандлов и статус BMS.
+  2. Выяснить причину "failed to install bundle": проверить подпись HAP
+     (может требовать HKS/TEE). Если подпись — искать обход (патч
+     верификации в libcode_sign_utils/libbms) или предустановку.
+  3. После установки лаунчера ждать bms.main.bundles.ready ->
+     launcher.ready -> boot.completed.
