@@ -1,21 +1,78 @@
-MIT License
+HDF RESEARCH VIEWING LICENSE 1.0
 
-Copyright (c) 2026 kharkilirov1
+Copyright (c) 2026 KharkilIrov1
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. PURPOSE AND SCOPE
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This license applies only to original materials in this repository that are
+owned by the copyright holder identified above or for which that holder has
+authority to grant these permissions. Public availability does not itself
+grant a general right to reuse those materials.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. PERMITTED ACTIVITIES
+
+Subject to applicable law and the hosting platform's terms, you may:
+(a) access and view the repository;
+(b) read and study its original source code and documentation;
+(c) refer to the repository in reviews, commentary, criticism, academic
+    discussion, and other activities permitted by law; and
+(d) quote limited portions to the extent permitted by applicable law.
+
+3. RESTRICTED ACTIVITIES
+
+Unless the copyright holder gives prior written permission, you may not,
+to the extent authorization is required by applicable law:
+(a) reproduce or redistribute substantial portions of the covered original
+    code or documentation;
+(b) incorporate covered original code into another software project, product,
+    or service;
+(c) modify, adapt, translate, or create derivative works from covered
+    original code or other protected materials;
+(d) distribute, sublicense, sell, or commercially exploit covered materials;
+or
+(e) package or publish covered materials as a separate codebase, dataset, or
+    competing collection.
+
+These restrictions do not prohibit acts that applicable law permits without
+authorization. No rights beyond those expressly stated in Section 2 are
+granted by this license.
+
+4. THIRD-PARTY MATERIALS
+
+This license does not apply to third-party source code, binaries, trademarks,
+or other materials owned by others. Those materials remain subject to their
+own licenses, permissions, and applicable law. Nothing here grants rights
+that the copyright holder does not own or control.
+
+5. EARLIER LICENSE NOTICES
+
+Earlier public revisions of this repository may have included MIT or
+CC BY 4.0 notices. Replacing a license file does not automatically revoke
+permissions already granted to recipients under an earlier valid license.
+This license does not purport to retroactively cancel such grants. The
+scope and effect of prior notices depend on the relevant materials and facts.
+
+6. PLATFORM TERMS AND LEGAL EXCEPTIONS
+
+This license does not override the terms of GitHub or any other hosting
+platform, and it does not disable platform features such as viewing or
+forking a public repository. Statutory exceptions and limitations, including
+applicable quotation, research, or interoperability rights, remain unaffected.
+
+7. OWNERSHIP AND DISCLAIMER
+
+Copyright remains with the applicable rights holders. To the maximum extent
+permitted by law, covered materials are provided "AS IS", without warranties
+of any kind. The copyright holder does not guarantee accuracy, completeness,
+or fitness for a particular purpose.
+
+8. PERMISSION REQUESTS
+
+Requests for permission beyond Section 2 must be made in writing to the
+copyright holder through the contact method provided on the repository
+owner's GitHub profile.
+
+9. SEVERABILITY
+
+If a provision is held unenforceable, the remaining provisions remain in
+effect to the extent permitted by applicable law.
