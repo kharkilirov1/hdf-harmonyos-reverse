@@ -1,0 +1,96 @@
+=== 74. Круг 6: SystemAbility::Start из пещеры ЗАПУСКАЕТ BMS OnStart ===
+
+Дата: 2026-10-28. Продолжение 73_first_boot_trigger.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+В пещеру libsafwk (VA 0xf1ac), кроме Publish (0x1f324), добавлен вызов
+SystemAbility::Start() (VA 0x1ff38) для SA 401:
+  вариант 1: Start -> Publish   (cave_start.s)
+  вариант 2: Publish -> Start   (cave_start2.s)  <-- текущий, применён
+Патчеры: docs/patch_once_start.py, docs/patch_once_start2.py.
+
+═══════════════════════════════════════════════════════════════════════
+2. ГЛАВНЫЙ РЕЗУЛЬТАТ: OnStart ТЕПЕРЬ ВЫЗЫВАЕТСЯ
+═══════════════════════════════════════════════════════════════════════
+
+До этого (только Publish) в логах НИКОГДА не было строк OnStart:
+  C01120/BMS: [bundle_mgr_service.cpp(BundleMgrService:58)]instance is created
+  C01120/BMS: BundleMgrService OnStart start          <-- НОВОЕ
+  C01120/BMS: BundleMgrService Init begin
+  C01120/BMS: [installd_client.cpp(GetInstalldProxy:316)]try to get installd proxy
+  C01120/BMS: [bms_rdb_open_callback.cpp(OnCreate:27)]OnCreate
+  C01120/BMS: [bms_rdb_open_callback.cpp(OnOpen:49)]Open
+  C01120/BMS: [rdb_data_manager.cpp(RdbIntegrityCheckNeedRestore:504)]integrity check start
+  C01120/BMS: [rdb_data_manager.cpp(RdbIntegrityCheckNeedRestore:517)]integrity check succeed
+
+То есть Start() из пещеры реально запускает штатный OnStart BMS.
+
+═══════════════════════════════════════════════════════════════════════
+3. НО OnStart ВИСНЕТ (новый точный барьер)
+═══════════════════════════════════════════════════════════════════════
+
+Поток OnStart (tid 2324) замолкает сразу после "integrity check succeed"
+(07:09:25). Далее watchdog сообщает:
+
+  C02D06/foundation/XCollie: send event [FRAMEWORK,SERVICE_TIMEOUT],
+  msg=timeout: BundleMgrService::Start to check 240000ms ago
+
+Сравнение с эмулятором (там OnStart идёт дальше):
+  BundleMgrService InitBmsParam
+  bms db is not exist, need to create
+  OnCreate -> rdb open -> integrity check -> "rdb repaired, reset rdb file"
+  BundleMgrService InitPreInstallExceptionMgr
+  [bundle_mgr_service.cpp(InitBundleDataMgr:221)] Create BundledataMgr
+  BundleDataStorageRdb instance is created
+  PreInstallDataStorageRdb instance is created
+  BundleSandboxDataMgr instance is created
+  ... QueryAllSandboxInnerBundleInfo ...
+  BMSEventHandler OnBmsStarting start      <-- у эмулятора через 2.4 c
+
+У нас после "integrity check succeed" OnStart НЕ доходит до InitBmsParam.
+Вероятный виновник — вызов сервиса параметров/rdb, который в нашей среде
+блокируется (ранее наблюдались ошибки param_watcher:
+"binder: transaction failed 29189/-22"). Это же объясняет, почему bm
+и hidumper всегда висели: они дергают BMS, чей Start() не завершается.
+
+Это НОВЫЙ, более глубокий барьер, чем "OnBmsStarting не вызывается":
+OnStart запускается, но блокируется на инициализации (между открытием
+bmsdb и InitBmsParam).
+
+═══════════════════════════════════════════════════════════════════════
+4. ПОБОЧНЫЙ ЭФФЕКТ
+═══════════════════════════════════════════════════════════════════════
+
+При Start+Publish installed_bundle упал до 4 (в обычном прогоне 14):
+зависший OnStart мешает нормальной установке HSP.
+Логи стали огромными (q1=2.2 МБ) из-за циклов/ошибок.
+
+═══════════════════════════════════════════════════════════════════════
+5. ПЛАН СЛЕДУЮЩЕГО РАУНДА
+═══════════════════════════════════════════════════════════════════════
+
+  A. Выяснить, на чём именно висит OnStart после integrity check:
+     - снять стек потока BMS (faultlogger / processdump / hidumper -p),
+       в /data/log/faultlog может появиться SERVICE_TIMEOUT с бэктрейсом;
+     - проверить в libbms, какой вызов идёт сразу после
+       RdbIntegrityCheckNeedRestore (вероятно InitBmsParam -> param API
+       или BundleDataStorageRdb::Init -> rdb).
+  B. Обойти зависание: патчить конкретный вызов (например, заменить
+     проверку/ожидание param API на немедленный успех), как мы уже
+     делали с VerifyCodeSignature.
+  C. После обхода ожидать InitBmsParam -> InitPreInstallExceptionMgr ->
+     Create BundledataMgr -> BMSEventHandler OnBmsStarting -> first boot
+     -> установка 75 бандлов (включая launcher) -> launcher.ready.
+
+СОСТОЯНИЕ (текущее):
+  - libsafwk: пещера Publish+Start (cave_start2.s) — Экспериментально
+  - installs.cfg: start-mode boot; foundation.cfg: depend installs
+  - libinstalls.z.so: VerifyCodeSignature -> OK
+  - install_list.json: полный (182)
+  - libhapverify/libbms: оригиналы
+
+АРТЕФАКТЫ: docs/74_start_hang.txt, docs/74_q1_hilog.txt (2.2 МБ),
+  docs/74_q2_hilog.txt (1.8 МБ), docs/74_mi9_round53.log
