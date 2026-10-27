@@ -1,0 +1,106 @@
+=== 66. ПОДСКАЗКА ИЗ DEVECO-ЭМУЛЯТОРА (нашёл!) ===
+
+Дата: 2026-10-27. Вопрос: как работает дев-эмулятор DevEco, нет ли подсказки.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЭМУЛЯТОР УСТАНОВЛЕН И ДАЖЕ РАБОТАЕТ ЗДЕСЬ
+═══════════════════════════════════════════════════════════════════════
+
+Найдено на машине:
+  C:\Program Files\Huawei\DevEco Studio\ (26.0)
+  C:\Users\Kharki\AppData\Local\Huawei\Emulator\system-image\HarmonyOS-6.0.1\wearable_ov_x86
+  C:\Users\Kharki\AppData\Local\Huawei\Sdk\system-image\
+     HarmonyOS-5.0.1, 5.1.1, 6.0.0, 6.0.1, 6.0.2, 6.1.1,
+     HarmonyOS-7.0.0\phone_all_x86, HarmonyOS-7.0.0-B1\phone_all_x86,
+     tablet_x86 ...
+  Deployed-инстанс "Mate 90 Pro": HarmonyOS 7.0.0.107, x86_64,
+     образ phone_all_x86, userdata.qcow2 867 МБ.
+
+Эмулятор ЗАПУЩЕН прямо сейчас (pid 4580, с 22:33), hdc видит
+127.0.0.1:5555 — можно снимать живые данные.
+
+═══════════════════════════════════════════════════════════════════════
+2. ГЛАВНАЯ ПОДСКАЗКА: У ЭМУЛЯТОРА НЕТ TEE/HKS ВООБЩЕ
+═══════════════════════════════════════════════════════════════════════
+
+В образе эмулятора (6.0.1 wearable x86_64) НЕТ:
+  /system/bin/teecd, /system/bin/hks_compatibility_bin, libhks/tee-библиотек.
+Ядро эмулятора — x86 5.10.210, строк tc_ns/tzdriver/tee в нём НЕТ.
+=> Эмулятор работает без TEE/HKS. Значит у BMS есть штатный
+   "эмуляторный" путь, при котором подпись не проверяется.
+
+В обоих libbms (наш arm64 6.0.0.108 И эмуляторный x86) есть строка:
+  "%{public}s:%{public}s:%{public}d Emulator does not verify signature"
+и символ BmsExtensionDataMgr::IsRdDevice.
+
+═══════════════════════════════════════════════════════════════════════
+3. ЖИВЫЕ ПАРАМЕТРЫ ЭМУЛЯТОРА (через hdc)
+═══════════════════════════════════════════════════════════════════════
+
+  const.product.model            = emulator
+  const.product.name             = emulator
+  const.product.software.version = "emulator 7.0.0.107(SP8DEVC00E999R4P11)"
+  const.product.brand            = HUAWEI
+  const.build.characteristics    = default
+  const.product.devicetype       = phone
+
+В НАШЕМ arm64-образе было:
+  const.product.model=ohos
+  const.product.name="OpenHarmony 3.2"
+  const.product.software.version=OpenHarmony 6.0.0.107
+
+libbms читает именно const.product.name (строка есть в libbms).
+ВЫВОД: BMS, скорее всего, определяет эмулятор по
+const.product.name == "emulator" (и/или model/software.version)
+и тогда пропускает проверку подписи.
+
+═══════════════════════════════════════════════════════════════════════
+4. ЧТО ПОКАЗЫВАЮТ ЛОГИ РАБОТАЮЩЕГО ЭМУЛЯТОРА
+═══════════════════════════════════════════════════════════════════════
+
+  C01120/BMS: check syscap failed 0        <-- код 0 (не ошибка!)
+  C011fe/HapVerify: parse root certs success, certs num: 2
+     (trusted_root_ca, trusted_source_manager работают!)
+  При этом установка части system-бандлов ВСЁ РАВНО падает:
+     install system bundle fail error: 8519714 / 8519686 / 8519891
+  НО эмулятор всё равно загружается до UI (SYS_UI, sceneboard),
+  потому что userdata.img уже содержит установленные бандлы и
+  лаунчер (com.ohos.sceneboard и др.) — их не надо ставить.
+
+=> Второй вывод: можно не устанавливать лаунчер, а принести его
+   "уже установленным" в /data (как в userdata эмулятора):
+   /data/app/el1/bundle/public/<bundle>/... + записи BMS DB.
+
+═══════════════════════════════════════════════════════════════════════
+5. ЧТО СДЕЛАНО В ЭТОМ РАУНДЕ (проверка гипотезы)
+═══════════════════════════════════════════════════════════════════════
+
+В /system/etc/param/ohos.para нашего arm64-образа выставлено:
+  const.product.model=emulator
+  const.product.name=emulator
+  const.product.software.version="emulator 6.0.0.108"
+(бэкап: ohos.para.orig.hm)
+
+Первый прогон вышел медленным: сработал "first-boot/installer" путь
+(param_service/install, mkdir /mnt/sys_installer и т.п.), к 730 c
+foundation только стартовал, insert SA:401 ещё не дошёл.
+Причина, вероятно, некорректная строка с пробелом без кавычек
+(исправлено на "emulator 6.0.0.108").
+
+═══════════════════════════════════════════════════════════════════════
+6. ПЛАН ПРОВЕРКИ
+═══════════════════════════════════════════════════════════════════════
+
+1. Перезапуск с исправленным ohos.para (кавычки), 900-1200 c:
+   ждать insert SA:401, bms.main.bundles.ready, установку лаунчера.
+2. Если BMS реально пошёл в "Emulator does not verify signature" —
+   проверить по БД (installed_bundle += com.huawei.hmos.slassistant)
+   и по логу hilog (снимок ловит строку Emulator does not verify).
+3. Если параметра недостаточно — найти статически ветку в arm64
+   libbms (функция, читающая const.product.name) и принудительно
+   включить эмуляторный режим патчем (mov w0,#1 / b <skip verify>).
+4. Параллельно: вытащить userdata.qcow2 эмулятора (Mate 90 Pro),
+   посмотреть раскладку /data для лаунчера (bundle_info.json и т.п.)
+   и воспроизвести её в arm64-образе — путь "уже установлен".
+
+АРТЕФАКТЫ: docs/66_deveco_hint.txt
