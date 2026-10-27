@@ -1,0 +1,70 @@
+=== 63. Раунд 44: инъекция лаунчера в БД BMS (installed+preinstalled) ===
+
+Дата: 2026-10-27. Продолжение 62_syscap_patch (по команде "продолжи и патчи").
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+Извлекли метаданные SuperLauncher.hap (распаковали zip):
+  bundleName  = com.huawei.hmos.slassistant
+  versionCode = 60000302, versionName 6.0.0.302
+  moduleName  = phone (type=entry), mainElement = SuperLauncherMainAbility
+  abilities: DefaultIntentBackgroundUiAbility, SuperLauncherMainAbility,
+             PermissionRequestAbility, SuperLauncherUIability
+
+Скрипт inject_launcher_db.py:
+  - берёт BundleInfo JSON установленной HSP-записи (com.huawei.hms.weather)
+    из /tmp/bmdb2.db;
+  - заменяет идентичность на лаунчер (bundleName, moduleName phone,
+    bundlePaths -> /system/app/SuperLauncher/SuperLauncher.hap,
+    bundleType 3->0, versionCode/Name, codePath);
+  - пишет запись в installed_bundle и preinstalled_bundle;
+  - кладёт bmsdb.db и bmsdb_slave.db в дерево образа
+    (/data/service/el1/public/bms/bundle_manager_service/).
+
+ПЕРЕЗАГРУЗКА С ЭТИМИ БД (минимальный install_list = только SuperLauncher):
+  insert SA:401 = 1; bootevents 7
+  ЗАПИСЬ ЛАУНЧЕРА ВЫЖИЛА: installed_bundle = [...],
+  preinstalled = [..., 'com.huawei.hmos.slassistant', ...]
+  (проверено дампом bmsdb_slave.db после прогона).
+  Значит BMS при старте НЕ стёр нашу запись (или не дошёл до скана).
+
+═══════════════════════════════════════════════════════════════════════
+2. ПОПЫТКА ПРОВЕРИТЬ ЧЕРЕЗ bm
+═══════════════════════════════════════════════════════════════════════
+
+Штурм окна BMS: bmretry 380 c, 20 попыток по 12 c:
+  attempt=0..17 rc=-2 (TIMEOUT) — bm ВИСНЕТ на каждом вызове
+  (bm dump -n com.huawei.hmos.slassistant и bm dump -a), несмотря на
+  insert SA:401 = 2. Файлы вывода пустые.
+
+ВЫВОД: bm как инструмент проверки ненадёжен (висит), хотя ранее в
+некоторых прогонах bm отвечал. Нужен другой способ проверить, что
+BMS отдаёт наш BundleInfo и что приложение можно запустить.
+
+═══════════════════════════════════════════════════════════════════════
+3. ПЛАН (раунд 45)
+═══════════════════════════════════════════════════════════════════════
+
+1. Проверить запуск лаунчера напрямую через aa:
+   /system/bin/aa start -b com.huawei.hmos.slassistant
+                        -a SuperLauncherMainAbility
+   (AMS = SA 501 уже публикуется; если BMS отдаёт BundleInfo,
+    AMS попросит appspawn поднять процесс — увидим в консоли/логе
+    новый процесс и, возможно, launcher.ready).
+2. Параллельно снимать hilog-снимок после aa start (может дать
+   строки AMS/appspawn/BMS).
+3. Если aa start не сработает — смотреть, что отвечает AMS
+   (в hilog домены C01xxx), и патчить/дополнять BundleInfo
+   (например, abilityInfos для SuperLauncherMainAbility).
+
+СОСТОЯНИЕ:
+  - libbms/libhapverify/libselinux и пр. — оригиналы (патчи откачены).
+  - libsafwk: пещера публикации SA 401 (cave_once) — ПРИМЕНЕНА.
+  - install_list.json — минимальный (только SuperLauncher)
+    (backup install_list.json.full = 182 записи).
+  - БД BMS в дереве содержит запись лаунчера.
+
+АРТЕФАКТЫ: docs/63_launcher_db_inject.txt, docs/63_mi9_round44.log,
+           docs/inject_launcher_db.py
