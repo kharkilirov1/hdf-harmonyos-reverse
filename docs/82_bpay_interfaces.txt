@@ -1,0 +1,79 @@
+=== 82. Круг 14: РАСШИФРОВАНЫ ИНТЕРФЕЙСЫ В PAYLOAD (BPAY) ===
+
+Дата: 2026-10-28. Продолжение 81_noreply_pairs.
+
+═══════════════════════════════════════════════════════════════════════
+1. НОВЫЙ ИНСТРУМЕНТ BPAY (payload транзакций)
+═══════════════════════════════════════════════════════════════════════
+
+В binder_transaction() после копирования данных в t->buffer печатаются
+первые 64 байта полезной нагрузки для транзакций к samgr/hdf_devmgr/
+installs/param_watcher:
+  "BPAY to=%s code=%u flags=%x sz=%zu d=8 слов"
+  "BPAY2 8 слов"
+Патчер: docs/apply_bpay.py. За прогон 11558 строк.
+
+Parcel декодирован (после 12-байтного заголовка — длина + UTF-16 строка
+интерфейсного дескриптора).
+
+═══════════════════════════════════════════════════════════════════════
+2. ЧТО ПОКАЗАЛИ PAYLOAD'Ы
+═══════════════════════════════════════════════════════════════════════
+
+  to=samgr code=12 (sz=68) -> "ohos.samgr.accessToken"
+  to=samgr code=2  (sz=64) -> "ohos.samgr.accessToken"  (и "ohos.samgr")
+  to=samgr code=3  (sz=112)-> "ohos.samgr.accessToken"
+  to=samgr code=6,7,10,20,30 -> "ohos.samgr" / "ohos.samgr.accessToken"
+  to=hdf_devmgr code=3 (sz=92) -> "HDI.IServiceManager.V1_0"
+  to=installs code=15/19 -> "ohos.appexecfwk.Installd", code=2 (sz=624)
+      -> "ohos.appexecfwk.Installd"
+  to=param_watcher code=3 -> "OHOS.init_..." , code=1 ->
+      "OHOS.init_param.IWatcherManager"
+
+ВЫВОД: foundation Init() в первых же запросах к samgr просит SA с
+интерфейсом **ohos.samgr.accessToken** (access ticket manager, SA 5).
+Т.е. блокируется на получении AccessTokenManager SA.
+
+Подтверждение из лога:
+  C057C2/foundation/IPCObjectProxy: failed, handle:0 error:7
+      desc:*.accessToken proxy:25989
+  (07:09:18 и 07:09:47) — сервис ещё не готов, handle 0.
+  accesstoken_service (pid 2000) стартует только ~07:09:34 и позже;
+  его SA публикуется ещё позже (в 07:11 виден
+  startup.service.ctl.accesstoken_service.pid).
+
+ПОДОЗРЕНИЕ НА ЦИКЛ: BMS Init ждёт AccessTokenManager; а тот при старте
+сам ходит в BMS (проверка прав/бандлов) -> клинч. Поэтому ни один из
+ранних запросов foundation не получает ответа.
+
+═══════════════════════════════════════════════════════════════════════
+3. КОНФИГ access_token
+═══════════════════════════════════════════════════════════════════════
+
+/system/etc/init/access_token.cfg:
+  services: accesstoken_service, path sa_main /system/profile/
+    accesstoken_service.json, "start-mode":"condition", critical [1,4,240],
+    jobs: early-boot -> "start accesstoken_service"
+  => стартует на early-boot, но публикация SA происходит позже.
+
+═══════════════════════════════════════════════════════════════════════
+4. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Проверить, действительно ли ATM (access_token) при старте обращается
+     к BMS: BDIR по pid accesstoken_service -> foundation; если да —
+     цикл подтверждён.
+  B. Разорвать цикл: сделать так, чтобы ATM не зависел от BMS на старте
+     (патч в libaccesstoken или в его стартовом коде), ИЛИ чтобы BMS Init
+     не блокировался на ATM (пропатчить libbms, чтобы запрос ATM
+     возвращал ошибку без ожидания, как мы делали с VerifyCodeSignature).
+  C. Проверить гипотезу быстро: запустить accesstoken_service раньше
+     (start-mode: boot + "start accesstoken_service" в pre-init) и
+     посмотреть, появятся ли ответы foundation (BDIR) и продвижение
+     Init (OnStart/InitBmsParam в hilog).
+
+СОСТОЯНИЕ: ядро STACKTRACE+BWAIT+BDIR+FWAIT+BPAY; libsafwk Publish+Start;
+libinstalls verify OK; foundation.cfg c dumpstacks-хуком; installs ondemand.
+
+АРТЕФАКТЫ: docs/82_bpay_interfaces.txt, docs/82_bpay_run.log,
+  docs/apply_bpay.py
