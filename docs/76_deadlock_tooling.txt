@@ -1,0 +1,81 @@
+=== 76. Круг 8: инструментарий для поиска дедлока (STACKTRACE + BWAIT) ===
+
+Дата: 2026-10-28. Продолжение 75_onstart_init.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО СДЕЛАНО (новый инструментарий)
+═══════════════════════════════════════════════════════════════════════
+
+(1) Ядро пересобрано с CONFIG_STACKTRACE=y:
+      Image: /home/kharki/k414/build2/arch/arm64/boot/Image
+    Теперь /proc/<pid>/task/<tid>/stack отдаёт kernel-backtrace.
+    Скрипты: /system/bin/dumpstack2.sh, dumpstack3.sh.
+
+(2) В drivers/android/binder.c добавлена печать зависших транзакций
+    (перед binder_wait_for_work):
+      pr_info("BWAIT pid=%d tid=%d to=%d code=%u flags=%x")
+    Пересобрано, работает (623 строки за прогон).
+    Патченый исходник: docs/76_binder_instrumented.c
+
+═══════════════════════════════════════════════════════════════════════
+2. РЕЗУЛЬТАТЫ: КТО НА КОГО ЖДЁТ
+═══════════════════════════════════════════════════════════════════════
+
+Kernel-стеки (docs/76_thread_stacks.txt):
+  PID 1874 comm=bms_event:  ppoll (нормальный event-loop)
+      => на нашем устройстве BMS event handler — ОТДЕЛЬНЫЙ ПРОЦЕСС bms_event!
+  PID 2514 foundation:
+      tid 2592 SaInit1: futex_wait (ждёт на локальном мьютексе/фьюче)
+      tid 2594 SaInit3: binder_ioctl (ждёт ответ на синхронную транзакцию)
+      tid 2647 OS_IPC_2: binder_ioctl
+      tid 2664 SaInit1: binder_ioctl
+
+BWAIT (323 транзакции, 770 c) — постоянные зависшие пары:
+  to=1792 (samgr) code=12: от foundation (2269, 2764), cadaemon (1814) ...
+  to=1792 (samgr) code=2:  от bootanimation (2828, 99 раз), dlp (1885) ...
+  to=2249 (init)  code=3:  от render_service (2594, 22 раза), foundation ...
+  to=1997 (accesstoken_service) code=20: единичные
+
+pid-карта: 1792=samgr, 1793=param_watcher, 1795=installs,
+  1797=foundation(1-я), 1872=bms_event, 2249=init(поздняя), 2594=render_service,
+  2764=foundation(новая), 2828=bootanimation, 1997=accesstoken_service.
+
+ВЫВОД: цепочка заблокирована каскадом:
+  foundation (BMS OnStart) висит внутри Init();
+  его потоки стоят в binder (ждут samgr/init);
+  клиенты (bootanimation, render_service) ждут samgr/init;
+  samgr ждёт загрузки SA 401 (наш Publish+Start), который не завершает Init;
+  init не отвечает render_service на code=3 (start service).
+
+═══════════════════════════════════════════════════════════════════════
+3. ВАЖНОЕ НАБЛЮДЕНИЕ
+═══════════════════════════════════════════════════════════════════════
+
+bms_event — отдельный процесс (pid 1874), он жив и poll'ит.
+Значит BMSEventHandler::OnBmsStarting живёт в bms_event, и его надо
+запускать/разбудить; вероятно foundation должен послать ему событие
+после завершения Init(). Пока Init() висит — событие не уходит.
+
+Также под подозрением наш "depend": ["installs"] в foundation.cfg:
+init мог зависнуть, ожидая полной готовности installs (SA 511), и
+перестать отвечать на code=3 (start service). REVERT-тест нужен.
+
+═══════════════════════════════════════════════════════════════════════
+4. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Проверить, не наш ли depend виноват: убрать "depend":["installs"]
+     (и вернуть installs start-mode ondemand), повторить прогон с BWAIT —
+     посмотреть, исчезнут ли зависания init code=3.
+  B. Найти точку зависания Init(): добавить в binder.c печать
+     sender->target для транзакций с code, которые шлёт foundation
+     во время Init (или печать всех транзакций foundation в окно
+     T+10..T+30 c). Определить, к какому сервису обращается Init,
+     и чей ответ не приходит.
+  C. После снятия дедлока ожидать: Init() завершится -> OnStart
+     зарегистрирует слушателей -> событие уйдёт в bms_event ->
+     BMSEventHandler::OnBmsStarting -> first boot -> установка HAP
+     (включая launcher) -> launcher.ready.
+
+АРТЕФАКТЫ: docs/76_deadlock_tooling.txt, docs/76_bwait_run.log,
+  docs/76_thread_stacks.txt, docs/76_binder_instrumented.c

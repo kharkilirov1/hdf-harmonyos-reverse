@@ -145,3 +145,5 @@ seed.img
 !docs/74_*.log
 
 !docs/75_*.log
+
+!docs/76_*.log

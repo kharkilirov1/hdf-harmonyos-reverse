@@ -1,0 +1,72 @@
+=== PID 1874 comm=bms_event ===
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+--- tid=1874 comm=bms_event state= syscall=
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff00000822e1dc>] do_sys_poll+0x44c/0x500
+[<ffff00000822ee80>] SyS_ppoll+0x1a0/0x220
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff
+=== PID 2514 comm=foundation ===
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+--- tid=2592 comm=SaInit1 state= syscall=
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff000008149dec>] futex_wait_queue_me+0xbc/0x120
+[<ffff00000814a2f4>] futex_wait+0xc0/0x1cc
+[<ffff00000814cb44>] do_futex+0x110/0xce0
+[<ffff00000814d828>] SyS_futex+0x114/0x14c
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+--- tid=2594 comm=SaInit3 state= syscall=
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb66c>] binder_ioctl+0xdac/0x1f88
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+--- tid=2647 comm=OS_IPC_2_2647 state= syscall=
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb66c>] binder_ioctl+0xdac/0x1f88
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+--- tid=2664 comm=SaInit1 state= syscall=
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb66c>] binder_ioctl+0xdac/0x1f88
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+--- tid=3492 comm=OS_IPC_8_3492 state= syscall=
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff000008603c08>] at_token_for_pid+0x78/0x90
+[<ffff0000088bae94>] binder_ioctl+0x5d4/0x1f88
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+/system/bin/dumpstack3.sh[24]: awk: inaccessible or not found
+=== done ===
