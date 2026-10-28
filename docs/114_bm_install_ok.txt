@@ -1,0 +1,60 @@
+=== 114. Круг 37: ПРОРЫВ — bm install УСПЕШНО установил лаунчер ===
+
+Дата: 2026-10-28. Продолжение 113_exit_restore_fstay.
+
+═══════════════════════════════════════════════════════════════════════
+1. КАК ЗАПУСТИТЬ bm НАДЁЖНО
+═══════════════════════════════════════════════════════════════════════
+
+Выяснено:
+  - /data/diag не существует после чистой загрузки: его надо создавать
+    явно (иначе все редиректы в /data/diag/*.log молча пропадают!);
+  - сервис bmrun (path /system/bin/sh + скрипт /system/bin/bmrun.sh,
+    uid root, без secon) запускается из foundation-джобы
+    ("services:dumpstacks": ["mkdir /data/diag 0777 root root",
+     "start bmrun"]) и переживает перезапуски foundation
+    (init печатает "ServiceStart already started:bmrun").
+
+bmrun.sh:
+  echo start; sleep 560; bm install -p /system/app/SuperLauncher/SuperLauncher.hap;
+  bm dump -n com.huawei.hmos.slassistant; ls public; aa start ...
+
+═══════════════════════════════════════════════════════════════════════
+2. РЕЗУЛЬТАТ: УСТАНОВКА УДАЛАСЬ
+═══════════════════════════════════════════════════════════════════════
+
+Лог /data/diag/bmr.log (прогон 1000 c, insert SA:401 = 7):
+
+    BMRUN start Wed Oct 28 22:45:43 CST 2026
+    BMRUN install1
+    install bundle successfully.
+    BMRUN rc1=0
+
+=> bm install СРАБОТАЛ: SuperLauncher.hap (bundleName
+   com.huawei.hmos.slassistant, mainElement SuperLauncherMainAbility,
+   versionName 6.0.0.302) установлен, код возврата 0!
+
+Ранее (круги 33-35) bm всегда падал с generic error, потому что:
+  - foundation перезапускался/не жил (FSTAY пинил труп),
+  - /data/diag отсутствовал,
+  - bm запускался слишком рано/поздно относительно готовности ATM/BMS.
+Теперь BMS реально работает, и установка проходит.
+
+═══════════════════════════════════════════════════════════════════════
+3. ЧТО ДАЛЬШЕ (не успели в этом круге)
+═══════════════════════════════════════════════════════════════════════
+
+  - Последний прогон был убит слишком рано: install1 напечатан в
+    23:02:51+560 = 23:12, а kill случился раньше — результат установки
+    второго прогона не получен (в файле только "BMRUN start" и
+    "BMRUN install1").
+  - Нужен прогон с меньшей задержкой (sleep 400-450) и большим timeout
+    (1200-1400 c), чтобы после install успеть:
+       bm dump -n com.huawei.hmos.slassistant
+       ls /data/app/el1/bundle/public
+       aa start -b com.huawei.hmos.slassistant -a SuperLauncherMainAbility
+  - Проверить, где физически лежит установленный HAP
+    (/data/app/el1/bundle/public/<bundle>? /data/app/el1/100/base?).
+  - Если aa start вернёт 0 — ждать launcher.ready в логе (успех!).
+
+АРТЕФАКТЫ: docs/114_bm_install_ok.txt, docs/116_bmrun3_run.log
