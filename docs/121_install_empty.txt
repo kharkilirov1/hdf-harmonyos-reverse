@@ -1,0 +1,62 @@
+=== 121. Круг 43: установка репортит успех, но каталоги пакета пусты; aa dump пуст ===
+
+Дата: 2026-10-29. Продолжение 120_launcher_start.
+
+═══════════════════════════════════════════════════════════════════════
+1. ПРОГОН 1800 c С ДИАГНОСТИКОЙ (insert SA:401 = 6)
+═══════════════════════════════════════════════════════════════════════
+
+Маркеры в консоли:
+    BMRUN start 04:52:33
+    try=1..16 fail
+    INSTALL_OK try=17            (гость ~1170 c)
+    install_done ok=1 tries=17
+    LS_PUBLIC:      (пусто)
+    PS_BEFORE:      (пусто — процесса slassistant нет)
+    AA_DUMP_BEFORE: (пусто — aa dump -a ничего не вывел)
+    AA try=1..6 rc=0  (все приняты)
+    PS_TRY=1..6 done  (процесса slassistant так и нет)
+    AADUMP_TRY=1..6 done (пусто)
+
+2. РАЗБОР ОБРАЗА ПОСЛЕ ПРОГОНА
+
+    /data/app/el1/100/base       — создан, ПУСТ
+    /data/app/el1/100/database   — создан, ПУСТ
+    /data/app/el1/bundle/100     — создан, ПУСТ
+    /data/app/el1/bundle/public  — 9 HSP (как и раньше), slassistant НЕТ
+    /data/app/el2/100            — создан, ПУСТ
+
+=> bm install возвращает "successfully" и создаёт каталоги el1/100/...,
+   но самого пакета (файлов .hap / распакованного base) на диске НЕТ.
+   Причина, вероятнее всего, та же: данные не сбрасываются на диск
+   (нет sync), а QEMU убивается SIGTERM.
+
+3. ПОЧЕМУ aa start rc=0, НО ПРОЦЕССА НЕТ
+
+  - aa start ставит задачу AMS; AMS возвращает успех постановки.
+  - Реальный запуск требует: ability info из BMS + распакованного
+    sandbox-каталога + appspawn с корректными правами.
+  - Пакет фактически не установлен на диск => запускать нечего,
+    appspawn не порождает процесс, launcher.ready не выставляется.
+  - "aa dump -a" пуст — вероятно, у aa нет прав/сервиса для dump без
+    доп. аргументов (или BMS-данные пусты в этот момент).
+
+4. ПЛАН
+
+  A. Вернуть `sync` после каждой значимой операции (install, aa).
+  B. После INSTALL_OK вывести в консоль:
+       ls -l /data/app/el1/bundle/public
+       ls -l /data/app/el1/bundle
+       ls -l /data/app/el1/100/base
+       ls -l /data/service/el1/public/database/bundle_manager_service
+       ls -l /data/service/el1/public/bms
+       df
+     чтобы понять, где bm пишет и что остаётся.
+  C. Проверить наличие /system/bin/sync в образе; если нет — busybox sync
+     или syscall через sh (проверить).
+  D. Возможно, bm install выполняет установку асинхронно (через
+     installd) и "successfully" печатает раньше фактической распаковки —
+     добавить паузу 30-60 c и повторную проверку каталогов, и только
+     затем aa start.
+
+АРТЕФАКТЫ: docs/121_install_empty.txt, docs/130_diag_run.log
