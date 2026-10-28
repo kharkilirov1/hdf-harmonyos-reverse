@@ -1,0 +1,72 @@
+=== 107. Круг 30: ВАЖНАЯ ПОПРАВКА — bms_event это батарейный демон, не BundleMgr ===
+
+Дата: 2026-10-28. Продолжение 106_fpipe.
+
+═══════════════════════════════════════════════════════════════════════
+1. ИНСТРУМЕНТЫ
+═══════════════════════════════════════════════════════════════════════
+
+  FCOMM (fs/exec.c, __set_task_comm): печать переименований задач,
+    связанных с bms/foundation:
+      "FCOMM set pid=%d ppid=%d old=%s new=%s exec=%d"
+  FUNIX (net/unix/af_unix.c): трассировка unix_dgram/stream/seqpacket
+    sendmsg от foundation:
+      "FUNIX <fn> pid=%d(%s) len=%zu sock=%p"
+  FPIPE (fs/pipe.c): write в pipe от foundation (из круга 29).
+  Патчеры: docs/apply_fname_fpipe2.py, docs/apply_funix3.py.
+
+═══════════════════════════════════════════════════════════════════════
+2. РЕЗУЛЬТАТЫ
+═══════════════════════════════════════════════════════════════════════
+
+FCOMM (прогон 600 c, insert401=1):
+  [ 61.83] FCOMM set pid=1784 ppid=1 old=init new=bms_auth  exec=1
+  [ 74.18] FCOMM set pid=1794 ppid=1 old=sa_main new=foundation exec=0
+  [114.84] FCOMM set pid=1902 ppid=1 old=init new=bms_event exec=1
+                            ^^^^ exec=1 => это ОТДЕЛЬНЫЙ БИНАРНИК
+
+FUNIX = 112 (foundation шлёт unix_dgram ~74-90 c, len 47..93, один и тот же
+        sock=ffff8000f8402880 — это, судя по всему, лог-сокет hilogd)
+FPIPE = 12 (из круга 29: 18 восьмибайтных сообщений в 89.6 c)
+
+═══════════════════════════════════════════════════════════════════════
+3. ГЛАВНОЕ ОТКРЫТИЕ: /vendor/bin/bms_event — ЭТО НЕ BUNDLE MGR
+═══════════════════════════════════════════════════════════════════════
+
+Найдено в образе:
+  /vendor/bin/bms_event
+  /vendor/etc/init/bms_event.cfg  (и /vendor/etc/param/bms_event.para*)
+
+Содержимое bms_event.cfg: сервис bms_event, path /vendor/bin/bms_event,
+uid bms_event, gid [bms_event, battery_extra_host], caps CHOWN,
+secon u:r:bms_host:s0; job late-fs -> "start bms_event"; плюс куча
+param-триггеров vendor.bms_event=init/start/stop и bms_heating,
+bms_behavior, bms_protocol, bms_auth, bms_soc, chargelogcat-c.
+
+=> bms_event = **Battery Management System** event daemon (зарядка/батарея),
+   а НЕ Bundle Manager Service event handler.
+   Значит все прошлые рассуждения "bms_event — обработчик BMS" были
+   ОШИБОЧНЫ; процесс bms_event в ppoll не имеет отношения к бандлам,
+   и его пробуждение ничего не даст.
+
+═══════════════════════════════════════════════════════════════════════
+4. ЧТО ЗНАЧИТ ДЛЯ BMS (BundleMgrService)
+═══════════════════════════════════════════════════════════════════════
+
+  - BMSEventHandler работает ВНУТРИ foundation (тот же процесс), а не в
+    bms_event.
+  - В персистентном логе (круг 16) уже встречались строки
+    bundle_mgr_service_event_handler.cpp InnerProcessRebootUninstallWrongBundle
+    => обработчик событий BMS действительно вызывается.
+  - Значит вопрос не в "неразбуженном bms_event", а в том, что
+    OnBmsStarting (первичная установка HAP) либо не вызывается, либо
+    вызывается и не находит работы (считает, что не first boot), либо
+    падает раньше на установке.
+  - Надо трассировать сами вызовы BMSEventHandler::OnBmsStarting и
+    installer'ов: patch в libbms (точки после входа в OnBmsStarting,
+    в ProcessSystemBundleInstall, InstallSystemBundle и т.п.) с записью
+    маркеров в /dev/kmsg через прямой syscall write (или в файл через
+    open/write) — тогда увидим, доходит ли выполнение до установки.
+
+АРТЕФАКТЫ: docs/107_bms_event_is_battery.txt, docs/apply_funix3.py,
+  docs/107_funix_run.log
