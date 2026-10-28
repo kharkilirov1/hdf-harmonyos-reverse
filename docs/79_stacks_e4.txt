@@ -1,0 +1,7 @@
+=== PID 2003 comm=bms_event ===
+--- tid=2003 comm=bms_event
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff00000822e1dc>] do_sys_poll+0x44c/0x500
+[<ffff00000822ee80>] SyS_ppoll+0x1a0/0x220
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff

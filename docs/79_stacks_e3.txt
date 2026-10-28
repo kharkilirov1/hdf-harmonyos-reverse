@@ -1,0 +1,98 @@
+=== PID 2003 comm=bms_event ===
+--- tid=2003 comm=bms_event
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff00000822e1dc>] do_sys_poll+0x44c/0x500
+[<ffff00000822ee80>] SyS_ppoll+0x1a0/0x220
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff
+=== PID 2646 comm=hdf_devmgr ===
+--- tid=2646 comm=hdf_devmgr
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff000008149dec>] futex_wait_queue_me+0xbc/0x120
+[<ffff00000814a2f4>] futex_wait+0xc0/0x1cc
+[<ffff00000814cb44>] do_futex+0x110/0xce0
+[<ffff00000814d828>] SyS_futex+0x114/0x14c
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=2699 comm=OS_IPC_0_2699
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb58c>] binder_ioctl+0xb5c/0x1fac
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=2704 comm=DevMgrUevent
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff00000822e1dc>] do_sys_poll+0x44c/0x500
+[<ffff00000822ee80>] SyS_ppoll+0x1a0/0x220
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=2713 comm=OS_IPC_1_2713
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb58c>] binder_ioctl+0xb5c/0x1fac
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=2714 comm=OS_IPC_2_2714
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb58c>] binder_ioctl+0xb5c/0x1fac
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=3023 comm=OS_IPC_3_3023
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb58c>] binder_ioctl+0xb5c/0x1fac
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=3024 comm=OS_IPC_4_3024
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb58c>] binder_ioctl+0xb5c/0x1fac
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083ac0>] el0_svc_naked+0x34/0x38
+[<ffffffffffffffff>] 0xffffffffffffffff
+=== PID 2648 comm=param_watcher ===
+--- tid=2648 comm=param_watcher
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb58c>] binder_ioctl+0xb5c/0x1fac
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=2725 comm=OS_IPC_0_2725
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb58c>] binder_ioctl+0xb5c/0x1fac
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=2726 comm=OS_DfxWatchdog
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff000008149dec>] futex_wait_queue_me+0xbc/0x120
+[<ffff00000814a2f4>] futex_wait+0xc0/0x1cc
+[<ffff00000814cb44>] do_futex+0x110/0xce0
+[<ffff00000814d828>] SyS_futex+0x114/0x14c
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=2740 comm=OS_IPC_1_2740
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb58c>] binder_ioctl+0xb5c/0x1fac
+[<ffff00000822bba8>] do_vfs_ioctl+0x5e8/0x820
+[<ffff00000822be5c>] SyS_ioctl+0x7c/0xa0
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=2775 comm=OS_IPC_1_2740
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000089b4e88>] unix_stream_read_generic+0x494/0x79c
+[<ffff0000089b5238>] unix_stream_recvmsg+0x38/0x40
+[<ffff0000088fa344>] SyS_recvfrom+0xe4/0x134
+[<ffff000008083b18>] __sys_trace+0x48/0x48
+[<ffffffffffffffff>] 0xffffffffffffffff
+--- tid=2790 comm=OS_IPC_2_2790
+[<ffff000008085b44>] __switch_to+0xe4/0x144
+[<ffff0000088bb58c>] binder_ioctl+0xb5c/0x1fac
+[<ffff00000822bba8>] do_vfs_ioctl+

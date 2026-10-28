@@ -1,0 +1,77 @@
+=== 79. Круг 11: стеки сняты через on-start хук foundation ===
+
+Дата: 2026-10-28. Продолжение 78_bdir_trace.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+Чтобы обойти флакиность one-shot init-джобов, дампы стеков привязаны к
+СТАРТУ foundation: в foundation.cfg добавлен job "services:dumpstacks"
+(4 delayed_exec на +3/+35/+70/+110 c) и у сервиса foundation
+"jobs": {"on-start": "services:dumpstacks"}.
+Скрипт: docs/add_dumpstacks.py. За прогон foundation стартовал 4 раза ->
+до 16 попыток дампа; часть сработала (e3/e4).
+
+═══════════════════════════════════════════════════════════════════════
+2. СТЕКИ (e3, 4 КБ — самое ценное)
+═══════════════════════════════════════════════════════════════════════
+
+PID 2003 comm=bms_event:
+   ppoll  -> event-loop жив, ждёт событий
+
+PID 2646 comm=hdf_devmgr:
+   tid 2646 hdf_devmgr   : futex_wait   <-- ГЛАВНЫЙ ПОТОК ВИСИТ НА FUTEX
+   tid 2699 OS_IPC_0     : binder_ioctl (idle-чтение)
+   tid 2704 DevMgrUevent : ppoll (норма)
+   tid 2713 OS_IPC_1     : binder_ioctl
+   tid 2714 OS_IPC_2     : binder_ioctl
+   tid 3023 OS_IPC_3     : binder_ioctl
+   tid 3024 OS_IPC_4     : binder_ioctl
+
+PID 2648 comm=param_watcher:
+   tid 2648 param_watcher : binder_ioctl
+   tid 2726 OS_DfxWatchdog: futex_wait
+   tid 2775 unix_stream_read (unix socket)
+
+ВЫВОД:
+  - hdf_devmgr: главный поток заблокирован на futex (мьютекс/condvar),
+    а его IPC-потоки простаивают в чтении binder. Значит он НЕ ждёт
+    ответа по binder, а держит/ждёт внутренний лок.
+  - Клиент (msdp_sa) при этом шлёт ему code=3 (BDIR) и ждёт ответа.
+  - foundation Init() тоже висит на futex (по прошлым прогонам).
+
+═══════════════════════════════════════════════════════════════════════
+3. ГИПОТЕЗА О ПРИРОДЕ FUTEX-ЗАВИСАНИЯ
+═══════════════════════════════════════════════════════════════════════
+
+И hdf_devmgr, и foundation Init ждут на futex. Классический сценарий:
+  Init() дергает синхронный API, реализованный через async-task (ffrt/
+  future) — ждёт futex, который должен разбудить worker-поток; worker
+  же, в свою очередь, ждёт binder-ответа от сервиса, который сам
+  заблокирован (hdf_devmgr/msdp/samgr).
+Т.е. это не один дедлок, а цепочка: hdf_devmgr(main futex) ->
+msdp_sa(binder wait code3) -> ... -> foundation Init(futex) ->
+samgr(code12) -> клиенты.
+
+═══════════════════════════════════════════════════════════════════════
+4. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Определить владельца futex у foundation SaInit1 и hdf_devmgr main:
+     - взять адрес futex из /proc/<pid>/task/<tid>/syscall (1-й аргумент);
+     - прочитать слово по этому адресу через /proc/<pid>/mem (toybox dd);
+     - владелец futex (TID) = слово & 0x3fffffff; сопоставить с tid ->
+       его comm/state/stack.
+     Скрипт: dumpstack5.sh (печатать syscall-аргументы + чтение слова).
+  B. Найти, какой поток держит лок и чего он ждёт; обойти (патч/обход)
+     конкретного ожидания.
+  C. Альтернатива: обойти hdf_devmgr вообще на пути BMS Init (если
+     зависимость от hdf не критична) — проверить по BDIR, кто из
+     foundation Init шлёт транзакции в hdf_devmgr/кому.
+
+СОСТОЯНИЕ: ядро STACKTRACE+BWAIT+BDIR; libsafwk Publish+Start;
+libinstalls verify OK; foundation.cfg c dumpstacks-хуком; installs ondemand.
+
+АРТЕФАКТЫ: docs/79_hook_stacks.txt, docs/79_stacks_e3.txt,
+  docs/79_stacks_e4.txt, docs/79_hookdump_run.log, docs/add_dumpstacks.py
