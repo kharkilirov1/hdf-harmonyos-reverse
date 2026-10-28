@@ -1,0 +1,67 @@
+=== 111. Круг 34: bm падает в catch-блоке (generic error = перехваченное исключение) ===
+
+Дата: 2026-10-28. Продолжение 110_bm_generic_error.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО ПРОВЕРЕНО
+═══════════════════════════════════════════════════════════════════════
+
+(1) Раздельные вызовы bm (init-джоб, uid 0 root, context u:r:init:s0):
+      bm -h            -> "error: failed to execute your command." (39 б)
+      bm dump -a       -> то же
+      bm install       -> то же
+      sh -c id         -> uid=0(root) context=u:r:init:s0
+    Даже глобальный `bm -h` даёт ту же ошибку => падение до разбора argv.
+
+(2) AVC-отказы (SELinux, permissive — логируется, но не блокирует):
+      avc: denied { execute_no_trans } for pid=1789 comm="delayed_exec"
+           path="/system/bin/bm"
+      avc: denied { execute } for pid=1789 comm="bm"
+           path="/system/lib64/lib_kccllockopt.so"
+
+(3) Попытка запустить bm как shell-сервис (uid shell, secon u:r:shell:s0):
+      [76.6] ServiceStart started info bmtest(pid 1790 uid 2000)
+      [76.6] Service error 22 bmtest, failed to set secon u:r:shell:s0
+      [77.0] Child process bmtest(pid 1790) exit with code 21
+    => контекст u:r:shell:s0 в этой политике не задан (init отвергает),
+       запустить bm в shell-домене так нельзя.
+
+(4) Статический разбор /system/bin/bm:
+    строка "error: failed to execute your command." лежит по адресу 0xf87a;
+    единственная ссылка из кода:
+      3b508: add x0, x19, #0x90
+      3b50c: adrp x1, f000 ; add x1, x1, #0x87a
+      3b514: bl  std::string::assign(char const*)
+    сразу после блока с HiLogPrintDictNew (лог об ошибке).
+    => это классический catch-блок: bm поймал ИСКЛЮЧЕНИЕ (C++ throw)
+       и записал в строку результата generic-сообщение "failed to execute
+       your command". Настоящая причина — в исключении (IPC/RuntimeError/
+       отсутствие прокси).
+
+═══════════════════════════════════════════════════════════════════════
+2. ВЫВОД
+═══════════════════════════════════════════════════════════════════════
+
+  bm запускается (uid root, permissive SELinux), но при выполнении
+  бросается исключение, которое ловится общим catch и превращается в
+  generic-ошибку. Чтобы узнать причину, нужно поймать тип/сообщение
+  исключения или место throw.
+
+═══════════════════════════════════════════════════════════════════════
+3. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Инструментировать ядро: при завершении процесса comm=="bm"
+     печатать user PC/LR (как FEXIT3) — если bm выходит через exit(1)
+     после catch, увидим адрес, откуда вызван exit; если падает по
+     сигналу — добавить printk в force_sig_info (user pc).
+  B. Патч bm: в catch-блоке перед записью generic-строки вызвать
+     write(2, "BMCATCH", 7) или prctl(PR_SET_NAME,"BMK..."), чтобы
+     отметить факт catch; затем отдельно — вывод exception.what() через
+     тот же fd (если ABI позволяет; std::exception::what — виртуальный).
+  C. Альтернатива: попробовать запустить bm из контекста, где IPC-клиент
+     работает (например, из существующего процесса-сервиса через его
+     библиотеки), либо найти в /system/bin другой CLI (aa/hidumper)
+     и проверить, доступен ли им BMS (тогда проблема в bm).
+
+АРТЕФАКТЫ: docs/111_bm_catch.txt, docs/111_bm_sep_run.log, /tmp/bm.dis
