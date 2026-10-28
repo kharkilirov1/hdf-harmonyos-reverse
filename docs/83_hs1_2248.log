@@ -1,0 +1,1293 @@
+10-28 11:03:32.427     0     0 I A00000/HiLog: ========Zeroth log of type: app
+10-28 11:03:32.444     0     0 I I00000/HiLog: ========Zeroth log of type: init
+10-28 11:03:32.963  1757  1757 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: MountCarrierToShared start
+10-28 11:03:32.969  1757  1757 W I02C01/hmos_cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR
+10-28 11:06:16.580  1969  1969 E I04301/light_sensor/LIGHT_SENSOR: OpenUuidFile fail, unknown log, uuid is: 418005723
+10-28 11:06:17.331  1969  1969 E I04301/light_sensor/LIGHT_SENSOR: OpenUuidFile fail, unknown log, uuid is: 418005723
+10-28 11:06:54.447  1906  1942 E A02700/multimodalinput/osfingersense: fingersense_on_resume: stream is null
+10-28 11:07:13.543  2078  2078 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: UpdateCotaOpkeyLink start
+10-28 11:07:13.609  2078  2078 W I02C01/hmos_cust_carrier_mount/CustCarrierMount: not exsit CUST_GLOBAL_CARRIER_DIR or COTA_PARAM_CARRIER_DIR
+10-28 11:07:23.818  2078  2078 I I02C01/hmos_cust_carrier_mount/CustCarrierMount: success to update cota carrier
+10-28 11:08:31.673  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671798929 process name sensors, permSize 7 ok!
+10-28 11:08:31.676  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671851959), size=16, err=25
+10-28 11:08:31.676  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671851959 process name security_privacy_server, permSize 16 ok!
+10-28 11:08:31.680  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671743078), size=33, err=25
+10-28 11:08:31.680  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671743078 process name security_guard, permSize 33 ok!
+10-28 11:08:31.682  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671783933), size=27, err=25
+10-28 11:08:31.681  1792  2243 I C01800/samgr/SAMGR: NF SA:4606,1810_381
+10-28 11:08:31.682  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671783933 process name security_detect, permSize 27 ok!
+10-28 11:08:31.682  1792  2243 I C01800/samgr/SAMGR: NF SA:4606,1810_382
+10-28 11:08:31.683  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671629819), size=6, err=25
+10-28 11:08:31.684  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671629819 process name security_component_service, permSize 6 ok!
+10-28 11:08:31.686  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671366952), size=9, err=25
+10-28 11:08:31.686  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671366952 process name security_collector, permSize 9 ok!
+10-28 11:08:31.688  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671443485), size=2, err=25
+10-28 11:08:31.688  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671443485 process name se_service, permSize 2 ok!
+10-28 11:08:31.690  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671719919), size=2, err=25
+10-28 11:08:31.691  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671719919 process name scan_service, permSize 2 ok!
+10-28 11:08:31.692  2007  2188 W C01719/netmanager/ffrt: 32:CheckTimeInterval:254 handle work more than [564]ms
+10-28 11:08:31.692  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671095770), size=35, err=25
+10-28 11:08:31.692  1906  2065 I C02801/multimodalinput/TouchDrawingManager: [][CreateObserver:222] Setup observer of show-touch-position
+10-28 11:08:31.693  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671095770 process name satellite_service, permSize 35 ok!
+10-28 11:08:31.695  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671987196), size=0, err=25
+10-28 11:08:31.695  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671987196 process name sane_service, permSize 0 ok!
+10-28 11:08:31.696  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671276023), size=1, err=25
+10-28 11:08:31.697  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671276023 process name sandbox_manager_service, permSize 1 ok!
+10-28 11:08:31.699  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671879623), size=20, err=25
+10-28 11:08:31.699  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671879623 process name samgr, permSize 20 ok!
+10-28 11:08:31.700  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=672068046), size=7, err=25
+10-28 11:08:31.701  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 672068046 process name safe_browsing_service, permSize 7 ok!
+10-28 11:08:31.703  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671760038), size=3, err=25
+10-28 11:08:31.704  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671760038 process name rgm_manager, permSize 3 ok!
+10-28 11:08:31.706  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671212663), size=2, err=25
+10-28 11:08:31.706  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671212663 process name rgm_engine_plugin, permSize 2 ok!
+10-28 11:08:31.706  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:1905 not loaded
+10-28 11:08:31.707  1792  2243 I C01800/samgr/SAMGR: NF SA:1158,2007_101
+10-28 11:08:31.707  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:1910 state current 0 is same as next 0
+10-28 11:08:31.707  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:1911 not loaded
+10-28 11:08:31.707  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671146231), size=0, err=25
+10-28 11:08:31.707  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:66837 not loaded
+10-28 11:08:31.708  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671146231 process name pin_auth_host, permSize 0 ok!
+10-28 11:08:31.708  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:1913 state current 0 is same as next 0
+10-28 11:08:31.708  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:1915 state current 0 is same as next 0
+10-28 11:08:31.709  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:1901 not loaded
+10-28 11:08:31.709  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:1917 not loaded
+10-28 11:08:31.709  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=672041150), size=57, err=25
+10-28 11:08:31.709  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:1906 not loaded
+10-28 11:08:31.710  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 672041150 process name resource_schedule_service, permSize 58 ok!
+10-28 11:08:31.712  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671265389), size=3, err=25
+10-28 11:08:31.713  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671265389 process name resource_schedule_executor, permSize 3 ok!
+10-28 11:08:31.715  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671254923), size=14, err=25
+10-28 11:08:31.716  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671254923 process name remote_communication, permSize 14 ok!
+10-28 11:08:31.717  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671177031), size=12, err=25
+10-28 11:08:31.717  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671177031 process name rcs_service, permSize 12 ok!
+10-28 11:08:31.719  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671090954), size=4, err=25
+10-28 11:08:31.720  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671090954 process name quickfix_engine, permSize 4 ok!
+10-28 11:08:31.721  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671582525), size=4, err=25
+10-28 11:08:31.722  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671582525 process name quick_fix, permSize 4 ok!
+10-28 11:08:31.723  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671315724), size=43, err=25
+10-28 11:08:31.723  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671315724 process name push_manager_service, permSize 43 ok!
+10-28 11:08:31.725  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671351602), size=0, err=25
+10-28 11:08:31.725  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671351602 process name av_codec_service, permSize 0 ok!
+10-28 11:08:31.723  2102  2238 W C01719/msdp/ffrt: 9:CheckTimeInterval:254 handle work more than [974]ms
+10-28 11:08:31.727  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671912163), size=10, err=25
+10-28 11:08:31.727  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671912163 process name private_space_service, permSize 10 ok!
+10-28 11:08:31.728  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671698020), size=15, err=25
+10-28 11:08:31.728  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671698020 process name privacy_service, permSize 15 ok!
+10-28 11:08:31.729  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671790040), size=8, err=25
+10-28 11:08:31.729  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671790040 process name print_service, permSize 8 ok!
+10-28 11:08:31.731  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671598312), size=52, err=25
+10-28 11:08:31.732  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671598312 process name powermgr, permSize 52 ok!
+10-28 11:08:31.735  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671538359), size=2, err=25
+10-28 11:08:31.735  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671538359 process name pinauth, permSize 2 ok!
+10-28 11:08:31.736  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671785460), size=13, err=25
+10-28 11:08:31.737  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671785460 process name pasteboard_service, permSize 13 ok!
+10-28 11:08:31.739  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=672052825), size=22, err=25
+10-28 11:08:31.739  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 672052825 process name parent_control_service, permSize 22 ok!
+10-28 11:08:31.739  1792  1957 W C057C6/samgr/BinderInvoker: HandleCommands 1028: HandleCommands cmd:2148037135 cost time:790ms
+10-28 11:08:31.740  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671304529), size=0, err=25
+10-28 11:08:31.740  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671304529 process name param_watcher, permSize 0 ok!
+10-28 11:08:31.743  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671460374), size=4, err=25
+10-28 11:08:31.744  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671460374 process name oaid_service, permSize 4 ok!
+10-28 11:08:31.744  1792  2243 I C01800/samgr/SAMGR: NF SA:200,2024_238
+10-28 11:08:31.745  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671971183), size=0, err=25
+10-28 11:08:31.746  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671971183 process name nwebspawn, permSize 0 ok!
+10-28 11:08:31.748  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671390599), size=28, err=25
+10-28 11:08:31.748  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671390599 process name nfc_service, permSize 28 ok!
+10-28 11:08:31.750  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671391708), size=4, err=25
+10-28 11:08:31.751  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671391708 process name netsysnative, permSize 4 ok!
+10-28 11:08:31.752  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671419815), size=38, err=25
+10-28 11:08:31.753  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671419815 process name netmanager, permSize 38 ok!
+10-28 11:08:31.755  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=672078519), size=19, err=25
+10-28 11:08:31.756  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 672078519 process name nearlink_service, permSize 19 ok!
+10-28 11:08:31.757  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671388339), size=2, err=25
+10-28 11:08:31.758  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671388339 process name nav_info_service, permSize 2 ok!
+10-28 11:08:31.763  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671769367), size=0, err=25
+10-28 11:08:31.763  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671769367 process name nativespawn, permSize 0 ok!
+10-28 11:08:31.764  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671583125), size=0, err=25
+10-28 11:08:31.764  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671583125 process name mmi_uinput_service, permSize 0 ok!
+10-28 11:08:31.766  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671783272), size=13, err=25
+10-28 11:08:31.767  2102  2238 W C01719/msdp/ffrt: 10:CheckTimeInterval:254 handle work more than [632]ms
+10-28 11:08:31.767  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671783272 process name multimodalinput, permSize 13 ok!
+10-28 11:08:31.769  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671684724), size=36, err=25
+10-28 11:08:31.770  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671684724 process name msdp_sa, permSize 36 ok!
+10-28 11:08:31.771  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671638459), size=1, err=25
+10-28 11:08:31.773  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671638459 process name module_update_sa, permSize 1 ok!
+10-28 11:08:31.775  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671198602), size=27, err=25
+10-28 11:08:31.775  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671198602 process name migrate_server, permSize 27 ok!
+10-28 11:08:31.776  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671453752), size=19, err=25
+10-28 11:08:31.776  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671453752 process name memospace_service, permSize 19 ok!
+10-28 11:08:31.778  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671780144), size=18, err=25
+10-28 11:08:31.778  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671780144 process name memmgrservice, permSize 18 ok!
+10-28 11:08:31.780  2222  2231 E C05A01/accesstoken_service/ATM: [AddNativePermToKernel:1002]AddPermissionToKernel(token=671451321), size=12, err=25
+10-28 11:08:31.782  2222  2231 I C05A01/accesstoken_service/ATM: [InitNativeTokenInfos:710]Init native token 671451321 process name media_service, permSize 12 ok!
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Name:	OS_FFRT_2_6
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Umask:	0002
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: State:	S (sleeping)
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Tgid:	2007
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Ngid:	0
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Pid:	2210
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: PPid:	1
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: TracerPid:	0
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Uid:	1099	1099	1099	1099
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Gid:	1099	1099	1099	1099
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: FDSize:	128
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Groups:	1000 1014 1097 2000 
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: NStgid:	2007
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: NSpid:	2210
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: NSpgid:	0
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: NSsid:	0
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmPeak:	 2315628 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmSize:	 2315516 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmLck:	       0 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmPin:	       0 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmHWM:	   74076 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmRSS:	   73132 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: RssAnon:	   22864 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: RssFile:	   49956 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: RssShmem:	     312 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmData:	   58472 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmStk:	     132 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmExe:	      24 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmLib:	   60524 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmPTE:	     388 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmPMD:	      20 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: VmSwap:	       0 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Threads:	20
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: SigQ:	0/15733
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: SigPnd:	0000000000000000
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: SigBlk:	0000000400000000
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: SigIgn:	0000000200001000
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: CapInh:	0000000000003400
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: CapPrm:	0000000000003400
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: CapEff:	0000000000003400
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: CapAmb:	0000000000003400
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: NoNewPrivs:	0
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Seccomp:	2
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Cpus_allowed:	f
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Mems_allowed:	1
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: Mems_allowed_list:	0
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: voluntary_ctxt_switches:	43
+10-28 11:08:31.824  2007  2242 I C02D11/netmanager/DfxThreadContext: nonvoluntary_ctxt_switches:	22
+10-28 11:08:31.883  1792  2243 I C01800/samgr/SAMGR: SubscribeSA:4802,1874_5_12
+10-28 11:08:31.884  1792  2243 I C01800/samgr/SAMGR: NF SA:4802,1874_1
+10-28 11:08:31.899  1792  1957 I C01800/samgr/SAMGR: NF SA:4606,1810_383
+10-28 11:08:31.901  1792  1957 I C01800/samgr/SAMGR: NF SA:4606,1810_384
+10-28 11:08:31.931  1792  1957 I C01800/samgr/SAMGR: NF SA:1158,2007_102
+10-28 11:08:32.073  1792  1818 I C01800/samgr/SAMGR: NF SA:200,2024_239
+10-28 11:08:32.092  2102  2207 W C03F00/MUSL-LDSO: dlopen so: /system/lib64/libmovement_ar.z.so init_time: 184 ms
+10-28 11:08:32.106  2007  2209 E C01810/netmanager/SA_CLIENT: GetSaWrap SA:1158 not start
+10-28 11:08:32.107  2007  2209 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3238750957
+10-28 11:08:32.107  1792  2252 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:08:32.108  1792  2252 I C01800/samgr/SAMGR: NF SA:4802,1792_237
+10-28 11:08:32.108  1792  2252 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:08:32.111  2007  2209 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3238750957
+10-28 11:08:32.111  2007  2209 W C015B0/netmanager/NetStatsClient: No stats need to save
+10-28 11:08:32.112  2007  2209 W C015B0/netmanager/NetStatsClient: SetUidStatsFlag sampleBundleMap is empty
+10-28 11:08:32.129  1792  1818 I C01800/samgr/SAMGR: NF SA:1158,2007_103
+10-28 11:08:32.134  1792  2236 I C01800/samgr/SAMGR: NF SA:4606,1810_385
+10-28 11:08:32.135  1792  2236 I C01800/samgr/SAMGR: NF SA:4606,1810_386
+10-28 11:08:32.165  1874  1888 I C01810/audio_server/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:08:32.180  1792  2243 I C01800/samgr/SAMGR: SubscribeSA:3001,1874_1_13
+10-28 11:08:32.193  2007  2242 I C02D11/netmanager/DfxFaultLogger: search thread name failed
+10-28 11:08:32.195  1792  2243 I C01800/samgr/SAMGR: NotifyAddSA:3001,1874_13
+10-28 11:08:32.376  1792  2243 I C01800/samgr/SAMGR: NF SA:4606,1810_387
+10-28 11:08:32.377  1792  2243 I C01800/samgr/SAMGR: NF SA:4606,1810_388
+10-28 11:08:32.384  1792  1818 I C01800/samgr/SAMGR: NF SA:200,2024_240
+10-28 11:08:32.565  1792  1818 I C01800/samgr/SAMGR: NF SA:1158,2007_104
+10-28 11:08:32.571  2007  2242 W C01719/netmanager/ffrt: 33:RecordSymbolAndBacktrace:392 Process:netmanager,Tid:2209,Qos:2,CWorker:4,EWorker:2,SWorker:2,TaskType:0,timeout:5s
+10-28 11:08:32.583  2024  2244 E C01810/wallpaper_service/SA_CLIENT: GetSaWrap SA:200 not start
+10-28 11:08:32.584  2024  2244 E C01B00/wallpaper_service/DistributedAccountFwk: OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 11:08:32.584  1792  2262 E C02D11/samgr/DfxThreadContext: wait_for timeout. tid = 2126
+10-28 11:08:32.632  2024  2244 E C01B00/wallpaper_service/DistributedAccountFwk: OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 11:08:32.632  2024  2244 E C01B00/wallpaper_service/OsAccountNativeFwk: OpenUuidFile fail, unknown log, uuid is: 89985654
+10-28 11:08:32.633  2024  2244 E C01C20/wallpaper_service/Wallpaper_OS: [wallpaper_service.cpp(InitUsersOnBoot:353)]Query all created userIds failed, errCode:4194321
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Name:	OS_FFRT_2_13
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Umask:	0022
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: State:	S (sleeping)
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Tgid:	1792
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Ngid:	0
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Pid:	2126
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: PPid:	1
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: TracerPid:	0
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Uid:	5555	5555	5555	5555
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Gid:	5555	5555	5555	5555
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: FDSize:	64
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Groups:	1000 1065 3009 
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: NStgid:	1792
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: NSpid:	2126
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: NSpgid:	0
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: NSsid:	0
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmPeak:	 2188872 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmSize:	 2188872 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmLck:	       0 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmPin:	       0 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmHWM:	   30776 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmRSS:	   29028 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: RssAnon:	   17452 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: RssFile:	   11240 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: RssShmem:	     336 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmData:	   55476 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmStk:	     132 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmExe:	     576 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmLib:	    8216 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmPTE:	     188 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmPMD:	      24 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: VmSwap:	       0 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Threads:	27
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: SigQ:	0/15733
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: SigPnd:	0000000000000000
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: SigBlk:	0000000000000000
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: SigIgn:	0000000200001000
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: CapInh:	0000000000000000
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: CapPrm:	0000000000000000
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: CapEff:	0000000000000000
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: CapAmb:	0000000000000000
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: NoNewPrivs:	0
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Seccomp:	0
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Cpus_allowed:	f
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Mems_allowed:	1
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: Mems_allowed_list:	0
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: voluntary_ctxt_switches:	97
+10-28 11:08:32.613  1792  2262 I C02D11/samgr/DfxThreadContext: nonvoluntary_ctxt_switches:	12
+10-28 11:08:32.635  1792  2243 I C01800/samgr/SAMGR: NF SA:1301,1874_4
+10-28 11:08:32.664  1792  1818 I C01800/samgr/SAMGR: NF SA:1151,2007_60
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: 75:RecordSymbolAndBacktrace:400 Tid:2244, Name:OS_FFRT_2_2
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #00 pc 000000000018a588 /lib/ld-musl-aarch64.so.1
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #01 pc 000000000000ecd0 /system/lib64/chipset-pub-sdk/libipc_common.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #02 pc 0000000000071a84 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #03 pc 000000000007046c /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #04 pc 000000000006f970 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #05 pc 0000000000048918 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #06 pc 0000000000049364 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #07 pc 000000000001dc40 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #08 pc 000000000001e368 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #09 pc 00000000000155ac /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #10 pc 0000000000028a30 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #11 pc 0000000000015ad4 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #12 pc 000000000000f78c /system/lib64/platformsdk/libaccountkits.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #13 pc 0000000000011bbc /system/lib64/platformsdk/libaccountkits.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #14 pc 0000000000028208 /system/lib64/platformsdk/libos_account_innerkits.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #15 pc 000000000002c498 /system/lib64/platformsdk/libos_account_innerkits.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #16 pc 0000000000027030 /system/lib64/libwallpaper_service.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #17 pc 0000000000021bc8 /system/lib64/chipset-pub-sdk/libeventhandler.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #18 pc 0000000000021898 /system/lib64/chipset-pub-sdk/libeventhandler.z.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #19 pc 00000000000774e0 /system/lib64/ndk/libffrt.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #20 pc 0000000000093070 /system/lib64/ndk/libffrt.so
+10-28 11:08:32.664  2024  2113 W C01719/wallpaper_service/ffrt: #21 pc 000000000005ffb8 /system/lib64/ndk/libffrt.so
+10-28 11:08:32.673  2007  2195 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3969975749
+10-28 11:08:32.648  2007  2267 W C01719/netmanager/ffrt: 34:TrivalOpenQosCtrlNode:64 pid 2007 belong to user 1099 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 11:08:32.693  2007  2188 I C01719/netmanager/ffrt: 35:RecordTimeoutFunctionInfo:367 Tid[2242] function is executed, which occupies worker for [1]s.
+10-28 11:08:32.708  1874  1888 I C01810/audio_server/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:08:32.709  1874  1888 I C01810/audio_server/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:08:32.673  2007  2195 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3969975749
+10-28 11:08:33.278  1792  2252 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:08:33.278  1792  2252 I C01800/samgr/SAMGR: NF SA:4802,1792_238
+10-28 11:08:33.278  1792  2252 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:08:33.281  2024  2113 W C01719/wallpaper_service/ffrt: 76:RecordSymbolAndBacktrace:392 Process:wallpaper_service,Tid:2113,Qos:0,CWorker:1,EWorker:1,SWorker:0,TaskType:0,timeout:1s
+10-28 11:08:33.427  2024  2269 W C01719/wallpaper_service/ffrt: 77:TrivalOpenQosCtrlNode:64 pid 2024 belong to user 3817 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 11:08:33.373  2024  2113 E C02D11/wallpaper_service/DfxUnwinder: params is nullptr, tid: 2113
+10-28 11:08:33.460  1792  2243 I C01800/samgr/SAMGR: NF SA:4606,1810_389
+10-28 11:08:33.461  1792  2243 I C01800/samgr/SAMGR: NF SA:4606,1810_390
+10-28 11:08:33.464  1792  1818 I C01800/samgr/SAMGR: NF SA:1158,2007_105
+10-28 11:08:33.468  1792  1957 I C01800/samgr/SAMGR: insert SA:3503_27
+10-28 11:08:33.468  1792  1957 W C01800/samgr/SAMGR: rm task 3503 NF
+10-28 11:08:33.472  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:3503 handle load suc event
+10-28 11:08:33.473  1792  2236 I C01800/samgr/SAMGR: SubscribeSA:501,1874_3_14
+10-28 11:08:33.473  1792  1957 I C01800/samgr/SAMGR: Scheduler SA:3503 loaded
+10-28 11:08:33.473  1792  2236 I C01800/samgr/SAMGR: NF SA:501,1874_1
+10-28 11:08:33.480  2102  2207 I C02230/msdp/MovementAr: in Enable, Enter type is 0, event is 3, interval is 200000000000
+10-28 11:08:33.499  1792  2236 I C01800/samgr/SAMGR: NF SA:1301,1906_200
+10-28 11:08:33.508  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:08:33.508  1906  2065 E C02801/multimodalinput/TouchDrawingManager: [][CreatePointerObserver:277] Register setting observer failed, ret:19
+10-28 11:08:33.488  1810  1850 E C01810/cadaemon/SA_CLIENT: GetSaWrap SA:4606 not start
+10-28 11:08:33.515  1810  1850 I C05B00/cadaemon/tee_tui_daemon: SA service [targetID = 4606] is not exist
+10-28 11:08:33.517  1792  2243 I C01800/samgr/SAMGR: NF SA:1301,1906_201
+10-28 11:08:33.520  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:08:33.520  1906  2065 E C02802/multimodalinput/setting_DataShare: [][GetBoolValue:88] Get bool value fail
+10-28 11:08:33.532  1906  2065 I C02801/multimodalinput/UDSServer: [][OnEpollEvent:317] EPOLLERR or EPOLLHUP fd:20, ev.events:0x10
+10-28 11:08:33.533  1906  2065 W C02801/multimodalinput/MMIService: [][OnDisconnected:738] Enter, session desc:fd = 20, programName = resource_schedule_service, moduleType = 0, opened, uid = 1096, pid = 1948, tokenType = -1
+10-28 11:08:33.533  1906  2065 W C02801/multimodalinput/MMIService: , fd:20
+10-28 11:08:33.533  1906  2065 I C02800/multimodalinput/MMIService: [][RemoveInputEventFilter:675] enter
+10-28 11:08:33.551  1906  2065 I C02800/multimodalinput/EventFilterHandler: [][RemoveInputEventFilter:118] enter
+10-28 11:08:33.553  1906  2065 I C02800/multimodalinput/EventFilterHandler: [][RemoveInputEventFilter] leave
+10-28 11:08:33.558  1906  2065 I C02800/multimodalinput/MMIService: [][RemoveInputEventFilter] leave
+10-28 11:08:33.560  1906  2065 I C02801/multimodalinput/UDSServer: [][DelSession:446] The fd:20
+10-28 11:08:33.563  1906  2065 I C02801/multimodalinput/UDSServer: [][DelSession:452] The pid:1948
+10-28 11:08:33.566  2024  2109 I C01719/wallpaper_service/ffrt: 78:RecordTimeoutFunctionInfo:367 Tid[2113] function is executed, which occupies worker for [1]s.
+10-28 11:08:33.567  1906  2065 I C02806/multimodalinput/ANRManager: [][OnSessionLost:180] SessionLost remove all Timers
+10-28 11:08:33.568  1906  2065 I C02802/multimodalinput/TouchGestureManager: [][OnSessionLost:167] Clear handlers related to lost session(1948)
+10-28 11:08:33.569  1874  1888 I C01810/audio_server/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:08:33.569  1874  1888 I C01810/audio_server/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:08:33.572  1874  1888 I C02B8B/audio_server/AudioPolicyServer: [OnAddSystemAbility]SA Id is :3101
+10-28 11:08:33.572  1906  2065 I C02802/multimodalinput/KeyShortcutManager: [][UnregisterSystemKey:144] There is no system key(5)
+10-28 11:08:33.577  1906  2065 I C02801/multimodalinput/UDSServer: [][RemoveEpollEvent:332] Remove 20 in epollEvent map
+10-28 11:08:33.579  1906  2065 E C02801/multimodalinput/UDSServer: [][ReleaseSession:258] Can't find fd
+10-28 11:08:33.573  1874  1888 I C02B8B/audio_server/AudioPolicyServer: [SubscribeVolumeKeyEvents]SubscribeVolumeKeyEvents: first time.
+10-28 11:08:33.586  1874  1888 I C02B8B/audio_server/AudioPolicyServer: [RegisterVolumeKeyEvents]RegisterVolumeKeyEvents: volume key: up.
+10-28 11:08:33.590  1792  2262 I C02D11/samgr/DfxFaultLogger: search thread name failed
+10-28 11:08:33.591  1874  1888 I C02800/audio_server/InputManagerImpl: OpenUuidFile fail, unknown log, uuid is: 2032555438
+10-28 11:08:33.603  1792  2270 W C01719/samgr/ffrt: 46:TrivalOpenQosCtrlNode:64 pid 1792 belong to user 5555 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 11:08:33.608  1874  1888 W C02800/audio_server/MMIClient: OpenUuidFile fail, unknown log, uuid is: 2032555438
+10-28 11:08:33.619  2007  2242 E C02D11/netmanager/DfxThreadContext: wait_for timeout. tid = 2209
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Name:	OS_FFRT_2_5
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Umask:	0002
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: State:	S (sleeping)
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Tgid:	2007
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Ngid:	0
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Pid:	2209
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: PPid:	1
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: TracerPid:	0
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Uid:	1099	1099	1099	1099
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Gid:	1099	1099	1099	1099
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: FDSize:	128
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Groups:	1000 1014 1097 2000 
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: NStgid:	2007
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: NSpid:	2209
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: NSpgid:	0
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: NSsid:	0
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmPeak:	 2316584 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmSize:	 2316584 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmLck:	       0 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmPin:	       0 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmHWM:	   74076 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmRSS:	   73132 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: RssAnon:	   22864 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: RssFile:	   49956 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: RssShmem:	     312 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmData:	   59524 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmStk:	     132 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmExe:	      24 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmLib:	   60524 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmPTE:	     388 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmPMD:	      20 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: VmSwap:	       0 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Threads:	21
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: SigQ:	0/15733
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: SigPnd:	0000000000000000
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: SigBlk:	0000000400000000
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: SigIgn:	0000000200001000
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: CapInh:	0000000000003400
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: CapPrm:	0000000000003400
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: CapEff:	0000000000003400
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: CapAmb:	0000000000003400
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: NoNewPrivs:	0
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Seccomp:	2
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Cpus_allowed:	f
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Mems_allowed:	1
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: Mems_allowed_list:	0
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: voluntary_ctxt_switches:	49
+10-28 11:08:33.624  2007  2242 I C02D11/netmanager/DfxThreadContext: nonvoluntary_ctxt_switches:	54
+10-28 11:08:33.629  2007  2242 I C02D11/netmanager/DfxFaultLogger: search thread name failed
+10-28 11:08:33.640  1792  2262 W C01719/samgr/ffrt: 47:RecordSymbolAndBacktrace:392 Process:/system/bin/samgr,Tid:2262,Qos:0,CWorker:1,EWorker:1,SWorker:0,TaskType:0,timeout:1s
+10-28 11:08:33.641  1792  2262 E C02D11/samgr/DfxUnwinder: params is nullptr, tid: 2262
+10-28 11:08:33.655  2007  2271 W C01719/netmanager/ffrt: 36:TrivalOpenQosCtrlNode:64 pid 2007 belong to user 1099 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 11:08:33.661  2007  2242 W C01719/netmanager/ffrt: 37:RecordSymbolAndBacktrace:392 Process:netmanager,Tid:2242,Qos:0,CWorker:1,EWorker:1,SWorker:0,TaskType:0,timeout:1s
+10-28 11:08:33.672  2007  2242 E C02D11/netmanager/DfxUnwinder: params is nullptr, tid: 2242
+10-28 11:08:33.695  1792  2236 I C01800/samgr/SAMGR: NF SA:1158,2007_106
+10-28 11:08:33.748  2007  2242 I C02D11/netmanager/DfxFaultLogger: search thread name failed
+10-28 11:08:33.756  2024  2113 I C02D11/wallpaper_service/DfxFaultLogger: search thread name failed
+10-28 11:08:33.763  2024  2272 W C01719/wallpaper_service/ffrt: 79:TrivalOpenQosCtrlNode:64 pid 2024 belong to user 3817 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 11:08:33.783  1792  2262 I C02D11/samgr/DfxFaultLogger: search thread name failed
+10-28 11:08:33.821  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2024_241
+10-28 11:08:33.849  1906  2273 W C01719/multimodalinput/ffrt: 11:TrivalOpenQosCtrlNode:64 pid 1906 belong to user 6696 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 11:08:33.907  1906  2065 I C02800/multimodalinput/ClientDeathHandler: [][AddClientPid:113] Insert Death recipient pid:1874 has existed
+10-28 11:08:33.919  1792  2236 I C01800/samgr/SAMGR: NF SA:1158,2007_107
+10-28 11:08:33.982  1906  1941 I C02801/multimodalinput/MMIService: [][TransferBinderClientSrv:4572] TransferBinderClientSrv result:0
+10-28 11:08:34.036  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2024_242
+10-28 11:08:34.061  1792  2243 I C01800/samgr/SAMGR: NF SA:1151,2007_61
+10-28 11:08:34.065  2007  2195 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3969975749
+10-28 11:08:34.066  2007  2195 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3969975749
+10-28 11:08:34.066  2007  2195 W C015B0/netmanager/NetworkVpnManager: NetConnClient Get SystemReady count: 30
+10-28 11:08:34.248  1906  1941 I C02801/multimodalinput/MMIService: [][AllocSocketFd:617] Enter, programName:audio_server, moduleType:0, pid:1874
+10-28 11:08:34.283  1792  2214 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:08:34.284  1792  2214 I C01800/samgr/SAMGR: NF SA:4802,1792_239
+10-28 11:08:34.284  1792  2214 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:08:34.292  1792  2236 I C01800/samgr/SAMGR: NF SA:1158,2007_108
+10-28 11:08:34.328  1792  2243 I C01800/samgr/SAMGR: NF SA:1151,2007_62
+10-28 11:08:34.331  2007  2195 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3969975749
+10-28 11:08:34.309  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2024_243
+10-28 11:08:34.392  2007  2195 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3969975749
+10-28 11:08:34.463  1906  2065 I C02801/multimodalinput/MMIService: [][AddEpoll:301] The userdata:[fd:20, type:1]
+10-28 11:08:34.465  1906  2065 I C02801/multimodalinput/UDSServer: [][AddEpollEvent:326] Add 20 in epollEvent map
+10-28 11:08:34.490  2007  2195 E C015B0/netmanager/NetworkVpnManager: RegisterNetFactoryResetCallback ret: 2100208.
+10-28 11:08:34.511  1792  2236 I C01800/samgr/SAMGR: NF SA:1158,2007_109
+10-28 11:08:34.515  2007  2185 E C01810/netmanager/SA_CLIENT: GetSaWrap SA:1158 not start
+10-28 11:08:34.532  1792  2236 I C01800/samgr/SAMGR: NF SA:5100,2102_22
+10-28 11:08:34.550  2007  2185 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3238750957
+10-28 11:08:34.603  1906  2065 I C02801/multimodalinput/UDSServer: [][AddSession:420] The pid:1874, fd:20
+10-28 11:08:34.627  1906  2065 I C02801/multimodalinput/UDSServer: [][AddSession:439] AddSession end
+10-28 11:08:34.680  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2024_244
+10-28 11:08:34.647  1906  2065 I C02801/multimodalinput/MMIService: [][OnConnected:702] Get fd:20
+10-28 11:08:34.693  1906  1941 I C02801/multimodalinput/MMIService: [][AllocSocketFd:639] Leave, programName:audio_server, moduleType:0, alloc success
+10-28 11:08:34.703  1906  2065 I C02801/multimodalinput/TouchDrawingManager: [][CreateObserver:217] Setup observer of show-touch-track
+10-28 11:08:34.880  1874  1888 I C02800/audio_server/MMIClient: OpenUuidFile fail, unknown log, uuid is: 2032555438
+10-28 11:08:34.887  1792  2236 I C01800/samgr/SAMGR: NF SA:5100,2102_23
+10-28 11:08:34.923  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2024_245
+10-28 11:08:34.940  1792  2236 I C01800/samgr/SAMGR: NF SA:1301,1906_202
+10-28 11:08:34.943  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:08:34.943  1906  2065 E C02801/multimodalinput/TouchDrawingManager: [][CreateBubbleObserver:251] Register setting observer failed, ret:19
+10-28 11:08:34.944  1906  2065 I C02801/multimodalinput/TouchDrawingManager: [][CreateObserver:222] Setup observer of show-touch-position
+10-28 11:08:35.111  2024  2113 W C01719/wallpaper_service/ffrt: 80:RecordSymbolAndBacktrace:392 Process:wallpaper_service,Tid:2244,Qos:2,CWorker:2,EWorker:1,SWorker:1,TaskType:3,timeout:1s
+10-28 11:08:35.207  1792  2236 I C01800/samgr/SAMGR: NF SA:5100,2102_24
+10-28 11:08:35.340  1792  2243 I C01800/samgr/SAMGR: NF SA:1301,1906_203
+10-28 11:08:35.340  1792  2214 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:08:35.341  1792  2214 I C01800/samgr/SAMGR: NF SA:4802,1792_240
+10-28 11:08:35.343  1792  2214 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:08:35.344  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:08:35.345  1906  2065 E C02801/multimodalinput/TouchDrawingManager: [][CreatePointerObserver:277] Register setting observer failed, ret:19
+10-28 11:08:35.361  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2024_246
+10-28 11:08:35.487  1792  2236 I C01800/samgr/SAMGR: NF SA:5100,2102_25
+10-28 11:08:35.496  1874  1888 I C02800/audio_server/MMIClient: OpenUuidFile fail, unknown log, uuid is: 2032555438
+10-28 11:08:35.497  1874  1888 I C02800/audio_server/MMIClient: OpenUuidFile fail, unknown log, uuid is: 2032555438
+10-28 11:08:35.521  1792  2243 I C01800/samgr/SAMGR: NF SA:4606,1810_391
+10-28 11:08:35.522  1792  2243 I C01800/samgr/SAMGR: NF SA:4606,1810_392
+10-28 11:08:35.524  1792  1818 I C01800/samgr/SAMGR: NF SA:1301,1906_204
+10-28 11:08:35.529  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:08:35.529  1906  2065 E C02802/multimodalinput/setting_DataShare: [][GetBoolValue:88] Get bool value fail
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: 81:RecordSymbolAndBacktrace:400 Tid:2244, Name:OS_FFRT_2_2
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #00 pc 000000000018a588 /lib/ld-musl-aarch64.so.1
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #01 pc 000000000000ecd0 /system/lib64/chipset-pub-sdk/libipc_common.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #02 pc 0000000000071a84 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #03 pc 000000000007046c /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #04 pc 000000000006f970 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #05 pc 0000000000048918 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #06 pc 0000000000049364 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #07 pc 000000000001dc40 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #08 pc 000000000001e368 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #09 pc 00000000000155ac /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #10 pc 0000000000028a30 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #11 pc 0000000000015ad4 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #12 pc 000000000000f78c /system/lib64/platformsdk/libaccountkits.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #13 pc 0000000000011bbc /system/lib64/platformsdk/libaccountkits.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #14 pc 0000000000028208 /system/lib64/platformsdk/libos_account_innerkits.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #15 pc 000000000002c498 /system/lib64/platformsdk/libos_account_innerkits.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #16 pc 0000000000027030 /system/lib64/libwallpaper_service.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #17 pc 0000000000021bc8 /system/lib64/chipset-pub-sdk/libeventhandler.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #18 pc 0000000000021898 /system/lib64/chipset-pub-sdk/libeventhandler.z.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #19 pc 00000000000774e0 /system/lib64/ndk/libffrt.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #20 pc 0000000000093070 /system/lib64/ndk/libffrt.so
+10-28 11:08:35.469  2024  2113 W C01719/wallpaper_service/ffrt: #21 pc 000000000005ffb8 /system/lib64/ndk/libffrt.so
+10-28 11:08:35.601  1792  2236 I C01800/samgr/SAMGR: NF SA:1158,2007_110
+10-28 11:08:35.607  1792  2270 W C01719/samgr/ffrt: 48:RecordSymbolAndBacktrace:392 Process:/system/bin/samgr,Tid:2126,Qos:2,CWorker:3,EWorker:1,SWorker:2,TaskType:3,timeout:5s
+10-28 11:08:35.704  1874  1888 I C02800/audio_server/MMIClient: OpenUuidFile fail, unknown log, uuid is: 2032555438
+10-28 11:08:35.721  1874  2275 I C02800/audio_server/MMIClient: OpenUuidFile fail, unknown log, uuid is: 2032555438
+10-28 11:08:35.732  1792  2243 I C01800/samgr/SAMGR: NF SA:4606,1810_393
+10-28 11:10:06.351     0     0 I C00000/HiLog: ========Slow reader missed log lines: 1748
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Name:	OS_IPC_0_2255
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Umask:	0022
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: State:	S (sleeping)
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Tgid:	2246
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Ngid:	0
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Pid:	2255
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: PPid:	1
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: TracerPid:	0
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Uid:	5523	5523	5523	5523
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Gid:	1000	1000	1000	1000
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: FDSize:	256
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Groups:	1065 2002 6005 6666 
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: NStgid:	2246
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: NSpid:	2255
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: NSpgid:	0
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: NSsid:	0
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmPeak:	 2411092 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmSize:	 2410704 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmLck:	       0 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmPin:	       0 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmHWM:	  141624 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmRSS:	  141616 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: RssAnon:	   31748 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: RssFile:	  109536 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: RssShmem:	     332 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmData:	   49356 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmStk:	     132 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmExe:	      24 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmLib:	  129612 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmPTE:	     644 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmPMD:	      24 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: VmSwap:	       0 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Threads:	12
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: SigQ:	0/15733
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: SigPnd:	0000000000000000
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: SigBlk:	0000000000000000
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: SigIgn:	0000000200001000
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: CapInh:	0000000000080020
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: CapPrm:	0000000000080020
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: CapEff:	0000000000080020
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: CapAmb:	0000000000080020
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: NoNewPrivs:	0
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Seccomp:	2
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Cpus_allowed:	f
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Mems_allowed:	1
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: Mems_allowed_list:	0
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: voluntary_ctxt_switches:	6
+10-28 11:09:08.257  2246  2256 I C02D11/foundation/DfxThreadContext: nonvoluntary_ctxt_switches:	1
+10-28 11:09:08.269  2246  2256 I C02D11/foundation/DfxFaultLogger: search thread name failed
+10-28 11:09:08.294  1874  2132 I C02B8B/audio_server/AudioPolicyServerHandler: [AddAudioPolicyClientProxyMap]group data num [1] pid [1874] map [1874,]
+10-28 11:09:08.304  1792  1983 I C01800/samgr/SAMGR: NF SA:10,2246_70
+10-28 11:09:08.308  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2107_14
+10-28 11:09:08.316  2246  2265 E C01810/foundation/SA_CLIENT: GetSaWrap SA:10 not start
+10-28 11:09:08.329  1792  1983 I C01800/samgr/SAMGR: NF SA:10,2246_71
+10-28 11:09:08.344  1792  1957 I C01800/samgr/SAMGR: NF SA:1158,2007_175
+10-28 11:09:08.352  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2024_325
+10-28 11:09:08.379  1792  1983 I C01800/samgr/SAMGR: NF SA:3510,2107_1
+10-28 11:09:08.380  1792  1983 I C01800/samgr/SAMGR: NF SA:3510,2107_2
+10-28 11:09:08.383  1791  1846 I C04301/storage_daemon/StorageDaemon: [HandleDiskEvent:47] syspath: /sys/devices/virtual/block/loop2, devpath: /devices/virtual/block/loop2, subsystem: block, action: 0
+10-28 11:09:08.385  1791  1846 I C04301/storage_daemon/StorageDaemon: [MatchConfig:104] No matching configuration found
+10-28 11:09:08.411  1874  2132 W C02B8B/audio_server/AudioPolicyServer: [RegisterClientDeathRecipient]failed to add deathRecipient
+10-28 11:09:08.452  1874  2132 I C02B8B/audio_server/AudioPolicyServerHandler: [SetClientCallbacksEnable]Set clientId:1874, callbacks:9, enable:true
+10-28 11:09:08.500  1792  2236 I C01800/samgr/SAMGR: NF SA:401,1874_4
+10-28 11:09:08.507  2223  2297 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 11:09:08.535  2102  2207 E C02510/msdp/hdi_servmgr_client: get hdi service activity_interface_service failed, -1
+10-28 11:09:08.560  1792  2313 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:09:08.561  1792  2313 I C01800/samgr/SAMGR: NF SA:4802,1792_269
+10-28 11:09:08.563  1792  2313 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:09:08.565  1792  1957 I C01800/samgr/SAMGR: NF SA:200,2107_15
+10-28 11:09:08.568  1792  1983 I C01800/samgr/SAMGR: NF SA:10,2246_72
+10-28 11:09:08.580  2223  2304 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 11:09:08.595  2102  2124 E C02510/msdp/hdi_servmgr_client: get hdi service motion_interface_service failed, -1
+10-28 11:09:08.596  2102  2124 E C02510/msdp/motion_interface_proxy: Get:get remote object failed!
+10-28 11:09:08.596  2102  2124 W C02210/msdp/MotionDevice: in ConnectMotionHdi, Connect motion hdi service failed, retry:25
+10-28 11:09:08.603  1792  1983 I C01800/samgr/SAMGR: NF SA:1158,2007_176
+10-28 11:09:08.611  2107  2301 E C01810/push_manager_service/SA_CLIENT: [a92ab167407ba77 0 0]GetSaWrap SA:200 not start
+10-28 11:09:08.611  2107  2301 E C01B00/push_manager_service/DistributedAccountFwk: [a92ab167407ba77 0 0]OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 11:09:08.611  2107  2301 E C01B00/push_manager_service/DistributedAccountFwk: [a92ab167407ba77 0 0]OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 11:09:08.612  2107  2301 E C01B00/push_manager_service/OsAccountNativeFwk: [a92ab167407ba77 0 0]OpenUuidFile fail, unknown log, uuid is: 89985654
+10-28 11:09:08.612  2107  2301 E C05300/push_manager_service/push: [a92ab167407ba77 0 0]Call GetForegroundOsAccounts failed 4194321
+10-28 11:09:08.613  2107  2301 E C05300/push_manager_service/push: [a92ab167407ba77 0 0]getForegroundOsAccounts fail: account sa not started
+10-28 11:09:08.617  2102  2207 E C02510/msdp/activity_interface_proxy: Get:get remote object failed!
+10-28 11:09:08.617  2102  2207 W C02230/msdp/MovementAr: in ConnectMotionHdi, Connect ar hdi service failed, retry:24
+10-28 11:09:08.636  1874  1887 I C02B8B/audio_server/AudioPolicyServerHandler: [AddAudioPolicyClientProxyMap]group data num [2] pid [1966] map [1966,1874,]
+10-28 11:09:08.652  1792  2236 I C01800/samgr/SAMGR: NF SA:3510,2107_3
+10-28 11:09:08.655  1792  2236 I C01800/samgr/SAMGR: NF SA:3510,2107_4
+10-28 11:09:08.687  1792  1957 I C01800/samgr/SAMGR: NF SA:200,2024_326
+10-28 11:09:08.696  2226  2226 I C01810/param_watcher/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:08.813  1792  1983 I C01800/samgr/SAMGR: NF SA:1158,2007_177
+10-28 11:09:08.821  1792  1957 I C01800/samgr/SAMGR: NF SA:10,2246_73
+10-28 11:09:08.837  1791  1846 I C04301/storage_daemon/StorageDaemon: [HandleDiskEvent:47] syspath: /sys/devices/virtual/block/loop0, devpath: /devices/virtual/block/loop0, subsystem: block, action: 0
+10-28 11:09:08.840  2102  2124 E C02210/msdp/MotionDevice: in ConnectMotionHdi, Connect motion hdi service failed
+10-28 11:09:08.840  1791  1846 I C04301/storage_daemon/StorageDaemon: [MatchConfig:104] No matching configuration found
+10-28 11:09:08.841  2102  2124 E C02210/msdp/MotionManager: in InitMotionHdi, Connect motion hdi fail
+10-28 11:09:08.855  2102  2124 E C02210/msdp/MotionManager: in Init, Init motion hdi fail
+10-28 11:09:08.866  1966  1966 I C01810/_hid_accessory_manager_ability/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:08.875  2237  2237 I C01810/sa_main/SAFWK: main enter SAFWK main, proc:2237
+10-28 11:09:08.838  1874  2132 I C02B87/audio_server/AudioGeneralManager: OpenUuidFile fail, unknown log, uuid is: 346416317
+10-28 11:09:08.880  1874  2132 E C02B87/audio_server/AudioPolicyManager: OpenUuidFile fail, unknown log, uuid is: 1975759945
+10-28 11:09:08.900  1792  1983 I C01800/samgr/SAMGR: NF SA:200,2024_327
+10-28 11:09:08.956  1874  2132 I C02B87/audio_server/ClientTypeManager: [SetQueryClientTypeCallback]In
+10-28 11:09:08.958  1874  2132 I C02B87/audio_server/ClientTypeManager: [SetQueryClientTypeCallback]Init client type manager
+10-28 11:09:08.964  2223  2297 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 11:09:08.968  2102  2207 E C02510/msdp/hdi_servmgr_client: get hdi service activity_interface_service failed, -1
+10-28 11:09:08.970  2102  2207 E C02510/msdp/activity_interface_proxy: Get:get remote object failed!
+10-28 11:09:08.971  2102  2207 W C02230/msdp/MovementAr: in ConnectMotionHdi, Connect ar hdi service failed, retry:25
+10-28 11:09:08.979  1906  2065 I C02801/multimodalinput/TouchDrawingManager: [][CreateObserver:217] Setup observer of show-touch-track
+10-28 11:09:08.979  2237  2237 I C01810/accountmgr/SAFWK: operator() Set process name to accountmgr
+10-28 11:09:08.995  1792  2236 I C01800/samgr/SAMGR: NF SA:1301,1906_259
+10-28 11:09:09.000  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:09:09.000  1906  2065 E C02801/multimodalinput/TouchDrawingManager: [][CreateBubbleObserver:251] Register setting observer failed, ret:19
+10-28 11:09:09.000  1906  2065 I C02801/multimodalinput/TouchDrawingManager: [][CreateObserver:222] Setup observer of show-touch-position
+10-28 11:09:09.023  2279  2279 I C01810/resource_schedule_service/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:09.043  1792  1983 I C01800/samgr/SAMGR: NF SA:1158,2007_178
+10-28 11:09:09.185  1792  2236 I C01800/samgr/SAMGR: NF SA:10,2246_74
+10-28 11:09:09.196  1792  2236 I C01800/samgr/SAMGR: NF SA:3510,2107_5
+10-28 11:09:09.198  1792  2236 I C01800/samgr/SAMGR: NF SA:3510,2107_6
+10-28 11:09:09.233  1874  2132 I C01719/audio_server/ffrt: 9:QueueHandler:72 Ctor sq_EventHandler_QUEUE_4, qos 2
+10-28 11:09:09.235  1874  2132 I C02B87/audio_server/ClientTypeManagerHandler: [ClientTypeManagerHandler]ctor
+10-28 11:09:09.236  1874  2132 I C02B87/audio_server/ClientTypeManagerHandler: [RegisterClientTypeListener]In
+10-28 11:09:09.236  1874  2132 I C02B87/audio_server/ClientTypeManagerHandler: [SetQueryClientTypeCallback]In
+10-28 11:09:09.254  1792  2236 I C01800/samgr/SAMGR: NF SA:1158,2007_179
+10-28 11:09:09.260  2007  2185 E C01810/netmanager/SA_CLIENT: GetSaWrap SA:1158 not start
+10-28 11:09:09.261  2237  2237 E C02D33/accountmgr/HitraceMeter: open trace file /sys/kernel/debug/tracing/trace_marker failed: 2
+10-28 11:09:09.262  2007  2035 E C02C02/PARAM: [param_request.c:103]ReadMessage failed! errno 11
+10-28 11:09:09.261  2007  2185 E C015B0/netmanager/NetConnManager: OpenUuidFile fail, unknown log, uuid is: 3238750957
+10-28 11:09:09.263  2007  2035 E C02C02/PARAM: [param_request.c:124]ReadMessage errno 11 diff 10 timeout 10 ret 105
+10-28 11:09:09.263  2007  2035 I C02C02/PARAM: [param_request.c:208]SystemSetParameter name persist.booster.special_scenario_start_qoe id:8 ret:105 
+10-28 11:09:09.263  2007  2035 E C02C0B/BEGET: [param_request.c:217]SystemSetParameter failed! name is :persist.booster.special_scenario_start_qoe, the errNum is:105
+10-28 11:09:09.263  2007  2035 I C015B5/netmanager/NetMgrEnhanced: enableIod_=1 in json.
+10-28 11:09:09.264  2007  2035 I C015B5/netmanager/NetMgrEnhanced: enableIod_ s=1 in json.
+10-28 11:09:09.276  1791  1846 I C04301/storage_daemon/StorageDaemon: [HandleDiskEvent:47] syspath: /sys/devices/virtual/block/loop7, devpath: /devices/virtual/block/loop7, subsystem: block, action: 0
+10-28 11:09:09.277  2246  2256 E C02D11/foundation/DfxThreadContext: wait_for timeout. tid = 2257
+10-28 11:09:09.279  1791  1846 I C04301/storage_daemon/StorageDaemon: [MatchConfig:104] No matching configuration found
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Name:	OS_IPC_1_2257
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Umask:	0022
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: State:	S (sleeping)
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Tgid:	2246
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Ngid:	0
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Pid:	2257
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: PPid:	1
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: TracerPid:	0
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Uid:	5523	5523	5523	5523
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Gid:	1000	1000	1000	1000
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: FDSize:	256
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Groups:	1065 2002 6005 6666 
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: NStgid:	2246
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: NSpid:	2257
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: NSpgid:	0
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: NSsid:	0
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmPeak:	 2411092 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmSize:	 2410704 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmLck:	       0 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmPin:	       0 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmHWM:	  141628 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmRSS:	  141616 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: RssAnon:	   31748 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: RssFile:	  109536 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: RssShmem:	     332 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmData:	   49356 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmStk:	     132 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmExe:	      24 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmLib:	  129612 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmPTE:	     644 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmPMD:	      24 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: VmSwap:	       0 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Threads:	12
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: SigQ:	0/15733
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: SigPnd:	0000000000000000
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: SigBlk:	0000000000000000
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: SigIgn:	0000000200001000
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: CapInh:	0000000000080020
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: CapPrm:	0000000000080020
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: CapEff:	0000000000080020
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: CapAmb:	0000000000080020
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: NoNewPrivs:	0
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Seccomp:	2
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Cpus_allowed:	f
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Mems_allowed:	1
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: Mems_allowed_list:	0
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: voluntary_ctxt_switches:	5
+10-28 11:09:09.285  2246  2256 I C02D11/foundation/DfxThreadContext: nonvoluntary_ctxt_switches:	0
+10-28 11:09:09.297  2246  2256 I C02D11/foundation/DfxFaultLogger: search thread name failed
+10-28 11:09:09.340  2223  2297 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 11:09:09.348  2237  2237 E C02D33/accountmgr/HitraceMeter: open trace file /sys/kernel/tracing/trace_marker failed: 2
+10-28 11:09:09.349  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2024_328
+10-28 11:09:09.351  2279  2279 E C01719/resource_schedule_service/ffrt: 2:SExecuteUnit:76 blockaware init fail, ret[22], key[0x0]
+10-28 11:09:09.359  2279  2279 E C01719/resource_schedule_service/ffrt: 3:DelayedWorker:200 monitorfd create failed: monitorfd=-22
+10-28 11:09:09.363  1792  2236 I C01800/samgr/SAMGR: NF SA:1301,1906_260
+10-28 11:09:09.363  2279  2279 E C01719/resource_schedule_service/ffrt: 4:DelayedWorker:218 monitor:-22 add fail, ret:-1, errno:9, Bad file descriptor
+10-28 11:09:09.427  2279  2279 I C01719/resource_schedule_service/ffrt: 5:QueueMonitor:46 timeout:30000000 us
+10-28 11:09:09.438  2279  2279 I C01719/resource_schedule_service/ffrt: 6:QueueHandler:72 Ctor sq_startAdv_Queue_1, qos 2
+10-28 11:09:09.488  1792  2236 I C01800/samgr/SAMGR: NF SA:10,2246_75
+10-28 11:09:09.495  1792  1983 I C01800/samgr/SAMGR: NF SA:3510,2107_7
+10-28 11:09:09.495  1792  1983 I C01800/samgr/SAMGR: NF SA:3510,2107_8
+10-28 11:09:09.503  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:09:09.504  1906  2065 E C02801/multimodalinput/TouchDrawingManager: [][CreatePointerObserver:277] Register setting observer failed, ret:19
+10-28 11:09:09.515  1794  1794 E C02C11/nwebspawn/APPSPAWN: [appspawn_kickdog.c:29]open /sys/kernel/hungtask/userlist fail,errno:2
+10-28 11:09:09.587  1792  2319 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:09:09.599  1792  2319 I C01800/samgr/SAMGR: NF SA:4802,1792_270
+10-28 11:09:09.601  1792  2319 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:09:09.628  2024  2113 W C01719/wallpaper_service/ffrt: 7:RecordSymbolAndBacktrace:392 Process:wallpaper_service,Tid:2284,Qos:2,CWorker:2,EWorker:1,SWorker:1,TaskType:3,timeout:1s
+10-28 11:09:09.629  2102  2207 E C02510/msdp/hdi_servmgr_client: get hdi service activity_interface_service failed, -1
+10-28 11:09:09.629  2102  2207 E C02510/msdp/activity_interface_proxy: Get:get remote object failed!
+10-28 11:09:09.636  2102  2207 W C02230/msdp/MovementAr: in ConnectMotionHdi, Connect ar hdi service failed, retry:26
+10-28 11:09:09.647  1792  2236 I C01800/samgr/SAMGR: NF SA:1301,1906_261
+10-28 11:09:09.653  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:09:09.657  1906  2065 E C02802/multimodalinput/setting_DataShare: [][GetBoolValue:88] Get bool value fail
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: 8:RecordSymbolAndBacktrace:400 Tid:2284, Name:OS_FFRT_2_4
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #00 pc 00000000000ab82c /lib/ld-musl-aarch64.so.1
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #01 pc 00000000001f5434 /lib/ld-musl-aarch64.so.1
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #02 pc 00000000001f2b18 /lib/ld-musl-aarch64.so.1
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #03 pc 000000000001aafc /system/lib64/chipset-pub-sdk/libbegetutil.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #04 pc 000000000001acb4 /system/lib64/chipset-pub-sdk/libbegetutil.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #05 pc 000000000000f8a0 /system/lib64/chipset-pub-sdk/libbegetutil.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #06 pc 0000000000025a10 /system/lib64/chipset-pub-sdk/libhilog.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #07 pc 0000000000017f0c /system/lib64/chipset-pub-sdk/libhilog.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #08 pc 000000000001e3cc /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #09 pc 00000000000155ac /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #10 pc 0000000000028a30 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #11 pc 0000000000015ad4 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #12 pc 000000000000f78c /system/lib64/platformsdk/libaccountkits.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #13 pc 0000000000011bbc /system/lib64/platformsdk/libaccountkits.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #14 pc 0000000000028208 /system/lib64/platformsdk/libos_account_innerkits.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #15 pc 000000000002c498 /system/lib64/platformsdk/libos_account_innerkits.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #16 pc 0000000000027030 /system/lib64/libwallpaper_service.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #17 pc 0000000000021bc8 /system/lib64/chipset-pub-sdk/libeventhandler.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #18 pc 0000000000021898 /system/lib64/chipset-pub-sdk/libeventhandler.z.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #19 pc 00000000000774e0 /system/lib64/ndk/libffrt.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #20 pc 0000000000093070 /system/lib64/ndk/libffrt.so
+10-28 11:09:09.667  2024  2113 W C01719/wallpaper_service/ffrt: #21 pc 000000000005ffb8 /system/lib64/ndk/libffrt.so
+10-28 11:09:09.722  2279  2279 I C01810/resource_schedule_service/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:09.812  1874  2132 I C02B87/audio_server/AudioGeneralManager: OpenUuidFile fail, unknown log, uuid is: 346416317
+10-28 11:09:09.815  1792  2236 I C01800/samgr/SAMGR: NF SA:10,2246_76
+10-28 11:09:09.815  2279  2279 I C01719/resource_schedule_service/ffrt: 7:QueueHandler:72 Ctor sq_freeze_check_illegal_audio_2, qos 5
+10-28 11:09:09.816  1874  2132 I C02B8B/audio_server/AudioPolicyServer: [SetQueryDeviceVolumeBehaviorCallback]in!
+10-28 11:09:09.824  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr hardware resource proxy. module: AvCodec
+10-28 11:09:09.827  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 3011
+10-28 11:09:09.828  1792  2236 I C01800/samgr/SAMGR: NF SA:4606,1810_489
+10-28 11:09:09.828  1792  2236 I C01800/samgr/SAMGR: NF SA:4606,1810_490
+10-28 11:09:09.830  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr software resource proxy. resType: 2
+10-28 11:09:09.835  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 3299
+10-28 11:09:09.840  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr software resource proxy. module: Dms
+10-28 11:09:09.851  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 4607
+10-28 11:09:09.856  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr hardware resource proxy. module: Media
+10-28 11:09:09.859  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 3002
+10-28 11:09:09.861  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr software resource proxy. resType: 4
+10-28 11:09:09.871  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 3702
+10-28 11:09:09.875  1792  1983 I C01800/samgr/SAMGR: NF SA:3510,2107_9
+10-28 11:09:09.876  1792  1983 I C01800/samgr/SAMGR: NF SA:3510,2107_10
+10-28 11:09:09.972  2007  2030 E C02D11/netmanager/DfxThreadContext: wait_for timeout. tid = 2007
+10-28 11:09:10.000  2279  2279 I C01719/resource_schedule_service/ffrt: 8:QueueHandler:72 Ctor sq_suspend_mgr_break_socket_que_3, qos 5
+10-28 11:09:10.009  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr hardware resource proxy. module: Wifi
+10-28 11:09:10.013  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 1120
+10-28 11:09:10.017  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr hardware efficiency resource proxy. resType: 16
+10-28 11:09:10.020  1792  1957 I C01800/samgr/SAMGR: NF SA:200,2024_329
+10-28 11:09:10.023  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 1130
+10-28 11:09:10.027  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 3010
+10-28 11:09:10.033  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr hardware efficiency resource proxy. resType: 256
+10-28 11:09:10.036  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 3601
+10-28 11:09:10.039  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr hardware efficiency resource proxy. resType: 128
+10-28 11:09:10.042  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 3301
+10-28 11:09:10.047  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr hardware resource state control. res type: 64
+10-28 11:09:10.055  1792  2236 I C01800/samgr/SAMGR: NF SA:10,2246_77
+10-28 11:09:10.055  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr hardware resource proxy. module: Audio
+10-28 11:09:10.059  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 3009
+10-28 11:09:10.064  2246  2265 E C01810/foundation/SA_CLIENT: GetSaWrap SA:10 not start
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Name:	netmanager
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Umask:	0002
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: State:	S (sleeping)
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Tgid:	2007
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Ngid:	0
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Pid:	2007
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: PPid:	1
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: TracerPid:	0
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Uid:	1099	1099	1099	1099
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Gid:	1099	1099	1099	1099
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: FDSize:	128
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Groups:	1000 1014 1097 2000 
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: NStgid:	2007
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: NSpid:	2007
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: NSpgid:	0
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: NSsid:	0
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmPeak:	 2317652 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmSize:	 2308128 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmLck:	       0 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmPin:	       0 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmHWM:	   74076 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmRSS:	   71344 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: RssAnon:	   21048 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: RssFile:	   49984 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: RssShmem:	     312 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmData:	   51164 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmStk:	     132 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmExe:	      24 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmLib:	   60524 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmPTE:	     380 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmPMD:	      20 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: VmSwap:	       0 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Threads:	15
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: SigQ:	0/15733
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: SigPnd:	0000000000000000
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: SigBlk:	0000000400000000
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: SigIgn:	0000000200001000
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: CapInh:	0000000000003400
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: CapPrm:	0000000000003400
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: CapEff:	0000000000003400
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: CapAmb:	0000000000003400
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: NoNewPrivs:	0
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Seccomp:	2
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Cpus_allowed:	f
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Mems_allowed:	1
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: Mems_allowed_list:	0
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: voluntary_ctxt_switches:	114
+10-28 11:09:10.065  2007  2030 I C02D11/netmanager/DfxThreadContext: nonvoluntary_ctxt_switches:	2907
+10-28 11:09:10.071  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr hardware efficiency resource proxy. resType: 32
+10-28 11:09:10.074  2279  2279 I C01732/resource_schedule_service/SUSPEND_PROXY: Registr resource SA. systemAbilityId: 2802
+10-28 11:09:10.080  1792  2236 I C01800/samgr/SAMGR: NF SA:10,2246_78
+10-28 11:09:10.108  1874  2132 I C02B87/audio_server/SleAudioAdapterManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:10.109  2223  2297 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 11:09:10.111  2279  2279 W C03F00/MUSL-LDSO: dlopen so: /system/lib64/libsuspend_manager_service.z.so init_time: 6955 ms
+10-28 11:09:10.115  2279  2279 I C01800/resource_schedule_service/SAMGR: OpenUuidFile fail, unknown log, uuid is: 1890223293
+10-28 11:09:10.116  2007  2030 I C02D11/netmanager/DfxFaultLogger: search thread name failed
+10-28 11:09:10.121  2102  2207 E C02510/msdp/hdi_servmgr_client: get hdi service activity_interface_service failed, -1
+10-28 11:09:10.122  2102  2207 E C02510/msdp/activity_interface_proxy: Get:get remote object failed!
+10-28 11:09:10.123  2102  2207 W C02230/msdp/MovementAr: in ConnectMotionHdi, Connect ar hdi service failed, retry:27
+10-28 11:09:10.209  1792  1983 I C01800/samgr/SAMGR: NF SA:4606,1810_491
+10-28 11:09:10.212  1792  1983 I C01800/samgr/SAMGR: NF SA:4606,1810_492
+10-28 11:09:10.256  1791  1846 I C04301/storage_daemon/StorageDaemon: [HandleDiskEvent:47] syspath: /sys/devices/virtual/block/loop5, devpath: /devices/virtual/block/loop5, subsystem: block, action: 0
+10-28 11:09:10.260  1791  1846 I C04301/storage_daemon/StorageDaemon: [MatchConfig:104] No matching configuration found
+10-28 11:09:10.282  2279  2279 I C01810/resource_schedule_service/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:10.293  1792  1957 I C01800/samgr/SAMGR: NF SA:10,2246_79
+10-28 11:09:10.304  1792  2236 I C01800/samgr/SAMGR: NF SA:200,2024_330
+10-28 11:09:10.312  1792  1983 I C01800/samgr/SAMGR: NF SA:1158,2007_180
+10-28 11:09:10.321  2279  2279 I C01800/resource_schedule_service/SAMGR: OpenUuidFile fail, unknown log, uuid is: 1890223293
+10-28 11:09:10.333  2246  2256 E C02D11/foundation/DfxThreadContext: wait_for timeout. tid = 2264
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Name:	SaInit1
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Umask:	0022
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: State:	S (sleeping)
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Tgid:	2246
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Ngid:	0
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Pid:	2264
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: PPid:	1
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: TracerPid:	0
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Uid:	5523	5523	5523	5523
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Gid:	1000	1000	1000	1000
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: FDSize:	256
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Groups:	1065 2002 6005 6666 
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: NStgid:	2246
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: NSpid:	2264
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: NSpgid:	0
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: NSsid:	0
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmPeak:	 2411092 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmSize:	 2410704 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmLck:	       0 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmPin:	       0 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmHWM:	  141636 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmRSS:	  141632 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: RssAnon:	   31764 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: RssFile:	  109536 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: RssShmem:	     332 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmData:	   49356 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmStk:	     132 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmExe:	      24 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmLib:	  129612 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmPTE:	     644 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmPMD:	      24 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: VmSwap:	       0 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Threads:	12
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: SigQ:	0/15733
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: SigPnd:	0000000000000000
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: SigBlk:	0000000400000000
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: SigIgn:	0000000200001000
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: CapInh:	0000000000080020
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: CapPrm:	0000000000080020
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: CapEff:	0000000000080020
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: CapAmb:	0000000000080020
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: NoNewPrivs:	0
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Seccomp:	2
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Cpus_allowed:	f
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Mems_allowed:	1
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: Mems_allowed_list:	0
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: voluntary_ctxt_switches:	3
+10-28 11:09:10.344  2246  2256 I C02D11/foundation/DfxThreadContext: nonvoluntary_ctxt_switches:	0
+10-28 11:09:10.353  1874  2132 I C02B87/audio_server/AudioGeneralManager: OpenUuidFile fail, unknown log, uuid is: 346416317
+10-28 11:09:10.371  2246  2256 I C02D11/foundation/DfxFaultLogger: search thread name failed
+10-28 11:09:10.389  1792  2236 I C01800/samgr/SAMGR: NF SA:10,2246_80
+10-28 11:09:10.417  2246  2263 E C01120/foundation/BMS: [installd_client.cpp(LoadInstalldService:299)]Wait for load sa timeout
+10-28 11:09:10.422  2246  2263 E C01120/foundation/BMS: [installd_client.cpp(GetInstalldProxy:318)]load installd service failed
+10-28 11:09:10.423  2246  2263 I C01120/foundation/BMS: [installd_client.cpp(GetInstalldProxy:316)]try to get installd proxy
+10-28 11:09:10.443  1792  2236 I C01800/samgr/SAMGR: Scheduler SA:511 load start 2246,0_0_1
+10-28 11:09:10.444  1792  2236 I C01800/samgr/SAMGR: NF SA:511,2246_2
+10-28 11:09:10.447  1792  1957 I C01800/samgr/SAMGR: NF SA:3510,2107_11
+10-28 11:09:10.448  1792  2236 I C01800/samgr/SAMGR: DoLoadSA:511,2_2
+10-28 11:09:10.450  1792  2236 I C01800/samgr/SAMGR: StartingProc:installs already starting
+10-28 11:09:10.452  1792  1957 I C01800/samgr/SAMGR: NF SA:3510,2107_12
+10-28 11:09:10.488  1874  2132 I C02B8B/audio_server/AudioPolicyServerHandler: [SetClientCallbacksEnable]Set clientId:1874, callbacks:2, enable:true
+10-28 11:09:10.545  1792  1818 I C01800/samgr/SAMGR: NF SA:200,2024_331
+10-28 11:09:10.568  1792  1983 I C01800/samgr/SAMGR: AddProc:inputmethod_service,27_0ms
+10-28 11:09:10.576  2024  2284 E C01810/wallpaper_service/SA_CLIENT: GetSaWrap SA:200 not start
+10-28 11:09:10.577  2024  2284 E C01B00/wallpaper_service/DistributedAccountFwk: OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 11:09:10.580  2024  2284 E C01B00/wallpaper_service/DistributedAccountFwk: OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 11:09:10.580  2024  2284 E C01B00/wallpaper_service/OsAccountNativeFwk: OpenUuidFile fail, unknown log, uuid is: 89985654
+10-28 11:09:10.581  2024  2284 E C01C20/wallpaper_service/Wallpaper_OS: [wallpaper_service.cpp(InitUsersOnBoot:353)]Query all created userIds failed, errCode:4194321
+10-28 11:09:10.604  1792  1818 I C01800/samgr/SAMGR: NF SA:10,2246_81
+10-28 11:09:10.608  1792  2126 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:09:10.610  1792  2126 I C01800/samgr/SAMGR: NF SA:4802,1792_271
+10-28 11:09:10.611  1792  2126 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:09:10.615  1792  1983 I C01800/samgr/SAMGR: Scheduler proc:inputmethod_service handle started event
+10-28 11:09:10.616  1792  1983 I C01800/samgr/SAMGR: Scheduler proc:inputmethod_service state 0 to 1
+10-28 11:09:10.619  1792  1983 I C01800/samgr/SAMGR: Scheduler proc:inputmethod_service started
+10-28 11:09:10.620  1874  2132 I C02B87/audio_server/AudioGeneralManager: OpenUuidFile fail, unknown log, uuid is: 346416317
+10-28 11:09:10.627  1792  2236 I C01800/samgr/SAMGR: NF SA:4606,1810_493
+10-28 11:09:10.627  1792  2236 I C01800/samgr/SAMGR: NF SA:4606,1810_494
+10-28 11:09:10.628  1792  1818 I C01800/samgr/SAMGR: NF SA:1158,2007_181
+10-28 11:09:10.664  1906  2065 I C02801/multimodalinput/TouchDrawingManager: [][CreateObserver:217] Setup observer of show-touch-track
+10-28 11:09:10.667  1874  2132 I C02B8B/audio_server/AudioPolicyServerHandler: [SetClientCallbacksEnable]Set clientId:1874, callbacks:3, enable:true
+10-28 11:10:48.107     0     0 I C00000/HiLog: ========Slow reader missed log lines: 3993
+10-28 11:09:48.699  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:48.716  1792  1792 W C01800/samgr/SAMGR: rm task 5003 NF
+10-28 11:09:48.719  1792  1792 I C01800/samgr/SAMGR: Scheduler SA:5003 handle load suc event
+10-28 11:09:48.720  1792  1792 I C01800/samgr/SAMGR: Scheduler SA:5003 loaded
+10-28 11:09:48.701  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:48.729  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:48.729  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:48.732  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:48.732  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:48.733  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:48.844  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:48.863  1792  2259 I C01800/samgr/SAMGR: NF SA:1301,1906_313
+10-28 11:09:48.932  1792  2444 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:09:48.940  1792  2444 I C01800/samgr/SAMGR: NF SA:4802,1792_311
+10-28 11:09:48.941  1792  2444 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:09:49.006  1792  2356 I C01800/samgr/SAMGR: NF SA:3013,1874_89
+10-28 11:09:48.888  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:49.065  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:09:49.069  1906  2065 E C02801/multimodalinput/TouchDrawingManager: [][CreateBubbleObserver:251] Register setting observer failed, ret:19
+10-28 11:09:49.028  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:49.085  1874  2343 I C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:49.100  1906  2065 I C02801/multimodalinput/TouchDrawingManager: [][CreateObserver:222] Setup observer of show-touch-position
+10-28 11:09:49.126  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:49.139  2223  2297 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 11:09:49.213  2102  2207 E C02510/msdp/hdi_servmgr_client: get hdi service activity_interface_service failed, -1
+10-28 11:09:49.217  2102  2207 E C02510/msdp/activity_interface_proxy: Get:get remote object failed!
+10-28 11:09:49.223  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:49.225  1874  2362 E C02B87/audio_server/VolumeDataMaintainer: [GetVolumeInternal]Get streamType 4, deviceType 2, Volume FromDataBase volumeMap failed.
+10-28 11:09:49.225  1874  2362 E C02B8B/audio_server/AudioAdapterManager: [LoadVolumeMap]LoadVolumeMap: Could not load volume for streamType[4] from kvStore
+10-28 11:09:49.228  2102  2207 W C02230/msdp/MovementAr: in ConnectMotionHdi, Connect ar hdi service failed, retry:28
+10-28 11:09:49.260  1874  2343 E C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:49.317  1874  2362 E C02B87/audio_server/AudioSettingProvider: [CreateDataShareHelper]DATA_SHARE_READY not received, create DataShareHelper failed
+10-28 11:09:49.324  2425  2435 E C02D06/foundation/XCollie: hmos kernel
+10-28 11:09:49.336  2425  2435 I C02D06/foundation/XCollie: Send on,10,foundation to hungtask Successful
+10-28 11:09:49.345  2425  2435 I C02D06/foundation/XCollie: Send kick,foundation to hungtask Successful
+10-28 11:09:49.265  1874  2343 E C02B87/audio_server/BundleNameListManager: OpenUuidFile fail, unknown log, uuid is: 2936641732
+10-28 11:09:49.638  1794  1794 E C02C11/nwebspawn/APPSPAWN: [appspawn_kickdog.c:29]open /sys/kernel/hungtask/userlist fail,errno:2
+10-28 11:09:49.788  2102  2119 E C02D11/msdp/DfxThreadContext: wait_for timeout. tid = 2123
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Name:	SaInit1
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Umask:	0022
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: State:	S (sleeping)
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Tgid:	2102
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Ngid:	0
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Pid:	2123
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: PPid:	1
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: TracerPid:	0
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Uid:	6699	6699	6699	6699
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Gid:	6699	6699	6699	6699
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: FDSize:	256
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Groups:	2000 3020 6696 
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: NStgid:	2102
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: NSpid:	2123
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: NSpgid:	0
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: NSsid:	0
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmPeak:	 2308288 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmSize:	 2303248 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmLck:	       0 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmPin:	       0 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmHWM:	   88008 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmRSS:	   87052 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: RssAnon:	   24776 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: RssFile:	   61952 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: RssShmem:	     324 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmData:	   47756 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmStk:	     132 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmExe:	      24 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmLib:	   82424 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmPTE:	     428 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmPMD:	      20 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: VmSwap:	       0 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Threads:	14
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: SigQ:	0/15733
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: SigPnd:	0000000000000000
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: SigBlk:	0000000400000000
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: SigIgn:	0000000200001000
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: CapInh:	0000000000000000
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: CapPrm:	0000000000000000
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: CapEff:	0000000000000000
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: CapAmb:	0000000000000000
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: NoNewPrivs:	0
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Seccomp:	2
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Cpus_allowed:	f
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Mems_allowed:	1
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: Mems_allowed_list:	0
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: voluntary_ctxt_switches:	20
+10-28 11:09:49.805  2102  2119 I C02D11/msdp/DfxThreadContext: nonvoluntary_ctxt_switches:	62
+10-28 11:09:49.837  1792  1792 I C01800/samgr/SAMGR: NF SA:3013,1874_90
+10-28 11:09:49.848  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:49.911  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:49.955  1792  2126 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:09:49.960  1792  2126 I C01800/samgr/SAMGR: NF SA:4802,1792_312
+10-28 11:09:49.960  1792  2126 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:09:49.985  1792  1792 I C01800/samgr/SAMGR: NF SA:1301,1906_314
+10-28 11:09:49.913  1874  2362 E C02B87/audio_server/VolumeDataMaintainer: [GetVolumeInternal]Get streamType 6, deviceType 2, Volume FromDataBase volumeMap failed.
+10-28 11:09:50.009  2223  2297 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 11:09:50.009  1874  2362 E C02B8B/audio_server/AudioAdapterManager: [LoadVolumeMap]LoadVolumeMap: Could not load volume for streamType[6] from kvStore
+10-28 11:09:50.012  1874  2362 E C02B87/audio_server/AudioSettingProvider: [CreateDataShareHelper]DATA_SHARE_READY not received, create DataShareHelper failed
+10-28 11:09:50.005  2224  2320 I C01810/storage_manager/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:50.185  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:09:50.186  1906  2065 E C02801/multimodalinput/TouchDrawingManager: [][CreatePointerObserver:277] Register setting observer failed, ret:19
+10-28 11:09:50.224  2102  2207 E C02510/msdp/hdi_servmgr_client: get hdi service activity_interface_service failed, -1
+10-28 11:09:50.229  2102  2207 E C02510/msdp/activity_interface_proxy: Get:get remote object failed!
+10-28 11:09:50.231  2102  2207 W C02230/msdp/MovementAr: in ConnectMotionHdi, Connect ar hdi service failed, retry:29
+10-28 11:09:50.272  2007  2035 I C01650/netmanager/Rdb: OpenUuidFile fail, unknown log, uuid is: 3937290174
+10-28 11:09:50.275  2224  2320 I C01810/storage_manager/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:50.223  2428  2428 I C04301/init/StorageDaemon: [SetGlobalEl1DirPolicy:490] Fscrypt have not enabled
+10-28 11:09:50.520  2024  2113 W C01719/wallpaper_service/ffrt: 34:RecordSymbolAndBacktrace:392 Process:wallpaper_service,Tid:2364,Qos:2,CWorker:1,EWorker:1,SWorker:0,TaskType:3,timeout:5s
+10-28 11:09:50.538  1792  1792 I C01800/samgr/SAMGR: NF SA:200,2024_448
+10-28 11:09:50.667  1792  2356 I C01800/samgr/SAMGR: NF SA:4606,1810_529
+10-28 11:09:50.671  1792  2356 I C01800/samgr/SAMGR: NF SA:4606,1810_530
+10-28 11:09:50.665  1792  2259 I C01800/samgr/SAMGR: NF SA:3013,1874_91
+10-28 11:09:50.693  1792  1835 I C01800/samgr/SAMGR: NF SA:1301,1906_315
+10-28 11:09:50.717  2102  2119 I C02D11/msdp/DfxFaultLogger: search thread name failed
+10-28 11:09:50.755  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:09:50.767  1906  2065 E C02802/multimodalinput/setting_DataShare: [][GetBoolValue:88] Get bool value fail
+10-28 11:09:50.779  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:50.779  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:50.780  1874  2362 E C02B87/audio_server/VolumeDataMaintainer: [GetVolumeInternal]Get streamType 12, deviceType 2, Volume FromDataBase volumeMap failed.
+10-28 11:09:50.780  1874  2362 E C02B8B/audio_server/AudioAdapterManager: [LoadVolumeMap]LoadVolumeMap: Could not load volume for streamType[12] from kvStore
+10-28 11:09:50.780  1874  2362 E C02B87/audio_server/AudioSettingProvider: [CreateDataShareHelper]DATA_SHARE_READY not received, create DataShareHelper failed
+10-28 11:09:50.777  2007  2194 E C01650/netmanager/Rdb: OpenUuidFile fail, unknown log, uuid is: 3937290174
+10-28 11:09:51.053  1792  2444 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:09:51.056  1792  2444 I C01800/samgr/SAMGR: NF SA:4802,1792_313
+10-28 11:09:51.057  1792  2444 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:09:51.107  2007  2194 E C01650/netmanager/Rdb: OpenUuidFile fail, unknown log, uuid is: 3937290174
+10-28 11:09:51.121  2007  2194 E C01650/netmanager/Rdb: OpenUuidFile fail, unknown log, uuid is: 3937290174
+10-28 11:09:51.247  2277  2277 E C02C02/PARAM: [param_request.c:103]ReadMessage failed! errno 11
+10-28 11:09:51.248  2277  2277 E C02C02/PARAM: [param_request.c:124]ReadMessage errno 11 diff 10 timeout 10 ret 105
+10-28 11:09:51.249  2277  2277 I C02C02/PARAM: [param_request.c:208]SystemSetParameter name vendor.powerct_board id:3 ret:105 
+10-28 11:09:51.264  2277  2277 E C02C0B/BEGET: [param_request.c:217]SystemSetParameter failed! name is :vendor.powerct_board, the errNum is:105
+10-28 11:09:51.264  2277  2277 E C02C0B/BEGET: [parameter.c:98]SetParameter failed! the errNum is:105
+10-28 11:09:51.272  1792  2356 I C01800/samgr/SAMGR: NF SA:200,2024_449
+10-28 11:09:51.276  2277  2277 E C02925/powerct/bms_property: OpenUuidFile fail, unknown log, uuid is: 3205392990
+10-28 11:09:51.277  2277  2277 E C02925/powerct/POWERCT[RUNTIME]: OpenUuidFile fail, unknown log, uuid is: 3205392990
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: 35:RecordSymbolAndBacktrace:400 Tid:2364, Name:OS_FFRT_2_5
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #00 pc 000000000018a584 /lib/ld-musl-aarch64.so.1
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #01 pc 000000000000ecd0 /system/lib64/chipset-pub-sdk/libipc_common.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #02 pc 0000000000071a84 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #03 pc 000000000007046c /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #04 pc 000000000006f970 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #05 pc 0000000000048918 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #06 pc 0000000000049364 /system/lib64/chipset-pub-sdk/libipc_single.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #07 pc 000000000001dc40 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #08 pc 000000000001e368 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #09 pc 00000000000155ac /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #10 pc 0000000000028a30 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #11 pc 0000000000015ad4 /system/lib64/chipset-pub-sdk/libsamgr_proxy.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #12 pc 000000000000f78c /system/lib64/platformsdk/libaccountkits.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #13 pc 0000000000011bbc /system/lib64/platformsdk/libaccountkits.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #14 pc 0000000000028208 /system/lib64/platformsdk/libos_account_innerkits.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #15 pc 000000000002c498 /system/lib64/platformsdk/libos_account_innerkits.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #16 pc 0000000000027030 /system/lib64/libwallpaper_service.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #17 pc 0000000000021bc8 /system/lib64/chipset-pub-sdk/libeventhandler.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #18 pc 0000000000021898 /system/lib64/chipset-pub-sdk/libeventhandler.z.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #19 pc 00000000000774e0 /system/lib64/ndk/libffrt.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #20 pc 0000000000093070 /system/lib64/ndk/libffrt.so
+10-28 11:09:51.435  2024  2113 W C01719/wallpaper_service/ffrt: #21 pc 000000000005ffb8 /system/lib64/ndk/libffrt.so
+10-28 11:09:51.612  1792  1792 I C01800/samgr/SAMGR: NF SA:3013,1874_92
+10-28 11:09:51.656  2223  2297 E C02510/hdf_devmgr/devsvc_manager_stub: OpenUuidFile fail, unknown log, uuid is: 60513570
+10-28 11:09:51.664  2102  2207 E C02510/msdp/hdi_servmgr_client: get hdi service activity_interface_service failed, -1
+10-28 11:09:51.665  2102  2207 E C02510/msdp/activity_interface_proxy: Get:get remote object failed!
+10-28 11:09:51.668  2102  2207 W C02230/msdp/MovementAr: in ConnectMotionHdi, Connect ar hdi service failed, retry:30
+10-28 11:09:51.679  2007  2194 I C015B5/netmanager/EventGenerator: Next check records time update [1793548800]
+10-28 11:09:51.687  2443  2443 W C03F00/MUSL-LDSO: dlopen so: /system/lib64/seccomp/libsystem_filter.z.so init_time: 1 ms
+10-28 11:09:51.694  1792  1835 I C01800/samgr/SAMGR: SubscribeSA:3299,2224_14_1
+10-28 11:09:51.695  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:51.696  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:51.696  1874  2362 E C02B87/audio_server/VolumeDataMaintainer: [GetVolumeInternal]Get streamType 18, deviceType 2, Volume FromDataBase volumeMap failed.
+10-28 11:09:51.696  1792  1835 I C01800/samgr/SAMGR: NF SA:3299,2224_1
+10-28 11:09:51.703  1792  2259 I C01800/samgr/SAMGR: NF SA:3510,2107_155
+10-28 11:09:51.705  1792  2259 I C01800/samgr/SAMGR: NF SA:3510,2107_156
+10-28 11:09:51.713  1792  1792 I C01800/samgr/SAMGR: NF SA:1901,2068_15
+10-28 11:09:51.665  1792  2356 I C01800/samgr/SAMGR: NF SA:4606,1810_531
+10-28 11:09:51.775  2102  2207 E C02230/msdp/MovementAr: in ConnectMotionHdi, Connect ar hdi service failed
+10-28 11:09:51.776  2102  2207 E C02230/msdp/MovementAr: in RegisterCallback, Connect ar hdi service failed
+10-28 11:09:51.776  2102  2207 E C02230/msdp/MovementAr: in Enable, register callback failed, ret is 60817419
+10-28 11:09:51.779  1906  2065 I C02801/multimodalinput/TouchDrawingManager: [][CreateObserver:217] Setup observer of show-touch-track
+10-28 11:09:51.777  2102  2207 E C02230/msdp/MovementClientImpl: in EnableAlgorithmImpl, Failed to enable, ret is 60817419
+10-28 11:09:51.788  2102  2207 E C02D06/msdp/XCollie: Remove XCollieTask fail, can not find timer 10, size=1!
+10-28 11:09:51.789  2102  2207 E C02230/msdp/MovementClientImpl: in EnableMsdpImpl, Enable algorithm failed, type is 0
+10-28 11:09:51.789  2102  2207 E C02230/msdp/MovementManager: in Subscribe, Failed to enable, ret is 60817419
+10-28 11:09:51.789  2102  2207 I C02230/msdp/MovementManager: in RemoveSubscribeInfo, Enter movement type:0, event:3
+10-28 11:09:51.819  1792  2356 I C01800/samgr/SAMGR: NF SA:4606,1810_532
+10-28 11:09:51.768  1874  2362 E C02B8B/audio_server/AudioAdapterManager: [LoadVolumeMap]LoadVolumeMap: Could not load volume for streamType[18] from kvStore
+10-28 11:09:51.834  2224  2320 W C04300/storage_manager/StorageManager: [SetPriority:157] set storage_manager priority: 2320
+10-28 11:09:51.839  2224  2320 I C04300/storage_manager/StorageManager: [StartStorageMonitorTask:79] StorageMonitorService, start deicve storage monitor task.
+10-28 11:09:51.889  2224  2320 I C04300/storage_manager/StorageManager: [OnStart:130] StorageManager::OnStart End, res = 1
+10-28 11:09:51.889  2102  2119 E C02D11/msdp/DfxThreadContext: wait_for timeout. tid = 2124
+10-28 11:09:51.891  2224  2320 I C01810/storage_manager/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:51.901  2222  2222 E C05A01/accesstoken_service/ATM: [GetNativeTokenInfo:985]Permission denied(tokenID=6699).
+10-28 11:09:51.907  2224  2320 I C01810/storage_manager/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:51.913  2224  2224 I C01810/storage_manager/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:09:51.958  1874  2362 E C02B87/audio_server/AudioSettingProvider: [CreateDataShareHelper]DATA_SHARE_READY not received, create DataShareHelper failed
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Name:	SaInit2
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Umask:	0022
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: State:	S (sleeping)
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Tgid:	2102
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Ngid:	0
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Pid:	2124
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: PPid:	1
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: TracerPid:	0
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Uid:	6699	6699	6699	6699
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Gid:	6699	6699	6699	6699
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: FDSize:	256
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Groups:	2000 3020 6696 
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: NStgid:	2102
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: NSpid:	2124
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: NSpgid:	0
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: NSsid:	0
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmPeak:	 2308288 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmSize:	 2303248 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmLck:	       0 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmPin:	       0 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmHWM:	   88008 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmRSS:	   87024 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: RssAnon:	   24748 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: RssFile:	   61952 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: RssShmem:	     324 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmData:	   47756 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmStk:	     132 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmExe:	      24 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmLib:	   82424 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmPTE:	     428 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmPMD:	      20 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: VmSwap:	       0 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: HugetlbPages:	       0 kB
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Threads:	14
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: SigQ:	0/15733
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: SigPnd:	0000000000000000
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: ShdPnd:	0000000000000000
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: SigBlk:	0000000400000000
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: SigIgn:	0000000200001000
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: SigCgt:	00000e3c400084fa
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: CapInh:	0000000000000000
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: CapPrm:	0000000000000000
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: CapEff:	0000000000000000
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: CapBnd:	0000003fffffffff
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: CapAmb:	0000000000000000
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: NoNewPrivs:	0
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Seccomp:	2
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Speculation_Store_Bypass:	thread vulnerable
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Cpus_allowed:	f
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Cpus_allowed_list:	0-3
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Mems_allowed:	1
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: Mems_allowed_list:	0
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: voluntary_ctxt_switches:	168
+10-28 11:09:51.915  2102  2119 I C02D11/msdp/DfxThreadContext: nonvoluntary_ctxt_switches:	339
+10-28 11:09:52.053  2068  2153 E C01700/file_monitor_service/RSS: ResSchedClient::Fail to connect resource schedule service.
+10-28 11:09:52.067  1792  2126 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:09:52.164  1792  2126 I C01800/samgr/SAMGR: NF SA:4802,1792_314
+10-28 11:09:52.168  1792  2126 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:09:52.129  2007  2447 E C01650/netmanager/Rdb: OpenUuidFile fail, unknown log, uuid is: 3937290174
+10-28 11:09:52.160  2007  2194 I C015B5/netmanager/NetMgrEnhanced: OnDelayedScreenOff
+10-28 11:09:52.181  2102  2207 E C05A01/msdp/ATM: [nodict]Read result failed, code is: 20.
+10-28 11:09:52.712  2102  2207 I C05A01/msdp/ATM: [GetNativeTokenInfo:776]Result from server (error=201).
+10-28 11:09:52.836  2277  2277 E C05B00/powerct/libteec_vendor: connect() failed, errno=111
+10-28 11:09:52.869  2102  2207 E C02230/msdp/MovementDump: in GetPackageName, Get native token info failed
+10-28 11:09:52.992  1792  1835 I C01800/samgr/SAMGR: NF SA:3013,1874_93
+10-28 11:09:53.001  2377  2377 W C03F00/MUSL-LDSO: dlopen so: /system/lib64/platformsdk/libfwmark_client.z.so init_time: 13636 ms
+10-28 11:09:53.024  2102  2207 I C02230/msdp/MovementManager: in RemoveSubscribeInfo, Remove type:0, event:3, packageName:
+10-28 11:09:53.025  2102  2207 I C02230/msdp/MovementManager: in RemoveSubscribeInfo, Exit subscribeinfo size:0
+10-28 11:09:53.037  2222  2222 E C05A01/accesstoken_service/ATM: [GetNativeTokenInfo:985]Permission denied(tokenID=6699).
+10-28 11:09:53.041  2277  2277 E C05B00/powerct/libteec_vendor: connect() failed, errno=111
+10-28 11:09:53.097  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:52.989  1792  2356 I C01800/samgr/SAMGR: NF SA:1301,1906_316
+10-28 11:09:53.131  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:09:53.131  1906  2065 E C02801/multimodalinput/TouchDrawingManager: [][CreateBubbleObserver:251] Register setting observer failed, ret:19
+10-28 11:09:53.132  1906  2065 I C02801/multimodalinput/TouchDrawingManager: [][CreateObserver:222] Setup observer of show-touch-position
+10-28 11:09:52.949  1792  2259 I C01800/samgr/SAMGR: NF SA:200,2024_450
+10-28 11:09:53.141  2024  2364 E C01810/wallpaper_service/SA_CLIENT: GetSaWrap SA:200 not start
+10-28 11:09:53.141  2024  2364 E C01B00/wallpaper_service/DistributedAccountFwk: OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 11:09:53.141  2024  2364 E C01B00/wallpaper_service/DistributedAccountFwk: OpenUuidFile fail, unknown log, uuid is: 2326345001
+10-28 11:09:53.142  2024  2364 E C01B00/wallpaper_service/OsAccountNativeFwk: OpenUuidFile fail, unknown log, uuid is: 89985654
+10-28 11:09:53.142  2024  2364 E C01C20/wallpaper_service/Wallpaper_OS: [wallpaper_service.cpp(InitUsersOnBoot:353)]Query all created userIds failed, errCode:4194321
+10-28 11:09:53.146  2428  2428 I C04301/init/StorageDaemon: [SetGlobalEl1DirPolicy:490] Fscrypt have not enabled
+10-28 11:09:53.171  1792  2444 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:09:53.184  2102  2207 E C05A01/msdp/ATM: [nodict]Read result failed, code is: 20.
+10-28 11:09:53.185  2102  2207 I C05A01/msdp/ATM: [GetNativeTokenInfo:776]Result from server (error=201).
+10-28 11:09:53.201  1792  1792 I C01800/samgr/SAMGR: NF SA:4606,1810_533
+10-28 11:09:53.202  1792  1792 I C01800/samgr/SAMGR: NF SA:4606,1810_534
+10-28 11:09:53.211  1792  2444 I C01800/samgr/SAMGR: NF SA:4802,1792_315
+10-28 11:09:53.211  1792  2444 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:09:53.213  1792  1816 I C01800/samgr/SAMGR: NF SA:1301,1906_317
+10-28 11:09:53.097  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:53.217  1874  2362 E C02B87/audio_server/VolumeDataMaintainer: [GetVolumeInternal]Get streamType 1, deviceType 2, Volume FromDataBase volumeMap failed.
+10-28 11:09:53.218  1874  2362 E C02B8B/audio_server/AudioAdapterManager: [LoadVolumeMap]LoadVolumeMap: Could not load volume for streamType[1] from kvStore
+10-28 11:09:53.220  1874  2362 E C02B8B/audio_server/AudioAdapterManager: [UpdateSafeVolume]current device: 2 is not support
+10-28 11:09:53.252  2277  2277 E C05B00/powerct/libteec_vendor: connect() failed, errno=111
+10-28 11:09:53.257  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:09:53.264  2102  2207 E C02230/msdp/MovementDump: in GetPackageName, Get native token info failed
+10-28 11:09:53.300  1906  2065 E C02801/multimodalinput/TouchDrawingManager: [][CreatePointerObserver:277] Register setting observer failed, ret:19
+10-28 11:09:53.399  1792  2259 I C01800/samgr/SAMGR: NF SA:1301,1906_318
+10-28 11:09:53.414  1792  2259 I C01800/samgr/SAMGR: NF SA:4606,1810_535
+10-28 11:09:53.415  1792  2259 I C01800/samgr/SAMGR: NF SA:4606,1810_536
+10-28 11:09:53.435  2102  2119 I C02D11/msdp/DfxFaultLogger: search thread name failed
+10-28 11:09:53.455  2277  2277 E C05B00/powerct/libteec_vendor: connect() failed, errno=111
+10-28 11:09:53.459  1792  2259 I C01800/samgr/SAMGR: NF SA:200,2024_451
+10-28 11:09:53.383  1874  2362 E C02B87/audio_server/AudioSettingProvider: [CreateDataShareHelper]DATA_SHARE_READY not received, create DataShareHelper failed
+10-28 11:09:53.473  1906  2065 I C02802/multimodalinput/setting_DataShare: [][CreateDataShareHelper:266] Data share not start
+10-28 11:09:53.537  1906  2065 E C02802/multimodalinput/setting_DataShare: [][GetBoolValue:88] Get bool value fail
+10-28 11:09:53.551  1792  2252 E C02C02/PARAM: [param_request.c:103]ReadMessage failed! errno 11
+10-28 11:09:53.554  1792  2252 E C02C02/PARAM: [param_request.c:124]ReadMessage errno 11 diff 10 timeout 10 ret 105
+10-28 11:09:53.555  1792  2252 I C02C02/PARAM: [param_request.c:208]SystemSetParameter name ohos.ctl.start id:32 ret:105 
+10-28 11:09:53.556  1792  2252 E C02C0B/BEGET: [param_request.c:217]SystemSetParameter failed! name is :ohos.ctl.start, the errNum is:105
+10-28 11:09:53.570  1792  2252 I C01800/samgr/SAMGR: Start dynamic proc:bluetooth_service,1130,105_20357ms
+10-28 11:09:53.571  1792  2252 E C01800/samgr/SAMGR: Scheduler SA:1130 handle load fail,ret:105
+10-28 11:09:53.577  1792  2252 E C01800/samgr/SAMGR: process ondemand event failed, ondemandId:1, SA:1130
+10-28 11:09:53.579  1792  2252 I C01800/samgr/SAMGR: Scheduler SA:66208 load start 1792,3_0_0
+10-28 11:09:53.580  1792  2252 I C01800/samgr/SAMGR: NF SA:66208,1792_1
+10-28 11:09:53.584  1792  2252 I C01800/samgr/SAMGR: DoLoadSA:66208,1_3,AddDeath fail
+10-28 11:09:53.604  2024  2109 I C01719/wallpaper_service/ffrt: 37:RecordTimeoutFunctionInfo:367 Tid[2364] function is executed, which occupies worker for [7]s.
+10-28 11:09:53.661  2277  2277 E C05B00/powerct/libteec_vendor: connect() failed, errno=111
+10-28 11:09:53.871  2024  2449 W C01719/wallpaper_service/ffrt: 36:TrivalOpenQosCtrlNode:64 pid 2024 belong to user 3817 open qos node warn, fd:-1, eno:2, No such file or directory
+10-28 11:09:53.869  2277  2277 E C05B00/powerct/libteec_vendor: connect() failed, errno=111
+10-28 11:09:53.924  2102  2207 E C02230/msdp/MovementService: in Subscribe, Failed to subscribe
+10-28 11:09:53.991  2384  2384 W C03F00/MUSL-LDSO: dlopen so: /system/lib64/platformsdk/libfwmark_client.z.so init_time: 12982 ms
+10-28 11:09:54.064  1792  2259 I C01800/samgr/SAMGR: NF SA:4606,1810_537
+10-28 11:09:54.064  1792  2259 I C01800/samgr/SAMGR: NF SA:4606,1810_538
+10-28 11:09:54.084  2277  2277 E C05B00/powerct/libteec_vendor: connect() failed, errno=111
+10-28 11:09:54.172  1792  1816 I C01800/samgr/SAMGR: NF SA:200,2024_452
+10-28 11:09:54.193  2007  2033 E C02230/netmanager/IMovementIdl: [nodict]Read result failed, code is: 1.
+10-28 11:09:54.196  2007  2033 E C02230/netmanager/MovementClient: OpenUuidFile fail, unknown log, uuid is: 1804839957
+10-28 11:09:54.196  2007  2033 E C02230/netmanager/MovementClient: OpenUuidFile fail, unknown log, uuid is: 1804839957
+10-28 11:09:54.199  2007  2033 E C015B5/netmanager/NetMgrEnhanced: MoveMent SubscribeMovementChangedInfo 0 event failed.
+10-28 11:09:54.199  2007  2033 I C02230/netmanager/MovementClient: OpenUuidFile fail, unknown log, uuid is: 1804839957
+10-28 11:09:54.205  2102  2118 I C02230/msdp/MovementManager: in Subscribe, Enter Type is 17, event is 3,interval is 1000000000
+10-28 11:09:54.208  2102  2118 I C02230/msdp/MovementManager: in CheckSubscribeInfo, Type 17,subscribe info is empty
+10-28 11:09:54.216  1792  2126 I C01800/samgr/SAMGR: AddDMListener called
+10-28 11:09:54.216  1792  2126 I C01800/samgr/SAMGR: NF SA:4802,1792_316
+10-28 11:09:54.216  1792  2126 W C01800/samgr/SAMGR: AddDMListener retry
+10-28 11:09:54.239  1792  1816 I C01800/samgr/SAMGR: NF SA:3013,1874_94
+10-28 11:09:54.272  2222  2222 E C05A01/accesstoken_service/ATM: [GetNativeTokenInfo:985]Permission denied(tokenID=6699).
+10-28 11:09:54.288  2277  2277 E C05B00/powerct/libteec_vendor: connect() failed, errno=111
+10-28 11:09:54.368  2443  2443 W C01719/sa_main/ffrt: 1:ffrt_init:220 libffrt_acc.so not exist
+10-28 11:09:54.403  2102  2118 E C05A01/msdp/ATM: [nodict]Read result failed, code is: 20.
+10-28 11:09:54.420  2102  2118 I C05A01/msdp/ATM: [GetNativeTokenInfo:776]Result from server (error=201).
+10-28 11:09:54.424  2102  2118 E C02230/msdp/MovementDump: in GetPackageName, Get native token info failed
+10-28 11:09:54.425  2102  2118 I C02230/msdp/MovementManager: in SaveSubscribeInfo, Save type:17, event:3, packageName:
+10-28 11:09:54.444  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:54.463  2102  2118 I C02230/msdp/MovementManager: in SaveSubscribeInfo, Exit subscribeinfo size:1
+10-28 11:09:54.468  1874  2362 E C02B24/audio_server/MediaMonitorManager: OpenUuidFile fail, unknown log, uuid is: 1469943623
+10-28 11:09:54.487  1792  1816 I C01800/samgr/SAMGR: NF SA:4606,1810_539
+10-28 11:09:54.489  1792  1816 I C01800/samgr/SAMGR: NF SA:4606,1810_540
+10-28 11:09:54.491  1792  2356 I C01800/samgr/SAMGR: NF SA:200,2024_453
+10-28 11:11:13.329     0     0 I C00000/HiLog: ========Slow reader missed log lines: 1258
+10-28 11:10:13.474  1792  2232 I C01800/samgr/SAMGR: NF SA:4606,1810_572
+10-28 11:10:13.492  2425  2425 I C01810/foundation/SAFWK: OpenUuidFile fail, unknown log, uuid is: 494775022
+10-28 11:10:13.496  2425  2425 I C01800/foundation/SAMGR: OpenUuidFile fail, unknown log, uuid is: 1890223293
+10-28 11:10:13.520  2425  2435 I C02D11/foundation/DfxFaultLogger: search thread name failed
+10-28 11:10:13.527  2326  2476 I C01120/installs/BMS: execute begin BmsCriticalTask
+10-28 11:10:13.580  1792  1835 I C01800/samgr/SAMGR: NF SA:10,2425_189

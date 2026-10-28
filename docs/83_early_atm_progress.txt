@@ -1,0 +1,82 @@
+=== 83. Круг 15: РАННИЙ СТАРТ ATM ПРОДВИНУЛ BMS Init! (Create BundledataMgr) ===
+
+Дата: 2026-10-28. Продолжение 82_bpay_interfaces.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+(1) Надёжные текстовые снимки hilog: привязаны к on-start foundation и
+    сделаны ЦИКЛОМ в одном процессе (dumpstack7.sh: 5 раз по 40 c делать
+    `hilog > /data/diag/hs_<n>_<pid>.log`), а не 4 отдельными
+    delayed_exec. Это дало рабочие текстовые логи (hs_1_1797 = 1.8 МБ,
+    hs_1_2248, hs_1_2427, ...).
+
+(2) Ранний старт access token manager (гипотеза из круга 14):
+    в access_token.cfg start перенесён из early-boot в pre-init,
+    "start-mode" = boot. Патчер: docs/early_atm.py.
+    РЕЗУЛЬТАТ: accesstoken_service теперь стартует на 34 c (было 220 c),
+    foundation — на 77 c.
+
+═══════════════════════════════════════════════════════════════════════
+2. ГЛАВНЫЙ РЕЗУЛЬТАТ: Init() ПРОДВИНУЛСЯ
+═══════════════════════════════════════════════════════════════════════
+
+Было (до раннего ATM): OnStart -> Init begin -> installd proxy ->
+rdb open/integrity -> СТОП НАВСЕГДА (240 s timeout).
+
+Стало:
+  11:10:02.872  BMS: BundleMgrService OnStart start
+  11:10:02.873  BMS: BundleMgrService Init begin
+  11:10:02.875  BMS: [installd_client.cpp(GetInstalldProxy:316)]try to get installd proxy
+  11:10:07.603  BMS: [bundle_mgr_service.cpp(InitBundleDataMgr:190)]Create BundledataMgr
+  ...
+  11:10:15      BMS: FetchInnerBundleInfo not found com.huawei.hms.weather
+                BMS: [bundle_data_mgr.cpp(GenerateUuid:11358)]GetDevUdid failed
+                BMS: developerId:... not existed generate odid
+
+=> Init() прошёл прежнюю точку зависания (rdb) и дошёл до создания
+   BundleDataMgr. Значит ранний ATM снял (по крайней мере) первый клинч.
+
+Дальше в первом инкарнировании (pid 2425) поток OnStart снова замолкает,
+и через ~70 c стартует новое инкарнирование (pid 2579), которое уже
+сканирует приложения:
+  FetchInnerBundleInfo not found com.huawei.hmos.browser
+  FetchInnerBundleInfo not found com.sina.weibo.stage
+  FetchInnerBundleInfo not found com.ss.hm.ugc.aweme
+  FetchInnerBundleInfo not found com.tencent.hm.qqmusic
+  ... (имена из install_list!)
+  Hsp syscap check failed 8519890
+  OTA Install system hsp(com.huawei.hmos.walletkit) ... ret 0
+
+Пока НЕТ: OnBmsStarting / first boot / Install System app / slassistant.
+installed_bundle на момент снимка = 3 (paymentServiceHsp, walletkit,
+weather).
+
+═══════════════════════════════════════════════════════════════════════
+3. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Цикл-снимки работают — использовать их, чтобы поймать ПОЗДНЮЮ фазу
+     (600-750 c) и увидеть, докуда доходит Init в новых инкарнированиях
+     (появляются ли InitBmsParam / InitPreInstallExceptionMgr /
+     BundleDataStorageRdb / BMSEventHandler AfterBmsStart и т.п.).
+  B. Найти следующую точку зависания после "Create BundledataMgr":
+     сравнить последовательность с эмулятором
+     (BundleDataStorageRdb -> PreInstallDataStorageRdb ->
+      BundleSandboxDataMgr -> QueryAllSandbox -> Shortcut* -> ...).
+  C. Обойти её тем же способом (патч libbms/порядок сервисов), пока
+     Init не завершится и событие не уйдёт в bms_event
+     (BMSEventHandler::OnBmsStarting) -> первичная установка HAP
+     (включая launcher) -> launcher.ready.
+
+СОСТОЯНИЕ:
+  - access_token.cfg: ATM стартует в pre-init (ранний старт) — ОСТАВЛЕН
+  - foundation.cfg: on-start хук dumpstack7.sh (цикл hilog-снимков)
+  - ядро: STACKTRACE+BWAIT+BDIR+FWAIT+BPAY
+  - libsafwk: пещера Publish+Start; libinstalls: verify OK
+  - installs ondemand; install_list полный
+
+АРТЕФАКТЫ: docs/83_early_atm_progress.txt, docs/83_hs1_1797.log (1.8 МБ
+  текстовый hilog), docs/83_hs1_2248.log, docs/83_earlyatm_run.log,
+  docs/dumpstack7.sh, docs/early_atm.py
