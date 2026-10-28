@@ -1,0 +1,70 @@
+=== 97-100. Круг 24: exit(0) foundation = нормальный возврат main; ATM-тайминг откачен ===
+
+Дата: 2026-10-28. Продолжение 95_fexit.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО ПРОВЕРЕНО
+═══════════════════════════════════════════════════════════════════════
+
+(1) Ранний старт ATM (pre-init) оказался НЕСТАБИЛЬНЫМ: в части прогонов
+    accesstoken_service стартует на 33 c, но SA 3503 не публикуется
+    вовсе ("Service warning -1 ... failed to enter sandbox", ошибки
+    приоритета). Тогда BMS вообще не доходит до OnStart
+    (insert SA:401 = 0, всего 27 SA).
+    => access_token.cfg ВОЗВРАЩЁН к исходному таймингу
+       (start в early-boot, start-mode=condition). Ранний ATM оставлен
+       только в тех прогонах, где он реально работал.
+
+(2) FEXIT2/3 (user PC/SP/стек при do_exit) добавлены в kernel/exit.c:
+      FEXIT3 sc=<start_code> pc=<user pc> lr=<user lr> sp=<user sp> s=<16 слов>
+
+(3) Реальные данные (прогон 320 c, ATM ранний, Publish-only пещера):
+      FEXIT pid=1799 code=0(foundation)  (88 c)
+      FEXIT3 sc=aaaae7e15000 pc=ffffb9209848 lr=ffffb920a9dc sp=ffffdeae1dc0
+        s = ffffdeae1df0 ffffb920a9dc aaaae7e1a074 ffffb920a9d4
+            2 0 ffffdeae1e10 ffffb9155a98 ffffdeae1e78 67bb4484
+            ffffdeae1e60 aaaae7e17074
+
+    Разбор:
+      sc = 0xaaaae7e15000 — база PIE-образа /system/bin/sa_main.
+      s[2] = base + 0x5074 = АДРЕС ФУНКЦИИ main в sa_main (экспорт main,
+             0x5074 = "b 0x2220").
+      s[11] = base + 0x2074 — внутри sa_main (стартовый код).
+      pc/lr (0xffffb920....) — путь exit()/exit_group в musl/libc.
+    => foundation вызывает exit(0) как ОБЫЧНЫЙ возврат из main()
+       (main в sa_main завершился; libc делает exit_group).
+       Сигналов нет (FSIGK=0), кода ошибки нет.
+
+═══════════════════════════════════════════════════════════════════════
+2. ВЫВОД
+═══════════════════════════════════════════════════════════════════════
+
+sa_main/foundation сам выходит из main через ~10-20 c после старта
+(88 c при старте 71-77 c). init перезапускает его по on-restart, и
+цикл повторяется. Именно это не даёт системе дойти до boot-событий:
+каждый раз умирают все SA процесса (включая 401), клиенты получают
+error 7, и всё начинается заново.
+
+Почему main возвращается — надо выяснить по коду sa_main: main()
+(0x2220) парсит argv, логирует "enter SAFWK main", вызывает
+LocalAbilityManager и, судя по всему, при определённом условии
+завершается (возможно, если все SA завершили инициализацию/нет
+активных подписчиков).
+
+═══════════════════════════════════════════════════════════════════════
+3. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Разрешить модули для pc/lr: в ядре пройти по current->mm->mmap,
+     найти vma, содержащую __r->pc (и адреса из стека), напечатать
+     vm_file dentry name + vm_start/vm_end — точно узнаем, кто вызвал
+     exit (musl exit? libsafwk ReportSaMainExit?).
+  B. Патч sa_main: сделать так, чтобы main никогда не возвращался:
+     в конце main заменить возврат/выход на бесконечный цикл
+     (например, "b ." в точке ret) — процесс останется жив, SA 401
+     продолжит существовать, клиенты перестанут получать error 7.
+  C. После стабильного foundation: Publish-only -> OnStart -> Init ->
+     bms.main.bundles.ready -> установка HAP (launcher) -> launcher.ready.
+
+АРТЕФАКТЫ: docs/97_exit_analysis.txt, docs/apply_fexit2.py,
+  docs/dumpstack11.sh, docs/99_fexit2c_run.log, docs/100_fexit3_run.log
