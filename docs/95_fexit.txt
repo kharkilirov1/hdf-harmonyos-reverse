@@ -1,0 +1,79 @@
+=== 95/96. Круг 23: foundation завершается САМ с кодом 0; Publish-only тоже работает ===
+
+Дата: 2026-10-28. Продолжение 94_long_defer.
+
+═══════════════════════════════════════════════════════════════════════
+1. ИНСТРУМЕНТЫ
+═══════════════════════════════════════════════════════════════════════
+
+В ядро добавлены:
+  FEXIT  (kernel/exit.c, do_exit): для comm foundation/sa_main печать
+         "FEXIT pid=%d tgid=%d code=%ld(%s)".
+  FSIGK  (kernel/signal.c, complete_signal): для SIGKILL цели
+         foundation/sa_main — "FSIGK target=%d(%s) sender=%d(%s)".
+Патчер: docs/apply_fexit.py.
+
+═══════════════════════════════════════════════════════════════════════
+2. РЕЗУЛЬТАТЫ
+═══════════════════════════════════════════════════════════════════════
+
+(A) Вариант с отложенным Start (cave_defer), прогон 800 c:
+   insert401 = 3, watchdog = 0, FSIGK = 0
+   FEXIT: [91.36] code=0(foundation); [310.58] code=0(foundation)
+   => foundation НЕ убивают сигналом; он САМ вызывает exit(0).
+
+(B) Контрольный прогон с ЧИСТЫМ libsafwk (без пещеры):
+   консоль всё равно показывает
+     [312.9] SAMGR: SA:401 OpenSo 16158ms
+     [362.0] SAFWK: Start OnStart-SA:401 finished, spend:43003 ms
+     [362.0] SAFWK: StartSystemAbilityTask foundation SA:401 init finished
+   => OnStart BMS и Start ВЫПОЛНЯЮТСЯ и без нашей пещеры! Наша пещера
+      влияет только на ПУБЛИКАЦИЮ (insert SA:401 появляется лишь с ней).
+
+(C) Вариант Publish-only (cave_once, без инъекции Start), прогон 800 c:
+   insert401 = 4, watchdog = 0
+     [287.1] SAMGR: SA:401 OpenSo 15786ms
+     [308.3] SAMGR: insert SA:401_27
+     [308.4] SAFWK: Publish SA:401 result:0,spend:39ms
+     [308.4] SAFWK: Start OnStart-SA:401 finished, spend:18807 ms
+     [308.5] SAFWK: StartSystemAbilityTask foundation SA:401 init finished
+     [329.3] SAMGR: rm DeadSA:401_36
+   FEXIT: 88.2 code=0(foundation); 328.7 code=0(foundation);
+          457.7 code=0(foundation); 459.5 code=9(sa_main);
+          541.6 code=0(foundation); 555.2 code=9(sa_main)
+   => Publish-only: OnStart завершается даже БЫСТРЕЕ (18.8 c против 35.9),
+      двойного Start нет. foundation всё равно выходит с кодом 0.
+
+═══════════════════════════════════════════════════════════════════════
+3. ВЫВОДЫ
+═══════════════════════════════════════════════════════════════════════
+
+  - Двойной Start НЕ был причиной завершения foundation: он выходит
+    с кодом 0 при любой инъекции и, судя по прошлым прогонам, делает это
+    периодически (~каждые 2-3 минуты), после чего init поднимает его
+    заново (on-restart job).
+  - Наша пещера нужна ТОЛЬКО для Publish (без неё SA 401 не регистрируется
+    в samgr, хотя OnStart выполняется).
+  - Именно циклический выход foundation (со всеми его SA, включая 401)
+    не даёт системе дойти до boot-событий: SA 401 исчезает
+    (rm DeadSA:401), клиенты получают error 7, и цикл повторяется.
+  - Publish-only — более "чистый" вариант (без двойного Start, OnStart
+    быстрее); его и стоит оставить базой.
+
+═══════════════════════════════════════════════════════════════════════
+4. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Понять, почему sa_main/foundation вызывает exit(0): добавить printk
+     в sys_exit/sys_exit_group с user PC/LR (current_pt_regs()->pc), чтобы
+     увидеть адрес вызова в /system/bin/sa_main и затем по дизасму —
+     функцию (возможно, это обработчик "все SA запущены" или завершение
+     по сигналу/параметру).
+  B. Если выход — из-за отсутствия "держателя" процесса (SA loader
+     завершил задачи), попробовать заставить foundation не выходить:
+     патч sa_main (точка возврата main -> бесконечный цикл pause()).
+  C. С невыходящим foundation: Publish-only -> OnStart -> Init -> ...
+     и ждать bms.main.bundles.ready / установку HAP.
+
+АРТЕФАКТЫ: docs/95_fexit.txt, docs/apply_fexit.py,
+  docs/95_fexit_run.log, docs/96_publish_only_run.log
