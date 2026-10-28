@@ -1,0 +1,75 @@
+=== 94. Круг 22: длинный прогон с отложенным Start; foundation всё ещё падает ===
+
+Дата: 2026-10-28. Продолжение 92_defer_start.
+
+═══════════════════════════════════════════════════════════════════════
+1. ДЛИННЫЙ ПРОГОН 2400 c (отложенный Start, ранний ATM)
+═══════════════════════════════════════════════════════════════════════
+
+  insert SA:401 = 18
+  ВСЕГО insert SA: = 410            (было ~60 в дедлок-вариантах)
+  watchdog "BundleMgrService::Start to check ...240000ms" = 0
+  bms.main.bundles.ready / launcher.ready: только unset_bootevent
+  /data/app/el1/bundle/public = 9 (только HSP)
+  install-команды installd: 549 путей, все /data/app/el1/... (HSP)
+  и /system/app/appServiceFwk/... ; HAP-путей (/system/app/<Bundle>/*.hap)
+  НЕТ ни одного.
+
+Ключевые строки консоли:
+  [ 342.66] SAMGR: SA:401 OpenSo 15911ms
+  [ 388.97] SAMGR: insert SA:401_41
+  [ 389.28] SAFWK: Publish SA:401 result:0,spend:399ms
+  [ 389.42] SAFWK: Start OnStart-SA:401 finished, spend:35911 ms
+  [ 389.43] SAFWK: StartSystemAbilityTask foundation SA:401 init finished, 63670 ms
+  [ 402.88] SAMGR: rm DeadSA:401_40
+  [ 425.56] SAMGR: SA:401 OpenSo 13451ms
+
+=> Start/OnStart BMS ЗАВЕРШАЮТСЯ (35.9 c), SA 401 публикуется успешно
+   (result:0). Но затем SA 401 и процесс foundation умирают
+   ("rm DeadSA:401_40", ранее на 324 c удалились все 191x SA), init
+   перезапускает foundation, и цикл повторяется (SA 401 регистрировался
+   18 раз).
+
+init-конфиг foundation: on-restart = services:restartfoundation,
+набора триггеров падения нет; значит foundation падает/завершается сам
+(или его убивают), и init его поднимает заново.
+
+═══════════════════════════════════════════════════════════════════════
+2. КОНТРОЛЬНЫЙ ЭКСПЕРИМЕНТ: чистый libsafwk (без пещеры), ранний ATM
+═══════════════════════════════════════════════════════════════════════
+
+  insert SA:401 = 0
+  OnStart строк = 0
+  watchdog = 0
+  public = 8
+
+=> Без пещеры BMS OnStart вообще НЕ вызывается (SA 401 не публикуется,
+   хотя в profile foundation.json у 401 стоит run-on-create:true и
+   depend:[3503]). Значит инъекция Start действительно нужна, а
+   отложенный вариант — лучший из проверенных.
+
+Профиль BMS (важно): {name:401, libpath:libbms.z.so,
+  run-on-create:true, depend:[3503], depend_time_out:60000,
+  bootphase:CoreStartPhase} — зависимость от ATM объясняет, почему
+  ранний старт ATM (access_token) продвинул Init.
+
+═══════════════════════════════════════════════════════════════════════
+3. ЧТО ДАЛЬШЕ
+═══════════════════════════════════════════════════════════════════════
+
+  A. Выяснить причину смерти foundation (324 c / после Start 401):
+     - искать крэш-логи (/data/log/faultlog/faultlogger пуст);
+     - включить printk на exit_process/signal в ядре (do_exit, 
+       do_group_exit) для foundation/самого SA, чтобы увидеть код выхода;
+     - проверить, не убивает ли его init (SIGKILL по critical-таймауту) —
+       foundation.cfg имеет "critical"?
+  B. Если foundation убивает init по таймауту "critical" — убрать/увеличить.
+  C. Если падение — крэш в BMS после Start (двойной Start из пещеры +
+     штатный), попробовать пещеру, которая НЕ вызывает Start напрямую,
+     а только публикует, и запускать Start лишь когда штатный путь BMS
+     не сработал (например, по таймауту 5 c, без своего pthread).
+  D. После стабилизации foundation ожидать: OnBmsStarting (bms_event)
+     -> первичная установка HAP -> launcher.ready -> boot completed.
+
+АРТЕФАКТЫ: docs/94_long_defer.txt, docs/93_defer2400_run.log (21 МБ),
+  docs/94_clean_safwk_run.log
