@@ -1,0 +1,66 @@
+=== 120. Круг 42: ПРОРЫВ — bms.main.bundles.ready SET, лаунчер установлен, aa start rc=0 ===
+
+Дата: 2026-10-29. Продолжение 119_console_channel.
+
+═══════════════════════════════════════════════════════════════════════
+1. ПРОГОН 1800 c (канал /dev/console), insert SA:401 = 21
+═══════════════════════════════════════════════════════════════════════
+
+Маркеры bmrun прямо в консоли:
+
+    BMRUN start 04:21:50
+    BMRUN try=1..10 fail
+    BMRUN INSTALL_OK try=11 Thu Oct 29 04:42:53 CST 2026   (гость ~1345 c)
+    BMRUN install_phase_done ok=1 tries=11
+    BMRUN AA try=1 rc=124      (таймаут 30 c — appfwk ещё не готов)
+    BMRUN AA try=2 rc=0        <-- aa start ПРИНЯТ!
+    BMRUN AADUMP try=2 rc=0
+    BMRUN AA try=3..7 rc=0 (AADUMP тоже rc=0, кроме try=4 rc=124)
+
+2. BOOT-СОБЫТИЯ (впервые полностью!):
+
+    [ 779.2] Handle set param key: bootevent.bms.main.bundles.ready
+    [ 779.3] Handle set param key: bootevent.appfwk.ready
+    [ 863.8] Handle set param key: bootevent.appspawn.started
+    [ 867.5] bootevent.bms.main.bundles.ready
+    [ 867.7] bootevent.appfwk.ready
+    [ 999.3] bootevent.bms.main.bundles.ready
+    [ 999.5] bootevent.appfwk.ready
+    [1144.7] bootevent.bms.main.bundles.ready
+    [1145.6] bootevent.appfwk.ready
+    [1157.4] bootevent.appspawn.started
+    [1335.7] bootevent.appspawn.started
+    [1389.2] bootevent.avsessionservice.ready
+
+=> ЦЕПОЧКА, К КОТОРОЙ МЫ ШЛИ, РАБОТАЕТ:
+   BMS ready -> appfwk.ready -> appspawn.started -> (установка лаунчера) ->
+   aa start принят (rc=0).
+
+3. ЧЕГО ПОКА НЕТ:
+   - строк "launcher.ready" в этом прогоне вообще нет (ни set, ни unset),
+   - нет упоминаний slassistant и нет процесса лаунчера,
+   - appspawn в конце пишет "App enable -1" и "Nweb enable -1" и AVC
+     denied { search } name="/" (appspawn не может искать по корню).
+
+   Похоже, aa start возвращает 0 (команда принята AMS), но приложение
+   реально не порождается: AMS/aa возвращают успех на постановку задачи,
+   а appspawn не стартует процесс (нет прав/подписи/распаковки).
+
+═══════════════════════════════════════════════════════════════════════
+4. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. После успешного install и aa start выводить в /dev/console:
+       ps -A | grep -i slassistant
+       aa dump -a | head -40
+     чтобы увидеть, появился ли процесс и что AMS думает о задаче.
+  B. Проверить, что установка реально положила пакет: вывести в консоль
+       ls -l /data/app/el1/bundle/public | grep -i slassistant
+  C. Если процесса нет — смотреть ошибки AMS/appspawn: включить в консоль
+     вывод `aa dump -a`, `hidumper -s 401` (если есть), а также
+     проверить подпись/распаковку (libinstalls VerifyCodeSignature уже
+     пропатчен; возможно нужен ещё installd-шаг распаковки).
+  D. Если процесс появился, но launcher.ready не выставляется — смотреть
+     логи лаунчера (hilog) и его зависимости (window/display/screen on).
+
+АРТЕФАКТЫ: docs/120_launcher_start.txt, docs/129_console_run2.log
