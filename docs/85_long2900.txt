@@ -1,0 +1,72 @@
+=== 85. Круг 16: длинный прогон 2900 c (ранний ATM) — состояние ===
+
+Дата: 2026-10-28. Продолжение 83_early_atm_progress.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО СДЕЛАНО
+═══════════════════════════════════════════════════════════════════════
+
+(1) Надёжные снимки hilog: dumpstack10.sh — цикл, где hilog пишется в
+    файл и убивается (kill -9) после появления данных (до 20 c). Внутри
+    одного процесса на старт foundation. Работает частично: hc_* файлы
+    появляются (4.8 КБ, 4.4 КБ, 384 Б), но hilog-клиент часто отдаёт
+    мало/ничего (нестабильность клиента, не скрипта).
+
+(2) ДЛИННЫЙ ПРОГОН 2900 c (48 мин) с ранним ATM, полным install_list,
+    персистентным hilog:
+      insert SA:401 = 15
+      installed_bundle = 14 (все те же HSP-киты)
+      preinstalled_bundle = 20
+      slassistant в preinstalled: НЕТ
+      /data/app/el1/bundle/public = 14 каталогов (HSP)
+      bms.main.bundles.ready / launcher.ready: в логе только
+        "unset_bootevent ..." (из services:restartfoundation), реальных
+        set-событий НЕТ
+      boot.completed: только "begin to send boot.completed to
+        param_watcher" (LoopEvent, 504 c) — параметр bootevent.boot.completed
+        не выставляется
+      лог вырос до 198451 строк (21 МБ)
+
+(3) Персистентный hilog из более раннего прогона (8506900 байт
+    распакованных) уже показал важное:
+      - BMS сканирует имена системных приложений, включая
+        com.huawei.hmos.slassistant (в алфавитном списке
+        ...simtoolkits, slassistant, smartmmsservice...);
+      - вызывается bundle_mgr_service_event_handler.cpp
+        InnerProcessRebootUninstallWrongBundle (в т.ч. для
+        com.ohos.sceneboard, com.ohos.mms, com.ohos.formrenderservice);
+      - PreInstallBundle встречается;
+      - OnBmsStarting/AfterBmsStart/Install System app — НЕ видны как
+        ASCII (это словарно-кодированные сообщения, их в бинарном
+        персистентном логе не прочитать без словаря).
+
+═══════════════════════════════════════════════════════════════════════
+2. ВЫВОДЫ
+═══════════════════════════════════════════════════════════════════════
+
+  - Ранний ATM реально продвинул BMS Init (Create BundledataMgr, скан
+    имён приложений, event-handler фазы), но до установки HAP-приложений
+    из install_list (и до launcher.ready) дело не дошло даже за 48 минут.
+  - HSP-путь работает стабильно (14 бандлов), HAP-путь либо не
+    начинается, либо падает на проверке (сообщения словарные — нужен
+    текстовый hilog).
+
+═══════════════════════════════════════════════════════════════════════
+3. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Добиться НАДЁЖНОГО текстового hilog: 
+     - запускать hilog-снимок не в init-джобе, а из уже работающего
+       сервиса (например, installs) через его on-start job, либо
+       сделать отдельный сервис-демон, пишущий hilog в файл по циклу;
+     - как вариант: hilog -w start + расшифровка словаря
+       (/data/log/dict, .dict_info.json).
+  B. По надёжным текстовым логам поймать сообщения фазы установки HAP
+     (Install System app / install system bundle fail / errorCode) —
+     и устранить конкретную причину (verify/syscap/user/что-то ещё),
+     как ранее с installd.VerifyCodeSignature.
+  C. После этого ожидать bms.main.bundles.ready -> установку launcher ->
+     launcher.ready -> boot.completed.
+
+АРТЕФАКТЫ: docs/85_long2900.txt, docs/85_long2900_run.log (21 МБ),
+  docs/dumpstack10.sh
