@@ -1,0 +1,54 @@
+=== 105. Круг 28: launcher есть в install_list (182), HAP-ов 238; bms_event — форк-хелпер ===
+
+Дата: 2026-10-28. Продолжение 104_experiments.
+
+═══════════════════════════════════════════════════════════════════════
+1. ИНВЕНТАРЬ ОБРАЗА
+═══════════════════════════════════════════════════════════════════════
+
+  /system/app — 184 каталога, 238 файлов *.hap
+  /system/app/SuperLauncher/SuperLauncher.hap  (лаунчер!)
+  /system/app/ShellAssistant, HwHmosVAssistant, HwHmosVAssistantLauncher …
+
+  /system/etc/app/install_list.json: 182 записей {app_dir, removable}.
+  Содержит:
+     /system/app/SuperLauncher          (1)
+     /system/app/ShellAssistant         (1)
+     /system/app/HwHmosVAssistant       (2, включая VAssistantLauncher)
+  => первичная установка HAP (включая лаунчер) ДОЛЖНА идти из install_list
+     через BMS preinstall-фазу. У нас эта фаза не запускается.
+
+═══════════════════════════════════════════════════════════════════════
+2. bms_event — НЕ ОТДЕЛЬНЫЙ БИНАРНИК
+═══════════════════════════════════════════════════════════════════════
+
+  В /system/bin нет bms_event; строк "bms_event" в бинарниках/библиотеках
+  не найдено. При этом в /proc виден процесс comm=bms_event (pid 1868),
+  который висит в ppoll.
+  => bms_event — это ДОЧЕРНИЙ ПРОЦЕСС, который BMS создаёт через fork()
+     (без exec) и переименовывает через prctl(PR_SET_NAME). Он и должен
+     выполнять BMSEventHandler (OnBmsStarting / AfterBmsStart).
+  Если BMS не посылает ему событие (pipe/socket/futex), он так и висит
+  в ppoll — что мы и наблюдаем.
+
+═══════════════════════════════════════════════════════════════════════
+3. ЧТО ЭТО ЗНАЧИТ ДЛЯ ПЛАНА
+═══════════════════════════════════════════════════════════════════════
+
+  Первичная установка HAP (и SuperLauncher) происходит в
+  BMSEventHandler::OnBmsStarting внутри процесса bms_event. Его нужно
+  либо разбудить (найти, что BMS пишет в его pipe/socket), либо вызвать
+  сам OnBmsStarting (в bms_event или в BMS).
+
+  Практический ход:
+  A. Инструментировать ядро: при fork клонировании с comm BMS видеть
+     создание bms_event (printk в copy_process с comm родителя/ребёнка),
+     а затем трассировать write/read на pipe/socket между BMS и bms_event
+     (например, printk в pipe_write с comm отправителя/получателя).
+  B. По трассе понять, какое событие BMS шлёт в bms_event и почему оно
+     не отправляется (или отправляется, но обработчик падает).
+  C. Альтернатива: вызвать BMSEventHandler::OnBmsStarting напрямую —
+     из пещеры в libbms (после Start) или из bms_event через патч его
+     цикла: заменить ppoll-ожидание на вызов обработчика.
+
+АРТЕФАКТЫ: docs/105_inventory_bms_event.txt
