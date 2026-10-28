@@ -165,3 +165,4 @@ seed.img
 !docs/86_*.log
 
 !docs/111_*.log
+!docs/113_*.log
