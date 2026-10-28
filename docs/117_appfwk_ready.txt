@@ -1,0 +1,58 @@
+=== 117. Круг 40: appfwk.ready и appspawn.started ВПЕРВЫЕ УСТАНОВЛЕНЫ ===
+
+Дата: 2026-10-29. Продолжение 116_bm_window2.
+
+═══════════════════════════════════════════════════════════════════════
+1. ГЛАВНОЕ: СИСТЕМА ПРОДВИНУЛАСЬ ДАЛЬШЕ ПО BOOT-СОБЫТИЯМ
+═══════════════════════════════════════════════════════════════════════
+
+Прогон 1800 c (insert SA:401 = 12). В консоли впервые появились:
+
+  [1538.3] Handle set param msgId 2 pid 5941 key: bootevent.appfwk.ready
+  [1555.9] Handle set param msgId 2 pid 5796 key: bootevent.appspawn.started
+  [1711.9] Handle set param msgId 2 pid 6229 key: bootevent.appspawn.started
+  [1712.2] Execute command "bootevent appspawn.started.true" took 310 ms
+
+  launcher.ready = 1 вхождение, но это ТОЛЬКО
+    [804.7] "unset_bootevent bootevent.launcher.ready"
+  (то есть ещё не установлено).
+
+=> appfwk (Ability Manager Framework) и appspawn ЗАПУСТИЛИСЬ —
+   до лаунчера остался ровно один шаг: установить пакет лаунчера и
+   запустить его ability (тогда он выставит bootevent.launcher.ready).
+
+═══════════════════════════════════════════════════════════════════════
+2. ПОЧЕМУ УСТАНОВКА НЕ УСПЕЛА В ЭТОМ ПРОГОНЕ
+═══════════════════════════════════════════════════════════════════════
+
+bmrun.sh начал с ЦИКЛА ПОЛУЧЕНИЯ СПРАВКИ (`bm install -h`), который
+крутился 60 попыток * (timeout 10 + sleep 6) ≈ 16 минут и съел всё время:
+bmr.log содержит только "BMRUN start 02:00:55", bmhelp.txt пуст,
+до цикла установки дело почти не дошло.
+
+Вывод: справку НЕ ждать. Сразу цикл установки (timeout 25 c на попытку,
+~29 c на итерацию) — как в успешных прогонах (INSTALL_OK на 10-й попытке).
+
+═══════════════════════════════════════════════════════════════════════
+3. ПЛАН: РЕШАЮЩИЙ ПРОГОН
+═══════════════════════════════════════════════════════════════════════
+
+  bmrun.sh:
+    sleep 150
+    цикл установки: timeout 25 bm install -p HAP, до 50 попыток, ~29 c/итер.
+      (ожидаемый успех ~ на 8-12-й попытке, т.е. через 5-7 минут)
+    если ok:
+      цикл запуска: до 60 раз:
+         timeout 30 aa start -b com.huawei.hmos.slassistant -a SuperLauncherMainAbility
+         echo rc
+         timeout 20 aa dump -a > /data/diag/aad_$i.txt
+         sleep 30
+      (appfwk.ready появляется только к ~1500 c, поэтому aa start надо
+       повторять долго — до готовности appfwk/appspawn)
+  boot: 2400 c.
+
+  Критерий успеха: в консоли появляется УСТАНОВКА (а не unset)
+  bootevent.launcher.ready, либо строка про launcher/AbilityManager,
+  подтверждающая старт лаунчера.
+
+АРТЕФАКТЫ: docs/117_appfwk_ready.txt, docs/125_final_run.log
