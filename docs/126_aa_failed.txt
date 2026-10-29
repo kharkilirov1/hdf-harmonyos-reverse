@@ -1,0 +1,72 @@
+=== 126. Круг 48: установка удалась (варианты), aa start -> "failed to start ability" ===
+
+Дата: 2026-10-29. Продолжение 125_marker_works.
+
+═══════════════════════════════════════════════════════════════════════
+1. ПРОГОН 1800 c: триггер + перебор вариантов bm install
+═══════════════════════════════════════════════════════════════════════
+
+Схема: маркер /data/diag/pub401 (пещера libsafwk) -> на каждый рост
+detached-процесс: sleep 40, затем перебор вариантов
+   -s, -r, -u 100, -s -u 100, (без флага)
+с дампом первых строк ошибки в /dev/console.
+
+Результат (insert SA:401 = 5):
+  TRIGGER count=1 10:53:36, count=3, count=4
+  Множество "FAIL variant=[...]" (текст ошибки пуст — bm пишет в
+  буфер, который теряется при kill)
+  BMRUN INSTALL_OK count=4 11:04:03   <-- УСТАНОВКА ПРОШЛА!
+  BMRUN AA2 try=1..16 rc=0 11:04:05..11:16
+
+НО: в консоли от aa:
+  error: failed to start ability.
+(повторяется на каждом aa start; rc=0 у aa, потому что ошибка — в
+ тексте, а не в коде возврата)
+
+2. BOOT-СОБЫТИЯ ЭТОГО ПРОГОНА:
+   bootevent.appfwk.ready           — set (305, 401, 485, 562)
+   bootevent.renderservice.ready    — set (338)
+   bootevent.powermgr.ready         — set (350)
+   bootevent.avsessionservice.ready — set (775)
+   bootevent.appspawn.started       — set (814, 1116)
+   bootevent.bms.main.bundles.ready — set (936)
+   bootevent.launcher.ready         — НЕТ (даже unset не встретился)
+
+3. ФАКТЫ:
+   - slassistant в логе не упоминается ни разу (процесс не появился).
+   - appspawn продолжает писать "App enable -1"/"Nweb enable -1"
+     и AVC denied search "/".
+   - В help-строках aa найдено важное:
+       "The aa start command's window option or the aa test command does
+        not support app with release signature."
+       "No permission to start this ability"
+       "Permission check failed when launching the ability"
+
+ВЫВОД:
+  Пакет установлен, AMS принимает запрос, но старт ability падает внутри
+  (вероятно: подпись release / permission check / appspawn не может
+  создать sandbox-процесс). Нужен текст ошибки AMS из hilog.
+
+═══════════════════════════════════════════════════════════════════════
+4. ПЛАН
+═══════════════════════════════════════════════════════════════════════
+
+  A. Сразу после aa start снимать hilog в консоль:
+       timeout 10 /system/bin/hilog > /dev/console
+     и искать строки AMS/AbilityManager с кодом ошибки (StartAbility
+     ret=..., permission denied, signature ...).
+  B. Проверить варианты запуска:
+       aa start -b B -a A -m phone -W        (с окном)
+       aa start -b B -a A -m phone -A <action>
+       aa start -b B -a SuperLauncherUIability -m phone
+       (у лаунчера несколько ability: DefaultIntentBackgroundUiAbility,
+        SuperLauncherMainAbility, PermissionRequestAbility,
+        SuperLauncherUIability)
+  C. Если ошибка про подпись release — попробовать установить HAP с
+     флагом отладки или использовать ability с другой подписью
+     (например, HwHmosVAssistantLauncher).
+  D. Если appspawn не может создать процесс — проверить AVC-отказы для
+     appspawn (denied search "/") и поправить (например, chmod/метки
+     или запуск appspawn с нужными правами).
+
+АРТЕФАКТЫ: docs/126_aa_failed.txt, docs/141_variants_run.log
