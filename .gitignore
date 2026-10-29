@@ -185,3 +185,5 @@ seed.img
 !docs/139_*.log
 !docs/140_*.log
 !docs/141_*.log
+!docs/142_*.log
+!docs/143_*.log
