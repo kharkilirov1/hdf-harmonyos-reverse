@@ -1,0 +1,68 @@
+=== 129. Круг 53: ЖИВОЙ ЭМУЛЯТОР 6.0.0.112 — референс; лаунчер это SceneBoard ===
+
+Дата: 2026-10-30. Продолжение 128_persist_logs.
+
+═══════════════════════════════════════════════════════════════════════
+1. ПОЛЬЗОВАТЕЛЬ ЗАПУСТИЛ ЭМУЛЯТОР — ПОЛУЧИЛИ ЖИВОЙ РЕФЕРЕНС
+═══════════════════════════════════════════════════════════════════════
+
+На хосте работает DevEco-эмулятор:
+  Emulator.exe -hvd "Mate 60 Pro" ... -imageRoot ...\Huawei\Sdk
+  hdc: target 127.0.0.1:5555, версия: emulator 6.0.0.112(SP3DEVC00E112R4P11)
+
+Это ТА ЖЕ ВЕТКА, что наш образ (6.0.0.108)! hdc shell работает
+(права shell-пользователя, /data закрыт, но bm/aa/param доступны).
+
+2. ГЛАВНОЕ ОТКРЫТИЕ: ЛАУНЧЕР — НЕ SuperLauncher
+   На эмуляторе:
+     - процесс:  ohos.sceneboard (pid 2999)
+     - bundle:   com.ohos.sceneboard (module phone_sceneboard, mainElement
+                 com.ohos.sceneboard.MainAbility — это ExtensionAbility!)
+     - в param:  ohos.boot.time.launcher.ready = 117623717 (т.е. на
+                 эмуляторе launcher.ready ВЫСТАВЛЯЕТСЯ при загрузке)
+     - в списке пакетов эмулятора 58 бандлов, среди них sceneboard
+   Наш прежний кандидат com.huawei.hmos.slassistant (SuperLauncher) —
+   это ДРУГОЕ приложение, не лаунчер.
+
+   В нашем образе /system/app/SceneBoard/ содержит SceneBoard.hap +
+   SceneBoard_*.hap (ThemeComponent, onekeylock, EngineService,
+   CoverThemeComponent, MultiWindowManager, MetaBallsTurbo,
+   NotificationManagement, ThemeServiceCore) — полный набор лаунчера.
+
+3. КАК ЗАПУСКАЕТСЯ SceneBoard
+   В /system/etc/param/appfwk.para:
+     component.startup.extension.multiprocess.whitelist=
+        com.ohos.systemui;com.ohos.launcher;com.ohos.sceneboard;
+   => SceneBoard стартует как startup-extension (через appfwk/appspawn),
+   а не через `aa start`. Именно поэтому наши попытки `aa start` с
+   SuperLauncher были заведомо мимо цели.
+
+4. install_list.json
+   наш:      182 записи, есть {"app_dir":"/system/app/SceneBoard","removable":false}
+   эмулятор:  70 записей, та же запись SceneBoard присутствует.
+   (Различия в размере — другой регион/сборка, не критично.)
+
+5. ЧТО ЭТО ЗНАЧИТ ДЛЯ ЦЕЛИ
+   Наша система не устанавливает SceneBoard (и вообще HAP-пакеты)
+   при загрузке: bm ставит только несколько HSP, а установка HAP
+   падает с "error: failed to execute your command.".
+   => Корневая проблема — не лаунчер, а НЕРАБОТАЮЩАЯ УСТАНОВКА пакетов
+   в BMS. Как только bm install начнёт работать (как на эмуляторе),
+   BMS сам поставит SceneBoard из install_list и запустит его как
+   startup-extension, и launcher.ready выставится.
+
+6. СЛЕДУЮЩИЕ ШАГИ
+   A. Взять из эмулятора/его образа точные конфиги 6.0.0.112
+      (/system/etc/init/foundation.cfg, /system/profile/foundation.json,
+      appspawn.cfg, install_list.json, startup-extension списки) и
+      сравнить с нашим образом.
+      Образ эмулятора лежит в
+        C:\Users\Kharki\AppData\Local\Huawei\Emulator\deployed\Mate 60 Pro
+      либо в Sdk\system-image\HarmonyOS-6.x\phone_all_x86 (ext4,
+      читается debugfs напрямую).
+   B. Сравнить наши libbms/installd с эталоном по строкам/конфигам,
+      найти, что ломает установку (подпись, hsp, права,缺少 каталоги).
+   C. Цель установки для проверки — SceneBoard (com.ohos.sceneboard),
+      а не SuperLauncher.
+
+АРТЕФАКТЫ: docs/129_emulator_reference.txt, ref60/install_list.json
