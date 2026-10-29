@@ -1,0 +1,68 @@
+=== 130. Круг 54-55: сверка с эталоном 6.0.0.112; foundation живёт, BMS Init не завершается ===
+
+Дата: 2026-10-30. Продолжение 129_emulator_reference.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЭТАЛОННЫЕ КОНФИГИ 6.0.0.112 ПОЛУЧЕНЫ
+═══════════════════════════════════════════════════════════════════════
+
+Образ эмулятора Mate 60 Pro:
+  Sdk/system-image/HarmonyOS-6.0.1/phone_all_x86/system.img  (ext4)
+  os.softwareVersion=6.0.0.112, api 21
+Из него извлечены (docs/ref60, /tmp/ref112):
+  /system/etc/init/boot_detector.cfg  — ИДЕНТИЧЕН нашему (2327 байт)
+  /system/etc/init/appspawn.cfg       — 2139 байт (сравнить ещё не успели)
+  /system/etc/init/foundation.cfg     — 10086 байт
+  /system/profile/foundation.json     — 3876 байт
+  /system/etc/app/install_list.json   — 5070 байт, 70 записей
+
+2. СВЕРКА foundation.cfg (эталон vs наш)
+   Совпадают: набор job-ов, команды services:foundation (mkdir-ы) —
+   различий в командах НЕТ.
+   Отличия:
+     - наш on-start = services:dumpstacks (наш хук) вместо
+       services:foundation;
+     - у нас "start-mode": "boot", в эталоне этого поля нет;
+     - permission: у нас 92, в эталоне 93 (одного разрешения не хватает);
+     - у эталона есть critical=[1,4,240] и bootevents=[bms.ready,
+       appfwk.ready, lockscreen.ready, launcher.ready, wms.ready].
+   ЭКСПЕРИМЕНТ: с critical+bootevents система ребутится на ~186 c
+   (boot_detector ждёт launcher.ready и перезагружает), поэтому пока
+   оба поля сняты; critical убрали после того, как с ним foundation
+   вообще не перезапускался.
+
+3. ЭКСПЕРИМЕНТ: синхронизация ФС (persistence)
+   Пробовали rootflags=sync в cmdline -> ядро не монтирует корень
+   (panic VFS, unknown-block). Вместо этого bmrun запускает цикл
+   `/system/bin/sync` каждые 4 c.
+   Результат: каталоги /data/app/el1/... и /data/app/el1/bundle/public
+   ПЕРЕЖИВАЮТ убийство QEMU (раньше терялись) — persistence решена.
+
+4. ПРОГОН 1500 c (sync-цикл, без critical/bootevents)
+   - foundation стартовал ОДИН раз на 245 c и БОЛЬШЕ НЕ ПЕРЕЗАПУСКАЛСЯ
+     (в логе нет ServiceReap/restart), прожил до конца прогона;
+   - insert SA:401 = 3, bootevent.bms.main.bundles.ready — НИ РАЗУ;
+   - пакеты не установились (public пуст);
+   - в консоли видно, как SAs грузятся (SA:5002, 8001, 1912, 1918,
+     9527, 3009, 3001...), т.е. foundation жив и работает;
+     проблема — BMS не доходит до "bundles.ready".
+
+5. ВЫВОД
+   Похоже, BMS Init "висит"/не завершается: SA 401 публикуется (3 раза),
+   но bootevent bms.main.bundles.ready не выставляется. Раньше
+   foundation перезапускался каждые ~90-125 c и BMS успевал part-но
+   ставить HSP. Сейчас foundation живой — но Init не завершён.
+
+6. ПЛАН
+   A. Пойти по пути эталона: ровно 93 permission, убрать start-mode,
+      вернуть on-start=services:foundation, а старт bmrun перенести в
+      команды services:foundation (последней строкой).
+   B. Сравнить appspawn.cfg с эталоном (6.0.0.112) — возможно, у нас
+      другой список бандлов/флагов, и appspawn мешает старту экстеншенов.
+   C. Разобраться, почему Init BMS не завершается: искать в консоли
+      "OpenSo libbms" и что после; при необходимости добавить дамп
+      /proc/<pid>/stack для BMS-треда (наша ядерная STACKTRACE-патча
+      может печатать стек по pid).
+   D. Цель установки — com.ohos.sceneboard (настоящий лаунчер).
+
+АРТЕФАКТЫ: docs/130_reference_diff.txt, cur.log
