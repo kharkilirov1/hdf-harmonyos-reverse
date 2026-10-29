@@ -1,0 +1,65 @@
+=== 131. Круг 56: РАСШИФРОВАН ЭТАЛОННЫЙ BOOT-LOG; найден порядок запуска лаунчера ===
+
+Дата: 2026-10-30. Продолжение 130_reference_diff.
+
+═══════════════════════════════════════════════════════════════════════
+1. ГЛАВНОЕ: лог эмулятора читается как ТЕКСТ
+═══════════════════════════════════════════════════════════════════════
+
+  C:\Users\Kharki\AppData\Local\Huawei\Emulator\deployed\Mate 60 Pro\Log\
+      hilog_tmp_2026-10-30T021131\hilog.NNN.<ts>.gz
+
+Это обычный gzip; `zcat` даёт текстовые строки формата
+  10-30 02:11:59.043 804 829 I C01120/BMS: BundleMgrService Init begin
+То есть у нас теперь есть ПОЛНЫЙ эталонный boot-log 6.0.0.112.
+
+2. ЭТАЛОННЫЙ ПОРЯДОК (из лога)
+   02:11:58.772 BMS: instance is created
+   02:11:59.043 BMS: BundleMgrService OnStart start / Init begin
+   02:11:59.556 BMS: InitBmsParam
+   02:11:59.557 BMS: bms db :/data/service/el1/public/bms/
+                    bundle_manager_service/bmsdb.db is not exist, need to create
+   02:11:59.6xx Rdb: connection pool - OK, OnCreate -> bms_rdb_open_callback
+   02:12:10.384 BMSInstaller: add task:BootStartInstall : /system/app/SceneBoard
+   02:12:15.6   BMS: FetchInnerBundleInfo not found com.ohos.sceneboard
+   02:12:24.0   BMSInstaller: InstallBundleByBundleName -n com.ohos.sceneboard
+   02:12:23.0   BMS: HandleSceneBoard sceneBoardEnable : 1
+   02:13:34.220 PARAM: SystemSetParameter name bootevent.launcher.ready ret:0
+                (pid 2999 = ohos.sceneboard)
+   => лаунчер = com.ohos.sceneboard; BMS ставит его задачей
+      BootStartInstall из /system/app/SceneBoard, затем appfwk стартует
+      его как startup-extension, и он выставляет launcher.ready.
+
+3. НАШ ПРОГОН С ЗАХВАТОМ hilog В ФАЙЛ
+   bmrun: sync-цикл + `timeout 25 hilog >> /data/diag/h.log` каждые 10 c
+   Результат: h.log = 606147 байт, реальные текстовые строки!
+   НО покрытие только 05:57:27..06:04:40 (гость ~435 c):
+     - в логе ЕСТЬ: init, storage_daemon, hdf_devmgr, multimodalinput,
+       resource_schedule, samgr, memmgrservice, bm_auth...
+     - НЕТ ни одной строки C01120/BMS и C05a01/ATM.
+   Причина: захват прекратился на ~435 c (клиент hilog перестал выдавать
+   новые записи), а accesstoken_service (SA 3503) стартовал только
+   на 543 c:
+     [543.45] ServiceStart starting:accesstoken_service
+     [544.98] started info accesstoken_service(pid 2065 uid 3020)
+   BMS (SA 401) зависит от 3503 (foundation.json: depend:[3503]) —
+   поэтому его логов и не могло быть раньше 545 c.
+
+4. ВАЖНОЕ ПОДОЗРЕНИЕ
+   "insert SA:401" в наших логах, вероятно, публикует НАША ЖЕ пещера в
+   libsafwk (Publish-marker), а не настоящий BMS. Это объясняет, почему
+   SA 401 "есть", а логов BMS нет и bms.main.bundles.ready не ставится.
+   Нужно проверить: отключить пещеру (вернуть оригинальный libsafwk) и
+   посмотреть, появятся ли тогда insert SA:401 и логи BMS.
+
+5. ПЛАН
+   A. Продлить захват hilog на всё время прогона (несколько параллельных
+      циклов, `hilog >> file` без timeout; проверять рост файла).
+   B. Прогнать и посмотреть строки C01120/BMS после 545 c: Do they
+      reach "Init begin"/"InitBmsParam"/"BootStartInstall"?
+   C. Отключить пещеру libsafwk (вернуть оригинал) и перепроверить,
+      когда реально появляется SA 401.
+   D. Если BMS Init доходит до BootStartInstall — сравнить с эталоном,
+      на каком шаге у нас обрыв.
+
+АРТЕФАКТЫ: docs/131_reference_hilog.txt, /tmp/hg/h.log
