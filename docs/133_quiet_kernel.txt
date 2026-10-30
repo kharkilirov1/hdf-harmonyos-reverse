@@ -1,0 +1,67 @@
+=== 133. Круг 58: ПРОРЫВ — тихое ядро; BMS загрузилась, bms.ready SET, пакеты ставятся ===
+
+Дата: 2026-10-30. Продолжение 132_fixed_metric.
+
+═══════════════════════════════════════════════════════════════════════
+1. ГЛАВНАЯ ПРИЧИНА ВСЕХ НЕУДАЧ: ИНСТРУМЕНТАЦИЯ ЯДРА
+═══════════════════════════════════════════════════════════════════════
+
+  В ядре были включены сотни pr_info на КАЖДУЮ binder-транзакцию
+  (BPAY/BPAY2/BPAY3/BPAY4/BDIR/BWAIT/SAMGRADD/FWAIT, плюс FCOMM/FUNIX/
+  FPIPE). Это писало мегабайты в последовательную консоль (115200),
+  из-за чего гость под TCG деградировал настолько, что boot-фазы не
+  достигались: SA 401 (BMS) не загружалась, bms.ready не ставился.
+
+  ИСПРАВЛЕНИЕ: все эти pr_info -> pr_debug (компилируются в ничто).
+  Ядро пересобрано (quiet, 0 строк BPAY в Image).
+
+2. РЕЗУЛЬТАТ ПЕРВОГО ЖЕ ПРОГОНА С ТИХИМ ЯДРОМ (1500 c)
+   [ 685.7] bootevent.samgr.ready            SET
+   [ 713.4] bootevent.appspawn.started       SET
+   [ 747.7] bootevent.hdf_devmgr.ready       SET
+   [ 767.1] bootevent.param_watcher.started  SET
+   [ 819.5] bootevent.powermgr.ready         SET
+   [ 822.5] bootevent.renderservice.ready    SET
+   [ 903.1] bootevent.appfwk.ready           SET
+   [1025.7] bootevent.avsessionservice.ready SET
+   [1145.5] bootevent.bms.main.bundles.ready SET   <-- ВПЕРВЫЕ РЕАЛЬНО!
+   [1202.6] bootevent.appfwk.ready           SET
+   [1429.2] bootevent.appspawn.started       SET
+
+   SA 401 (BMS) опубликована 2 раза (точный счёт `insert SA:401_`),
+   SA 3503 — 1 раз.
+
+   BMS создала базу:
+     /data/service/el1/public/bms/bundle_manager_service/bmsdb.db (225280)
+     .../bmsdb.db-dwr (12288)
+     /data/service/el1/public/bms/bundle_manager_service/app_install/
+
+   УСТАНОВЛЕНЫ ПАКЕТЫ (persisted):
+     com.huawei.hms.weather, com.huawei.hmos.walletkit,
+     com.huawei.hmos.paymentServiceHsp, com.huawei.hmos.hwstylusfeature,
+     com.huawei.hms.mapservice.kit, com.huawei.hmos.health.kit,
+     com.huawei.hmos.hdscomponent, com.huawei.hmos.pic,
+     com.huawei.hmsapp.hiai.hsp
+
+3. ЧЕГО ПОКА НЕТ
+   launcher.ready не выставлен:
+     [1074.9] bootevent.launcher.ready not set
+     [1455.5] bootevent.launcher.ready not set
+   SceneBoard ещё не установлен (в /data/app/el1/bundle/public его нет).
+
+   Причина, вероятно, та же, что на эталоне: BMS ставит системные
+   приложения последовательно задачами BootStartInstall; у нас в
+   install_list 182 записи (у эталона 70), и за 1500 c BMS успела
+   поставить только 9 HSP. SceneBoard — HAP, идёт позже.
+
+4. ПЛАН
+   A. Прогон 2400-3000 c (тихое ядро) -> дождаться установки
+      com.ohos.sceneboard и старта SceneBoard как startup-extension.
+   B. Проверять: наличие /data/app/el1/bundle/public/com.ohos.sceneboard,
+      процесс ohos.sceneboard (в консоли init «started info ...»),
+      установку bootevent.launcher.ready (SET).
+   C. Если SceneBoard не стартует после установки — смотреть
+      appspawn/appfwk в hilog (теперь можно включить захват hilog,
+      т.к. ядро тихое и нагрузки хватает).
+
+АРТЕФАКТЫ: docs/133_quiet_kernel.txt, cur.log
