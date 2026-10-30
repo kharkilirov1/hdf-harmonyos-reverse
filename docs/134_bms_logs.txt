@@ -1,0 +1,59 @@
+=== 134. Круг 59: логи BMS ДОСТУПНЫ; BMS Init работает, SceneBoard пока не ставится ===
+
+Дата: 2026-10-30. Продолжение 133_quiet_kernel.
+
+═══════════════════════════════════════════════════════════════════════
+1. ПРОГОН 1500 c С ПРИОРИТЕТОМ SceneBoard
+═══════════════════════════════════════════════════════════════════════
+
+  install_list: запись {"app_dir":"/system/app/SceneBoard"} ПЕРЕНЕСЕНА
+  на индекс 0 (была 149 из 182) — чтобы BMS ставила её первой.
+
+  Результат:
+    SA401 = 2, bms.ready SET (1 раз)
+    launcher.ready — снова "not set" (WARNING в 1077 c)
+    SceneBoard НЕ установлен: в /data/app/el1/bundle/public только
+    те же 9 HSP (weather, walletkit, paymentServiceHsp, hwstylusfeature,
+    mapservice.kit, health.kit, hdscomponent, pic, hiai.hsp)
+    bmsdb.db есть (225280)+wal
+
+  => порядок в install_list не помог; SceneBoard (HAP в каталоге с
+     9 HAP-файлами) не устанавливается вовсе.
+
+2. ГЛАВНОЕ: ТЕПЕРЬ ЕСТЬ ЛОГИ BMS (hilog-снимок на ~1110 c)
+   kernel quiet => hilog-клиент успевает отдать текст:
+
+     10-30 09:26:25 C01120/foundation/BMS: [bms_rdb_open_callback.cpp(OnOpen:49)]Open
+     10-30 09:26:25 C01120 BMS: RdbIntegrityCheckNeedRestore: integrity check start db /bmsdb.db
+     10-30 09:26:25 C01120 BMS: integrity check succeed db /bmsdb.db
+     10-30 09:26:26 C01121 BMSInstaller: create bundle installer host instance
+     10-30 09:26:26 C01121 BMSInstaller: create bundle installer manager instance
+     10-30 09:26:26 C01120 BMS: InitBundleDataMgr: Create BundledataMgr
+     10-30 09:26:26 C01120 BMS: BundleDataStorageRdb instance is created
+     10-30 09:26:26 C01120 BMS: PreInstallDataStorageRdb instance is created
+     10-30 09:26:26 C01120 BMS: BundleSandboxDataMgr instance is created
+     10-30 09:26:26 E C01120 BMS: QueryAllData: GoToFirstRow failed  (пустая БД - ок)
+     ... ShortcutDataStorageRdb, ShortcutVisibleDataStorageRdb,
+         RouterDataStorageRdb instance is created
+
+  То есть BMS Init идёт нормально, база создаётся, installer поднимается.
+
+3. ВЫВОД
+   Проблема локализована: BMS НЕ доходит до установки SceneBoard
+   (или падает на ней). Нужны логи ПОЗЖЕ — на этапе BootStartInstall
+   (после ~1200-1400 c), где будет видно:
+     - "add task:BootStartInstall : /system/app/SceneBoard"
+     - ошибку verify/install конкретно для com.ohos.sceneboard
+
+4. ПЛАН
+   A. Снимки hilog на 1200 и 1450 c (60 c каждый), грепать
+      "BootStartInstall|sceneboard|BMSInstaller|verify|signature".
+   B. Если SceneBoard пропускается из-за мульти-HAP каталога —
+      проверить, как эталон ставит его (в эталонном логе:
+      add task:BootStartInstall : /system/app/SceneBoard, затем
+      InstallBundleByBundleName -n com.ohos.sceneboard).
+   C. Возможно, наши 9 установленных HSP — это ровно те, что BMS
+      успевает поставить до какого-то лимита/обрыва; проверить, растёт
+      ли их число на длинном прогоне (3000 c).
+
+АРТЕФАКТЫ: docs/134_bms_logs.txt
