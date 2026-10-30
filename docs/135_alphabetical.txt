@@ -1,0 +1,57 @@
+=== 135. Круг 60: BootStartInstall идёт по алфавиту 182 каталогов; план — bm install SceneBoard ===
+
+Дата: 2026-10-30. Продолжение 134_bms_logs.
+
+═══════════════════════════════════════════════════════════════════════
+1. НАЙДЕНО: BMS добавляет задачи установки по АЛФАВИТУ каталогов
+═══════════════════════════════════════════════════════════════════════
+
+  Фильтрованный захват hilog показал:
+
+    10-30 10:17:39 C01121/foundation/BMSInstaller: add task:BootStartInstall :
+        /system/app/ArkWebCoreLegacy
+        /system/app/ArkWebCore
+        /system/app/AppNotepad
+        /system/app/AppLock
+        /system/app/AppGallery
+        /system/app/AppEmail
+        /system/app/AppCalendar ...
+
+  => задачи идут АЛФАВИТНО по пути каталога (ArkWeb..., App...).
+     SceneBoard ("S...") — почти в конце списка из 182 записей.
+     Поэтому к 1400 c SceneBoard ещё не устанавливается: за прогон
+     BMS успевает поставить только первые ~9 (HSP-пакеты).
+
+  Перестановка записи в install_list на индекс 0 НЕ помогает —
+  BMS сортирует сама.
+
+2. ЭКСПЕРИМЕНТ: install_list урезан до одной записи SceneBoard
+   Результат: те же 9 HSP всё равно установлены (они идут через
+   другой механизм — в логе "execute begin preinstalled_bundle"),
+   SceneBoard так и не установлен; bms.ready в этом прогоне = 0
+   (нестабильно; вероятно из-за урезанного конфига).
+
+   install_list бэкап: install_list.json.bak.round60
+
+3. ВЫВОД/ПЛАН
+   A. Теперь, когда BMS РАБОТАЕТ (bms.ready ставится, db создаётся,
+      install работает), самый прямой путь — самим поставить SceneBoard
+      через `bm install -p /system/app/SceneBoard/SceneBoard.hap`,
+      дождавшись bms.ready. Раньше это было невозможно (BMS была мертва).
+   B. Схема bmrun:
+        - sync-цикл;
+        - ждать `param get bootevent.bms.main.bundles.ready` == true
+          (или таймаут 1500 c);
+        - `bm install -p /system/app/SceneBoard/SceneBoard.hap`
+          (логи в файл; при успехе — маркер в консоль);
+        - затем `aa start` для SceneBoard не подойдёт (это
+          ExtensionAbility) — старт выполняет appfwk как
+          startup-extension; возможно потребуется `param set
+          bootevent...`/перезагрузка, но сначала проверить, не начнёт
+          ли appfwk сам поднимать SceneBoard после установки.
+   C. После успешной установки проверить:
+        - /data/app/el1/bundle/public/com.ohos.sceneboard
+        - процесс ohos.sceneboard в консоли init (started info ...)
+        - bootevent.launcher.ready == SET
+
+АРТЕФАКТЫ: docs/135_alphabetical.txt
