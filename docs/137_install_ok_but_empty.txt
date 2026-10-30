@@ -1,0 +1,55 @@
+=== 137. Круг 62: bm install SceneBoard -> "install bundle successfully", но БД пуста ===
+
+Дата: 2026-10-30. Продолжение 136_sceneboard_install.
+
+═══════════════════════════════════════════════════════════════════════
+1. ПРОГОН С ПАТЧЕМ libhapverify (HapVerify -> return 0)
+═══════════════════════════════════════════════════════════════════════
+
+  Патч: OHOS::Security::Verify::HapVerify (VA 0x4a094) -> mov w0,#0; ret
+  (бэкап: /tmp/libhapverify.orig.so).
+
+  Прогон 2400 c, install_list = только SceneBoard, прочие списки пусты.
+  BMSREADY не дождались (bms.ready=0 в этом прогоне), и скрипт всё равно
+  запустил установку. Результат:
+
+      BMRUN INSTALL rc=0
+      sb.txt = "install bundle successfully."      <-- УСПЕХ!
+
+  НО:
+    /data/app/el1/bundle/public            — ПУСТО
+    /data/app/el1/100/base                 — пусто
+    bmsdb.db (94208) — внутри НЕТ ни "sceneboard", ни других bundleName
+    launcher.ready — не set
+
+  => Похоже, что патч HapVerify возвращает 0, не заполняя
+     HapVerifyResult, и BMS "успешно" завершает установку, но реальной
+     записи не создаёт (или пишет в preinstall-таблицу, которой нет).
+     Патч откатан (hapverify восстановлен побайтово).
+
+2. ТЕКУЩИЙ ЗАПУСК (в работе)
+   • hapverify — ОРИГИНАЛ
+   • списки: install_list = только SceneBoard; app_service_fwk и
+     shared_bundles — пустые (бэкапы *.bak.r62 в /system/etc/app)
+   • бот 2400 c
+   • bmrun: sync; ждём `param get bootevent.bms.main.bundles.ready|grep true`
+     до 60*15 c; затем `bm install -p SceneBoard.hap` с таймаутом 600 c;
+     выводим rc, первые строки, список пакетов.
+
+3. ПЛАН
+   A. Если с оригинальным hapverify установка пройдёт и в БД появятся
+      bundleName — проверить, что появился com.ohos.sceneboard и
+      перезагрузиться ВТОРОЙ раз с тем же образом (сохранить /data):
+      на втором boot BMS прочитает БД, appfwk запустит SceneBoard как
+      startup-extension, и должен выставиться launcher.ready.
+   B. Если установка упадёт по таймауту — смотреть sb.txt (код ошибки)
+      и hilog BMSInstaller.
+   C. Если установка проходит, но БД пуста — значит для system-app
+      (app_dir в /system/app) BMS не копирует файлы и не пишет запись
+      при bm install; тогда путь — заставить BMS ставить его в рамках
+      BootStartInstall (например, уменьшив число каталогов в
+      install_list до SceneBoard и дождавшись), либо скопировать
+      x86-версию установленного sceneboard из эмулятора (не подойдёт по
+      ABI), либо патчить BMS.
+
+АРТЕФАКТЫ: docs/137_install_ok_but_empty.txt
