@@ -1,0 +1,56 @@
+=== 136. Круг 61: bm install SceneBoard — проверка готовности и таймауты ===
+
+Дата: 2026-10-30. Продолжение 135_alphabetical.
+
+═══════════════════════════════════════════════════════════════════════
+1. ЧТО ПРОВЕРЕНО В ЭТОМ КРУГЕ
+═══════════════════════════════════════════════════════════════════════
+
+(A) Ожидание bms.ready + `bm install -p SceneBoard.hap` (таймаут 90 c):
+    bmsready=[true] на 11:14:32 (гость ~880 c)
+    INSTALL rc=124 (таймаут) -> установка не уложилась в 90 c.
+    В /data/app/el1/bundle/public — те же 9 HSP, SceneBoard нет.
+
+(B) Повтор с таймаутом 300 c и длинным ботом (2100 c):
+    bms.ready в этом прогоне = 0 (SA401 опубликована 1 раз в 914 c,
+    appfwk.ready 1 раз) — BMS не успела завершить Init.
+    bm install rc=0, но вывода нет; пакетов вообще 0 (даже HSP).
+
+(C) install_list урезан до SceneBoard + захват BMS-логов, бот 2100 c:
+    SA401 = 2, bms.ready SET 2 раза (значит BMS Init завершается!)
+    НО BMS всё равно ставит те же 9 HSP (weather, walletkit,
+    paymentServiceHsp, hwstylusfeature, mapservice.kit, health.kit,
+    hdscomponent, pic, ...) — то есть эти пакеты ставятся НЕ из
+    install_list.json (видимо, другой механизм preinstalled_bundle /
+    app_service_fwk_install_list / shared_bundles_install_list).
+    SceneBoard так и не установлен, launcher.ready не выставлен.
+
+    Захваченный лог BMS (360 строк, 12:10:36-12:17:48) подтверждает:
+      - "FetchInnerBundleInfo not found com.huawei.hms.weather" -> install
+      - GetBundleInfo failed для mapservice.kit и др. (запросы от SAs)
+      - никаких "BootStartInstall : /system/app/SceneBoard"
+
+2. ОШИБКА В СВОЁМ ЖЕ СКРИПТЕ
+   Проверка готовности считала "false" за успех (case не отбрасывал
+   "false"), поэтому установка запускалась слишком рано.
+   Исправлено: ждём ровно v="true".
+
+3. ТЕКУЩИЙ ЗАПУСК (в работе)
+   • install_list восстановлен из .bak.round60 (полный, 182 записи)
+   • бот 2400 c
+   • bmrun: sync-цикл; ждём v=true до 60*20 c; затем
+     `bm install -p /system/app/SceneBoard/SceneBoard.hap` с таймаутом
+     400 c; печатаем rc и первые строки вывода; печатаем список
+     установленных пакетов.
+
+4. ПЛАН
+   A. Дождаться результата этого прогона: если rc=0 и в списке появился
+      com.ohos.sceneboard — проверить, не стартует ли appfwk SceneBoard
+      как startup-extension (консоль: "started info ohos.sceneboard").
+   B. Если install падает — взять его вывод (файл /data/diag/sb.txt) и
+      прочитать через debugfs; там будет код ошибки BMS.
+   C. Если SceneBoard установился, но не стартует — искать в hilog
+      appfwk/startup-extension строки о запуске sceneboard и
+      bootevent.launcher.ready.
+
+АРТЕФАКТЫ: docs/136_sceneboard_install.txt
