@@ -1,0 +1,69 @@
+=== 138. Круг 63: ВНЕДРЕНО СОСТОЯНИЕ ЭМУЛЯТОРА — BMS видит и включает SceneBoard ===
+
+Дата: 2026-10-30. Продолжение 137_install_ok_but_empty.
+
+═══════════════════════════════════════════════════════════════════════
+1. ВЗЯЛИ УСТАНОВЛЕННОЕ СОСТОЯНИЕ ИЗ ЖИВОГО ЭМУЛЯТОРА (option B)
+═══════════════════════════════════════════════════════════════════════
+
+  userdata эмулятора: qcow2-оверлей 918MB + базовый userdata.img.
+  Через qemu-img rebase (backing был Windows-путь C:/...) + convert
+  получили raw 6.4GB, смонтировали (loop rw) и скопировали в наш образ:
+
+    /mnt/emu/app/el1/bundle/public   (65 пакетов, 601MB)
+      -> /data/app/el1/bundle/public
+    /mnt/emu/app/el1/100             (11MB, app data)
+      -> /data/app/el1/100
+    /mnt/emu/service/el1/public/bms/bundle_manager_service
+      (bmsdb.db 2.3MB + dwr/shm/wal, bmsdb_slave.db и др.)
+      -> /data/service/el1/public/bms/bundle_manager_service
+
+  В составе: com.ohos.sceneboard (x86_64-сборка HAP, libs/x86_64/
+  libc++_shared.so), а также 64 других установленных пакета.
+
+2. ПЕРВЫЙ BOOT С ВНЕДРЁННЫМ СОСТОЯНИЕМ (2400 c)
+   - bms.ready SET 1 раз, SA401 = 1
+   - на 1421 c: StorageDaemon: SetBundleQuota ... bundleName is
+     com.ohos.sceneboard, uid 20020009  => BMS/StorageDaemon УВИДЕЛИ
+     установленный SceneBoard.
+   - launcher.ready — не set; процесса sceneboard нет.
+
+3. ВТОРОЙ BOOT С ТЕМ ЖЕ ОБРАЗОМ (2400 c)
+   - bms.ready SET 3 раза, SA401 = 3
+   - в hilog BMS:
+       C01120/BMS bundle_mgr_service_event_handler.cpp:HandleSceneBoard:4093
+         HandleSceneBoard sceneBoardEnable : 1          <-- ВКЛЮЧИЛИ!
+       ... затем предупреждения:
+         ParseLabelResource fail key com.ohos.sceneboard
+         ParseIconResource fail key com.ohos.sceneboard
+         -n com.ohos.sceneboard Parse failed, need to modify label and icon
+       и: "SetApplicationEnabled:4919 can not find bundle com.ohos.launcher"
+          (com.ohos.launcher в системе нет — это нормально и на
+           эмуляторе его нет)
+   - но процесс ohos.sceneboard НЕ стартовал, launcher.ready не set.
+
+4. ВЫВОД
+   Внедрение состояния эмулятора РАБОТАЕТ: BMS читает БД, видит
+   com.ohos.sceneboard и включает его (sceneBoardEnable: 1).
+   Осталось заставить appfwk запустить его как startup-extension.
+   Похоже, к моменту sceneBoardEnable (гость ~1400 c) фаза запуска
+   startup-extension в appfwk уже прошла (appfwk.ready был ~900 c).
+
+5. ПЛАН
+   A. Найти триггер запуска SceneBoard в эталоне: поискать в эталонных
+      hilog строки appfwk/AMS о старте sceneboard сразу ПОСЛЕ
+      HandleSceneBoard (02:12:23 → процесс 2999 к 02:13:34).
+   B. Варианты:
+      - сделать так, чтобы BMS включала SceneBoard РАНЬШЕ (уменьшить
+        работу BMS Init: чистые install_list, меньше пакетов в БД);
+      - перезапустить foundation/appfwk после включения (init reset
+        foundation), чтобы startup-extension фаза прошла заново;
+      - либо стартовать extension вручную (aa не умеет для
+        ExtensionAbility; возможно hidumper/сокет AMS).
+   C. Проверить, не мешает ли x86-ABI: SceneBoard HAP из эмулятора
+      содержит libs/x86_64; для запуска на arm64 нужен наш
+      /system/app/SceneBoard (arm64), поэтому правильнее добиться
+      его установки штатным BMS, а состояние эмулятора использовать
+      как подсказку/структуру БД.
+
+АРТЕФАКТЫ: docs/138_injected_state.txt
